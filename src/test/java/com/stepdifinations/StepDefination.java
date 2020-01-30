@@ -3,6 +3,7 @@ package com.stepdifinations;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -63,6 +64,27 @@ public class StepDefination {
 			break;
 		}
 	}
+	
+	@And("^Click on Add button in Users grid$")
+	public void Click_on_Add_button_in_Users_grid() throws Throwable {
+		usersPage.clickOnAddNewUserButton();
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
+		log.info("********************Get data from data table********************");
+		usersPage.clickOnAddNewUserButton();
+		
+	}
+	
+	usersPage.enterUserFirstName(firstName);
+	usersPage.enterUserLastName(lastName);
+	usersPage.enterUserEmail(email);
+	CommonVariables.userData.put("userFirstName", firstName);
+	CommonVariables.userData.put("userLastName", lastName);
+	CommonVariables.userData.put("userEmail", email);
+	usersPage.clickOnSubmit();
+	System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]")).getText());
+	commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+			"style", "display: none;");
 
 	@And("^admin user add new User$")
 	public void admin_user_add_new_User(Map<String, String> table) throws Throwable {
@@ -81,6 +103,7 @@ public class StepDefination {
 		CommonVariables.userData.put("userLastName", lastName);
 		CommonVariables.userData.put("userEmail", email);
 		usersPage.clickOnSubmit();
+		System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]")).getText());
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 	}
@@ -96,7 +119,21 @@ public class StepDefination {
 		CommonVariables.userData.put("userFirstName", firstName);
 		CommonVariables.userData.put("userLastName", lastName);
 		usersPage.clickOnSubmit();
+		System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]")).getText());
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 	}
+	@And("^verify the status detail$")
+	public void verify_the_status_detail() throws Throwable {
+		log.info("********************Get data from data table********************");
+		System.out.println("Detail Match");
+		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a/span")).click();
+		Thread.sleep(5000);
+				
+				System.out.println(
+						"Message = " + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		log.info("********************data Inactive********************");
+		Thread.sleep(1000);
+	}
+	
 }

@@ -20,6 +20,7 @@ public class CommonVariables {
 	public String kitName;
 	public static String casenumber;
 	public static String vendorName;
+	public static String adminloginSheetName ="AdminLogin";
 
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;

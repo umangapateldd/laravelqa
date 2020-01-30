@@ -50,8 +50,12 @@ public class UsersPage {
 	@FindBy(xpath = "//*[@id=\"DataTables_Table_0\"]/tbody/tr/td[9]/a")
 	WebElement editButton;
 
-	@FindBy(xpath = "//*[@id=\"DataTables_Table_0\"]/tbody/tr/td[12]/a")
+	@FindBy(xpath = "//*[@id='action_btns']/div/a[3]")
 	WebElement deleteButton;
+	
+	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr[1]/td[2]/div/input")
+	WebElement checkbox;
+	
 
 	public UsersPage(WebDriver driver) {
 		this.driver = driver;
@@ -132,7 +136,10 @@ public class UsersPage {
 
 	public void clickOnDeleteButton(String baseValueForVerification) throws InterruptedException, IOException {
 		if (verifyDetails == true) {
+		    checkbox.click();
+		    Thread.sleep(5000);
 			deleteButton.click();
+			Thread.sleep(5000);
 			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 					"style", "display: none;");
 		} else {
@@ -140,4 +147,6 @@ public class UsersPage {
 		}
 
 	}
-}
+
+	}
+

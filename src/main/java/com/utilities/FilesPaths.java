@@ -24,4 +24,6 @@ public class FilesPaths {
 
 	public final static String EXTRA_FILES_FOLDER = System.getProperty("user.dir")
 			+ "\\src\\main\\resources\\com\\extrafiles\\";
+	
+	public final static String  excel_data_file_name = EXTRA_FILES_FOLDER + "abc.xls";
 }

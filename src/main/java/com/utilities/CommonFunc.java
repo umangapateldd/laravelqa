@@ -43,6 +43,8 @@ public class CommonFunc {
 
 		} while (tmp == 1);
 	}
+	
+
 
 	public void checkElementAvailableWithAttributeCompare(List<WebElement> xpathListElement, WebElement xpath,
 			String attributeName, String attributeValue) {
