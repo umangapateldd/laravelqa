@@ -5,12 +5,12 @@ Feature: Sanity test functionalities of Laravel CMS
   Scenario: Create User and verify details
     Given Login as Admin and Go to Users Module
     When Click on Add button in Users grid
-    #Then Users "Add" page gets open
-    #And Verify test data with proper validation message for Users
-    #When I enter all mandatory fields for "add User"
-    #And Click on "Save" button in Users
-    #Then I should get "account created successfully" message on Users list page
-    #Then Verify details in "Users grid"
+    Then Users Add page gets open
+    And Verify test data with proper validation message for Users
+    When I enter all mandatory fields for add User
+    And Click on Save button in Users
+    Then I should get account created successfully message on Users list page
+    Then Verify details in Users grid
 
   #@SanityUser
   #Scenario: Edit User and verify details
