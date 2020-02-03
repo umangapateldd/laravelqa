@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -92,20 +93,29 @@ public class StepDefination {
 
 		usersPage.clickOnSubmit();
 		Thread.sleep(3000);
-		System.out.println("Verify the validation message : "
-				+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText());
-		System.out.println("Verify the validation message : "
-				+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+		String firstname = "The first name field is required.";
+		String email = "The email field is required.";
 
+		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText()
+				.equalsIgnoreCase(firstname)) {
+			System.out.println("Verify the validation message : "
+					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText());
+		}
+		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText()
+				.equalsIgnoreCase(email)) {
+			System.out.println("Verify the validation message : "
+					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+
+		}
 	}
 
 	@When("^I enter all mandatory fields for add User$")
 	public void I_enter_all_mandatory_fields_for_add_User() throws Throwable {
 
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.adminloginSheetName);
-		String firstname = ExcelHelper.getData(1, 1);
-		String lastname = ExcelHelper.getData(1, 2);
-		String email = ExcelHelper.getData(1, 3);
+		
+		String firstname = ExcelHelper.getData(1, 0);
+		String lastname = ExcelHelper.getData(1, 1);
+		String email = ExcelHelper.getData(1, 2);
 
 		usersPage.enterUserFirstName(firstname);
 		usersPage.enterUserLastName(lastname);
@@ -122,8 +132,8 @@ public class StepDefination {
 
 	@Then("^I should get account created successfully message on Users list page$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page() throws Throwable {
-		String firstname = ExcelHelper.getData(1, 1);
-		String lastname = ExcelHelper.getData(1, 2);
+		String firstname = ExcelHelper.getData(1, 0);
+		String lastname = ExcelHelper.getData(1, 1);
 		String message = firstname + " " + lastname + " account created successfully.";
 
 		System.out.println("Message test:" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
@@ -138,8 +148,8 @@ public class StepDefination {
 
 	@And("^Verify details in Users grid$")
 	public void Verify_details_in_Users_grid() throws Throwable {
-		Thread.sleep(5000);
-		String email = ExcelHelper.getData(1, 3);
+		Thread.sleep(6000);
+		String email = ExcelHelper.getData(1, 2);
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		Thread.sleep(7000);
@@ -147,6 +157,56 @@ public class StepDefination {
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
+		if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText()
+				.equalsIgnoreCase(email)) {
+			System.out.println("User detail match "
+					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText());
+			Thread.sleep(3000);
+		}
 	}
 
+	@And("^Click on Edit button in Users grid$")
+	public void Click_on_Edit_button_in_Users_grid() throws Throwable {
+		{
+			Thread.sleep(6000);
+			driver.findElement(
+					By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[9]/a")).click();
+			Thread.sleep(5000);
+
+		}
+	}
+
+	@Then("^Users Edit page gets open$")
+	public void Users_Edit_page_gets_open() throws Throwable {
+		String title = "Edit User";
+
+		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equals(title)) {
+			System.out.println("Edit page title= "
+					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
+		}
+	}
+
+	@When("^I enter all mandatory fields for update User$")
+	public void I_enter_all_mandatory_fields_for_update_User() throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+		String updatefirstname = ExcelHelper.getData(1, 3);
+		String updatelastname = ExcelHelper.getData(1, 4);
+		usersPage.enterUserFirstName(updatefirstname);
+		usersPage.enterUserLastName(updatelastname);
+
+	}
+
+	@Then("^I should get account updated successfully message on Users list page$")
+	public void I_should_get_account_updated_successfully_message_on_Users_list_page() throws Throwable {
+		String updatefirstname = ExcelHelper.getData(1, 3);
+		String updatelastname = ExcelHelper.getData(1, 4);
+		
+		String message = updatefirstname + " " + updatelastname + " account updated successfully.";
+		System.out.println("Message = "+message);
+		System.out.println("Message value= "+driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		
+		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
+			System.out.println("messsge: = " + message);
+		}
+	}
 }

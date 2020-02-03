@@ -27,6 +27,7 @@ public class CommonStepDefinations {
 	public CommonStepDefinations() {
 		driver = HookHelper.driver;
 		PageFactory.initElements(driver, this);
+		commonFunc = new CommonFunc(driver);
 	}
 
 	@Given("^Login as Admin and Go to Users Module$")
@@ -59,10 +60,12 @@ public class CommonStepDefinations {
 		loginPage = new LoginPage(driver);
 		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
 				readPropFile.readProp().getProperty("password"));
-		
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name,CommonVariables.adminloginSheetName);
-		String url = ExcelHelper.getData(1,0);
-		driver.get(url);
+		commonFunc.clickonmenuondashboard("Users");
+		Thread.sleep(5000);
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+//		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name,CommonVariables.users);
+//		String url = ExcelHelper.getData(1,0);
+//		driver.get(url);
 //		commonFunc = new CommonFunc(driver);
 //		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 //				"style", "display: none;");

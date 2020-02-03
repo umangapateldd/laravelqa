@@ -3,6 +3,7 @@ package com.utilities;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -43,8 +44,6 @@ public class CommonFunc {
 
 		} while (tmp == 1);
 	}
-	
-
 
 	public void checkElementAvailableWithAttributeCompare(List<WebElement> xpathListElement, WebElement xpath,
 			String attributeName, String attributeValue) {
@@ -65,5 +64,23 @@ public class CommonFunc {
 			}
 
 		} while (tmp == 1);
+	}
+
+	public void clickonmenuondashboard(String menuTitle) throws InterruptedException {
+		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='main']/div[2]/div/div/div/a"));
+
+		int count = menu.size();
+		for (int i = 1; i <= count; i++) {
+			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
+			System.out.println("Value test" + m1);
+			if (m1.equals(menuTitle)) {
+				System.out.println("Menu text is match");
+
+				Thread.sleep(6000);
+				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
+				Thread.sleep(5000);
+				break;
+			}
+		}
 	}
 }
