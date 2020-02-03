@@ -67,7 +67,7 @@ public class StepDefination {
 			break;
 		}
 	}
-	
+
 	@And("^Click on Add button in Users grid$")
 	public void Click_on_Add_button_in_Users_grid() throws Throwable {
 		Thread.sleep(5000);
@@ -75,63 +75,72 @@ public class StepDefination {
 		Thread.sleep(3000);
 
 	}
-	
+
 	@Then("^Users Add page gets open$")
-	public void Users_Add_page_gets_open()throws Throwable {
-		
+	public void Users_Add_page_gets_open() throws Throwable {
+
 		String page = "Add User";
 		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equalsIgnoreCase(page)) {
 
-		System.out.println("Verify the title:" + driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
+			System.out.println("Verify the title:"
+					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
+		}
 	}
-	}
-	
+
 	@And("^Verify test data with proper validation message for Users$")
 	public void Verify_test_data_with_proper_validation_message_for_Users() throws Throwable {
-	
+
 		usersPage.clickOnSubmit();
 		Thread.sleep(3000);
-		System.out.println("Verify the validation message : "+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText());
-		System.out.println("Verify the validation message : "+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
-		
+		System.out.println("Verify the validation message : "
+				+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText());
+		System.out.println("Verify the validation message : "
+				+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+
 	}
 
 	@When("^I enter all mandatory fields for add User$")
 	public void I_enter_all_mandatory_fields_for_add_User() throws Throwable {
-		
+
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.adminloginSheetName);
 		String firstname = ExcelHelper.getData(1, 1);
 		String lastname = ExcelHelper.getData(1, 2);
 		String email = ExcelHelper.getData(1, 3);
-		
+
 		usersPage.enterUserFirstName(firstname);
 		usersPage.enterUserLastName(lastname);
 		usersPage.enterUserEmail(email);
-		
+
 	}
-	
+
 	@And("^Click on Save button in Users$")
 	public void Click_on_Save_button_in_Users() throws Throwable {
-	
+
 		usersPage.clickOnSubmit();
-		
+		Thread.sleep(2000);
 	}
-	
+
 	@Then("^I should get account created successfully message on Users list page$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page() throws Throwable {
 		String firstname = ExcelHelper.getData(1, 1);
 		String lastname = ExcelHelper.getData(1, 2);
-		String message = firstname + lastname + "account created successfully.";
-		
-		if ( driver.findElement(By.xpath("//*[@id='main']/div[1]")).getText().equalsIgnoreCase(message)) {
-			System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]")).getText());
-			Thread.sleep(8000);
+		String message = firstname + " " + lastname + " account created successfully.";
+
+		System.out.println("Message test:" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		System.out.println("Message test:" + message);
+
+		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equalsIgnoreCase(message)) {
+			System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+
+			Thread.sleep(5000);
+		}
 	}
-	}
+
 	@And("^Verify details in Users grid$")
 	public void Verify_details_in_Users_grid() throws Throwable {
+		Thread.sleep(5000);
 		String email = ExcelHelper.getData(1, 3);
-		
+
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		Thread.sleep(7000);
 		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(email);
@@ -139,5 +148,5 @@ public class StepDefination {
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
 	}
-	
+
 }
