@@ -87,7 +87,7 @@ public class UsersPage {
 		userEmail.sendKeys(email);
 	}
 
-	public void clickOnSubmit() {
+	public void clickOnSave() {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
 	}

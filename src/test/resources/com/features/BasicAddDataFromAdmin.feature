@@ -7,43 +7,43 @@ Feature: Sanity test functionalities of Laravel CMS
     When Click on "Add" button in "Users"
     Then "User" "Add" page gets open
     #And Verify test data with proper validation message for Users
-    #When I enter all mandatory fields for "add User"
+    When I enter all mandatory fields for "add" User
     And Click on "Save" button in "Users"
-    #Then I should get "account created successfully" message on "Users grid"
-    #Then Verify details in "Users grid"
+    Then I should get "account created successfully" message on "Users"
+    Then Verify details in "Users"
 
-  @userEdit
-  Scenario: Edit User and verify details
-    Given Login as Admin and Go to "Users" Module
-    When Verify details in Users grid
-    And Click on Edit button in Users grid
-    Then "User" "Edit" page gets open
-    When I enter all mandatory fields for update User
-    And Click on Save button in Users
-    Then I should get account updated successfully message on Users list page
-    Then Verify details in Users grid
-
-  @userStatus
-  Scenario: User Try Active before account verification
-    Given Login as Admin and Go to "Users" Module
-    When Verify details in Users grid
-    And User is Inactive
-    Then Make User Active and verify error message
-
-  @userDelete
-  Scenario: User Delete successfully
+  #@userEdit
+  #Scenario: Edit User and verify details
+    #Given Login as Admin and Go to "Users" Module
+    #When Verify details in Users grid
+    #And Click on Edit button in Users grid
+    #Then "User" "Edit" page gets open
+    #When I enter all mandatory fields for update User
+    #And Click on Save button in Users
+    #Then I should get account updated successfully message on Users list page
+    #Then Verify details in Users grid
+#
+  #@userStatus
+  #Scenario: User Try Active before account verification
+    #Given Login as Admin and Go to "Users" Module
+    #When Verify details in Users grid
+    #And User is Inactive
+    #Then Make User Active and verify error message
+#
+  #@userDelete
+  #Scenario: User Delete successfully
     #Given Login as Admin and Go to Users Module
-    When Verify details in Users grid
-    And Click on Delete button in Users grid
-    Then I should get acccount has been deleted successfully message on Users list page
-    Then Verify details in Users grid after delete
-
-  @userSaveandContinue
-  Scenario: User Add successfully with click on Save & Continue button
+    #When Verify details in Users grid
+    #And Click on Delete button in Users grid
+    #Then I should get acccount has been deleted successfully message on Users list page
+    #Then Verify details in Users grid after delete
+#
+  #@userSaveandContinue
+  #Scenario: User Add successfully with click on Save & Continue button
     #Given Login as Admin and Go to Users Module
-    When Click on "Add" button in "Users"
-    Then "User" "Add" page gets open
-    When I enter all mandatory fields for add User
-    And Click on Save and Continue button in Users
-    Then I should get added successfully message on Users Edit page
-    Then Verify details in Users grid
+    #When Click on "Add" button in "Users"
+    #Then "User" "Add" page gets open
+    #When I enter all mandatory fields for add User
+    #And Click on Save and Continue button in Users
+    #Then I should get added successfully message on Users Edit page
+    #Then Verify details in Users grid

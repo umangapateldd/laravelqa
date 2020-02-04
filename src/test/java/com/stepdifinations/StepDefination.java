@@ -57,7 +57,7 @@ public class StepDefination {
 			usersPage.clickOnAddNewUserButton();
 			break;
 		case "Save":
-			usersPage.clickOnAddNewUserButton();
+			usersPage.clickOnSave();
 			break;
 		default:
 			log.error(buttonName + " is not defined in " + moduleName);
@@ -80,7 +80,7 @@ public class StepDefination {
 	@And("^Verify test data with proper validation message for Users$")
 	public void Verify_test_data_with_proper_validation_message_for_Users() throws Throwable {
 
-		usersPage.clickOnSubmit();
+		usersPage.clickOnSave();
 		Thread.sleep(3000);
 		String firstname = "The first name field is required.";
 		String email = "The email field is required.";
@@ -98,55 +98,70 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for add User$")
-	public void I_enter_all_mandatory_fields_for_add_User() throws Throwable {
+	@When("^I enter all mandatory fields for \"([^\"]*)\" User$")
+	public void I_enter_all_mandatory_fields_for_add_User(String formName) throws Throwable {
 
-		String firstname = ExcelHelper.getData(1, 0);
-		String lastname = ExcelHelper.getData(1, 1);
-		String email = ExcelHelper.getData(1, 2);
+		switch (formName) {
+		case "add":
+			String firstname = ExcelHelper.getData(1, 0);
+			String lastname = ExcelHelper.getData(1, 1);
+			String email = ExcelHelper.getData(1, 2);
 
-		usersPage.enterUserFirstName(firstname);
-		usersPage.enterUserLastName(lastname);
-		usersPage.enterUserEmail(email);
+			usersPage.enterUserFirstName(firstname);
+			usersPage.enterUserLastName(lastname);
+			usersPage.enterUserEmail(email);
+
+			break;
+
+		case "edit":
+			String updatefirstname = ExcelHelper.getData(1, 3);
+			String updatelastname = ExcelHelper.getData(1, 4);
+			usersPage.enterUserFirstName(updatefirstname);
+			usersPage.enterUserLastName(updatelastname);
+
+			break;
+
+		default:
+			log.error(formName + " is not defined in " + formName);
+			break;
+		}
 
 	}
 
-	@And("^Click on Save button in Users$")
-	public void Click_on_Save_button_in_Users() throws Throwable {
+	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
+	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
+			String moduleName) throws Throwable {
+		System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
 
-		usersPage.clickOnSubmit();
-		Thread.sleep(2000);
-	}
-
-	@Then("^I should get account created successfully message on Users list page$")
-	public void I_should_get_account_created_successfully_message_on_Users_list_page() throws Throwable {
-		String firstname = ExcelHelper.getData(1, 0);
-		String lastname = ExcelHelper.getData(1, 1);
-		String message = firstname + " " + lastname + " account created successfully.";
-
-		System.out.println("Message test:" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
-		System.out.println("Message test:" + message);
-
-		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equalsIgnoreCase(message)) {
+		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText()
+				.contains("account restored successfully.")) {
 			System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
 
 			Thread.sleep(5000);
+		} else {
+			if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().contains(sucessmessage)) {
+				System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+
+				Thread.sleep(5000);
+			} else {
+				System.out.println("Message is not match: ");
+			}
 		}
 	}
 
-	@And("^Verify details in Users grid$")
-	public void Verify_details_in_Users_grid() throws Throwable {
+	@And("^Verify details in \"([^\"]*)\"$")
+	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
 		Thread.sleep(6000);
-		String email = ExcelHelper.getData(1, 2);
+		String searchText = ExcelHelper.getData(1, 2);
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		Thread.sleep(7000);
-		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(email);
+		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
 		if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText()
-				.equalsIgnoreCase(email)) {
+				.equalsIgnoreCase(searchText)) {
 			System.out.println("User detail match "
 					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText());
 			Thread.sleep(3000);
