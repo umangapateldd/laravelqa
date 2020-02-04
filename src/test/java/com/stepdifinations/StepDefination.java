@@ -3,6 +3,8 @@ package com.stepdifinations;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -38,7 +40,13 @@ public class StepDefination {
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
 	CurrentDateFormat dateTime = new CurrentDateFormat();
+	
+	@FindBy(xpath = "//*[@id='main']/div[1]/span")
+	WebElement successmsg;
 
+	@FindBy(xpath="//*[@id='frmaddedit']/div[1]/div[1]/h1")
+	WebElement addtitle;
+			
 	public StepDefination() {
 		driver = HookHelper.driver;
 		PageFactory.initElements(driver, this);
@@ -48,6 +56,7 @@ public class StepDefination {
 		usersPage = new UsersPage(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
+	
 
 	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\"$")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
@@ -70,10 +79,10 @@ public class StepDefination {
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
 
 		String page = formName + " " + moduleName;
-		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equalsIgnoreCase(page)) {
+		if (addtitle.getText().equalsIgnoreCase(page)) {
 
 			System.out.println("Verify the title:"
-					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
+					+ addtitle.getText());
 		}
 	}
 
@@ -128,19 +137,19 @@ public class StepDefination {
 
 	}
 
+
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
-		System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		System.out.println("Message :" + successmsg.getText());
 
-		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText()
-				.contains("account restored successfully.")) {
-			System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		if (successmsg.getText().contains("account restored successfully.")) {
+			System.out.println("Message :" + successmsg.getText());
 
 			Thread.sleep(5000);
 		} else {
-			if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().contains(sucessmessage)) {
-				System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+			if (successmsg.getText().contains(sucessmessage)) {
+				System.out.println("Message :" + successmsg.getText());
 
 				Thread.sleep(5000);
 			} else {
@@ -153,19 +162,8 @@ public class StepDefination {
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
 		Thread.sleep(6000);
 		String searchText = ExcelHelper.getData(1, 2);
+		commonFunc.search(searchText);
 
-		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
-		Thread.sleep(7000);
-		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
-		Thread.sleep(5000);
-		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
-		Thread.sleep(4000);
-		if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText()
-				.equalsIgnoreCase(searchText)) {
-			System.out.println("User detail match "
-					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText());
-			Thread.sleep(3000);
-		}
 	}
 
 	@And("^Click on Edit button in Users grid$")
@@ -262,15 +260,10 @@ public class StepDefination {
 	}
 
 	@Then("^Verify details in Users grid after delete$")
-	public void Verify_details_in_Users_grid_after_delete() throws Throwable {
-		String email = ExcelHelper.getData(1, 2);
+	public void Verify_details_in_Users_grid_after_delete(String Searchtext) throws Throwable {
+//		String Searchtext = ExcelHelper.getData(1, 2);
+//		commonFunc.search(Searchtext);
 
-		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
-		Thread.sleep(7000);
-		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(email);
-		Thread.sleep(5000);
-		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
-		Thread.sleep(4000);
 
 	}
 
