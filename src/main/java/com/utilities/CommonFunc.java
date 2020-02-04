@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.DropDownHelper;
-import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 
 public class CommonFunc {
@@ -84,9 +83,8 @@ public class CommonFunc {
 			}
 		}
 	}
-	
-	public void search(String searchText) throws InterruptedException {
-		
+
+	public void searchRecord(String searchText, String xpath) throws InterruptedException {
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		Thread.sleep(7000);
@@ -94,12 +92,11 @@ public class CommonFunc {
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
-		if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText()
-				.equalsIgnoreCase(searchText)) {
+		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
 			System.out.println("User detail match "
-					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a")).getText());
+					+ driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);
 		}
-		
+
 	}
 }

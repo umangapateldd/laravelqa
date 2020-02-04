@@ -68,6 +68,12 @@ public class UsersPage {
 		log.info("********************Click on add new user button********************");
 		addNewUserButton.click();
 	}
+	
+	public void clickOnEditButton() {
+		log.info("********************Click on edit button********************");
+		editButton.click();
+	}
+
 
 	public void enterUserFirstName(String firstName) {
 		log.info("********************Enter User First Name********************");

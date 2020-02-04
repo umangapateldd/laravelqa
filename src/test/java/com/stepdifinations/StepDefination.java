@@ -40,13 +40,16 @@ public class StepDefination {
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
 	CurrentDateFormat dateTime = new CurrentDateFormat();
-	
+
 	@FindBy(xpath = "//*[@id='main']/div[1]/span")
 	WebElement successmsg;
 
-	@FindBy(xpath="//*[@id='frmaddedit']/div[1]/div[1]/h1")
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
 	WebElement addtitle;
-			
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")
+	WebElement statuscolumn;
+
 	public StepDefination() {
 		driver = HookHelper.driver;
 		PageFactory.initElements(driver, this);
@@ -56,7 +59,6 @@ public class StepDefination {
 		usersPage = new UsersPage(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
-	
 
 	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\"$")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
@@ -68,6 +70,8 @@ public class StepDefination {
 		case "Save":
 			usersPage.clickOnSave();
 			break;
+		case "Edit":
+			usersPage.clickOnEditButton();
 		default:
 			log.error(buttonName + " is not defined in " + moduleName);
 			break;
@@ -81,8 +85,7 @@ public class StepDefination {
 		String page = formName + " " + moduleName;
 		if (addtitle.getText().equalsIgnoreCase(page)) {
 
-			System.out.println("Verify the title:"
-					+ addtitle.getText());
+			System.out.println("Verify the title:" + addtitle.getText());
 		}
 	}
 
@@ -119,7 +122,6 @@ public class StepDefination {
 			usersPage.enterUserFirstName(firstname);
 			usersPage.enterUserLastName(lastname);
 			usersPage.enterUserEmail(email);
-
 			break;
 
 		case "edit":
@@ -127,7 +129,6 @@ public class StepDefination {
 			String updatelastname = ExcelHelper.getData(1, 4);
 			usersPage.enterUserFirstName(updatefirstname);
 			usersPage.enterUserLastName(updatelastname);
-
 			break;
 
 		default:
@@ -136,7 +137,6 @@ public class StepDefination {
 		}
 
 	}
-
 
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
@@ -161,21 +161,28 @@ public class StepDefination {
 	@And("^Verify details in \"([^\"]*)\"$")
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
 		Thread.sleep(6000);
-		String searchText = ExcelHelper.getData(1, 2);
-		commonFunc.search(searchText);
-
-	}
-
-	@And("^Click on Edit button in Users grid$")
-	public void Click_on_Edit_button_in_Users_grid() throws Throwable {
-		{
-			Thread.sleep(6000);
-			driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[9]/a"))
-					.click();
-			Thread.sleep(5000);
-
+		String searchText = "";
+		String xpath = "";
+		if (moduleName.equals(CommonVariables.users)) {
+			searchText = ExcelHelper.getData(1, 2);
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
+		} else if (moduleName.equals("Blogs")) {
+			searchText = ExcelHelper.getData(1, 2);
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]";
 		}
+		commonFunc.searchRecord(searchText, xpath);
 	}
+
+//	@And("^Click on Edit button in Users grid$")
+//	public void Click_on_Edit_button_in_Users_grid() throws Throwable {
+//		{
+//			Thread.sleep(6000);
+//			driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[9]/a"))
+//					.click();
+//			Thread.sleep(5000);
+//
+//		}
+//	}
 
 	@Then("^Users Edit page gets open$")
 	public void Users_Edit_page_gets_open() throws Throwable {
@@ -209,28 +216,25 @@ public class StepDefination {
 		}
 	}
 
-	@And("^User is Inactive$")
-	public void User_is_Inactive() throws Throwable {
+	@And("^\"([^\"]*)\" is Inactive$")
+	public void User_is_Inactive(String moduleName) throws Throwable {
 
 		String classname = "sort inactive";
 
-		if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")).getAttribute("class")
-				.equals("sort inactive ")) {
-			System.out.println("Value for Inactive user = "
-					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span"))
-							.getAttribute("class").equals("sort inactive "));
+		if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
+			System.out.println(
+					"Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort inactive "));
 		}
 	}
 
-	@Then("^Make User Active and verify error message$")
-	public void Make_User_Active_and_verify_error_message() throws Throwable {
+	@Then("^Make \"([^\"]*)\" Active and verify error message$")
+	public void Make_User_Active_and_verify_error_message(String moduleName) throws Throwable {
 		String Message = "The user account is not validated yet, user needs to validate his/her account.";
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")).click();
+		statuscolumn.click();
 		Thread.sleep(3000);
-		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(Message)) {
-			System.out.println("Messgae for Inactive user = "
-					+ driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		if (successmsg.getText().equals(Message)) {
+			System.out.println("Messgae for Inactive user = " + successmsg.getText());
 
 		}
 	}
@@ -263,7 +267,6 @@ public class StepDefination {
 	public void Verify_details_in_Users_grid_after_delete(String Searchtext) throws Throwable {
 //		String Searchtext = ExcelHelper.getData(1, 2);
 //		commonFunc.search(Searchtext);
-
 
 	}
 
