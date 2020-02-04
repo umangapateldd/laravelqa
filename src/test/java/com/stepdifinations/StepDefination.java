@@ -1,11 +1,8 @@
 package com.stepdifinations;
 
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -52,35 +49,27 @@ public class StepDefination {
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
-	@Then("^verify the \"([^\"]*)\" details \"([^\"]*)\"$")
-	public void verify_the_something_details_something(String userType, String userAvailability) throws Throwable {
-		switch (userType) {
-		case "Users":
-			usersPage.verifyUserDetailsTable("Users", CommonVariables.userData.get("userEmail"));
-			if (userAvailability.equals("for update")) {
-				usersPage.clickOnEditButton(CommonVariables.userData.get("userEmail"));
-			} else if (userAvailability.equals("for delete")) {
-				usersPage.clickOnDeleteButton(CommonVariables.userData.get("userEmail"));
-			}
+	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\"$")
+	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
+
+		switch (buttonName) {
+		case "Add":
+			usersPage.clickOnAddNewUserButton();
+			break;
+		case "Save":
+			usersPage.clickOnAddNewUserButton();
 			break;
 		default:
-			System.out.println("module is not declared for verify details");
+			log.error(buttonName + " is not defined in " + moduleName);
 			break;
 		}
-	}
-
-	@And("^Click on Add button in Users grid$")
-	public void Click_on_Add_button_in_Users_grid() throws Throwable {
-		Thread.sleep(5000);
-		usersPage.clickOnAddNewUserButton();
-		Thread.sleep(3000);
 
 	}
 
-	@Then("^Users Add page gets open$")
-	public void Users_Add_page_gets_open() throws Throwable {
+	@Then("^\"([^\"]*)\" \"([^\"]*)\" page gets open$")
+	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
 
-		String page = "Add User";
+		String page = formName + " " + moduleName;
 		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equalsIgnoreCase(page)) {
 
 			System.out.println("Verify the title:"
@@ -112,7 +101,6 @@ public class StepDefination {
 	@When("^I enter all mandatory fields for add User$")
 	public void I_enter_all_mandatory_fields_for_add_User() throws Throwable {
 
-		
 		String firstname = ExcelHelper.getData(1, 0);
 		String lastname = ExcelHelper.getData(1, 1);
 		String email = ExcelHelper.getData(1, 2);
@@ -169,8 +157,8 @@ public class StepDefination {
 	public void Click_on_Edit_button_in_Users_grid() throws Throwable {
 		{
 			Thread.sleep(6000);
-			driver.findElement(
-					By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[9]/a")).click();
+			driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[9]/a"))
+					.click();
 			Thread.sleep(5000);
 
 		}
@@ -200,13 +188,105 @@ public class StepDefination {
 	public void I_should_get_account_updated_successfully_message_on_Users_list_page() throws Throwable {
 		String updatefirstname = ExcelHelper.getData(1, 3);
 		String updatelastname = ExcelHelper.getData(1, 4);
-		
+
 		String message = updatefirstname + " " + updatelastname + " account updated successfully.";
-		System.out.println("Message = "+message);
-		System.out.println("Message value= "+driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
-		
+
 		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
 			System.out.println("messsge: = " + message);
 		}
+	}
+
+	@And("^User is Inactive$")
+	public void User_is_Inactive() throws Throwable {
+
+		String classname = "sort inactive";
+
+		if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")).getAttribute("class")
+				.equals("sort inactive ")) {
+			System.out.println("Value for Inactive user = "
+					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span"))
+							.getAttribute("class").equals("sort inactive "));
+		}
+	}
+
+	@Then("^Make User Active and verify error message$")
+	public void Make_User_Active_and_verify_error_message() throws Throwable {
+		String Message = "The user account is not validated yet, user needs to validate his/her account.";
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")).click();
+		Thread.sleep(3000);
+		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(Message)) {
+			System.out.println("Messgae for Inactive user = "
+					+ driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+
+		}
+	}
+
+	@And("^Click on Delete button in Users grid$")
+	public void Click_on_Delete_button_in_Users_grid() throws Throwable {
+//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')", driver.findElement(
+//				By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[2]/div/input")));
+		Thread.sleep(7000);
+		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div/label")).click();
+		Thread.sleep(8000);
+		driver.findElement(By.xpath("//*[@id='action_btns']/div/a[3]")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//*[@id='confirm-action-submit']")).click();
+		Thread.sleep(3000);
+
+	}
+
+	@Then("^I should get acccount has been deleted successfully message on Users list page$")
+	public void I_should_get_acccount_has_been_deleted_successfully_message_on_Users_list_page() throws Throwable {
+		String message = "Selected user(s) acccount has been deleted successfully.";
+
+		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
+			System.out.println("Message = " + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+		}
+
+	}
+
+	@Then("^Verify details in Users grid after delete$")
+	public void Verify_details_in_Users_grid_after_delete() throws Throwable {
+		String email = ExcelHelper.getData(1, 2);
+
+		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
+		Thread.sleep(7000);
+		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(email);
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
+		Thread.sleep(4000);
+
+	}
+
+	@And("^Click on Save and Continue button in Users$")
+	public void Click_on_Save_and_Continue_button_in_Users() throws Throwable {
+		Thread.sleep(5000);
+
+		driver.findElement(By.xpath("//button[@value='savecontinue']")).click();
+		Thread.sleep(2000);
+
+	}
+
+	@Then("^I should get added successfully message on Users Edit page$")
+	public void I_should_get_added_successfully_message_on_Users_Edit_page() throws Throwable {
+		String firstname = ExcelHelper.getData(1, 0);
+		String lastname = ExcelHelper.getData(1, 1);
+		String message = firstname + " " + lastname + " account created successfully.";
+
+		System.out.println("messsge: = " + message);
+		System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+
+		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
+			System.out.println("messsge: = " + message);
+			System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
+			System.out.println("Message :" + message);
+
+			Thread.sleep(5000);
+
+			driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")).click();
+			Thread.sleep(6000);
+		}
+
 	}
 }

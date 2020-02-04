@@ -30,8 +30,8 @@ public class CommonStepDefinations {
 		commonFunc = new CommonFunc(driver);
 	}
 
-	@Given("^Login as Admin and Go to Users Module$")
-	public void user_on_admin_dashboard_page() throws Throwable {
+	@Given("^Login as Admin and Go to \"([^\"]*)\" Module$")
+	public void user_on_admin_dashboard_page(String moduleName) throws Throwable {
 		testBase = new TestBase();
 		readPropFile = new ReadPropFile();
 		driver.get(readPropFile.readProp().getProperty("url"));
@@ -60,7 +60,7 @@ public class CommonStepDefinations {
 		loginPage = new LoginPage(driver);
 		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
 				readPropFile.readProp().getProperty("password"));
-		commonFunc.clickonmenuondashboard("Users");
+		commonFunc.clickonmenuondashboard(moduleName);
 		Thread.sleep(5000);
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 //		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name,CommonVariables.users);
