@@ -227,8 +227,8 @@ public class StepDefination {
 		}
 	}
 
-	@Then("^Make \"([^\"]*)\" Active and verify error message$")
-	public void Make_User_Active_and_verify_error_message(String moduleName) throws Throwable {
+	@Then("^Make \"([^\"]*)\" \"([^\"]*)\" and verify \"([^\"]*)\"$")
+	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message) throws Throwable {
 		String Message = "The user account is not validated yet, user needs to validate his/her account.";
 		Thread.sleep(3000);
 		statuscolumn.click();
