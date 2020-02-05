@@ -21,7 +21,7 @@ public class LoginPage {
 	@FindBy(xpath = "//input[@id='password']")
 	WebElement password;
 
-	@FindBy(xpath = "/html/body/div[3]/form/div/div/div[5]/button")
+	@FindBy(xpath = "//button[@type='submit']")
 	WebElement login;
 
 	public LoginPage(WebDriver driver) {

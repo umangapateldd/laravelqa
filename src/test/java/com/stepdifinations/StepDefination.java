@@ -71,11 +71,17 @@ public class StepDefination {
 			break;
 		case "Edit":
 			usersPage.clickOnEditButton();
+			break;
 		case "Delete":
 			usersPage.clickOnselectcheckbox();
 			usersPage.clickOnDeleteButton();
 			usersPage.clickOnconfirmyesbutton();
 			CommonVariables.deleteRecord = true;
+			break;
+		case "Save and Continue":
+			usersPage.clickOnsavecontinuebutton();
+			CommonVariables.saveandcontinue =true;
+            break;
 		default:
 			log.error(buttonName + " is not defined in " + moduleName);
 			break;
@@ -160,6 +166,10 @@ public class StepDefination {
 				System.out.println("Message is not match: ");
 			}
 		}
+
+		if (CommonVariables.saveandcontinue == true) {
+			usersPage.clickOnCancelbutton();
+		}
 	}
 
 	@And("^Verify details in \"([^\"]*)\"$")
@@ -179,49 +189,6 @@ public class StepDefination {
 		}
 		commonFunc.searchRecord(searchText, xpath);
 	}
-
-//	@And("^Click on Edit button in Users grid$")
-//	public void Click_on_Edit_button_in_Users_grid() throws Throwable {
-//		{
-//			Thread.sleep(6000);
-//			driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[9]/a"))
-//					.click();
-//			Thread.sleep(5000);
-//
-//		}
-//	}
-
-//	@Then("^Users Edit page gets open$")
-//	public void Users_Edit_page_gets_open() throws Throwable {
-//		String title = "Edit User";
-//
-//		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equals(title)) {
-//			System.out.println("Edit page title= "
-//					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
-//		}
-//	}
-//
-//	@When("^I enter all mandatory fields for update User$")
-//	public void I_enter_all_mandatory_fields_for_update_User() throws Throwable {
-//		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-//		String updatefirstname = ExcelHelper.getData(1, 3);
-//		String updatelastname = ExcelHelper.getData(1, 4);
-//		usersPage.enterUserFirstName(updatefirstname);
-//		usersPage.enterUserLastName(updatelastname);
-//
-//	}
-//
-//	@Then("^I should get account updated successfully message on Users list page$")
-//	public void I_should_get_account_updated_successfully_message_on_Users_list_page() throws Throwable {
-//		String updatefirstname = ExcelHelper.getData(1, 3);
-//		String updatelastname = ExcelHelper.getData(1, 4);
-//
-//		String message = updatefirstname + " " + updatelastname + " account updated successfully.";
-//
-//		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
-//			System.out.println("messsge: = " + message);
-//		}
-//	}
 
 	@And("^\"([^\"]*)\" is Inactive$")
 	public void User_is_Inactive(String moduleName) throws Throwable {
@@ -247,20 +214,6 @@ public class StepDefination {
 		}
 	}
 
-//	@And("^Click on Delete button in Users grid$")
-//	public void Click_on_Delete_button_in_Users_grid() throws Throwable {
-////		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')", driver.findElement(
-////				By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[2]/div/input")));
-//		Thread.sleep(7000);
-//		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div/label")).click();
-//		Thread.sleep(8000);
-//		driver.findElement(By.xpath("//*[@id='action_btns']/div/a[3]")).click();
-//		Thread.sleep(3000);
-//		driver.findElement(By.xpath("//*[@id='confirm-action-submit']")).click();
-//		Thread.sleep(3000);
-//
-//	}
-
 	@Then("^I should get acccount has been deleted successfully message on Users list page$")
 	public void I_should_get_acccount_has_been_deleted_successfully_message_on_Users_list_page() throws Throwable {
 		String message = "Selected user(s) acccount has been deleted successfully.";
@@ -271,41 +224,4 @@ public class StepDefination {
 
 	}
 
-	@Then("^Verify details in Users grid after delete$")
-	public void Verify_details_in_Users_grid_after_delete(String Searchtext) throws Throwable {
-//		String Searchtext = ExcelHelper.getData(1, 2);
-//		commonFunc.search(Searchtext);
-
-	}
-
-	@And("^Click on Save and Continue button in Users$")
-	public void Click_on_Save_and_Continue_button_in_Users() throws Throwable {
-		Thread.sleep(5000);
-
-		driver.findElement(By.xpath("//button[@value='savecontinue']")).click();
-		Thread.sleep(2000);
-
-	}
-
-	@Then("^I should get added successfully message on Users Edit page$")
-	public void I_should_get_added_successfully_message_on_Users_Edit_page() throws Throwable {
-		String firstname = ExcelHelper.getData(1, 0);
-		String lastname = ExcelHelper.getData(1, 1);
-		String message = firstname + " " + lastname + " account created successfully.";
-
-		System.out.println("messsge: = " + message);
-		System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
-
-		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
-			System.out.println("messsge: = " + message);
-			System.out.println("Message :" + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
-			System.out.println("Message :" + message);
-
-			Thread.sleep(5000);
-
-			driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")).click();
-			Thread.sleep(6000);
-		}
-
-	}
 }

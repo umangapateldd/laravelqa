@@ -30,7 +30,7 @@ Feature: Sanity test functionalities of Laravel CMS
     And "User" is Inactive
     Then Make "User" "Active" and verify "error message"
 
-  @user
+  @userDelete
   Scenario: User Delete successfully
     Given Login as Admin and Go to "Users" Module
     When Verify details in "Users"
@@ -38,12 +38,24 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "acccount has been deleted successfully" message on "Users"
     Then Verify details in "Users"
 
-  #@userSaveandContinue
-  #Scenario: User Add successfully with click on Save & Continue button
-    #Given Login as Admin and Go to Users Module
-    #When Click on "Add" button in "Users"
-    #Then "User" "Add" page gets open
-    #When I enter all mandatory fields for add User
-    #And Click on Save and Continue button in Users
-    #Then I should get added successfully message on Users Edit page
-    #Then Verify details in Users grid
+  @userSaveandContinue
+  Scenario: User Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Users" Module
+    When Click on "Add" button in "Users"
+    Then "User" "Add" page gets open
+    When I enter all mandatory fields for "add" User
+    And Click on "Save and Continue" button in "Users"
+    Then I should get "account created successfully" message on "Users"
+    Then Verify details in "Users"
+
+  @userEditSaveandContinue
+  Scenario: User Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Users" Module
+    When Verify details in "Users"
+    And Click on "Edit" button in "Users"
+    Then "Users" "Edit" page gets open
+    When I enter all mandatory fields for "update" User
+    And Click on "Save and Continue" button in "Users"
+    Then I should get "account updated successfully" message on "Users"
+    Then Verify details in "Users"
+
