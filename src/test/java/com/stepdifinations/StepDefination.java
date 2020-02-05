@@ -80,8 +80,8 @@ public class StepDefination {
 			break;
 		case "Save and Continue":
 			usersPage.clickOnsavecontinuebutton();
-			CommonVariables.saveandcontinue =true;
-            break;
+			CommonVariables.saveandcontinue = true;
+			break;
 		default:
 			log.error(buttonName + " is not defined in " + moduleName);
 			break;
@@ -96,27 +96,6 @@ public class StepDefination {
 		if (addtitle.getText().equalsIgnoreCase(page)) {
 
 			System.out.println("Verify the title:" + addtitle.getText());
-		}
-	}
-
-	@And("^Verify test data with proper validation message for Users$")
-	public void Verify_test_data_with_proper_validation_message_for_Users() throws Throwable {
-
-		usersPage.clickOnSave();
-		Thread.sleep(3000);
-		String firstname = "The first name field is required.";
-		String email = "The email field is required.";
-
-		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText()
-				.equalsIgnoreCase(firstname)) {
-			System.out.println("Verify the validation message : "
-					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[1]/div")).getText());
-		}
-		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText()
-				.equalsIgnoreCase(email)) {
-			System.out.println("Verify the validation message : "
-					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
-
 		}
 	}
 
@@ -142,7 +121,7 @@ public class StepDefination {
 			break;
 
 		default:
-			log.error(formName + " is not defined in " + formName);
+			assert false;
 			break;
 		}
 
@@ -164,6 +143,7 @@ public class StepDefination {
 				Thread.sleep(5000);
 			} else {
 				System.out.println("Message is not match: ");
+				assert false;
 			}
 		}
 
@@ -192,12 +172,11 @@ public class StepDefination {
 
 	@And("^\"([^\"]*)\" is Inactive$")
 	public void User_is_Inactive(String moduleName) throws Throwable {
-
-		String classname = "sort inactive";
-
 		if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
 			System.out.println(
 					"Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort inactive "));
+		} else {
+			assert false;
 		}
 	}
 
@@ -213,15 +192,4 @@ public class StepDefination {
 
 		}
 	}
-
-	@Then("^I should get acccount has been deleted successfully message on Users list page$")
-	public void I_should_get_acccount_has_been_deleted_successfully_message_on_Users_list_page() throws Throwable {
-		String message = "Selected user(s) acccount has been deleted successfully.";
-
-		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
-			System.out.println("Message = " + driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText());
-		}
-
-	}
-
 }

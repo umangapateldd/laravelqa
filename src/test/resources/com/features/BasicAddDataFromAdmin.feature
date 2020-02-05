@@ -38,7 +38,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "acccount has been deleted successfully" message on "Users"
     Then Verify details in "Users"
 
-  @userSaveandContinue
+  @useraddSaveandContinue
   Scenario: User Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Users" Module
     When Click on "Add" button in "Users"
@@ -54,7 +54,7 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Users"
     And Click on "Edit" button in "Users"
     Then "Users" "Edit" page gets open
-    When I enter all mandatory fields for "update" User
+    When I enter all mandatory fields for "edit" User
     And Click on "Save and Continue" button in "Users"
     Then I should get "account updated successfully" message on "Users"
     Then Verify details in "Users"
