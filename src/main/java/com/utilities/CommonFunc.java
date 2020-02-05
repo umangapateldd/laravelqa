@@ -88,15 +88,18 @@ public class CommonFunc {
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		Thread.sleep(7000);
+		driver.findElement(By.xpath("//*[@id='search']")).clear();
 		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
-		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
-			System.out.println("User detail match "
-					+ driver.findElement(By.xpath(xpath)).getText());
-			Thread.sleep(3000);
+		if (CommonVariables.deleteRecord == true) {
+			searchText = "No user(s) found";
 		}
 
+		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
+			System.out.println("User detail match " + driver.findElement(By.xpath(xpath)).getText());
+			Thread.sleep(3000);
+		}
 	}
 }

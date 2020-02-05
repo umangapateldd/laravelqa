@@ -50,11 +50,19 @@ public class UsersPage {
 	@FindBy(xpath = "//*[@id=\"DataTables_Table_0\"]/tbody/tr/td[9]/a")
 	WebElement editButton;
 
-	@FindBy(xpath = "//*[@id='action_btns']/div/a[3]")
-	WebElement deleteButton;
 	
 	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr[1]/td[2]/div/input")
 	WebElement checkbox;
+	
+	
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div/label")
+	WebElement selectcheckbox;
+	
+	@FindBy(xpath = "//*[@id='confirm-action-submit']")
+	WebElement confirmyesbutton;
+	
+	@FindBy(xpath = "//*[@id='action_btns']/div/a[3]")
+	WebElement deletebutton;
 	
 
 	public UsersPage(WebDriver driver) {
@@ -72,6 +80,18 @@ public class UsersPage {
 	public void clickOnEditButton() {
 		log.info("********************Click on edit button********************");
 		editButton.click();
+	}
+	public void clickOnselectcheckbox() {
+		log.info("********************Click on select checkbox button********************");
+		selectcheckbox.click();
+	}
+	public void clickOnDeleteButton() {
+		log.info("********************Click on delete button********************");
+		deletebutton.click();
+	}
+	public void clickOnconfirmyesbutton() {
+		log.info("********************Click on confirm yes button********************");
+		confirmyesbutton.click();
 	}
 
 
@@ -97,62 +117,62 @@ public class UsersPage {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
 	}
+//
+//	public void verifyUserDetailsTable(String userType, String baseValueForVerification) throws InterruptedException {
+//		verifyDetails = false;
+//		searchUser(userType, baseValueForVerification);
+//		log.info("********************" + baseValueForVerification + " => Verify " + userType
+//				+ " User details on table********************");
+//
+//		if (driver.findElement(By.xpath("//*[@id=\"DataTables_Table_0\"]/tbody/tr[1]/td[5]/div/a")).getText()
+//				.equals(CommonVariables.userData.get("userEmail"))) {
+//			log.info("Email is verified in table");
+//			if (driver.findElement(By.xpath("// *[@id=\"DataTables_Table_0\"]/tbody/tr[1]/td[4]")).getText()
+//					.equals(CommonVariables.userData.get("userFirstName") + " "
+//							+ CommonVariables.userData.get("userLastName"))) {
+//				verifyDetails = true;
+//				log.info("Firstname and Lastname are verified in table");
+//			} else {
+//				log.error("Firstname and Lastname are not verified in table");
+//			}
+//		} else {
+//			log.error("Email is not verified in table");
+//		}
+//	}
 
-	public void verifyUserDetailsTable(String userType, String baseValueForVerification) throws InterruptedException {
-		verifyDetails = false;
-		searchUser(userType, baseValueForVerification);
-		log.info("********************" + baseValueForVerification + " => Verify " + userType
-				+ " User details on table********************");
+//	public void searchUser(String userType, String baseValueForVerification) {
+//		searchButtonOpenSearchSection.click();
+//		searchTextbox.clear();
+//		searchTextbox.sendKeys(baseValueForVerification);
+//		searchButtonGetData.click();
+//		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+//				"style", "display: none;");
+//	}
+//
+//	public void clickOnEditButton(String baseValueForVerification) throws InterruptedException, IOException {
+//		if (verifyDetails == true) {
+//			editButton.click();
+//			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+//					"style", "display: none;");
+//		} else {
+//			log.error("User verification is failed");
+//		}
+//
+//	}
 
-		if (driver.findElement(By.xpath("//*[@id=\"DataTables_Table_0\"]/tbody/tr[1]/td[5]/div/a")).getText()
-				.equals(CommonVariables.userData.get("userEmail"))) {
-			log.info("Email is verified in table");
-			if (driver.findElement(By.xpath("// *[@id=\"DataTables_Table_0\"]/tbody/tr[1]/td[4]")).getText()
-					.equals(CommonVariables.userData.get("userFirstName") + " "
-							+ CommonVariables.userData.get("userLastName"))) {
-				verifyDetails = true;
-				log.info("Firstname and Lastname are verified in table");
-			} else {
-				log.error("Firstname and Lastname are not verified in table");
-			}
-		} else {
-			log.error("Email is not verified in table");
-		}
-	}
-
-	public void searchUser(String userType, String baseValueForVerification) {
-		searchButtonOpenSearchSection.click();
-		searchTextbox.clear();
-		searchTextbox.sendKeys(baseValueForVerification);
-		searchButtonGetData.click();
-		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-				"style", "display: none;");
-	}
-
-	public void clickOnEditButton(String baseValueForVerification) throws InterruptedException, IOException {
-		if (verifyDetails == true) {
-			editButton.click();
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
-		} else {
-			log.error("User verification is failed");
-		}
-
-	}
-
-	public void clickOnDeleteButton(String baseValueForVerification) throws InterruptedException, IOException {
-		if (verifyDetails == true) {
-		    checkbox.click();
-		    Thread.sleep(5000);
-			deleteButton.click();
-			Thread.sleep(5000);
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
-		} else {
-			log.error("User verification is failed");
-		}
-
-	}
+//	public void clickOnDeleteButton(String baseValueForVerification) throws InterruptedException, IOException {
+//		if (verifyDetails == true) {
+//		    checkbox.click();
+//		    Thread.sleep(5000);
+//		    deletebutton.click();
+//			Thread.sleep(5000);
+//			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+//					"style", "display: none;");
+//		} else {
+//			log.error("User verification is failed");
+//		}
+//
+//	}
 
 	}
 

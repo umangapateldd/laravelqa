@@ -18,7 +18,6 @@ import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 import com.utilities.CurrentDateFormat;
-import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
 import cucumber.api.java.en.And;
@@ -72,6 +71,11 @@ public class StepDefination {
 			break;
 		case "Edit":
 			usersPage.clickOnEditButton();
+		case "Delete":
+			usersPage.clickOnselectcheckbox();
+			usersPage.clickOnDeleteButton();
+			usersPage.clickOnconfirmyesbutton();
+			CommonVariables.deleteRecord = true;
 		default:
 			log.error(buttonName + " is not defined in " + moduleName);
 			break;
@@ -170,6 +174,9 @@ public class StepDefination {
 			searchText = ExcelHelper.getData(1, 2);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]";
 		}
+		if (CommonVariables.deleteRecord == true) {
+			xpath = "//*[@id='frmlist']/table[1]/tbody[1]/tr[1]/td[1]";
+		}
 		commonFunc.searchRecord(searchText, xpath);
 	}
 
@@ -184,37 +191,37 @@ public class StepDefination {
 //		}
 //	}
 
-	@Then("^Users Edit page gets open$")
-	public void Users_Edit_page_gets_open() throws Throwable {
-		String title = "Edit User";
-
-		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equals(title)) {
-			System.out.println("Edit page title= "
-					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
-		}
-	}
-
-	@When("^I enter all mandatory fields for update User$")
-	public void I_enter_all_mandatory_fields_for_update_User() throws Throwable {
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-		String updatefirstname = ExcelHelper.getData(1, 3);
-		String updatelastname = ExcelHelper.getData(1, 4);
-		usersPage.enterUserFirstName(updatefirstname);
-		usersPage.enterUserLastName(updatelastname);
-
-	}
-
-	@Then("^I should get account updated successfully message on Users list page$")
-	public void I_should_get_account_updated_successfully_message_on_Users_list_page() throws Throwable {
-		String updatefirstname = ExcelHelper.getData(1, 3);
-		String updatelastname = ExcelHelper.getData(1, 4);
-
-		String message = updatefirstname + " " + updatelastname + " account updated successfully.";
-
-		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
-			System.out.println("messsge: = " + message);
-		}
-	}
+//	@Then("^Users Edit page gets open$")
+//	public void Users_Edit_page_gets_open() throws Throwable {
+//		String title = "Edit User";
+//
+//		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText().equals(title)) {
+//			System.out.println("Edit page title= "
+//					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[1]/h1")).getText());
+//		}
+//	}
+//
+//	@When("^I enter all mandatory fields for update User$")
+//	public void I_enter_all_mandatory_fields_for_update_User() throws Throwable {
+//		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+//		String updatefirstname = ExcelHelper.getData(1, 3);
+//		String updatelastname = ExcelHelper.getData(1, 4);
+//		usersPage.enterUserFirstName(updatefirstname);
+//		usersPage.enterUserLastName(updatelastname);
+//
+//	}
+//
+//	@Then("^I should get account updated successfully message on Users list page$")
+//	public void I_should_get_account_updated_successfully_message_on_Users_list_page() throws Throwable {
+//		String updatefirstname = ExcelHelper.getData(1, 3);
+//		String updatelastname = ExcelHelper.getData(1, 4);
+//
+//		String message = updatefirstname + " " + updatelastname + " account updated successfully.";
+//
+//		if (driver.findElement(By.xpath("//*[@id='main']/div[1]/span")).getText().equals(message)) {
+//			System.out.println("messsge: = " + message);
+//		}
+//	}
 
 	@And("^\"([^\"]*)\" is Inactive$")
 	public void User_is_Inactive(String moduleName) throws Throwable {
@@ -228,7 +235,8 @@ public class StepDefination {
 	}
 
 	@Then("^Make \"([^\"]*)\" \"([^\"]*)\" and verify \"([^\"]*)\"$")
-	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message) throws Throwable {
+	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message)
+			throws Throwable {
 		String Message = "The user account is not validated yet, user needs to validate his/her account.";
 		Thread.sleep(3000);
 		statuscolumn.click();
@@ -239,19 +247,19 @@ public class StepDefination {
 		}
 	}
 
-	@And("^Click on Delete button in Users grid$")
-	public void Click_on_Delete_button_in_Users_grid() throws Throwable {
-//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')", driver.findElement(
-//				By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[2]/div/input")));
-		Thread.sleep(7000);
-		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div/label")).click();
-		Thread.sleep(8000);
-		driver.findElement(By.xpath("//*[@id='action_btns']/div/a[3]")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//*[@id='confirm-action-submit']")).click();
-		Thread.sleep(3000);
-
-	}
+//	@And("^Click on Delete button in Users grid$")
+//	public void Click_on_Delete_button_in_Users_grid() throws Throwable {
+////		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')", driver.findElement(
+////				By.xpath("/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr/td[2]/div/input")));
+//		Thread.sleep(7000);
+//		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div/label")).click();
+//		Thread.sleep(8000);
+//		driver.findElement(By.xpath("//*[@id='action_btns']/div/a[3]")).click();
+//		Thread.sleep(3000);
+//		driver.findElement(By.xpath("//*[@id='confirm-action-submit']")).click();
+//		Thread.sleep(3000);
+//
+//	}
 
 	@Then("^I should get acccount has been deleted successfully message on Users list page$")
 	public void I_should_get_acccount_has_been_deleted_successfully_message_on_Users_list_page() throws Throwable {

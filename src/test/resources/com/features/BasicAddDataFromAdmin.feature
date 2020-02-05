@@ -1,7 +1,7 @@
 Feature: Sanity test functionalities of Laravel CMS
   As a admin user add, update, delete, search, verify details the below sanity functioanlities
 
-  @userAdd
+  @user
   Scenario: Create User and verify details
     Given Login as Admin and Go to "Users" Module
     When Click on "Add" button in "Users"
@@ -30,14 +30,14 @@ Feature: Sanity test functionalities of Laravel CMS
     And "User" is Inactive
     Then Make "User" "Active" and verify "error message"
 
-  #@userDelete
-  #Scenario: User Delete successfully
-    #Given Login as Admin and Go to Users Module
-    #When Verify details in Users grid
-    #And Click on Delete button in Users grid
-    #Then I should get acccount has been deleted successfully message on Users list page
-    #Then Verify details in Users grid after delete
-#
+  @user
+  Scenario: User Delete successfully
+    Given Login as Admin and Go to "Users" Module
+    When Verify details in "Users"
+    And Click on "Delete" button in "Users"
+    Then I should get "acccount has been deleted successfully" message on "Users"
+    Then Verify details in "Users"
+
   #@userSaveandContinue
   #Scenario: User Add successfully with click on Save & Continue button
     #Given Login as Admin and Go to Users Module
