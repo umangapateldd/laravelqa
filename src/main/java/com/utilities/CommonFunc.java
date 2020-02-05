@@ -100,6 +100,10 @@ public class CommonFunc {
 		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
 			System.out.println("User detail match " + driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);
+			assert true;
+		} else {
+			System.out.println("no record found");
+			assert false;
 		}
 	}
 }
