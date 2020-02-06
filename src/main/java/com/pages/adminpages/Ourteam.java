@@ -1,6 +1,8 @@
 package com.pages.adminpages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,62 +21,36 @@ public class Ourteam {
 	private Logger log = LogHelper.getLogger(Ourteam.class);
 	boolean verifyDetails = false;
 
-	@FindBy(xpath = "//*[@id='add-btn']")
-	WebElement addNewUserButton;
-
 	@FindBy(id = "first_name")
-	WebElement userFirstName;
+	WebElement FirstName;
 
 	@FindBy(id = "last_name")
-	WebElement userLastName;
-	
-	@FindBy(id = "//*[@id='position']")
-	WebElement position;
+	WebElement LastName;
 
-	@FindBy(id = "//*[@id='linkedin']")
-	WebElement linkedin;
-	
-	@FindBy(id = "//*[@id='status']/option[1]")
-	WebElement status;
-	
-	@FindBy(id = "//*[@id='short_bio']")
+	@FindBy(id = "position")
+	WebElement Position;
+
+	@FindBy(id = "linkedin")
+	WebElement Linkedin;
+
+	@FindBy(xpath = "//*[@id='status']")
+	WebElement Status;
+
+	@FindBy(id = "short_bio")
 	WebElement ShortBio;
+
+	@FindBy(xpath = "//body[@id='tinymce']")
+	WebElement AdditionalBio;
 	
-	@FindBy(id = "email")
-	WebElement userEmail;
+	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a")
+	WebElement editbutton;
 
-	@FindBy(xpath = "//button[@value='save']")
-	WebElement saveButton;
+//	@FindBy(xpath = "//input[@type='file']")
+	@FindBy(xpath = "//input[@type='file']")
+	WebElement Image;
 
-	@FindBy(id = "search-btn")
-	WebElement searchButtonOpenSearchSection;
-
-	@FindBy(id = "search")
-	WebElement searchTextbox;
-
-	@FindBy(id = "btnsearch")
-	WebElement searchButtonGetData;
-
-	@FindBy(xpath = "//*[@id=\"DataTables_Table_0\"]/tbody/tr/td[9]/a")
-	WebElement editButton;
-
-	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr[1]/td[2]/div/input")
-	WebElement checkbox;
-
-	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div/label")
-	WebElement selectcheckbox;
-
-	@FindBy(xpath = "//*[@id='confirm-action-submit']")
-	WebElement confirmyesbutton;
-
-	@FindBy(xpath = "//*[@id='action_btns']/div/a[3]")
-	WebElement deletebutton;
-
-	@FindBy(xpath = "//button[@value='savecontinue']")
-	WebElement savecontinueButton;
-	
-	@FindBy(xpath ="//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")
-	WebElement CancelButton;
+	@FindBy(xpath = "//*[@id='image_alt']")
+	WebElement ImageAlt;
 
 	public Ourteam(WebDriver driver) {
 		this.driver = driver;
@@ -83,68 +59,74 @@ public class Ourteam {
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
-	public void clickOnAddNewUserButton() {
-		log.info("********************Click on add new user button********************");
-		addNewUserButton.click();
+	public void enterFirstName(String firstname) {
+		log.info("********************Enter the First Name********************");
+		FirstName.clear();
+		FirstName.sendKeys(firstname);
 	}
 
-	public void clickOnEditButton() {
-		log.info("********************Click on edit button********************");
-		editButton.click();
+	public void enterLastName(String lastname) {
+		log.info("********************Enter the Last Name********************");
+		LastName.clear();
+		LastName.sendKeys(lastname);
 	}
 
-	public void clickOnselectcheckbox() {
-		log.info("********************Click on select checkbox button********************");
-		selectcheckbox.click();
+	public void enterPosition(String position) {
+		log.info("********************Enter the Position********************");
+		Position.clear();
+		Position.sendKeys(position);
 	}
 
-	public void clickOnDeleteButton() {
-		log.info("********************Click on delete button********************");
-		deletebutton.click();
+	public void enterLinkedin(String linkdin) {
+		log.info("********************Enter the Linkedin********************");
+		Linkedin.clear();
+		Linkedin.sendKeys(linkdin);
 	}
 
-	public void clickOnconfirmyesbutton() {
-		log.info("********************Click on confirm yes button********************");
-		confirmyesbutton.click();
+	public void enterStatus(String status) {
+		log.info("********************Enter the Status********************");
+		Status.click();
+		Status.sendKeys(status);
+	}
+
+	public void enterShortBio(String shortBio) {
+		log.info("********************Enter the Short Bio********************");
+		ShortBio.clear();
+		ShortBio.sendKeys(shortBio);
 	}
 	
-	public void clickOnCancelbutton() throws InterruptedException {
-		log.info("********************Click on confirm yes button********************");
-		Thread.sleep(5000);
-		CancelButton.click();
-		Thread.sleep(5000);
+	public void ClickonEditbutton() {
+		log.info("********************Click on Edit button********************");
+		editbutton.click();
 	}
 
-	public void clickOnsavecontinuebutton() throws InterruptedException {
-		log.info("********************Click on save and continue button********************");
-		Thread.sleep(5000);
-		savecontinueButton.click();
+	public void enterAdditionalBio(String additionalBio) throws InterruptedException {
+		log.info("********************Enter the Additional Bio ********************");
+		driver.switchTo().frame("additional_bio_ifr");
+		AdditionalBio.sendKeys(additionalBio);
+		driver.switchTo().defaultContent();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='meta_title']")));
 		Thread.sleep(2000);
-		
 	}
 
-	public void enterUserFirstName(String firstName) {
-		log.info("********************Enter User First Name********************");
-		userFirstName.clear();
-		userFirstName.sendKeys(firstName);
+	public void enterImage(String image) throws InterruptedException {
+		log.info("********************Enter the Image********************");
+		Thread.sleep(8000);
+//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')",
+//				driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[9]/div[1]")));
+		Thread.sleep(10000);
+		System.out.println("before click===================");
+		Image.sendKeys(image);
+		Thread.sleep(10000);
+
 	}
 
-	public void enterUserLastName(String lastName) {
-		log.info("********************Enter User Last Name********************");
-		userLastName.clear();
-		userLastName.sendKeys(lastName);
-	}
+	public void enterImageAlt(String imageAlt) {
+		log.info("********************Enter the Image Alt********************");
 
-	public void enterUserEmail(String email) {
-		log.info("********************Enter User Email********************");
-		userEmail.clear();
-		userEmail.sendKeys(email);
-	}
+		ImageAlt.sendKeys(imageAlt);
 
-	public void clickOnSave() {
-		log.info("********************Click on submit button********************");
-		saveButton.click();
 	}
-
 
 }

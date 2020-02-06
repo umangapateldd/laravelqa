@@ -41,6 +41,7 @@ public class ExcelHelper {
 		try {
 			wb = Workbook.getWorkbook(src);
 			sh1 = wb.getSheet(sheetName);
+			System.out.println(sh1);
 		} catch (BiffException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

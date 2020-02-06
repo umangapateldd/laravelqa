@@ -21,9 +21,10 @@ public class CommonVariables {
 	public static String casenumber;
 	public static String vendorName;
 	public static String users ="Users";
-	public static String ourteam ="OurTeam";
+	public static String ourteam ="Our Team";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
+	public static boolean OurTeam = false;
 
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;

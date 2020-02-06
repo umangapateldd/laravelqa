@@ -4,13 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
-import com.basicactions.ExcelHelper;
 import com.pages.adminpages.HomePage;
 import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
-import com.utilities.CommonVariables;
-import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
 import cucumber.api.java.en.Given;
@@ -61,7 +58,7 @@ public class CommonStepDefinations {
 		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
 				readPropFile.readProp().getProperty("password"));
 		commonFunc.clickonmenuondashboard(moduleName);
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 
 	}
 
