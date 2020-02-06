@@ -59,3 +59,14 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "account updated successfully" message on "Users"
     Then Verify details in "Users"
 
+  @addOurteam
+  Scenario: Our Team Member Add successfully with click on Save button
+    Given Login as Admin and Go to "Our Team" Module
+    When Click on "Add" button in "Our Team"
+    Then "Our Team" "Add" page gets open
+    #And	 Verify test data with proper validation message for "Our Team"
+    When I enter all mandatory fields for "add" Our Team
+    And Click on "Save" button in "Our Team"
+    Then I should get "member added successfully" message on "Our Team"
+    Then Verify details in "Our Team grid"
+

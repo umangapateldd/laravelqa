@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.DropDownHelper;
+import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 
 public class CommonFunc {
@@ -79,6 +80,8 @@ public class CommonFunc {
 				Thread.sleep(6000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
 				Thread.sleep(5000);
+		        ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+		        ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 				break;
 			}
 		}

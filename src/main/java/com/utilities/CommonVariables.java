@@ -21,6 +21,7 @@ public class CommonVariables {
 	public static String casenumber;
 	public static String vendorName;
 	public static String users ="Users";
+	public static String ourteam ="OurTeam";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
 

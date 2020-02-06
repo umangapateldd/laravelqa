@@ -62,13 +62,7 @@ public class CommonStepDefinations {
 				readPropFile.readProp().getProperty("password"));
 		commonFunc.clickonmenuondashboard(moduleName);
 		Thread.sleep(5000);
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-//		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name,CommonVariables.users);
-//		String url = ExcelHelper.getData(1,0);
-//		driver.get(url);
-//		commonFunc = new CommonFunc(driver);
-//		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-//				"style", "display: none;");
+
 	}
 
 }

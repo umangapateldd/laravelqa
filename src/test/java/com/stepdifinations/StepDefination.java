@@ -192,4 +192,33 @@ public class StepDefination {
 
 		}
 	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
+	public void I_enter_all_mandatory_fields_for_add_Our_Team(String formName) throws Throwable {
+
+		switch (formName) {
+		case "add":
+			String firstname = ExcelHelper.getData(1, 0);
+			String lastname = ExcelHelper.getData(1, 1);
+			String email = ExcelHelper.getData(1, 2);
+
+			usersPage.enterUserFirstName(firstname);
+			usersPage.enterUserLastName(lastname);
+			usersPage.enterUserEmail(email);
+			break;
+
+		case "edit":
+			String updatefirstname = ExcelHelper.getData(1, 3);
+			String updatelastname = ExcelHelper.getData(1, 4);
+			usersPage.enterUserFirstName(updatefirstname);
+			usersPage.enterUserLastName(updatelastname);
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+
+	}
+
 }
