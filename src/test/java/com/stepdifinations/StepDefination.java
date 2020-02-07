@@ -134,7 +134,7 @@ public class StepDefination {
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
-		System.out.println("Message :" + successmsg.getText());
+		
 
 		if (successmsg.getText().contains("account restored successfully.")) {
 			System.out.println("Message :" + successmsg.getText());
