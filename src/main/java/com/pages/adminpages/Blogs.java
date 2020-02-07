@@ -13,71 +13,66 @@ import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 
-public class Ourteam {
+public class Blogs {
 	WebDriver driver;
 	DropDownHelper dropDownHelper;
 	CommonFunc commonFunc;
 	CommonVariables commonVariables;
-	private Logger log = LogHelper.getLogger(Ourteam.class);
+	private Logger log = LogHelper.getLogger(Blogs.class);
 	boolean verifyDetails = false;
 
-	@FindBy(id = "first_name")
-	WebElement FirstName;
+	@FindBy(id = "title")
+	WebElement Title;
 
-	@FindBy(id = "last_name")
-	WebElement LastName;
+	@FindBy(id = "parent_category")
+	WebElement BlogCategory;
 
-	@FindBy(id = "position")
-	WebElement Position;
+	@FindBy(id = "author_first_name")
+	WebElement AuthorFirstName;
 
-	@FindBy(id = "linkedin")
-	WebElement Linkedin;
+	@FindBy(id = "author_last_name")
+	WebElement AuthorLastName;
 
 	@FindBy(xpath = "//*[@id='status']")
 	WebElement Status;
-
+	
+	@FindBy(id ="publish_date")
+	WebElement PublishDate;
+	
+	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
+	WebElement editbutton;
+	
+	@FindBy(xpath = "//body[@id='tinymce']")
+	WebElement Description;
+	
 	@FindBy(id = "meta_title")
 	WebElement Metatitle;
 	
 	@FindBy(id = "meta_desc")
 	WebElement MetaDescription;
-	
-	@FindBy(id = "short_bio")
-	WebElement ShortBio;
-	
-	@FindBy(xpath = "//body[@id='tinymce']")
-	WebElement Description;
 
-	@FindBy(xpath = "//body[@id='tinymce']")
-	WebElement AdditionalBio;
-	
-	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
-	WebElement editbutton;
-
-//	@FindBy(xpath = "//input[@type='file']")
 	@FindBy(xpath = "//input[@type='file']")
 	WebElement Image;
 
-	@FindBy(xpath = "//*[@id='image_alt']")
+	@FindBy(xpath = "//*[@id='main_image_alt']")
 	WebElement ImageAlt;
 
-	public Ourteam(WebDriver driver) {
+	public Blogs(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonFunc = new CommonFunc(driver);
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
-	public void enterFirstName(String firstname) {
+	public void enterFirstName(String title) {
 		log.info("********************Enter the First Name********************");
-		FirstName.clear();
-		FirstName.sendKeys(firstname);
+		Title.clear();
+		Title.sendKeys(title);
 	}
 
-	public void enterLastName(String lastname) {
+	public void enterBlogCategory(String blogCategory) {
 		log.info("********************Enter the Last Name********************");
-		LastName.clear();
-		LastName.sendKeys(lastname);
+		BlogCategory.sendKeys(blogCategory);
 	}
 
 	public void enterPosition(String position) {
@@ -137,5 +132,6 @@ public class Ourteam {
 		ImageAlt.sendKeys(imageAlt);
 
 	}
+
 
 }

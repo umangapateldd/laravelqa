@@ -220,8 +220,8 @@ public class StepDefination {
 			Thread.sleep(3000);
 			statuscolumn.click();
 			Thread.sleep(3000);
-			System.out.println("msg: =" +successmsg.getText());
-			System.out.println("msg1 ="+Msg);
+			System.out.println("msg: =" + successmsg.getText());
+			System.out.println("msg1 =" + Msg);
 			if (successmsg.getText().equals(Msg)) {
 				System.out.println("Messgae for active user = " + successmsg.getText());
 			}
@@ -265,6 +265,34 @@ public class StepDefination {
 			ourteam.enterLastName(updatelastname);
 			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
 			System.out.println("Value of Edit: = " + CommonVariables.txtSearchCmnVar);
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+
+	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Blogs$")
+	public void I_enter_all_mandatory_fields_for_Add_Blogs(String formName) throws Throwable {
+
+		switch (formName) {
+		case "add":
+			String title = ExcelHelper.getData(1, 0);
+			String lastname = ExcelHelper.getData(1, 1);
+			String email = ExcelHelper.getData(1, 2);
+
+			usersPage.enterUserFirstName(firstname);
+			usersPage.enterUserLastName(lastname);
+			usersPage.enterUserEmail(email);
+			break;
+
+		case "edit":
+			String updatefirstname = ExcelHelper.getData(1, 3);
+			String updatelastname = ExcelHelper.getData(1, 4);
+			usersPage.enterUserFirstName(updatefirstname);
+			usersPage.enterUserLastName(updatelastname);
 			break;
 
 		default:
