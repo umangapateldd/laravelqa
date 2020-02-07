@@ -73,9 +73,8 @@ public class StepDefination {
 			commonFunc.clickOnSave();
 			break;
 		case "Edit":
-			CommonVariables.OurTeam = true;
+//			CommonVariables.OurTeam = true;
 			commonFunc.clickOnEditButton(moduleName);
-			
 			break;
 		case "Delete":
 			commonFunc.clickOnselectcheckbox();
@@ -165,22 +164,24 @@ public class StepDefination {
 		System.out.println("Module Name from Feature File is :- " + moduleName);
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
-		if (moduleName.equals(CommonVariables.users)) 
-		{
+		if (moduleName.equals(CommonVariables.users)) {
 			System.out.println("Inside IF condition");
-			
+
 			searchText = ExcelHelper.getData(1, 2);
 			System.out.println("Search text is :- " + searchText);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
-		} 
-		else if(moduleName.equals(CommonVariables.ourteam)) 
-		{
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			
+			String updatefirstname = ExcelHelper.getData(1, 9);
+			String updatelastname = ExcelHelper.getData(1, 10);
+			
 			System.out.println("Inside Else condition");
-			System.out.println("Search text is :- " + searchText);
-			searchText = ExcelHelper.getData(1, 11);
-			System.out.println("Search text is :- " + searchText);
-//			xpath = "//*[@id=\"display_order_61\"]/td[4]/div[2]";
-			xpath ="//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr/td[4]//div[2][@class='title']";
+
+			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
+			searchText = CommonVariables.txtSearchCmnVar;
+
+//			System.out.println("Search text is :- " + searchText);
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr/td[4]//div[2][@class='title']";
 		}
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table[1]/tbody[1]/tr[1]/td[1]";
@@ -237,6 +238,8 @@ public class StepDefination {
 			ourteam.enterImage(image);
 			ourteam.enterImageAlt(imageAlt);
 
+			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
+
 			break;
 
 		case "edit":
@@ -244,6 +247,8 @@ public class StepDefination {
 			String updatelastname = ExcelHelper.getData(1, 10);
 			ourteam.enterFirstName(updatefirstname);
 			ourteam.enterLastName(updatelastname);
+			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
+			System.out.println("Value of Edit: = " + CommonVariables.txtSearchCmnVar);
 			break;
 
 		default:

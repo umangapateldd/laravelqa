@@ -59,7 +59,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "account updated successfully" message on "Users"
     Then Verify details in "Users"
 
-  @ourteamAdd
+  @ourteam
   Scenario: Our Team Member Add successfully with click on Save button
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
@@ -81,12 +81,12 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  #@ourteamStatus
-  #Scenario: User Try Active before account verification
-    #Given Login as Admin and Go to "Our Team" Module
-    #When Verify details in "Our Team"
-    #And "Our Team" is Inactive
-    #Then Make "Our Team" "Active" and verify "error message"
+  @ourteamStatus
+  Scenario: User Try Active before account verification
+    Given Login as Admin and Go to "Our Team" Module
+    When Verify details in "Our Team"
+    And "Our Team" is Inactive
+    Then Make "Our Team" "Active" and verify "error message"
 #
   #@ourteamDelete
   #Scenario: User Delete successfully

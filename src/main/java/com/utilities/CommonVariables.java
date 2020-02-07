@@ -22,6 +22,7 @@ public class CommonVariables {
 	public static String vendorName;
 	public static String users ="Users";
 	public static String ourteam ="Our Team";
+	public static String txtSearchCmnVar = "";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
 	public static boolean OurTeam = false;

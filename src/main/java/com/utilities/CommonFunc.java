@@ -28,7 +28,7 @@ public class CommonFunc {
 	@FindBy(xpath = "//button[@value='save']")
 	WebElement saveButton;
 
-	@FindBy(xpath = "//*[@id=\"DataTables_Table_0\"]/tbody/tr/td[9]/a")
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[9]/a")
 	WebElement editButton;
 
 	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr[1]/td[2]/div/input")
@@ -46,7 +46,7 @@ public class CommonFunc {
 	@FindBy(xpath = "//button[@value='savecontinue']")
 	WebElement savecontinueButton;
 
-	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[2]/div/div/")
 	WebElement CancelButton;
 
 	public CommonFunc(WebDriver driver) {
@@ -54,7 +54,6 @@ public class CommonFunc {
 		PageFactory.initElements(driver, this);
 		commonVariables = new CommonVariables(driver);
 		dropDownHelper = new DropDownHelper(driver);
-		
 	}
 
 	public void checkElementAvailable(List<WebElement> xpathListElement) {
@@ -134,6 +133,8 @@ public class CommonFunc {
 		if (CommonVariables.deleteRecord == true) {
 			searchText = "No user(s) found";
 		}
+		
+		Thread.sleep(5000);
 
 		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
 			System.out.println("User detail match " + driver.findElement(By.xpath(xpath)).getText());
@@ -150,14 +151,21 @@ public class CommonFunc {
 		addNewButton.click();
 	}
 
-	public void clickOnEditButton(String modulename) {
+	public void clickOnEditButton(String moduleName) throws InterruptedException {
 		log.info("********************Click on edit button********************");
-
-		if (CommonVariables.OurTeam == true) {
+		Thread.sleep(2000);
+		if (moduleName.equals("Our Team")) {
+			System.out.println("edit if our team");
+			ourteam = new Ourteam(driver);
 			ourteam.ClickonEditbutton();
-		} else {
+		} else if (moduleName.equals("Users")) {
+			System.out.println("edit if users");
 			editButton.click();
+		} else {
+			System.out.println("edit else - module is not defined");
+			assert false;
 		}
+
 	}
 
 	public void clickOnselectcheckbox() {

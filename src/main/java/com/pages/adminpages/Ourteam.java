@@ -42,7 +42,7 @@ public class Ourteam {
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement AdditionalBio;
 	
-	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[9]/a")
+	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
 	WebElement editbutton;
 
 //	@FindBy(xpath = "//input[@type='file']")
