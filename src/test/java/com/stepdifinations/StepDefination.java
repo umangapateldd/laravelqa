@@ -1,7 +1,6 @@
 package com.stepdifinations;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,12 +11,14 @@ import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.HomePage;
+import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.UsersPage;
 import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 import com.utilities.CurrentDateFormat;
+import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
 import cucumber.api.java.en.And;
@@ -35,6 +36,7 @@ public class StepDefination {
 	WaitHelper waitHelper;
 	CommonFunc commonFunc;
 	UsersPage usersPage;
+	Ourteam ourteam;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -56,6 +58,7 @@ public class StepDefination {
 		commonFunc = new CommonFunc(driver);
 		homePage = new HomePage(driver);
 		usersPage = new UsersPage(driver);
+		ourteam = new Ourteam(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -64,22 +67,23 @@ public class StepDefination {
 
 		switch (buttonName) {
 		case "Add":
-			usersPage.clickOnAddNewUserButton();
+			commonFunc.clickOnAddNewButton();
 			break;
 		case "Save":
-			usersPage.clickOnSave();
+			commonFunc.clickOnSave();
 			break;
 		case "Edit":
-			usersPage.clickOnEditButton();
+//			CommonVariables.OurTeam = true;
+			commonFunc.clickOnEditButton(moduleName);
 			break;
 		case "Delete":
-			usersPage.clickOnselectcheckbox();
-			usersPage.clickOnDeleteButton();
-			usersPage.clickOnconfirmyesbutton();
+			commonFunc.clickOnselectcheckbox();
+			commonFunc.clickOnDeleteButton();
+			commonFunc.clickOnconfirmyesbutton();
 			CommonVariables.deleteRecord = true;
 			break;
 		case "Save and Continue":
-			usersPage.clickOnsavecontinuebutton();
+			commonFunc.clickOnsavecontinuebutton();
 			CommonVariables.saveandcontinue = true;
 			break;
 		default:
@@ -130,7 +134,6 @@ public class StepDefination {
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
-		System.out.println("Message :" + successmsg.getText());
 
 		if (successmsg.getText().contains("account restored successfully.")) {
 			System.out.println("Message :" + successmsg.getText());
@@ -148,48 +151,127 @@ public class StepDefination {
 		}
 
 		if (CommonVariables.saveandcontinue == true) {
-			usersPage.clickOnCancelbutton();
+			commonFunc.clickOnCancelbutton();
 		}
 	}
 
 	@And("^Verify details in \"([^\"]*)\"$")
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
-		Thread.sleep(6000);
+		Thread.sleep(1000);
 		String searchText = "";
 		String xpath = "";
+		System.out.println("Module Name from Feature File is :- " + moduleName);
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		if (moduleName.equals(CommonVariables.users)) {
+			System.out.println("Inside IF condition");
 			searchText = ExcelHelper.getData(1, 2);
+			System.out.println("Search text is :- " + searchText);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
-		} else if (moduleName.equals("Blogs")) {
-			searchText = ExcelHelper.getData(1, 2);
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]";
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+
+			String updatefirstname = ExcelHelper.getData(1, 9);
+			String updatelastname = ExcelHelper.getData(1, 10);
+
+			System.out.println("Inside Else condition");
+
+			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
+			searchText = CommonVariables.txtSearchCmnVar;
+
+//			System.out.println("Search text is :- " + searchText);
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr/td[4]//div[2][@class='title']";
 		}
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table[1]/tbody[1]/tr[1]/td[1]";
 		}
-		commonFunc.searchRecord(searchText, xpath);
+		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
 
 	@And("^\"([^\"]*)\" is Inactive$")
 	public void User_is_Inactive(String moduleName) throws Throwable {
 		if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
-			System.out.println(
-					"Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort inactive "));
+			System.out
+					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
+		} else if (statuscolumn.getAttribute("class").equals("sort active ")) {
+			System.out
+					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
+
 		} else {
-			assert false;
+			System.out.println("Not match record:");
 		}
 	}
 
 	@Then("^Make \"([^\"]*)\" \"([^\"]*)\" and verify \"([^\"]*)\"$")
 	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message)
 			throws Throwable {
-		String Message = "The user account is not validated yet, user needs to validate his/her account.";
-		Thread.sleep(3000);
-		statuscolumn.click();
-		Thread.sleep(3000);
-		if (successmsg.getText().equals(Message)) {
-			System.out.println("Messgae for Inactive user = " + successmsg.getText());
 
+		if (moduleName.equals(CommonVariables.users)) {
+			System.out.println("User module message is print");
+			String Message = "The user account is not validated yet, user needs to validate his/her account.";
+			Thread.sleep(3000);
+			statuscolumn.click();
+			Thread.sleep(3000);
+			if (successmsg.getText().equals(Message)) {
+				System.out.println("Messgae for Inactive user = " + successmsg.getText());
+			}
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			System.out.println("Our team module message is print");
+			String Msg = "The team member successfully inactivated.";
+			Thread.sleep(3000);
+			statuscolumn.click();
+			Thread.sleep(3000);
+			System.out.println("msg: =" +successmsg.getText());
+			System.out.println("msg1 ="+Msg);
+			if (successmsg.getText().equals(Msg)) {
+				System.out.println("Messgae for active user = " + successmsg.getText());
+			}
 		}
 	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
+	public void I_enter_all_mandatory_fields_for_add_Our_Team(String formName) throws Throwable {
+
+		switch (formName) {
+		case "add":
+			String firstname = ExcelHelper.getData(1, 0);
+			String lastname = ExcelHelper.getData(1, 1);
+			String position = ExcelHelper.getData(1, 2);
+			String linkdin = ExcelHelper.getData(1, 3);
+			String status = ExcelHelper.getData(1, 4);
+			String shortBio = ExcelHelper.getData(1, 5);
+			String additionalBio = ExcelHelper.getData(1, 6);
+			String image = ExcelHelper.getData(1, 7);
+			String imageAlt = ExcelHelper.getData(1, 8);
+
+			ourteam.enterFirstName(firstname);
+			ourteam.enterLastName(lastname);
+			ourteam.enterPosition(position);
+			ourteam.enterLinkedin(linkdin);
+			ourteam.enterStatus(status);
+			ourteam.enterShortBio(shortBio);
+			ourteam.enterAdditionalBio(additionalBio);
+			Thread.sleep(2000);
+			ourteam.enterImage(image);
+			ourteam.enterImageAlt(imageAlt);
+
+			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
+
+			break;
+
+		case "edit":
+			String updatefirstname = ExcelHelper.getData(1, 9);
+			String updatelastname = ExcelHelper.getData(1, 10);
+			ourteam.enterFirstName(updatefirstname);
+			ourteam.enterLastName(updatelastname);
+			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
+			System.out.println("Value of Edit: = " + CommonVariables.txtSearchCmnVar);
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+
+	}
+
 }
