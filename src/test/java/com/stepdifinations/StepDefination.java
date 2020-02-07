@@ -165,7 +165,6 @@ public class StepDefination {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		if (moduleName.equals(CommonVariables.users)) {
 			System.out.println("Inside IF condition");
-
 			searchText = ExcelHelper.getData(1, 2);
 			System.out.println("Search text is :- " + searchText);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
@@ -185,7 +184,7 @@ public class StepDefination {
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table[1]/tbody[1]/tr[1]/td[1]";
 		}
-		commonFunc.searchRecord(searchText, xpath);
+		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
 
 	@And("^\"([^\"]*)\" is Inactive$")

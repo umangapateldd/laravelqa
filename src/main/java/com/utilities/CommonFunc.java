@@ -46,7 +46,7 @@ public class CommonFunc {
 	@FindBy(xpath = "//button[@value='savecontinue']")
 	WebElement savecontinueButton;
 
-	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[2]/div/div/")
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")
 	WebElement CancelButton;
 
 	public CommonFunc(WebDriver driver) {
@@ -118,26 +118,31 @@ public class CommonFunc {
 		}
 	}
 
-	public void searchRecord(String searchText, String xpath) throws InterruptedException {
+	public void searchRecord(String searchText, String xpath, String moduleName) throws InterruptedException {
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 //		Thread.sleep(1000);
 		System.out.println(searchText);
-//		driver.findElement(By.xpath("//*[@id='search']")).clear();
+		driver.findElement(By.xpath("//*[@id='search']")).clear();
 //		Thread.sleep(1000);
 //		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
+
 		if (CommonVariables.deleteRecord == true) {
-			searchText = "No user(s) found";
+			if (moduleName.equals(CommonVariables.users)) {
+				searchText = "No user(s) found";
+			} else if (moduleName.equals(CommonVariables.ourteam)) {
+				searchText = "No team member(s) found";
+			}
 		}
-		
+
 		Thread.sleep(5000);
 
 		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
-			System.out.println("User detail match " + driver.findElement(By.xpath(xpath)).getText());
+			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);
 			assert true;
 		} else {
