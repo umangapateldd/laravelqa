@@ -134,7 +134,6 @@ public class StepDefination {
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
-		
 
 		if (successmsg.getText().contains("account restored successfully.")) {
 			System.out.println("Message :" + successmsg.getText());
@@ -171,10 +170,10 @@ public class StepDefination {
 			System.out.println("Search text is :- " + searchText);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-			
+
 			String updatefirstname = ExcelHelper.getData(1, 9);
 			String updatelastname = ExcelHelper.getData(1, 10);
-			
+
 			System.out.println("Inside Else condition");
 
 			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
@@ -192,23 +191,41 @@ public class StepDefination {
 	@And("^\"([^\"]*)\" is Inactive$")
 	public void User_is_Inactive(String moduleName) throws Throwable {
 		if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
-			System.out.println(
-					"Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort inactive "));
+			System.out
+					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
+		} else if (statuscolumn.getAttribute("class").equals("sort active ")) {
+			System.out
+					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
+
 		} else {
-			assert false;
+			System.out.println("Not match record:");
 		}
 	}
 
 	@Then("^Make \"([^\"]*)\" \"([^\"]*)\" and verify \"([^\"]*)\"$")
 	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message)
 			throws Throwable {
-		String Message = "The user account is not validated yet, user needs to validate his/her account.";
-		Thread.sleep(3000);
-		statuscolumn.click();
-		Thread.sleep(3000);
-		if (successmsg.getText().equals(Message)) {
-			System.out.println("Messgae for Inactive user = " + successmsg.getText());
 
+		if (moduleName.equals(CommonVariables.users)) {
+			System.out.println("User module message is print");
+			String Message = "The user account is not validated yet, user needs to validate his/her account.";
+			Thread.sleep(3000);
+			statuscolumn.click();
+			Thread.sleep(3000);
+			if (successmsg.getText().equals(Message)) {
+				System.out.println("Messgae for Inactive user = " + successmsg.getText());
+			}
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			System.out.println("Our team module message is print");
+			String Msg = "The team member successfully inactivated.";
+			Thread.sleep(3000);
+			statuscolumn.click();
+			Thread.sleep(3000);
+			System.out.println("msg: =" +successmsg.getText());
+			System.out.println("msg1 ="+Msg);
+			if (successmsg.getText().equals(Msg)) {
+				System.out.println("Messgae for active user = " + successmsg.getText());
+			}
 		}
 	}
 
