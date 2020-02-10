@@ -182,7 +182,7 @@ public class StepDefination {
 			
 		} else if (moduleName.equals(CommonVariables.blogs)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "/html/body/div[2]/div[3]/div/div[2]/section/form/div/table/tbody/tr[1]/td[4]/a";
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
 		}
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='display_order_223']/td[4]/a";

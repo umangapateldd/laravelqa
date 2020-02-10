@@ -70,8 +70,8 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member added successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-   @ourteamEdit
-  Scenario: Edit User and verify details
+  @ourteamEdit
+  Scenario: Edit Our Team Member and verify details
     Given Login as Admin and Go to "Our Team" Module
     And Verify details in "Our Team"
     And Click on "Edit" button in "Our Team"
@@ -82,7 +82,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then Verify details in "Our Team"
 
   @ourteamStatus
-  Scenario: User Try Active before account verification
+  Scenario: Our Team Member Try InActive account
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And "Our Team" is "Active"
@@ -92,26 +92,25 @@ Feature: Sanity test functionalities of Laravel CMS
     Then Make "Our Team" "Active" and verify "success message"
 
   @ourteamDelete
-  Scenario: User Delete successfully
+  Scenario: Our Team Member Delete successfully
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And Click on "Delete" button in "Our Team"
     Then I should get "Selected team member(s) have been deleted successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  
   @ourteamSaveandContinue
-  Scenario: User Add successfully with click on Save & Continue button
-  Given Login as Admin and Go to "Our Team" Module
-  When Click on "Add" button in "Our Team"
-  Then "User" "Add" page gets open
-  When I enter all mandatory fields for "add" Our Team
-  And Click on "Save and Continue" button in "Our Team"
-  Then I should get "member added successfully" message on "Our Team"
-  Then Verify details in "Our Team"
-  
+  Scenario: Our Team Member Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Our Team" Module
+    When Click on "Add" button in "Our Team"
+    Then "User" "Add" page gets open
+    When I enter all mandatory fields for "add" Our Team
+    And Click on "Save and Continue" button in "Our Team"
+    Then I should get "member added successfully" message on "Our Team"
+    Then Verify details in "Our Team"
+
   @ourteamSaveandContinue
-  Scenario: User Edit successfully with click on Save & Continue button
+  Scenario:  Our Team Member Edit successfully with click on Save & Continue button
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And Click on "Edit" button in "Our Team"
@@ -123,7 +122,7 @@ Feature: Sanity test functionalities of Laravel CMS
 
   @blogAdd
   Scenario: Blog Add successfully with click on Save button
-   Given Login as Admin and Go to "Blogs" Module
+    Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
     Then "Blogs" "Add" page gets open
     #And Verify test data with proper validation message for Users
@@ -132,3 +131,52 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "blog added successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
+  @blogEdit
+  Scenario: Edit Blog and verify details
+    Given Login as Admin and Go to "Blogs" Module
+    And Verify details in "Blogs"
+    And Click on "Edit" button in "Blogs"
+    Then "Our Team" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Blogs
+    And Click on "Save" button in "Blogs"
+    Then I should get "member updated successfully" message on "Blogs"
+    Then Verify details in "Blogs"
+
+  @blogStatus
+  Scenario: Blogs Try Active before account verification
+    Given Login as Admin and Go to "Blogs" Module
+    When Verify details in "Blogs"
+    And "Blogs" is "Active"
+    Then Make "Blogs" "Inactive" and verify "success message"
+    When Verify details in "Blogs"
+    And "Blogs" is "Inactive"
+    Then Make "Blogs" "Active" and verify "success message"
+
+  @blogDelete
+  Scenario: Blogs Delete successfully
+    Given Login as Admin and Go to "Blogs" Module
+    When Verify details in "Blogs"
+    And Click on "Delete" button in "Blogs"
+    Then I should get "Selected team member(s) have been deleted successfully" message on "Blogs"
+    Then Verify details in "Blogs"
+
+  @blogSaveandContinue
+  Scenario: Blogs Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Blogs" Module
+    When Click on "Add" button in "Blogs"
+    Then "Blogs" "Add" page gets open
+    When I enter all mandatory fields for "add" Blogs
+    And Click on "Save and Continue" button in "Blogs"
+    Then I should get "member added successfully" message on "Blogs"
+    Then Verify details in "Blogs"
+
+  @blogSaveandContinue
+  Scenario: Blogs Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Blogs" Module
+    When Verify details in "Blogs"
+    And Click on "Edit" button in "Blogs"
+    Then "Blogs" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Blogs
+    And Click on "Save and Continue" button in "Blogs"
+    Then I should get "member updated successfully" message on "Blogs"
+    Then Verify details in "Blogs"
