@@ -121,13 +121,8 @@ public class Ourteam {
 
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
-		Thread.sleep(8000);
-//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')",
-//				driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[9]/div[1]")));
-		Thread.sleep(10000);
-		System.out.println("before click===================");
 		Image.sendKeys(image);
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 
 	}
 

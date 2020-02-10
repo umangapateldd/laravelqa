@@ -68,9 +68,9 @@ Feature: Sanity test functionalities of Laravel CMS
     When I enter all mandatory fields for "add" Our Team
     And Click on "Save" button in "Our Team"
     Then I should get "member added successfully" message on "Our Team"
-    Then Verify details in "Our Team grid"
+    Then Verify details in "Our Team"
 
-  @ourteamEdit
+   @ourteamEdit
   Scenario: Edit User and verify details
     Given Login as Admin and Go to "Our Team" Module
     And Verify details in "Our Team"
@@ -81,12 +81,15 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @ourteamStatus
+  @ourteam
   Scenario: User Try Active before account verification
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
-    And "Our Team" is Inactive
-    Then Make "Our Team" "Active" and verify "error message"
+    And "Our Team" is "Active"
+    Then Make "Our Team" "Inactive" and verify "success message"
+    When Verify details in "Our Team"
+    And "Our Team" is "Inactive"
+    Then Make "Our Team" "Active" and verify "success message"
 
   @ourteamDelete
   Scenario: User Delete successfully
