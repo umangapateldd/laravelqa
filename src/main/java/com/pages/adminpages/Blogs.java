@@ -24,7 +24,7 @@ public class Blogs {
 	@FindBy(id = "title")
 	WebElement Title;
 
-	@FindBy(id = "parent_category")
+	@FindBy(xpath = "//*[@id='parent_category']")
 	WebElement BlogCategory;
 
 	@FindBy(id = "author_first_name")
@@ -35,24 +35,33 @@ public class Blogs {
 
 	@FindBy(xpath = "//*[@id='status']")
 	WebElement Status;
-	
-	@FindBy(id ="publish_date")
+
+	@FindBy(id = "publish_date")
 	WebElement PublishDate;
-	
-	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
 	WebElement editbutton;
-	
+
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement Description;
-	
+
 	@FindBy(id = "meta_title")
 	WebElement Metatitle;
-	
+
 	@FindBy(id = "meta_desc")
 	WebElement MetaDescription;
 
 	@FindBy(xpath = "//input[@type='file']")
 	WebElement Image;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[3]/table/tbody/tr[3]/td[2]")
+	WebElement selectdate;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")
+	WebElement selecttime;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[1]/table/tbody/tr/td/fieldset/span[11]")
+	WebElement time;
 
 	@FindBy(xpath = "//*[@id='main_image_alt']")
 	WebElement ImageAlt;
@@ -64,27 +73,29 @@ public class Blogs {
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
-	public void enterFirstName(String title) {
-		log.info("********************Enter the First Name********************");
+	public void enterTitle(String title) {
+		log.info("********************Enter the Title********************");
 		Title.clear();
 		Title.sendKeys(title);
 	}
 
-	public void enterBlogCategory(String blogCategory) {
-		log.info("********************Enter the Last Name********************");
-		BlogCategory.sendKeys(blogCategory);
+	public void enterBlogCategory(String blogCategory) throws InterruptedException {
+		log.info("********************Enter the Blog Category********************");
+		Thread.sleep(3000);
+		dropDownHelper.selectVisibleText(BlogCategory, blogCategory);
+		Thread.sleep(5000);
 	}
 
-	public void enterPosition(String position) {
-		log.info("********************Enter the Position********************");
-		Position.clear();
-		Position.sendKeys(position);
+	public void enterAuthorFirstName(String AuthorfirstName) {
+		log.info("********************Enter the Author FirstName********************");
+		AuthorFirstName.clear();
+		AuthorFirstName.sendKeys(AuthorfirstName);
 	}
 
-	public void enterLinkedin(String linkdin) {
-		log.info("********************Enter the Linkedin********************");
-		Linkedin.clear();
-		Linkedin.sendKeys(linkdin);
+	public void enterAuthorLastName(String AuthorlastName) {
+		log.info("********************Enter the Author LastName********************");
+		AuthorLastName.clear();
+		AuthorLastName.sendKeys(AuthorlastName);
 	}
 
 	public void enterStatus(String status) {
@@ -93,21 +104,30 @@ public class Blogs {
 		Status.sendKeys(status);
 	}
 
-	public void enterShortBio(String shortBio) {
-		log.info("********************Enter the Short Bio********************");
-		ShortBio.clear();
-		ShortBio.sendKeys(shortBio);
+	public void enterPublishDate(String publishDate) throws InterruptedException {
+		log.info("********************Enter the Publish Date********************");
+
+//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", PublishDate);
+		Thread.sleep(5000);
+		PublishDate.click();
+		Thread.sleep(3000);
+		selectdate.click();
+		Thread.sleep(4000);
+		selecttime.click();
+		Thread.sleep(3000);
+		time.click();
+		Thread.sleep(4000);
 	}
-	
+
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
 		editbutton.click();
 	}
 
-	public void enterAdditionalBio(String additionalBio) throws InterruptedException {
-		log.info("********************Enter the Additional Bio ********************");
-		driver.switchTo().frame("additional_bio_ifr");
-		AdditionalBio.sendKeys(additionalBio);
+	public void enterDescription(String description) throws InterruptedException {
+		log.info("********************Enter the Description********************");
+		driver.switchTo().frame("description_ifr");
+		Description.sendKeys(description);
 		driver.switchTo().defaultContent();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='meta_title']")));
@@ -117,21 +137,31 @@ public class Blogs {
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
 		Thread.sleep(8000);
-//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('class')",
-//				driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[9]/div[1]")));
-		Thread.sleep(10000);
-		System.out.println("before click===================");
 		Image.sendKeys(image);
 		Thread.sleep(10000);
 
 	}
 
-	public void enterImageAlt(String imageAlt) {
+	public void enterImageAlt(String imageAlt) throws InterruptedException {
 		log.info("********************Enter the Image Alt********************");
 
 		ImageAlt.sendKeys(imageAlt);
+		Thread.sleep(2000);
 
 	}
 
+	public void enterMetaTitle(String metaTitle) {
+		log.info("********************Enter the Meta Title********************");
+
+		Metatitle.sendKeys(metaTitle);
+
+	}
+
+	public void enterMetaDescription(String metaDescription) {
+		log.info("********************Enter the Meta Description********************");
+
+		MetaDescription.sendKeys(metaDescription);
+
+	}
 
 }

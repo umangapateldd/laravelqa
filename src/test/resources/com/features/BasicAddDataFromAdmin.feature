@@ -81,7 +81,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @ourteam
+  @ourteamStatus
   Scenario: User Try Active before account verification
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
@@ -99,18 +99,18 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "Selected team member(s) have been deleted successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  #
-  #@ourteamaddSaveandContinue
-  #Scenario: User Add successfully with click on Save & Continue button
-  #Given Login as Admin and Go to "Our Team" Module
-  #When Click on "Add" button in "Our Team"
-  #Then "User" "Add" page gets open
-  #When I enter all mandatory fields for "add" Our Team
-  #And Click on "Save and Continue" button in "Our Team"
-  #Then I should get "account created successfully" message on "Our Team"
-  #Then Verify details in "Our Team"
   
-  @ourteamEditSaveandContinue
+  @ourteamSaveandContinue
+  Scenario: User Add successfully with click on Save & Continue button
+  Given Login as Admin and Go to "Our Team" Module
+  When Click on "Add" button in "Our Team"
+  Then "User" "Add" page gets open
+  When I enter all mandatory fields for "add" Our Team
+  And Click on "Save and Continue" button in "Our Team"
+  Then I should get "member added successfully" message on "Our Team"
+  Then Verify details in "Our Team"
+  
+  @ourteamSaveandContinue
   Scenario: User Edit successfully with click on Save & Continue button
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
@@ -129,6 +129,6 @@ Feature: Sanity test functionalities of Laravel CMS
     #And Verify test data with proper validation message for Users
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save" button in "Blogs"
-    Then I should get "account created successfully" message on "Blogs"
+    Then I should get "blog added successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
