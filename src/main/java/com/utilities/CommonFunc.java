@@ -103,10 +103,9 @@ public class CommonFunc {
 		int count = menu.size();
 		for (int i = 1; i <= count; i++) {
 			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
-			System.out.println("Value test" + m1);
-			System.out.println("Title from Feature file is " + menuTitle);
+			
 			if (m1.equals(menuTitle)) {
-				System.out.println("Menu text is matched");
+				
 
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
@@ -125,7 +124,6 @@ public class CommonFunc {
 		System.out.println(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).clear();
 //		Thread.sleep(1000);
-//		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
@@ -141,7 +139,7 @@ public class CommonFunc {
 
 		Thread.sleep(5000);
 
-		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
+		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);
 			assert true;

@@ -112,6 +112,8 @@ public class StepDefination {
 			String lastname = ExcelHelper.getData(1, 1);
 			String email = ExcelHelper.getData(1, 2);
 
+			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
+
 			usersPage.enterUserFirstName(firstname);
 			usersPage.enterUserLastName(lastname);
 			usersPage.enterUserEmail(email);
@@ -120,6 +122,9 @@ public class StepDefination {
 		case "edit":
 			String updatefirstname = ExcelHelper.getData(1, 3);
 			String updatelastname = ExcelHelper.getData(1, 4);
+
+			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
+
 			usersPage.enterUserFirstName(updatefirstname);
 			usersPage.enterUserLastName(updatelastname);
 			break;
@@ -160,7 +165,7 @@ public class StepDefination {
 		Thread.sleep(1000);
 		String searchText = "";
 		String xpath = "";
-		System.out.println("Module Name from Feature File is :- " + moduleName);
+		;
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		if (moduleName.equals(CommonVariables.users)) {
@@ -169,17 +174,8 @@ public class StepDefination {
 			System.out.println("Search text is :- " + searchText);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-
-			String updatefirstname = ExcelHelper.getData(1, 9);
-			String updatelastname = ExcelHelper.getData(1, 10);
-
-			System.out.println("Inside Else condition");
-
-			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
 			searchText = CommonVariables.txtSearchCmnVar;
-
-//			System.out.println("Search text is :- " + searchText);
-			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr/td[4]//div[2][@class='title']";
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]//div[2][@class='title']";
 		}
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table[1]/tbody[1]/tr[1]/td[1]";
@@ -206,7 +202,7 @@ public class StepDefination {
 			throws Throwable {
 
 		if (moduleName.equals(CommonVariables.users)) {
-			System.out.println("User module message is print");
+		
 			String Message = "The user account is not validated yet, user needs to validate his/her account.";
 			Thread.sleep(3000);
 			statuscolumn.click();
@@ -215,15 +211,18 @@ public class StepDefination {
 				System.out.println("Messgae for Inactive user = " + successmsg.getText());
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-			System.out.println("Our team module message is print");
+			
 			String Msg = "The team member successfully inactivated.";
+			String Msg2 = "The team member successfully activated.";
 			Thread.sleep(3000);
-			statuscolumn.click();
-			Thread.sleep(3000);
-			System.out.println("msg: =" +successmsg.getText());
-			System.out.println("msg1 ="+Msg);
 			if (successmsg.getText().equals(Msg)) {
 				System.out.println("Messgae for active user = " + successmsg.getText());
+			} else if (successmsg.getText().equals(Msg2)) {
+				System.out.println("Messgae for active user = " + successmsg.getText());
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
 			}
 		}
 	}
@@ -264,7 +263,7 @@ public class StepDefination {
 			ourteam.enterFirstName(updatefirstname);
 			ourteam.enterLastName(updatelastname);
 			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
-			System.out.println("Value of Edit: = " + CommonVariables.txtSearchCmnVar);
+			
 			break;
 
 		default:
@@ -272,6 +271,22 @@ public class StepDefination {
 			break;
 		}
 
+	}
+
+	@And("^\"([^\"]*)\" is \"([^\"]*)\"$")
+	public void User_is_Active(String moduleName, String status) throws Throwable {
+		if (statuscolumn.getAttribute("class").equals("sort active ")) {
+
+			statuscolumn.click();
+
+		} else if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
+
+			statuscolumn.click();
+
+		} else {
+			System.out.println("Not click on status column");
+			assert false;
+		}
 	}
 
 }
