@@ -108,7 +108,7 @@ public class StepDefination {
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" User$")
 	public void I_enter_all_mandatory_fields_for_add_User(String formName) throws Throwable {
-
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		switch (formName) {
 		case "add":
 			String firstname = ExcelHelper.getData(1, 0);
@@ -179,7 +179,7 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]//div[2][@class='title']";
-			
+
 		} else if (moduleName.equals(CommonVariables.blogs)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
@@ -232,17 +232,35 @@ public class StepDefination {
 				System.out.println("Messgae for active user = " + successmsg.getText());
 			} else if (successmsg.getText().equals(Msg2)) {
 				System.out.println("Messgae for active user = " + successmsg.getText());
-			} else {
-				System.out.println("Message is not match:");
-				assert false;
+			}
 
+			else if (moduleName.equals(CommonVariables.ourteam)) {
+
+				String blogsmsg = "The blog successfully inactivated";
+				String blogmsg2 = "The blog successfully activated.";
+				Thread.sleep(3000);
+
+				statuscolumn.click();
+				Thread.sleep(3000);
+				System.out.println("msg: =" + successmsg.getText());
+				System.out.println("msg1 =" + Msg);
+
+				if (successmsg.getText().equals(blogsmsg)) {
+					System.out.println("Messgae for active blogs = " + successmsg.getText());
+				} else if (successmsg.getText().equals(blogmsg2)) {
+					System.out.println("Messgae for inactive blogs = " + successmsg.getText());
+				} else {
+					System.out.println("Message is not match:");
+					assert false;
+
+				}
 			}
 		}
 	}
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
 	public void I_enter_all_mandatory_fields_for_add_Our_Team(String formName) throws Throwable {
-
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		switch (formName) {
 		case "add":
 			String firstname = ExcelHelper.getData(1, 0);
@@ -254,6 +272,8 @@ public class StepDefination {
 			String additionalBio = ExcelHelper.getData(1, 6);
 			String image = ExcelHelper.getData(1, 7);
 			String imageAlt = ExcelHelper.getData(1, 8);
+
+			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
 
 			ourteam.enterFirstName(firstname);
 			ourteam.enterLastName(lastname);
@@ -288,7 +308,7 @@ public class StepDefination {
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Blogs$")
 	public void I_enter_all_mandatory_fields_for_Add_Blogs(String formName) throws Throwable {
-
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
 		switch (formName) {
 		case "add":
 			String title = ExcelHelper.getData(1, 0);
@@ -303,8 +323,9 @@ public class StepDefination {
 			String metaTitle = ExcelHelper.getData(1, 9);
 			String metaDescription = ExcelHelper.getData(1, 10);
 
+			CommonVariables.txtSearchCmnVar = title;
+
 			blogs.enterTitle(title);
-			System.out.println("Category value : " + ExcelHelper.getData(1, 1) + "jkl");
 			blogs.enterBlogCategory(blogCategory);
 			blogs.enterAuthorFirstName(authorfirstName);
 			blogs.enterAuthorLastName(authorlastName);
@@ -322,6 +343,7 @@ public class StepDefination {
 			String updatetitle = ExcelHelper.getData(1, 11);
 
 			blogs.enterTitle(updatetitle);
+			CommonVariables.txtSearchCmnVar = updatetitle;
 
 			break;
 

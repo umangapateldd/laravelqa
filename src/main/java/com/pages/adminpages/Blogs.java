@@ -39,7 +39,7 @@ public class Blogs {
 	@FindBy(id = "publish_date")
 	WebElement PublishDate;
 
-	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[10]/a")
 	WebElement editbutton;
 
 	@FindBy(xpath = "//body[@id='tinymce']")

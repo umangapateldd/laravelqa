@@ -120,7 +120,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @blogAdd
+  @blog
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
@@ -136,13 +136,13 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Blogs" Module
     And Verify details in "Blogs"
     And Click on "Edit" button in "Blogs"
-    Then "Our Team" "Edit" page gets open
+    Then "Blog" "Edit" page gets open
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save" button in "Blogs"
-    Then I should get "member updated successfully" message on "Blogs"
+    Then I should get " blog updated successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blogStatus
+  @blog
   Scenario: Blogs Try Active before account verification
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"

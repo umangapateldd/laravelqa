@@ -12,7 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import com.basicactions.DropDownHelper;
 import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
+import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Ourteam;
+import com.pages.adminpages.UsersPage;
 
 public class CommonFunc {
 
@@ -20,6 +22,8 @@ public class CommonFunc {
 	CommonVariables commonVariables;
 	DropDownHelper dropDownHelper;
 	Ourteam ourteam;
+	Blogs blogs;
+	UsersPage userspage;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")
@@ -103,9 +107,8 @@ public class CommonFunc {
 		int count = menu.size();
 		for (int i = 1; i <= count; i++) {
 			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
-			
+
 			if (m1.equals(menuTitle)) {
-				
 
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
@@ -164,8 +167,13 @@ public class CommonFunc {
 			ourteam = new Ourteam(driver);
 			ourteam.ClickonEditbutton();
 		} else if (moduleName.equals("Users")) {
+			userspage = new UsersPage(driver);
 			System.out.println("edit if users");
 			editButton.click();
+		} else if (moduleName.equals("Blogs")) {
+			System.out.println("edit if blogs");
+			blogs = new Blogs(driver);
+		    blogs.ClickonEditbutton();
 		} else {
 			System.out.println("edit else - module is not defined");
 			assert false;
