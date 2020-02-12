@@ -242,8 +242,9 @@ public class StepDefination {
 
 				statuscolumn.click();
 				Thread.sleep(3000);
-				System.out.println("msg: =" + successmsg.getText());
-				System.out.println("msg1 =" + Msg);
+				System.out.println("msg: =" + blogmsg2);
+				System.out.println("msg1 =" + blogsmsg);
+				System.out.println("Messgae for active blog = " + successmsg.getText());
 
 				if (successmsg.getText().equals(blogsmsg)) {
 					System.out.println("Messgae for active blogs = " + successmsg.getText());
