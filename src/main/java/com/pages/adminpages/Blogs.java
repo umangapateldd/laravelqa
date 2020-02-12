@@ -59,6 +59,9 @@ public class Blogs {
 
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")
 	WebElement selecttime;
+	
+	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
+	WebElement Settingmenu;
 
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[1]/table/tbody/tr/td/fieldset/span[11]")
 	WebElement time;
@@ -122,6 +125,11 @@ public class Blogs {
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
 		editbutton.click();
+	}
+	public void ClickonSettingmenu() throws InterruptedException {
+		log.info("********************Click on Setting Menu********************");
+		Settingmenu.click();
+		Thread.sleep(2000);
 	}
 
 	public void enterDescription(String description) throws InterruptedException {
