@@ -10,6 +10,7 @@ import com.base.TestBase;
 import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
+import com.pages.adminpages.Blogs;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.UsersPage;
@@ -37,6 +38,7 @@ public class StepDefination {
 	CommonFunc commonFunc;
 	UsersPage usersPage;
 	Ourteam ourteam;
+	Blogs blogs;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -59,6 +61,7 @@ public class StepDefination {
 		homePage = new HomePage(driver);
 		usersPage = new UsersPage(driver);
 		ourteam = new Ourteam(driver);
+		blogs = new Blogs(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -105,7 +108,7 @@ public class StepDefination {
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" User$")
 	public void I_enter_all_mandatory_fields_for_add_User(String formName) throws Throwable {
-
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		switch (formName) {
 		case "add":
 			String firstname = ExcelHelper.getData(1, 0);
@@ -170,15 +173,19 @@ public class StepDefination {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		if (moduleName.equals(CommonVariables.users)) {
 			System.out.println("Inside IF condition");
-			searchText = ExcelHelper.getData(1, 2);
+			searchText = ExcelHelper.getData(1, 0);
 			System.out.println("Search text is :- " + searchText);
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]//div[2][@class='title']";
+
+		} else if (moduleName.equals(CommonVariables.blogs)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
 		}
 		if (CommonVariables.deleteRecord == true) {
-			xpath = "//*[@id='frmlist']/table[1]/tbody[1]/tr[1]/td[1]";
+			xpath = "//*[@id='display_order_223']/td[4]/a";
 		}
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
@@ -202,7 +209,7 @@ public class StepDefination {
 			throws Throwable {
 
 		if (moduleName.equals(CommonVariables.users)) {
-		
+
 			String Message = "The user account is not validated yet, user needs to validate his/her account.";
 			Thread.sleep(3000);
 			statuscolumn.click();
@@ -211,25 +218,50 @@ public class StepDefination {
 				System.out.println("Messgae for Inactive user = " + successmsg.getText());
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-			
+
 			String Msg = "The team member successfully inactivated.";
 			String Msg2 = "The team member successfully activated.";
 			Thread.sleep(3000);
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+			System.out.println("msg: =" + successmsg.getText());
+			System.out.println("msg1 =" + Msg);
+
 			if (successmsg.getText().equals(Msg)) {
 				System.out.println("Messgae for active user = " + successmsg.getText());
 			} else if (successmsg.getText().equals(Msg2)) {
 				System.out.println("Messgae for active user = " + successmsg.getText());
-			} else {
-				System.out.println("Message is not match:");
-				assert false;
+			}
 
+			else if (moduleName.equals(CommonVariables.ourteam)) {
+
+				String blogsmsg = "The blog successfully inactivated";
+				String blogmsg2 = "The blog successfully activated.";
+				Thread.sleep(3000);
+
+				statuscolumn.click();
+				Thread.sleep(3000);
+				System.out.println("msg: =" + blogmsg2);
+				System.out.println("msg1 =" + blogsmsg);
+				System.out.println("Messgae for active blog = " + successmsg.getText());
+
+				if (successmsg.getText().equals(blogsmsg)) {
+					System.out.println("Messgae for active blogs = " + successmsg.getText());
+				} else if (successmsg.getText().equals(blogmsg2)) {
+					System.out.println("Messgae for inactive blogs = " + successmsg.getText());
+				} else {
+					System.out.println("Message is not match:");
+					assert false;
+
+				}
 			}
 		}
 	}
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
 	public void I_enter_all_mandatory_fields_for_add_Our_Team(String formName) throws Throwable {
-
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		switch (formName) {
 		case "add":
 			String firstname = ExcelHelper.getData(1, 0);
@@ -241,6 +273,8 @@ public class StepDefination {
 			String additionalBio = ExcelHelper.getData(1, 6);
 			String image = ExcelHelper.getData(1, 7);
 			String imageAlt = ExcelHelper.getData(1, 8);
+
+			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
 
 			ourteam.enterFirstName(firstname);
 			ourteam.enterLastName(lastname);
@@ -263,7 +297,7 @@ public class StepDefination {
 			ourteam.enterFirstName(updatefirstname);
 			ourteam.enterLastName(updatelastname);
 			CommonVariables.txtSearchCmnVar = updatefirstname + " " + updatelastname;
-			
+
 			break;
 
 		default:
@@ -271,6 +305,53 @@ public class StepDefination {
 			break;
 		}
 
+	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Blogs$")
+	public void I_enter_all_mandatory_fields_for_Add_Blogs(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+		switch (formName) {
+		case "add":
+			String title = ExcelHelper.getData(1, 0);
+			String blogCategory = ExcelHelper.getData(1, 1);
+			String authorfirstName = ExcelHelper.getData(1, 2);
+			String authorlastName = ExcelHelper.getData(1, 3);
+			String image = ExcelHelper.getData(1, 4);
+			String imageAlt = ExcelHelper.getData(1, 5);
+			String publishdate = ExcelHelper.getData(1, 6);
+			String status = ExcelHelper.getData(1, 7);
+			String description = ExcelHelper.getData(1, 8);
+			String metaTitle = ExcelHelper.getData(1, 9);
+			String metaDescription = ExcelHelper.getData(1, 10);
+
+			CommonVariables.txtSearchCmnVar = title;
+
+			blogs.enterTitle(title);
+			blogs.enterBlogCategory(blogCategory);
+			blogs.enterAuthorFirstName(authorfirstName);
+			blogs.enterAuthorLastName(authorlastName);
+			blogs.enterImage(image);
+			blogs.enterImageAlt(imageAlt);
+			blogs.enterPublishDate(publishdate);
+			blogs.enterStatus(status);
+			blogs.enterDescription(description);
+			blogs.enterMetaTitle(metaTitle);
+			blogs.enterMetaDescription(metaDescription);
+
+			break;
+
+		case "edit":
+			String updatetitle = ExcelHelper.getData(1, 11);
+
+			blogs.enterTitle(updatetitle);
+			CommonVariables.txtSearchCmnVar = updatetitle;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
 	}
 
 	@And("^\"([^\"]*)\" is \"([^\"]*)\"$")
@@ -287,6 +368,7 @@ public class StepDefination {
 			System.out.println("Not click on status column");
 			assert false;
 		}
+
 	}
 
 }

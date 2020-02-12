@@ -36,8 +36,17 @@ public class Ourteam {
 	@FindBy(xpath = "//*[@id='status']")
 	WebElement Status;
 
+	@FindBy(id = "meta_title")
+	WebElement Metatitle;
+	
+	@FindBy(id = "meta_desc")
+	WebElement MetaDescription;
+	
 	@FindBy(id = "short_bio")
 	WebElement ShortBio;
+	
+	@FindBy(xpath = "//body[@id='tinymce']")
+	WebElement Description;
 
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement AdditionalBio;
