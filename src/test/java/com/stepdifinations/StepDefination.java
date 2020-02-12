@@ -13,6 +13,7 @@ import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
+import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
@@ -39,6 +40,7 @@ public class StepDefination {
 	UsersPage usersPage;
 	Ourteam ourteam;
 	Blogs blogs;
+	Testimonial testimonial;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -183,6 +185,9 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.blogs)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
 		}
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='display_order_223']/td[4]/a";
@@ -233,30 +238,31 @@ public class StepDefination {
 			} else if (successmsg.getText().equals(Msg2)) {
 				System.out.println("Messgae for active user = " + successmsg.getText());
 			}
+		}
 
-			else if (moduleName.equals(CommonVariables.ourteam)) {
+		else if (moduleName.equals(CommonVariables.blogs)) {
 
-				String blogsmsg = "The blog successfully inactivated";
-				String blogmsg2 = "The blog successfully activated.";
-				Thread.sleep(3000);
+			String blogsmsg = "The blog successfully inactivated";
 
-				statuscolumn.click();
-				Thread.sleep(3000);
-				System.out.println("msg: =" + blogmsg2);
-				System.out.println("msg1 =" + blogsmsg);
-				System.out.println("Messgae for active blog = " + successmsg.getText());
+			String blogmsg2 = "The blog successfully activated.";
 
-				if (successmsg.getText().equals(blogsmsg)) {
-					System.out.println("Messgae for active blogs = " + successmsg.getText());
-				} else if (successmsg.getText().equals(blogmsg2)) {
-					System.out.println("Messgae for inactive blogs = " + successmsg.getText());
-				} else {
-					System.out.println("Message is not match:");
-					assert false;
+//			System.out.println("msg: =" + blogmsg2);
+//			System.out.println("msg1 =" + blogsmsg);
+//			System.out.println("Messgae for active blog = " + successmsg.getText());
+			statuscolumn.click();
+			Thread.sleep(3000);
 
-				}
+			if (successmsg.getText().equals(blogsmsg)) {
+				System.out.println("Messgae for active blogs = " + blogsmsg);
+			} else if (successmsg.getText().equals(blogmsg2)) {
+				System.out.println("Messgae for inactive blogs = " + blogmsg2);
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
 			}
 		}
+
 	}
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
@@ -359,10 +365,12 @@ public class StepDefination {
 		if (statuscolumn.getAttribute("class").equals("sort active ")) {
 
 			statuscolumn.click();
+			Thread.sleep(2000);
 
 		} else if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
 
 			statuscolumn.click();
+			Thread.sleep(2000);
 
 		} else {
 			System.out.println("Not click on status column");
@@ -371,4 +379,56 @@ public class StepDefination {
 
 	}
 
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Testimonial$")
+	public void I_enter_all_mandatory_fields_for_Add_Testimonial(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
+		switch (formName) {
+		case "add":
+			String authorName = ExcelHelper.getData(1, 0);
+			String url = ExcelHelper.getData(1, 1);
+			String status = ExcelHelper.getData(1, 2);
+			String image = ExcelHelper.getData(1, 3);
+			String imageAlt = ExcelHelper.getData(1, 4);
+			String description = ExcelHelper.getData(1, 5);
+
+			CommonVariables.txtSearchCmnVar = authorName;
+
+			testimonial.enterAuthorName(authorName);
+			testimonial.enterURL(url);
+			testimonial.enterStatus(status);
+			testimonial.enterImage(image);
+			testimonial.enterImageAlt(imageAlt);
+			testimonial.enterDescription(description);
+
+			break;
+
+		case "edit":
+			String updateauthorName = ExcelHelper.getData(1, 6);
+
+			testimonial.enterAuthorName(updateauthorName);
+			CommonVariables.txtSearchCmnVar = updateauthorName;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+	}
+
+	@When("^Click on \"([^\"]*)\" menu$")
+	public void Click_on__Blogs_Settings_menu(String moduleName) throws Throwable {
+		Thread.sleep(2000);
+		blogs.ClickonSettingmenu();
+
+	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Settings$")
+	public void I_enter_all_mandatory_fields_for_blogs_setting(String moduleName) throws Throwable {
+	}
+
+	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\" Settings$")
+	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String message,
+			String moduleName) throws Throwable {
+	}
 }

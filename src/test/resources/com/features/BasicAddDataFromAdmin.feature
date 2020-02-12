@@ -181,14 +181,14 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "blog updated successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  @BlogSettings
-  Scenario: Blogs Settings field
-    Given Login as Admin and Go to "Blogs" Module
-    When Click on "Blogs Settings" menu
-    Then  "Blogs" "Settings" page gets open
-    When I enter all mandatory fields for "Blogs" Settings
-    And Click on "Save" button in "Blogs Settings"
-    Then I should get "Settings have been saved successfully" message on "Blogs" Settings 
+  #@BlogSettings
+  #Scenario: Blogs Settings field
+    #Given Login as Admin and Go to "Blogs" Module
+    #When Click on "Blogs Settings" menu
+    #Then  "Blogs" "Settings" page gets open
+    #When I enter all mandatory fields for "Blogs" Settings
+    #And Click on "Save" button in "Blogs Settings"
+    #Then I should get "Settings have been saved successfully" message on "Blogs" Settings 
 
 
   #@BlogFrontVerification
