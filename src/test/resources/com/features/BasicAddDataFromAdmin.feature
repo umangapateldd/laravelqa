@@ -157,7 +157,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
     And Click on "Delete" button in "Blogs"
-    Then I should get "Selected team member(s) have been deleted successfully" message on "Blogs"
+    Then I should get "Selected blog(s) have been deleted successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
   @blogSaveandContinue
@@ -167,7 +167,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then "Blogs" "Add" page gets open
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save and Continue" button in "Blogs"
-    Then I should get "member added successfully" message on "Blogs"
+    Then I should get "blog added successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
   @blogSaveandContinue
@@ -178,5 +178,5 @@ Feature: Sanity test functionalities of Laravel CMS
     Then "Blogs" "Edit" page gets open
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save and Continue" button in "Blogs"
-    Then I should get "member updated successfully" message on "Blogs"
+    Then I should get "blog updated successfully" message on "Blogs"
     Then Verify details in "Blogs"
