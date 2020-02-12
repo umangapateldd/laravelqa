@@ -139,6 +139,8 @@ public class CommonFunc {
 				searchText = "No user(s) found";
 			} else if (moduleName.equals(CommonVariables.ourteam)) {
 				searchText = "No team member(s) found";
+			} else if (moduleName.equals(CommonVariables.blogs)) {
+				searchText = "No team member(s) found";
 			}
 		}
 
@@ -173,7 +175,7 @@ public class CommonFunc {
 		} else if (moduleName.equals("Blogs")) {
 			System.out.println("edit if blogs");
 			blogs = new Blogs(driver);
-		    blogs.ClickonEditbutton();
+			blogs.ClickonEditbutton();
 		} else {
 			System.out.println("edit else - module is not defined");
 			assert false;

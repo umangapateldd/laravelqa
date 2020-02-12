@@ -152,7 +152,7 @@ Feature: Sanity test functionalities of Laravel CMS
     And "Blogs" is "Inactive"
     Then Make "Blogs" "Active" and verify "success message"
 
-  @blog
+  @blogDelete
   Scenario: Blogs Delete successfully
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
@@ -181,23 +181,20 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "blog updated successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  #@BlogSettings
-  #Scenario: Blogs Settings field
-    #Given Login as Admin and Go to "Blogs" Module
-    #When Click on "Blogs Settings" menu
-    #Then  "Blogs" "Settings" page gets open
-    #When I enter all mandatory fields for "Blogs" Settings
-    #And Click on "Save" button in "Blogs Settings"
-    #Then I should get "Settings have been saved successfully" message on "Blogs" Settings 
-
+  @blogSettings
+  Scenario: Blogs Settings field
+    Given Login as Admin and Go to "Blogs" Module
+    When Click on "Blogs Settings" menu
+    Then "Blogs" "Settings" page gets open
+    When I enter all mandatory fields for "Blogs" Settings
+    And Click on "Save" button in "Blogs" Settings
+    Then I should get "Settings have been saved successfully" message on "Blogs" Settings
 
   #@BlogFrontVerification
   #Scenario: Blog verification on Front side
-    #Given	Login as Admin and Go to "Blogs" Module
-    #When	Get Blog name from Admin panel
-    #Then	Verify Blog name in front side
-
-
+  #Given	Login as Admin and Go to "Blogs" Module
+  #When	Get Blog name from Admin panel
+  #Then	Verify Blog name in front side
   @TestimonialAdd
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module

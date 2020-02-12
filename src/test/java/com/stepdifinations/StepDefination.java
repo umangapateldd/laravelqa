@@ -1,6 +1,7 @@
 package com.stepdifinations;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,7 +50,7 @@ public class StepDefination {
 	@FindBy(xpath = "//*[@id='main']/div[1]/span")
 	WebElement successmsg;
 
-	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/h1")
 	WebElement addtitle;
 
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")
@@ -190,7 +191,8 @@ public class StepDefination {
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
 		}
 		if (CommonVariables.deleteRecord == true) {
-			xpath = "//*[@id='display_order_223']/td[4]/a";
+			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
+			System.out.println("delete record "+driver.findElement(By.xpath(xpath)).getText());
 		}
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
@@ -425,10 +427,30 @@ public class StepDefination {
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Settings$")
 	public void I_enter_all_mandatory_fields_for_blogs_setting(String moduleName) throws Throwable {
-	}
+		
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+		
+		String fieldblog= ExcelHelper.getData(1, 12);
 
+
+		blogs.enterFieldblog(fieldblog);
+		Thread.sleep(2000);
+		
+		
+	}
+	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\" Settings$")
+	public void Click_on_Save_button_in_Blogs_Settings(String buttonName, String moduleName) throws Throwable {
+		Thread.sleep(2000);
+		blogs.ClickonSettingsave();
+		
+	}
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\" Settings$")
-	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String message,
+	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String successmessage,
 			String moduleName) throws Throwable {
+		System.out.println("Message : "+successmessage);
+		if(successmsg.getText().equals(successmessage))
+		{
+			System.out.println("Message mathch:"+successmessage);
+		}
 	}
 }
