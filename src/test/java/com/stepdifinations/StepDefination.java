@@ -227,31 +227,52 @@ public class StepDefination {
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 
-			String Msg = "The team member successfully inactivated.";
-			String Msg2 = "The team member successfully activated.";
+			String Msg = "";
+			String Msg2 = "";
 			Thread.sleep(3000);
+			
+	
+			
+			if (CommonVariables.inactive.equals("false")) {
+				Msg = "The team member successfully inactivated";
+			} else if (CommonVariables.inactive.equals("true")) {
+				Msg2 = "The team member successfully activated.";
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
+			}
 
 			statuscolumn.click();
 			Thread.sleep(3000);
-			System.out.println("msg: =" + successmsg.getText());
-			System.out.println("msg1 =" + Msg);
+		
 
 			if (successmsg.getText().equals(Msg)) {
-				System.out.println("Messgae for active user = " + successmsg.getText());
+				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
 			} else if (successmsg.getText().equals(Msg2)) {
-				System.out.println("Messgae for active user = " + successmsg.getText());
+				System.out.println("Messgae for active ourteam = " + successmsg.getText());
 			}
 		}
 
 		else if (moduleName.equals(CommonVariables.blogs)) {
 
-			String blogsmsg = "The blog successfully inactivated";
+			String blogsmsg = "";
 
-			String blogmsg2 = "The blog successfully activated.";
+			String blogmsg2 = "";
+			
+			if (CommonVariables.inactive.equals("false")) {
+				blogsmsg = "The blog successfully inactivated";
+			} else if (CommonVariables.inactive.equals("true")) {
+				blogmsg2 = "The blog successfully activated";
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
 
+			}
+			
 			statuscolumn.click();
 			Thread.sleep(3000);
-
+			
 			if (successmsg.getText().equals(blogsmsg)) {
 				System.out.println("Messgae for active blogs = " + blogsmsg);
 			} else if (successmsg.getText().equals(blogmsg2)) {
@@ -261,6 +282,8 @@ public class StepDefination {
 				assert false;
 
 			}
+
+			
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			String testimonialsmsg = "";
 			String testimonialmsg2 = "";
