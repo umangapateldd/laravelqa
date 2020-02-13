@@ -230,9 +230,7 @@ public class StepDefination {
 			String Msg = "";
 			String Msg2 = "";
 			Thread.sleep(3000);
-			
-	
-			
+
 			if (CommonVariables.inactive.equals("false")) {
 				Msg = "The team member successfully inactivated";
 			} else if (CommonVariables.inactive.equals("true")) {
@@ -245,7 +243,6 @@ public class StepDefination {
 
 			statuscolumn.click();
 			Thread.sleep(3000);
-		
 
 			if (successmsg.getText().equals(Msg)) {
 				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
@@ -259,7 +256,7 @@ public class StepDefination {
 			String blogsmsg = "";
 
 			String blogmsg2 = "";
-			
+
 			if (CommonVariables.inactive.equals("false")) {
 				blogsmsg = "The blog successfully inactivated";
 			} else if (CommonVariables.inactive.equals("true")) {
@@ -269,10 +266,10 @@ public class StepDefination {
 				assert false;
 
 			}
-			
+
 			statuscolumn.click();
 			Thread.sleep(3000);
-			
+
 			if (successmsg.getText().equals(blogsmsg)) {
 				System.out.println("Messgae for active blogs = " + blogsmsg);
 			} else if (successmsg.getText().equals(blogmsg2)) {
@@ -283,7 +280,6 @@ public class StepDefination {
 
 			}
 
-			
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			String testimonialsmsg = "";
 			String testimonialmsg2 = "";
