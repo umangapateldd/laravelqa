@@ -65,6 +65,7 @@ public class StepDefination {
 		usersPage = new UsersPage(driver);
 		ourteam = new Ourteam(driver);
 		blogs = new Blogs(driver);
+		testimonial = new Testimonial(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -192,7 +193,7 @@ public class StepDefination {
 		}
 		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
-			System.out.println("delete record "+driver.findElement(By.xpath(xpath)).getText());
+			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
@@ -421,36 +422,51 @@ public class StepDefination {
 	@When("^Click on \"([^\"]*)\" menu$")
 	public void Click_on__Blogs_Settings_menu(String moduleName) throws Throwable {
 		Thread.sleep(2000);
-		blogs.ClickonSettingmenu();
-
+		if (moduleName.equals(CommonVariables.blogs)) {
+			blogs.ClickonSettingmenu();
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			testimonial.ClickonSettingmenu();
+		}
 	}
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Settings$")
 	public void I_enter_all_mandatory_fields_for_blogs_setting(String moduleName) throws Throwable {
-		
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
-		
-		String fieldblog= ExcelHelper.getData(1, 12);
 
+		if (moduleName.equals(CommonVariables.blogs)) {
 
-		blogs.enterFieldblog(fieldblog);
-		Thread.sleep(2000);
-		
-		
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+
+			String fieldblog = ExcelHelper.getData(1, 12);
+
+			blogs.enterFieldblog(fieldblog);
+			Thread.sleep(2000);
+
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
+
+			String settingfield = ExcelHelper.getData(1, 7);
+
+			testimonial.entersettingfield(settingfield);
+			Thread.sleep(2000);
+		}
 	}
+
 	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\" Settings$")
 	public void Click_on_Save_button_in_Blogs_Settings(String buttonName, String moduleName) throws Throwable {
 		Thread.sleep(2000);
-		blogs.ClickonSettingsave();
-		
+		if (moduleName.equals(CommonVariables.blogs)) {
+			blogs.ClickonSettingsave();
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			testimonial.ClickonSettingsave();
+		}
 	}
+
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\" Settings$")
 	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String successmessage,
 			String moduleName) throws Throwable {
-		System.out.println("Message : "+successmessage);
-		if(successmsg.getText().equals(successmessage))
-		{
-			System.out.println("Message mathch:"+successmessage);
+		System.out.println("Message : " + successmessage);
+		if (successmsg.getText().equals(successmessage)) {
+			System.out.println("Message mathch:" + successmessage);
 		}
 	}
 }

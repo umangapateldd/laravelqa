@@ -116,6 +116,7 @@ public class CommonFunc {
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
 //				System.out.println("value of date :"+ExcelHelper.getData(1, 6));
 				break;
 			}

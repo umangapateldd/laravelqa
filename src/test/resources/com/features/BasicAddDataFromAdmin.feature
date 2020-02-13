@@ -195,6 +195,7 @@ Feature: Sanity test functionalities of Laravel CMS
   #Given	Login as Admin and Go to "Blogs" Module
   #When	Get Blog name from Admin panel
   #Then	Verify Blog name in front side
+  
   @TestimonialAdd
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
@@ -256,6 +257,16 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save & Continue" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
+
+  @TestimonialSettings
+  Scenario: Testimonial Settings field
+    Given Login as Admin and Go to "Testimonial" Module
+    When Click on "Testimonial Settings" menu
+    Then  "Testimonial" "Settings" page gets open
+    When I enter all mandatory fields for "Testimonial" Settings
+    And Click on "Save" button in "Testimonial" Settings
+    Then I should get "Settings have been saved successfully" message on "Testimonial" Settings
+    
   #@TestimonialFrontVerification
   #Scenario: Testimonial verification on Front side
     #Given Login as Admin and Go to "Testimonials" Module

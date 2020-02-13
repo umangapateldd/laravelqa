@@ -34,8 +34,17 @@ public class Testimonial {
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
 	WebElement editbutton;
 
+	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
+	WebElement Settingmenu;
+
+	@FindBy(xpath = "//*[@id='field_testimonial_title_display']")
+	WebElement Settingfield;
+	
 	@FindBy(xpath = "//input[@type='file']")
 	WebElement Image;
+	
+	@FindBy(xpath = "//*[@id='btnsave']")
+	WebElement Settingsave;
 
 	@FindBy(xpath = "//*[@id='image_alt']")
 	WebElement ImageAlt;
@@ -83,7 +92,24 @@ public class Testimonial {
 		Thread.sleep(5000);
 
 	}
+	
+	public void entersettingfield(String settingfield) {
+		log.info("********************Enter the Author LastName********************");
 
+		Settingfield.sendKeys(settingfield);
+	}
+
+	public void ClickonSettingmenu() throws InterruptedException {
+		log.info("********************Click on Setting Menu********************");
+		Settingmenu.click();
+		Thread.sleep(2000);
+	}
+	
+	public void ClickonSettingsave() throws InterruptedException {
+		log.info("********************Click on Setting save********************");
+		Settingsave.click();
+		Thread.sleep(2000);
+	}
 	public void enterImageAlt(String imageAlt) {
 		log.info("********************Enter the Image Alt********************");
 
