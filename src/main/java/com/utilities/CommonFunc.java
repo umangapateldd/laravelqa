@@ -13,6 +13,7 @@ import com.basicactions.DropDownHelper;
 import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.pages.adminpages.Blogs;
+import com.pages.adminpages.Category;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
@@ -26,6 +27,7 @@ public class CommonFunc {
 	Blogs blogs;
 	Testimonial testimonial;
 	UsersPage userspage;
+	Category category;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")
@@ -119,6 +121,8 @@ public class CommonFunc {
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
+				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.category);
+				
 //				System.out.println("value of date :"+ExcelHelper.getData(1, 6));
 				break;
 			}
@@ -146,6 +150,9 @@ public class CommonFunc {
 				searchText = "No blogs(s) found";
 			} else if (moduleName.equals(CommonVariables.testimonial)) {
 				searchText = "No testimonial(s) found";
+			}
+			else if (moduleName.equals(CommonVariables.category)) {
+				searchText = "No category(s) found";
 			}
 		}
 
@@ -187,6 +194,11 @@ public class CommonFunc {
 			System.out.println("edit if Testimonial");
 			testimonial = new Testimonial(driver);
 			testimonial.ClickonEditbutton();
+		}
+		else if (moduleName.equals("Category")) {
+			System.out.println("edit if Category");
+			category = new Category(driver);
+			category.ClickonEditbutton();
 		}
 		else {
 			System.out.println("edit else - module is not defined");

@@ -12,6 +12,7 @@ import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
+import com.pages.adminpages.Category;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Testimonial;
@@ -42,6 +43,7 @@ public class StepDefination {
 	Ourteam ourteam;
 	Blogs blogs;
 	Testimonial testimonial;
+	Category category;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -66,6 +68,7 @@ public class StepDefination {
 		ourteam = new Ourteam(driver);
 		blogs = new Blogs(driver);
 		testimonial = new Testimonial(driver);
+		category = new Category(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -190,8 +193,10 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
-		}
-		if (CommonVariables.deleteRecord == true) {
+		} else if (moduleName.equals(CommonVariables.category)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
+		} else if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
@@ -230,9 +235,7 @@ public class StepDefination {
 			String Msg = "";
 			String Msg2 = "";
 			Thread.sleep(3000);
-			
-	
-			
+
 			if (CommonVariables.inactive.equals("false")) {
 				Msg = "The team member successfully inactivated";
 			} else if (CommonVariables.inactive.equals("true")) {
@@ -245,7 +248,6 @@ public class StepDefination {
 
 			statuscolumn.click();
 			Thread.sleep(3000);
-		
 
 			if (successmsg.getText().equals(Msg)) {
 				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
@@ -259,7 +261,7 @@ public class StepDefination {
 			String blogsmsg = "";
 
 			String blogmsg2 = "";
-			
+
 			if (CommonVariables.inactive.equals("false")) {
 				blogsmsg = "The blog successfully inactivated";
 			} else if (CommonVariables.inactive.equals("true")) {
@@ -269,10 +271,10 @@ public class StepDefination {
 				assert false;
 
 			}
-			
+
 			statuscolumn.click();
 			Thread.sleep(3000);
-			
+
 			if (successmsg.getText().equals(blogsmsg)) {
 				System.out.println("Messgae for active blogs = " + blogsmsg);
 			} else if (successmsg.getText().equals(blogmsg2)) {
@@ -283,7 +285,6 @@ public class StepDefination {
 
 			}
 
-			
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			String testimonialsmsg = "";
 			String testimonialmsg2 = "";
@@ -302,6 +303,31 @@ public class StepDefination {
 				System.out.println("Messgae for active blogs = " + testimonialsmsg);
 			} else if (successmsg.getText().equals(testimonialmsg2)) {
 				System.out.println("Messgae for inactive blogs = " + testimonialmsg2);
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
+			}
+		}
+
+		else if (moduleName.equals(CommonVariables.category)) {
+			String categorymsg = "";
+			String categorymsg2 = "";
+			if (CommonVariables.inactive.equals("false")) {
+				categorymsg = "The category successfully inactivated.";
+			} else if (CommonVariables.inactive.equals("true")) {
+				categorymsg2 = "The category successfully activated.";
+			} else {
+				assert false;
+			}
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+
+			if (successmsg.getText().equals(categorymsg)) {
+				System.out.println("Messgae for active blogs = " + categorymsg);
+			} else if (successmsg.getText().equals(categorymsg2)) {
+				System.out.println("Messgae for inactive blogs = " + categorymsg2);
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
@@ -521,4 +547,44 @@ public class StepDefination {
 			System.out.println("Message mathch:" + successmessage);
 		}
 	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Category$")
+	public void I_enter_all_mandatory_fields_for_Add_category(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.category);
+		switch (formName) {
+		case "add":
+			String title = ExcelHelper.getData(1, 0);
+			String status = ExcelHelper.getData(1, 1);
+			String imageAlt = ExcelHelper.getData(1, 2);
+			String image = ExcelHelper.getData(1, 3);
+			String description = ExcelHelper.getData(1, 4);
+			String metaTitle = ExcelHelper.getData(1, 5);
+			String metaDescription = ExcelHelper.getData(1, 6);
+
+			CommonVariables.txtSearchCmnVar = title;
+
+			category.enterTitle(title);
+			category.enterImage(image);
+			category.enterImageAlt(imageAlt);
+			category.enterStatus(status);
+			category.enterDescription(description);
+			category.enterMetaTitle(metaTitle);
+			category.enterMetaDescription(metaDescription);
+
+			break;
+
+		case "edit":
+			String updateTitle = ExcelHelper.getData(1, 7);
+
+			category.enterTitle(updateTitle);
+			CommonVariables.txtSearchCmnVar = updateTitle;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+	}
+
 }

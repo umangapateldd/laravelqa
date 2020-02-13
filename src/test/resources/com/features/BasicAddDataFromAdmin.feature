@@ -195,7 +195,6 @@ Feature: Sanity test functionalities of Laravel CMS
   #Given	Login as Admin and Go to "Blogs" Module
   #When	Get Blog name from Admin panel
   #Then	Verify Blog name in front side
-  
   @Testimonial
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
@@ -262,13 +261,79 @@ Feature: Sanity test functionalities of Laravel CMS
   Scenario: Testimonial Settings field
     Given Login as Admin and Go to "Testimonial" Module
     When Click on "Testimonial Settings" menu
-    Then  "Testimonial" "Settings" page gets open
+    Then "Testimonial" "Settings" page gets open
     When I enter all mandatory fields for "Testimonial" Settings
     And Click on "Save" button in "Testimonial" Settings
     Then I should get "Settings have been saved successfully" message on "Testimonial" Settings
-    
+
   #@TestimonialFrontVerification
   #Scenario: Testimonial verification on Front side
-    #Given Login as Admin and Go to "Testimonials" Module
-    #When Get Testimonial from Admin panel
-    #Then Verify Testimonial in front side
+  #Given Login as Admin and Go to "Testimonials" Module
+  #When Get Testimonial from Admin panel
+  #Then Verify Testimonial in front side
+  
+  @CategoriesAdd
+  Scenario: Category Add successfully with click on Save button
+    Given Login as Admin and Go to "Categories" Module
+    When Click on "Add" button in "Categories grid"
+    Then "Category" "Add" page gets open
+    #And Verify test data with proper validation message for "Categories"
+    When I enter all mandatory fields for "add" Category
+    And Click on "Save" button in "Category"
+    Then I should get "category added successfully" message on "Categories"
+    Then Verify details in "Categories"
+
+  @CategoriesEdit
+  Scenario: Category Edit successfully with click on Save button
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And Click on "Edit" button in "Categories"
+    Then "Category" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Category
+    And Click on "Save" button in "Category"
+    Then I should get "category updated successfully" message on "Categories" 
+    Then Verify details in "Categories"
+
+  @CategoriesActiveInactive
+  Scenario: Category Active Inactive
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And "Category" is "Active"
+    Then Make "Category" "Inactive" and verify "success message"
+    #Then Verify details in "Categories grid with other filters"
+    When Verify details in "Categories"
+    And "Category" is "Inactive"
+    Then Make "Category" "Active" and verify "success message"
+    #Then Verify details in "Categories grid with other filters"
+
+  @CategoriesDelete
+  Scenario: Category Delete successfully
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And Click on "Delete" button in "Categories"
+    Then I should get "Selected category(s) have been deleted successfully." message on "Categories"
+    Then Verify details in "Categories"
+
+
+  @CategoriesAddSaveContinue
+  Scenario: Category Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Categories" Module
+    When Click on "Add" button in "Categories"
+    Then "Category" "Add" page gets open
+    When I enter all mandatory fields for "add" Category
+    And Click on "Save and Continue" button in "Category"
+    Then I should get "category added successfully" message on "Category" 
+    Then Verify details in "Categories"
+
+
+  @CategoriesEditSaveContinue
+  Scenario: Category Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And Click on "Edit" button in "Categories"
+    Then "Category" "Edit" page gets open
+    When I enter all mandatory fields for "update" Category
+    And Click on "Save and Continue" button in "Category"
+    Then I should get "category updated successfully" message on "Category"
+    Then Verify details in "Categories grid"
+

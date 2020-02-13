@@ -24,6 +24,7 @@ public class CommonVariables {
 	public static String ourteam ="Our Team";
 	public static String blogs ="Blogs";
 	public static String testimonial ="Testimonial";
+	public static String category ="Category";
 	public static String txtSearchCmnVar = "";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
