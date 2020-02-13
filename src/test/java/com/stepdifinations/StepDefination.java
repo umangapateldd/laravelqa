@@ -50,7 +50,7 @@ public class StepDefination {
 	@FindBy(xpath = "//*[@id='main']/div[1]/span")
 	WebElement successmsg;
 
-	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/h1")
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
 	WebElement addtitle;
 
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")
@@ -249,9 +249,6 @@ public class StepDefination {
 
 			String blogmsg2 = "The blog successfully activated.";
 
-//			System.out.println("msg: =" + blogmsg2);
-//			System.out.println("msg1 =" + blogsmsg);
-//			System.out.println("Messgae for active blog = " + successmsg.getText());
 			statuscolumn.click();
 			Thread.sleep(3000);
 
@@ -259,6 +256,29 @@ public class StepDefination {
 				System.out.println("Messgae for active blogs = " + blogsmsg);
 			} else if (successmsg.getText().equals(blogmsg2)) {
 				System.out.println("Messgae for inactive blogs = " + blogmsg2);
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
+			}
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			String testimonialsmsg = "";
+			String testimonialmsg2 = "";
+			if (CommonVariables.inactive.equals("false")) {
+				testimonialsmsg = "The testimonial successfully inactivated";
+			} else if (CommonVariables.inactive.equals("true")) {
+				testimonialmsg2 = "The testimonial successfully activated.";
+			} else {
+				assert false;
+			}
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+
+			if (successmsg.getText().equals(testimonialsmsg)) {
+				System.out.println("Messgae for active blogs = " + testimonialsmsg);
+			} else if (successmsg.getText().equals(testimonialmsg2)) {
+				System.out.println("Messgae for inactive blogs = " + testimonialmsg2);
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
@@ -367,15 +387,24 @@ public class StepDefination {
 	public void User_is_Active(String moduleName, String status) throws Throwable {
 		if (statuscolumn.getAttribute("class").equals("sort active ")) {
 
-			statuscolumn.click();
-			Thread.sleep(2000);
+			CommonVariables.inactive = "false";
+			if (status.equals("Inactive")) {
+				assert false;
+			}
+//			statuscolumn.click();
+//			Thread.sleep(2000);
 
 		} else if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
 
-			statuscolumn.click();
-			Thread.sleep(2000);
+			CommonVariables.inactive = "true";
+			if (status.equals("Active")) {
+				assert false;
+			}
+//			statuscolumn.click();
+//			Thread.sleep(2000);
 
 		} else {
+			CommonVariables.inactive = "";
 			System.out.println("Not click on status column");
 			assert false;
 		}

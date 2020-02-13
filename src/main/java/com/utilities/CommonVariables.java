@@ -28,6 +28,7 @@ public class CommonVariables {
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
 	public static boolean OurTeam = false;
+	public static String inactive = "";
 
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;

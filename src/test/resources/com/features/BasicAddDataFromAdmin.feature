@@ -196,7 +196,7 @@ Feature: Sanity test functionalities of Laravel CMS
   #When	Get Blog name from Admin panel
   #Then	Verify Blog name in front side
   
-  @TestimonialAdd
+  @Testimonial
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
     When Click on "Add" button in "Testimonial"
@@ -213,12 +213,12 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Testimonial"
     And Click on "Edit" button in "Testimonial"
     Then "Testimonial" "Edit" page gets open
-    When I enter all mandatory fields for "update" Testimonial
+    When I enter all mandatory fields for "edit" Testimonial
     And Click on "Save" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
-  @TestimonialActiveInactive
+  @Testimonial
   Scenario: Testimonial Active Inactive
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
@@ -234,7 +234,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
     And Click on "Delete" button in "Testimonial"
-    Then I should get "have been deleted successfully" message on "Testimonial"
+    Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
   @TestimonialAddSaveContinue

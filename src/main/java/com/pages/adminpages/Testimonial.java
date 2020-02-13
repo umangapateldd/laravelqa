@@ -31,7 +31,7 @@ public class Testimonial {
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement Description;
 
-	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[7]/a")
 	WebElement editbutton;
 
 	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
@@ -81,7 +81,7 @@ public class Testimonial {
 
 	public void enterDescription(String description) throws InterruptedException {
 		log.info("********************Enter the Additional Bio ********************");
-		driver.switchTo().frame("additional_bio_ifr");
+		driver.switchTo().frame("description_ifr");
 		Description.sendKeys(description);
 		driver.switchTo().defaultContent();
 	}
