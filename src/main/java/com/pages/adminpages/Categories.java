@@ -13,12 +13,12 @@ import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 
-public class Category {
+public class Categories {
 	WebDriver driver;
 	DropDownHelper dropDownHelper;
 	CommonFunc commonFunc;
 	CommonVariables commonVariables;
-	private Logger log = LogHelper.getLogger(Category.class);
+	private Logger log = LogHelper.getLogger(Categories.class);
 	boolean verifyDetails = false;
 
 	@FindBy(id = "title")
@@ -45,7 +45,7 @@ public class Category {
 	@FindBy(xpath = "//*[@id='image_alt']")
 	WebElement ImageAlt;
 
-	public Category(WebDriver driver) {
+	public Categories(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonFunc = new CommonFunc(driver);

@@ -12,7 +12,7 @@ import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
-import com.pages.adminpages.Category;
+import com.pages.adminpages.Categories;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Testimonial;
@@ -43,7 +43,7 @@ public class StepDefination {
 	Ourteam ourteam;
 	Blogs blogs;
 	Testimonial testimonial;
-	Category category;
+	Categories categories;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -68,7 +68,7 @@ public class StepDefination {
 		ourteam = new Ourteam(driver);
 		blogs = new Blogs(driver);
 		testimonial = new Testimonial(driver);
-		category = new Category(driver);
+		categories = new Categories(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -193,9 +193,9 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
-		} else if (moduleName.equals(CommonVariables.category)) {
+		} else if (moduleName.equals(CommonVariables.categories)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
+			xpath = "//*[@id='DataTables_Table_0_wrapper']/tbody/tr[1]/td[4]/a";
 		} else if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
@@ -310,13 +310,13 @@ public class StepDefination {
 			}
 		}
 
-		else if (moduleName.equals(CommonVariables.category)) {
+		else if (moduleName.equals(CommonVariables.categories)) {
 			String categorymsg = "";
 			String categorymsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
-				categorymsg = "The category successfully inactivated.";
+				categorymsg = "The categories successfully inactivated.";
 			} else if (CommonVariables.inactive.equals("true")) {
-				categorymsg2 = "The category successfully activated.";
+				categorymsg2 = "The categories successfully activated.";
 			} else {
 				assert false;
 			}
@@ -548,9 +548,9 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Category$")
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Categories$")
 	public void I_enter_all_mandatory_fields_for_Add_category(String formName) throws Throwable {
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.category);
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.categories);
 		switch (formName) {
 		case "add":
 			String title = ExcelHelper.getData(1, 0);
@@ -563,20 +563,20 @@ public class StepDefination {
 
 			CommonVariables.txtSearchCmnVar = title;
 
-			category.enterTitle(title);
-			category.enterImage(image);
-			category.enterImageAlt(imageAlt);
-			category.enterStatus(status);
-			category.enterDescription(description);
-			category.enterMetaTitle(metaTitle);
-			category.enterMetaDescription(metaDescription);
+			categories.enterTitle(title);
+			categories.enterImage(image);
+			categories.enterImageAlt(imageAlt);
+			categories.enterStatus(status);
+			categories.enterDescription(description);
+			categories.enterMetaTitle(metaTitle);
+			categories.enterMetaDescription(metaDescription);
 
 			break;
 
 		case "edit":
 			String updateTitle = ExcelHelper.getData(1, 7);
 
-			category.enterTitle(updateTitle);
+			categories.enterTitle(updateTitle);
 			CommonVariables.txtSearchCmnVar = updateTitle;
 
 			break;
