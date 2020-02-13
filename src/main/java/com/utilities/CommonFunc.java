@@ -14,6 +14,7 @@ import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Ourteam;
+import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 
 public class CommonFunc {
@@ -23,6 +24,7 @@ public class CommonFunc {
 	DropDownHelper dropDownHelper;
 	Ourteam ourteam;
 	Blogs blogs;
+	Testimonial testimonial;
 	UsersPage userspage;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
@@ -116,6 +118,7 @@ public class CommonFunc {
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
 //				System.out.println("value of date :"+ExcelHelper.getData(1, 6));
 				break;
 			}
@@ -139,6 +142,10 @@ public class CommonFunc {
 				searchText = "No user(s) found";
 			} else if (moduleName.equals(CommonVariables.ourteam)) {
 				searchText = "No team member(s) found";
+			} else if (moduleName.equals(CommonVariables.blogs)) {
+				searchText = "No blogs(s) found";
+			} else if (moduleName.equals(CommonVariables.testimonial)) {
+				searchText = "No testimonial(s) found";
 			}
 		}
 
@@ -154,9 +161,10 @@ public class CommonFunc {
 		}
 	}
 
-	public void clickOnAddNewButton() {
+	public void clickOnAddNewButton() throws InterruptedException {
 		log.info("********************Click on add new user button********************");
 		addNewButton.click();
+		Thread.sleep(2000);
 	}
 
 	public void clickOnEditButton(String moduleName) throws InterruptedException {
@@ -173,8 +181,14 @@ public class CommonFunc {
 		} else if (moduleName.equals("Blogs")) {
 			System.out.println("edit if blogs");
 			blogs = new Blogs(driver);
-		    blogs.ClickonEditbutton();
-		} else {
+			blogs.ClickonEditbutton();
+		}
+		else if (moduleName.equals("Testimonial")) {
+			System.out.println("edit if Testimonial");
+			testimonial = new Testimonial(driver);
+			testimonial.ClickonEditbutton();
+		}
+		else {
 			System.out.println("edit else - module is not defined");
 			assert false;
 		}

@@ -62,6 +62,12 @@ public class Blogs {
 	
 	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
 	WebElement Settingmenu;
+	
+	@FindBy(xpath = "//*[@id='btnsave']")
+	WebElement Settingsave;
+	
+	@FindBy(xpath = "//*[@id='field_blog_per_page_display']")
+	WebElement Fieldblog;
 
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[1]/table/tbody/tr/td/fieldset/span[11]")
 	WebElement time;
@@ -100,6 +106,11 @@ public class Blogs {
 		AuthorLastName.clear();
 		AuthorLastName.sendKeys(AuthorlastName);
 	}
+	public void enterFieldblog(String fieldblog) {
+		log.info("********************Enter the Author LastName********************");
+		Fieldblog.clear();
+		Fieldblog.sendKeys(fieldblog);
+	}
 
 	public void enterStatus(String status) {
 		log.info("********************Enter the Status********************");
@@ -131,6 +142,13 @@ public class Blogs {
 		Settingmenu.click();
 		Thread.sleep(2000);
 	}
+	
+	public void ClickonSettingsave() throws InterruptedException {
+		log.info("********************Click on Setting save********************");
+		Settingsave.click();
+		Thread.sleep(2000);
+	}
+
 
 	public void enterDescription(String description) throws InterruptedException {
 		log.info("********************Enter the Description********************");

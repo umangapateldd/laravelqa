@@ -23,10 +23,12 @@ public class CommonVariables {
 	public static String users ="Users";
 	public static String ourteam ="Our Team";
 	public static String blogs ="Blogs";
+	public static String testimonial ="Testimonial";
 	public static String txtSearchCmnVar = "";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
 	public static boolean OurTeam = false;
+	public static String inactive = "";
 
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;

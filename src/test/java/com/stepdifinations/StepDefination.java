@@ -1,6 +1,7 @@
 package com.stepdifinations;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -64,6 +65,7 @@ public class StepDefination {
 		usersPage = new UsersPage(driver);
 		ourteam = new Ourteam(driver);
 		blogs = new Blogs(driver);
+		testimonial = new Testimonial(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -190,7 +192,8 @@ public class StepDefination {
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
 		}
 		if (CommonVariables.deleteRecord == true) {
-			xpath = "//*[@id='display_order_223']/td[4]/a";
+			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
+			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
@@ -224,38 +227,81 @@ public class StepDefination {
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 
-			String Msg = "The team member successfully inactivated.";
-			String Msg2 = "The team member successfully activated.";
+			String Msg = "";
+			String Msg2 = "";
 			Thread.sleep(3000);
+			
+	
+			
+			if (CommonVariables.inactive.equals("false")) {
+				Msg = "The team member successfully inactivated";
+			} else if (CommonVariables.inactive.equals("true")) {
+				Msg2 = "The team member successfully activated.";
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
+			}
 
 			statuscolumn.click();
 			Thread.sleep(3000);
-			System.out.println("msg: =" + successmsg.getText());
-			System.out.println("msg1 =" + Msg);
+		
 
 			if (successmsg.getText().equals(Msg)) {
-				System.out.println("Messgae for active user = " + successmsg.getText());
+				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
 			} else if (successmsg.getText().equals(Msg2)) {
-				System.out.println("Messgae for active user = " + successmsg.getText());
+				System.out.println("Messgae for active ourteam = " + successmsg.getText());
 			}
 		}
 
 		else if (moduleName.equals(CommonVariables.blogs)) {
 
-			String blogsmsg = "The blog successfully inactivated";
+			String blogsmsg = "";
 
-			String blogmsg2 = "The blog successfully activated.";
+			String blogmsg2 = "";
+			
+			if (CommonVariables.inactive.equals("false")) {
+				blogsmsg = "The blog successfully inactivated";
+			} else if (CommonVariables.inactive.equals("true")) {
+				blogmsg2 = "The blog successfully activated";
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
 
-//			System.out.println("msg: =" + blogmsg2);
-//			System.out.println("msg1 =" + blogsmsg);
-//			System.out.println("Messgae for active blog = " + successmsg.getText());
+			}
+			
 			statuscolumn.click();
 			Thread.sleep(3000);
-
+			
 			if (successmsg.getText().equals(blogsmsg)) {
 				System.out.println("Messgae for active blogs = " + blogsmsg);
 			} else if (successmsg.getText().equals(blogmsg2)) {
 				System.out.println("Messgae for inactive blogs = " + blogmsg2);
+			} else {
+				System.out.println("Message is not match:");
+				assert false;
+
+			}
+
+			
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			String testimonialsmsg = "";
+			String testimonialmsg2 = "";
+			if (CommonVariables.inactive.equals("false")) {
+				testimonialsmsg = "The testimonial successfully inactivated";
+			} else if (CommonVariables.inactive.equals("true")) {
+				testimonialmsg2 = "The testimonial successfully activated.";
+			} else {
+				assert false;
+			}
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+
+			if (successmsg.getText().equals(testimonialsmsg)) {
+				System.out.println("Messgae for active blogs = " + testimonialsmsg);
+			} else if (successmsg.getText().equals(testimonialmsg2)) {
+				System.out.println("Messgae for inactive blogs = " + testimonialmsg2);
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
@@ -364,15 +410,24 @@ public class StepDefination {
 	public void User_is_Active(String moduleName, String status) throws Throwable {
 		if (statuscolumn.getAttribute("class").equals("sort active ")) {
 
-			statuscolumn.click();
-			Thread.sleep(2000);
+			CommonVariables.inactive = "false";
+			if (status.equals("Inactive")) {
+				assert false;
+			}
+//			statuscolumn.click();
+//			Thread.sleep(2000);
 
 		} else if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
 
-			statuscolumn.click();
-			Thread.sleep(2000);
+			CommonVariables.inactive = "true";
+			if (status.equals("Active")) {
+				assert false;
+			}
+//			statuscolumn.click();
+//			Thread.sleep(2000);
 
 		} else {
+			CommonVariables.inactive = "";
 			System.out.println("Not click on status column");
 			assert false;
 		}
@@ -405,7 +460,7 @@ public class StepDefination {
 		case "edit":
 			String updateauthorName = ExcelHelper.getData(1, 6);
 
-			blogs.enterTitle(updateauthorName);
+			testimonial.enterAuthorName(updateauthorName);
 			CommonVariables.txtSearchCmnVar = updateauthorName;
 
 			break;
@@ -419,16 +474,51 @@ public class StepDefination {
 	@When("^Click on \"([^\"]*)\" menu$")
 	public void Click_on__Blogs_Settings_menu(String moduleName) throws Throwable {
 		Thread.sleep(2000);
-		blogs.ClickonSettingmenu();
-
+		if (moduleName.equals(CommonVariables.blogs)) {
+			blogs.ClickonSettingmenu();
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			testimonial.ClickonSettingmenu();
+		}
 	}
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Settings$")
 	public void I_enter_all_mandatory_fields_for_blogs_setting(String moduleName) throws Throwable {
+
+		if (moduleName.equals(CommonVariables.blogs)) {
+
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+
+			String fieldblog = ExcelHelper.getData(1, 12);
+
+			blogs.enterFieldblog(fieldblog);
+			Thread.sleep(2000);
+
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
+
+			String settingfield = ExcelHelper.getData(1, 7);
+
+			testimonial.entersettingfield(settingfield);
+			Thread.sleep(2000);
+		}
+	}
+
+	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\" Settings$")
+	public void Click_on_Save_button_in_Blogs_Settings(String buttonName, String moduleName) throws Throwable {
+		Thread.sleep(2000);
+		if (moduleName.equals(CommonVariables.blogs)) {
+			blogs.ClickonSettingsave();
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			testimonial.ClickonSettingsave();
+		}
 	}
 
 	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\" Settings$")
-	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String message,
+	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String successmessage,
 			String moduleName) throws Throwable {
+		System.out.println("Message : " + successmessage);
+		if (successmsg.getText().equals(successmessage)) {
+			System.out.println("Message mathch:" + successmessage);
+		}
 	}
 }
