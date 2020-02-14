@@ -116,7 +116,7 @@ public class CommonFunc {
 
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
-				Thread.sleep(3000);
+				Thread.sleep(4000);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);

@@ -55,6 +55,12 @@ public class StepDefination {
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
 	WebElement addtitle;
 
+	@FindBy(xpath = "//*[@id='site-config-heading-12']/h5/a")
+	WebElement blogsettingtitle;
+
+	@FindBy(xpath = "//*[@id='site-config-heading-11']/h5/a")
+	WebElement testimonialsettingtitle;
+
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")
 	WebElement statuscolumn;
 
@@ -107,9 +113,27 @@ public class StepDefination {
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
 
 		String page = formName + " " + moduleName;
-		if (addtitle.getText().equalsIgnoreCase(page)) {
-
+		String settingpage = moduleName + " " + formName;
+		if (formName.equals("Settings")) {
+			if (moduleName.equals(CommonVariables.blogs)) {
+				if (blogsettingtitle.getText().equalsIgnoreCase(settingpage)) {
+					System.out.println("Verify the title:" + blogsettingtitle.getText());
+				} else {
+					assert false;
+				}
+			} else if (moduleName.equals(CommonVariables.testimonial)) {
+				if (testimonialsettingtitle.getText().equalsIgnoreCase(settingpage)) {
+					System.out.println("Verify the title:" + testimonialsettingtitle.getText());
+				} else {
+					assert false;
+				}
+			} else {
+				assert false;
+			}
+		} else if (addtitle.getText().equalsIgnoreCase(page)) {
 			System.out.println("Verify the title:" + addtitle.getText());
+		} else {
+			assert false;
 		}
 	}
 
@@ -195,8 +219,12 @@ public class StepDefination {
 			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
 		} else if (moduleName.equals(CommonVariables.categories)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0_wrapper']/tbody/tr[1]/td[4]/a";
-		} else if (CommonVariables.deleteRecord == true) {
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+		} else {
+			assert false;
+		}
+
+		if (CommonVariables.deleteRecord == true) {
 			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
@@ -289,7 +317,7 @@ public class StepDefination {
 			String testimonialsmsg = "";
 			String testimonialmsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
-				testimonialsmsg = "The testimonial successfully inactivated";
+				testimonialsmsg = "The testimonial successfully inactivated.";
 			} else if (CommonVariables.inactive.equals("true")) {
 				testimonialmsg2 = "The testimonial successfully activated.";
 			} else {
@@ -468,23 +496,20 @@ public class StepDefination {
 			String authorName = ExcelHelper.getData(1, 0);
 			String url = ExcelHelper.getData(1, 1);
 			String status = ExcelHelper.getData(1, 2);
-			String image = ExcelHelper.getData(1, 3);
-			String imageAlt = ExcelHelper.getData(1, 4);
-			String description = ExcelHelper.getData(1, 5);
+			String description = ExcelHelper.getData(1, 3);
 
 			CommonVariables.txtSearchCmnVar = authorName;
 
 			testimonial.enterAuthorName(authorName);
 			testimonial.enterURL(url);
 			testimonial.enterStatus(status);
-			testimonial.enterImage(image);
-			testimonial.enterImageAlt(imageAlt);
 			testimonial.enterDescription(description);
 
 			break;
 
 		case "edit":
-			String updateauthorName = ExcelHelper.getData(1, 6);
+			String updateauthorName = ExcelHelper.getData(1, 4);
+			System.out.println("Excel value EDIT=" +ExcelHelper.getData(1, 4));
 
 			testimonial.enterAuthorName(updateauthorName);
 			CommonVariables.txtSearchCmnVar = updateauthorName;
@@ -497,13 +522,15 @@ public class StepDefination {
 		}
 	}
 
-	@When("^Click on \"([^\"]*)\" menu$")
-	public void Click_on__Blogs_Settings_menu(String moduleName) throws Throwable {
+	@When("^Click on \"([^\"]*)\" Settings menu$")
+	public void Click_on_Settings_menu(String moduleName) throws Throwable {
 		Thread.sleep(2000);
 		if (moduleName.equals(CommonVariables.blogs)) {
 			blogs.ClickonSettingmenu();
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			testimonial.ClickonSettingmenu();
+		}else {
+			assert false;
 		}
 	}
 
@@ -522,7 +549,9 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
 
-			String settingfield = ExcelHelper.getData(1, 7);
+			System.out.println("Excel value : " + ExcelHelper.getData(1, 5));
+			String settingfield = ExcelHelper.getData(1, 5);
+			System.out.println("Excel value : " + settingfield);
 
 			testimonial.entersettingfield(settingfield);
 			Thread.sleep(2000);
@@ -574,6 +603,7 @@ public class StepDefination {
 			break;
 
 		case "edit":
+			System.out.println("value of excel =" +ExcelHelper.getData(1, 7));
 			String updateTitle = ExcelHelper.getData(1, 7);
 
 			categories.enterTitle(updateTitle);

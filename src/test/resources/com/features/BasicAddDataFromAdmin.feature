@@ -184,7 +184,7 @@ Feature: Sanity test functionalities of Laravel CMS
   @blogSettings
   Scenario: Blogs Settings field
     Given Login as Admin and Go to "Blogs" Module
-    When Click on "Blogs Settings" menu
+    When Click on "Blogs" Settings menu
     Then "Blogs" "Settings" page gets open
     When I enter all mandatory fields for "Blogs" Settings
     And Click on "Save" button in "Blogs" Settings
@@ -195,7 +195,7 @@ Feature: Sanity test functionalities of Laravel CMS
   #Given	Login as Admin and Go to "Blogs" Module
   #When	Get Blog name from Admin panel
   #Then	Verify Blog name in front side
-  @Testimonial
+  @TestimonialAdd
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
     When Click on "Add" button in "Testimonial"
@@ -217,7 +217,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
-  @Testimonial
+  @TestimonialActiveInactive
   Scenario: Testimonial Active Inactive
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
@@ -242,7 +242,7 @@ Feature: Sanity test functionalities of Laravel CMS
     When Click on "Add" button in "Testimonial"
     Then "Testimonial" "Add" page gets open
     When I enter all mandatory fields for "add" Testimonial
-    And Click on "Save & Continue" button in "Testimonial"
+    And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial added successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
@@ -253,14 +253,14 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Edit" button in "Testimonial"
     Then "Testimonial" "Edit" page gets open
     When I enter all mandatory fields for "edit" Testimonial
-    And Click on "Save & Continue" button in "Testimonial"
+    And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
   @TestimonialSettings
   Scenario: Testimonial Settings field
-    Given Login as Admin and Go to "Testimonial" Module
-    When Click on "Testimonial Settings" menu
+    Given Login as Admin and Go to "Testimonials" Module
+    When Click on "Testimonial" Settings menu
     Then "Testimonial" "Settings" page gets open
     When I enter all mandatory fields for "Testimonial" Settings
     And Click on "Save" button in "Testimonial" Settings
@@ -288,7 +288,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Categories" Module
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
-    Then "Categories" "Edit" page gets open
+    Then "Category" "Edit" page gets open
     When I enter all mandatory fields for "edit" Categories
     And Click on "Save" button in "Categories"
     Then I should get "category updated successfully" message on "Categories" 

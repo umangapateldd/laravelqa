@@ -64,9 +64,11 @@ public class Categories {
 		Status.sendKeys(status);
 	}
 
-	public void ClickonEditbutton() {
+	public void ClickonEditbutton() throws InterruptedException {
 		log.info("********************Click on Edit button********************");
+		Thread.sleep(3000);
 		editbutton.click();
+		System.out.println("click on edit");
 	}
 	
 
