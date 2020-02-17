@@ -319,7 +319,7 @@ Feature: Sanity test functionalities of Laravel CMS
   Scenario: Category Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Categories" Module
     When Click on "Add" button in "Categories"
-    Then "Categories" "Add" page gets open
+    Then "Category" "Add" page gets open
     When I enter all mandatory fields for "add" Category
     And Click on "Save and Continue" button in "Categories"
     Then I should get "category added successfully" message on "Categories" 
@@ -331,7 +331,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Categories" Module
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
-    Then "Categories" "Edit" page gets open
+    Then "Category" "Edit" page gets open
     When I enter all mandatory fields for "update" Category
     And Click on "Save and Continue" button in "Categories"
     Then I should get "category updated successfully" message on "Categories"
