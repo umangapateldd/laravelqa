@@ -14,6 +14,7 @@ import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
+import com.pages.adminpages.FAQ;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
@@ -28,6 +29,7 @@ public class CommonFunc {
 	Testimonial testimonial;
 	UsersPage userspage;
 	Categories categories;
+	FAQ faq;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")
@@ -141,6 +143,10 @@ public class CommonFunc {
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
 		
+//		System.out.println("module name =" + moduleName);
+//		System.out.println("searchtext name =" + searchText);
+//		System.out.println("xpath = " + xpath);
+//		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
 
 		if (CommonVariables.deleteRecord == true) {
 			if (moduleName.equals(CommonVariables.users)) {
@@ -149,16 +155,18 @@ public class CommonFunc {
 				searchText = "No team member(s) found";
 			} else if (moduleName.equals(CommonVariables.blogs)) {
 				searchText = "No blog(s) found";
-				System.out.println("SEARCH TEXT2"+searchText);
+				System.out.println("SEARCH TEXT2" + searchText);
 			} else if (moduleName.equals(CommonVariables.testimonial)) {
 				searchText = "No testimonial(s) found";
 			} else if (moduleName.equals(CommonVariables.categories)) {
 				searchText = "No category(s) found";
+			} else if (moduleName.equals(CommonVariables.faqs)) {
+				searchText = "No FAQ(s) found";
 			}
 		}
 
 		Thread.sleep(5000);
-      
+
 		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);
@@ -198,7 +206,13 @@ public class CommonFunc {
 			System.out.println("edit if Categories");
 			categories = new Categories(driver);
 			categories.ClickonEditbutton();
-		} else {
+		} 
+		else if (moduleName.equals("FAQs")) {
+			System.out.println("edit if FAQ");
+			faq = new FAQ(driver);
+			faq.ClickonEditbutton();
+		}
+		else {
 			System.out.println("edit else - module is not defined");
 			assert false;
 		}

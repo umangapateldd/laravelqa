@@ -271,7 +271,6 @@ Feature: Sanity test functionalities of Laravel CMS
   #Given Login as Admin and Go to "Testimonials" Module
   #When Get Testimonial from Admin panel
   #Then Verify Testimonial in front side
-  
   @CategoriesAdd
   Scenario: Category Add successfully with click on Save button
     Given Login as Admin and Go to "Categories" Module
@@ -291,7 +290,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then "Category" "Edit" page gets open
     When I enter all mandatory fields for "edit" Category
     And Click on "Save" button in "Category"
-    Then I should get "category updated successfully" message on "Category" 
+    Then I should get "category updated successfully" message on "Category"
     Then Verify details in "Categories"
 
   @CategoriesActiveInactive
@@ -304,8 +303,8 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Categories"
     And "Categories" is "Inactive"
     Then Make "Categories" "Active" and verify "success message"
-    #Then Verify details in "Categories grid with other filters"
 
+  #Then Verify details in "Categories grid with other filters"
   @CategoriesDelete
   Scenario: Category Delete successfully
     Given Login as Admin and Go to "Categories" Module
@@ -314,17 +313,15 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "Selected category(s) have been deleted successfully." message on "Categories"
     Then Verify details in "Categories"
 
-
   @CategoriesAddSaveContinue
   Scenario: Category Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Categories" Module
     When Click on "Add" button in "Categories"
     Then "Category" "Add" page gets open
     When I enter all mandatory fields for "add" Category
-    And Click on "Save and Continue" button in "Categories"
-    Then I should get "category added successfully" message on "Categories" 
+    And Click on "Save and Continue" button in "Category"
+    Then I should get "category added successfully" message on "Category"
     Then Verify details in "Categories"
-
 
   @CategoriesEditSaveContinue
   Scenario: Category Edit successfully with click on Save & Continue button
@@ -332,8 +329,138 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
     Then "Category" "Edit" page gets open
-    When I enter all mandatory fields for "update" Category
-    And Click on "Save and Continue" button in "Categories"
-    Then I should get "category updated successfully" message on "Categories"
+    When I enter all mandatory fields for "edit" Category
+    And Click on "Save and Continue" button in "Category"
+    Then I should get "category updated successfully" message on "Category"
     Then Verify details in "Categories"
+
+  @FAQAdd
+  Scenario: FAQ Add successfully with click on Save button
+    Given Login as Admin and Go to "FAQs" Module
+    When Click on "Add" button in "FAQs"
+    Then "FAQ" "Add" page gets open
+    #And Verify test data with proper validation message for "FAQs"
+    When I enter all mandatory fields for "add" FAQ
+    And Click on "Save" button in "FAQ"
+    Then I should get "added successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @FAQEdit
+  Scenario: FAQ Edit successfully with click on Save button
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And Click on "Edit" button in "FAQs"
+    Then "FAQ" "Edit" page gets open
+    When I enter all mandatory fields for "edit" FAQ
+    And Click on "Save" button in "FAQ"
+    Then I should get "updated successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @FAQActiveInactive
+  Scenario: FAQ Active - Inactive
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And "FAQs" is "Active"
+    Then Make "FAQs" "Inactive" and verify "success message"
+    When Verify details in "FAQs"
+    And "FAQs" is "Inactive"
+    Then Make "FAQs" "Active" and verify "success message"
+    Then Verify details in "FAQs"
+
+  @FAQDelete
+  Scenario: FAQ Delete successfully
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And Click on "Delete" button in "FAQs"
+    Then I should get "Selected FAQ(s) have been deleted successfully." message on "FAQs"
+    Then Verify details in "FAQs"
+
+  @FAQAddSaveContinue
+  Scenario: FAQ Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "FAQs" Module
+    When Click on "Add" button in "FAQs"
+    Then "FAQ" "Add" page gets open
+    When I enter all mandatory fields for "add" FAQ
+    And Click on "Save and Continue" button in "FAQ"
+    Then I should get "added successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @FAQEditSaveContinue
+  Scenario: FAQ Edit successfully with click on Save & Contnue button
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And Click on "Edit" button in "FAQs"
+    Then "FAQ" "Edit" page gets open
+    When I enter all mandatory fields for "edit" FAQ
+    And Click on "Save and Continue" button in "FAQ"
+    Then I should get "updated successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @EventsAdd
+  Scenario: Event Add successfully with click on Save button
+    Given Login as Admin and Go to "Events" Module
+    When Click on "Add" button in "Events"
+    Then "Event" "Add" page gets open
+    #And Verify test data with proper validation message for "Events"
+    #When I enter all mandatory fields for "add" Event
+    And Click on "Save" button in "Event"
+    Then I should get "event added successfully" message on "Events" 
+    Then Verify details in "Events"
+
+
+  @EventsEdit
+  Scenario: Category Edit successfully with click on Save button
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events grid"
+    And Click on "Edit" button in "Events grid"
+    Then "Event" "Edit" page gets open
+    #When I enter all mandatory fields for "update" Event
+    And Click on "Save" button in "Event"
+    Then I should get "event updated successfully" message on "Events"
+    Then Verify details in "Events grid"
+
+
+  @EventsActiveInactive
+  Scenario: Event Active Inactive
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And "Event" is "Active"
+    Then Make "Event" "Inactive" and verify "success message"
+    #Then Verify details in "Events grid with other filters"
+    When Verify details in "Events "
+    And "Event" is "Inactive"
+    Then Make "Event" "Active" and verify "success message"
+    Then Verify details in "Events"
+
+
+  @EventsDelete
+  Scenario: Event Delete successfully
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And Click on "Delete" button in "Events"
+    Then I should get "have been deleted successfully" message on "Events"
+    Then Verify details in "Events"
+
+
+  @EventsAddSaveContinue
+  Scenario: Event Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Events" Module
+    When Click on "Add" button in "Events"
+    Then "Event" "Add" page gets open
+    #When I enter all mandatory fields for "add" Event
+    And Click on "Save and Continue" button in "Event"
+    Then I should get "event added successfully" message on "Events"
+    Then Verify details in "Events"
+
+
+  @EventsEditSaveContinue
+  Scenario: Event Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And Click on "Edit" button in "Events"
+    Then "Event" "Edit" page gets open
+    #When I enter all mandatory fields for "edit" Event
+    And Click on "Save and Continue" button in "Event"
+    Then I should get "event updated successfully" message on "Event"
+    Then Verify details in "Events"
 

@@ -23,6 +23,7 @@ public class CommonVariables {
 	public static String users ="Users";
 	public static String ourteam ="Our Team";
 	public static String blogs ="Blogs";
+	public static String faqs ="FAQs";
 	public static String testimonial ="Testimonial";
 	public static String categories ="Categories";
 	public static String txtSearchCmnVar = "";

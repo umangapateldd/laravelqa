@@ -13,6 +13,7 @@ import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
+import com.pages.adminpages.FAQ;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Testimonial;
@@ -44,6 +45,7 @@ public class StepDefination {
 	Blogs blogs;
 	Testimonial testimonial;
 	Categories categories;
+	FAQ faq;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -75,6 +77,7 @@ public class StepDefination {
 		blogs = new Blogs(driver);
 		testimonial = new Testimonial(driver);
 		categories = new Categories(driver);
+		faq = new FAQ(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -221,6 +224,9 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.categories)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+		} else if (moduleName.equals(CommonVariables.faqs)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
 		} else {
 			assert false;
 		}
@@ -229,6 +235,8 @@ public class StepDefination {
 			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
+		
+
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
 
@@ -359,6 +367,30 @@ public class StepDefination {
 				System.out.println("Messgae for inactive Categories = " + categorymsg2);
 			} else {
 				System.out.println("Message is not match:");
+				assert false;
+
+			}
+		}
+		else if (moduleName.equals(CommonVariables.faqs)) {
+			String faqsmsg = "";
+			String faqsmsg2 = "";
+			if (CommonVariables.inactive.equals("false")) {
+				faqsmsg = "The FAQ successfully inactivated.";
+			} else if (CommonVariables.inactive.equals("true")) {
+				faqsmsg2 = "The FAQ successfully activated.";
+			} else {
+				assert false;
+			}
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+
+			if (successmsg.getText().equals(faqsmsg)) {
+				System.out.println("Messgae for active faqsmsg = " + faqsmsg);
+			} else if (successmsg.getText().equals(faqsmsg2)) {
+				System.out.println("Messgae for inactive faqsmsg = " + faqsmsg2);
+			} else {
+				System.out.println("FAQ Message is not match:");
 				assert false;
 
 			}
@@ -609,6 +641,39 @@ public class StepDefination {
 
 			categories.enterTitle(updateTitle);
 			CommonVariables.txtSearchCmnVar = updateTitle;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" FAQ$")
+	public void I_enter_all_mandatory_fields_for_Add_FAQ(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.faqs);
+		System.out.println("Print excel data = " + ExcelHelper.getData(1, 0));
+		switch (formName) {
+		case "add":
+			String question = ExcelHelper.getData(1, 0);
+			String status = ExcelHelper.getData(1, 1);
+			String answer = ExcelHelper.getData(1, 2);
+
+			CommonVariables.txtSearchCmnVar = question;
+
+			faq.enterQuestion(question);
+			faq.enterStatus(status);
+			faq.enterAnswer(answer);
+
+			break;
+
+		case "edit":
+			System.out.println("value of excel =" + ExcelHelper.getData(1, 3));
+			String updatequestion = ExcelHelper.getData(1, 3);
+
+			faq.enterQuestion(updatequestion);
+			CommonVariables.txtSearchCmnVar = updatequestion;
 
 			break;
 
