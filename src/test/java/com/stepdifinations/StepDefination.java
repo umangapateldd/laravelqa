@@ -114,6 +114,7 @@ public class StepDefination {
 
 		String page = formName + " " + moduleName;
 		String settingpage = moduleName + " " + formName;
+
 		if (formName.equals("Settings")) {
 			if (moduleName.equals(CommonVariables.blogs)) {
 				if (blogsettingtitle.getText().equalsIgnoreCase(settingpage)) {
@@ -291,11 +292,11 @@ public class StepDefination {
 			String blogmsg2 = "";
 
 			if (CommonVariables.inactive.equals("false")) {
-				blogsmsg = "The blog successfully inactivated";
+				blogsmsg = "The blog successfully inactivated.";
 			} else if (CommonVariables.inactive.equals("true")) {
-				blogmsg2 = "The blog successfully activated";
+				blogmsg2 = "The blog successfully activated.";
 			} else {
-				System.out.println("Message is not match:");
+				System.out.println("Blog1 Message is not match:");
 				assert false;
 
 			}
@@ -308,7 +309,7 @@ public class StepDefination {
 			} else if (successmsg.getText().equals(blogmsg2)) {
 				System.out.println("Messgae for inactive blogs = " + blogmsg2);
 			} else {
-				System.out.println("Message is not match:");
+				System.out.println("Blog2 Message is not match:");
 				assert false;
 
 			}
@@ -328,9 +329,9 @@ public class StepDefination {
 			Thread.sleep(3000);
 
 			if (successmsg.getText().equals(testimonialsmsg)) {
-				System.out.println("Messgae for active blogs = " + testimonialsmsg);
+				System.out.println("Messgae for active testimonial = " + testimonialsmsg);
 			} else if (successmsg.getText().equals(testimonialmsg2)) {
-				System.out.println("Messgae for inactive blogs = " + testimonialmsg2);
+				System.out.println("Messgae for inactive testimonial = " + testimonialmsg2);
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
@@ -342,9 +343,9 @@ public class StepDefination {
 			String categorymsg = "";
 			String categorymsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
-				categorymsg = "The categories successfully inactivated.";
+				categorymsg = "The category successfully inactivated.";
 			} else if (CommonVariables.inactive.equals("true")) {
-				categorymsg2 = "The categories successfully activated.";
+				categorymsg2 = "The category successfully activated.";
 			} else {
 				assert false;
 			}
@@ -353,9 +354,9 @@ public class StepDefination {
 			Thread.sleep(3000);
 
 			if (successmsg.getText().equals(categorymsg)) {
-				System.out.println("Messgae for active blogs = " + categorymsg);
+				System.out.println("Messgae for active Categories = " + categorymsg);
 			} else if (successmsg.getText().equals(categorymsg2)) {
-				System.out.println("Messgae for inactive blogs = " + categorymsg2);
+				System.out.println("Messgae for inactive Categories = " + categorymsg2);
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
@@ -509,7 +510,7 @@ public class StepDefination {
 
 		case "edit":
 			String updateauthorName = ExcelHelper.getData(1, 4);
-			System.out.println("Excel value EDIT=" +ExcelHelper.getData(1, 4));
+			System.out.println("Excel value EDIT=" + ExcelHelper.getData(1, 4));
 
 			testimonial.enterAuthorName(updateauthorName);
 			CommonVariables.txtSearchCmnVar = updateauthorName;
@@ -529,7 +530,7 @@ public class StepDefination {
 			blogs.ClickonSettingmenu();
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			testimonial.ClickonSettingmenu();
-		}else {
+		} else {
 			assert false;
 		}
 	}
@@ -577,7 +578,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Categories$")
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Category$")
 	public void I_enter_all_mandatory_fields_for_Add_category(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.categories);
 		switch (formName) {
@@ -603,7 +604,7 @@ public class StepDefination {
 			break;
 
 		case "edit":
-			System.out.println("value of excel =" +ExcelHelper.getData(1, 7));
+			System.out.println("value of excel =" + ExcelHelper.getData(1, 7));
 			String updateTitle = ExcelHelper.getData(1, 7);
 
 			categories.enterTitle(updateTitle);

@@ -140,6 +140,7 @@ public class CommonFunc {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
+		
 
 		if (CommonVariables.deleteRecord == true) {
 			if (moduleName.equals(CommonVariables.users)) {
@@ -147,16 +148,17 @@ public class CommonFunc {
 			} else if (moduleName.equals(CommonVariables.ourteam)) {
 				searchText = "No team member(s) found";
 			} else if (moduleName.equals(CommonVariables.blogs)) {
-				searchText = "No blogs(s) found";
+				searchText = "No blog(s) found";
+				System.out.println("SEARCH TEXT2"+searchText);
 			} else if (moduleName.equals(CommonVariables.testimonial)) {
 				searchText = "No testimonial(s) found";
 			} else if (moduleName.equals(CommonVariables.categories)) {
-				searchText = "No categories(s) found";
+				searchText = "No category(s) found";
 			}
 		}
 
 		Thread.sleep(5000);
-
+      
 		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);

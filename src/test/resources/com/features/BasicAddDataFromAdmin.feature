@@ -120,11 +120,11 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @blog
+  @blogAdd
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
-    Then "Blogs" "Add" page gets open
+    Then "Blog" "Add" page gets open
     #And Verify test data with proper validation message for Users
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save" button in "Blogs"
@@ -160,22 +160,22 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blogSaveandContinue
+  @blogAddSaveandContinue
   Scenario: Blogs Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
-    Then "Blogs" "Add" page gets open
+    Then "Blog" "Add" page gets open
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save and Continue" button in "Blogs"
     Then I should get "blog added successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blogSaveandContinue
+  @blogEditSaveandContinue
   Scenario: Blogs Edit successfully with click on Save & Continue button
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
     And Click on "Edit" button in "Blogs"
-    Then "Blogs" "Edit" page gets open
+    Then "Blog" "Edit" page gets open
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save and Continue" button in "Blogs"
     Then I should get "blog updated successfully" message on "Blogs"
@@ -278,9 +278,9 @@ Feature: Sanity test functionalities of Laravel CMS
     When Click on "Add" button in "Categories"
     Then "Category" "Add" page gets open
     #And Verify test data with proper validation message for "Categories"
-    When I enter all mandatory fields for "add" Categories
-    And Click on "Save" button in "Categories"
-    Then I should get "category added successfully" message on "Categories"
+    When I enter all mandatory fields for "add" Category
+    And Click on "Save" button in "Category"
+    Then I should get "category added successfully" message on "Category"
     Then Verify details in "Categories"
 
   @CategoriesEdit
@@ -289,9 +289,9 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
     Then "Category" "Edit" page gets open
-    When I enter all mandatory fields for "edit" Categories
-    And Click on "Save" button in "Categories"
-    Then I should get "category updated successfully" message on "Categories" 
+    When I enter all mandatory fields for "edit" Category
+    And Click on "Save" button in "Category"
+    Then I should get "category updated successfully" message on "Category" 
     Then Verify details in "Categories"
 
   @CategoriesActiveInactive
@@ -320,7 +320,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Categories" Module
     When Click on "Add" button in "Categories"
     Then "Categories" "Add" page gets open
-    When I enter all mandatory fields for "add" Categories
+    When I enter all mandatory fields for "add" Category
     And Click on "Save and Continue" button in "Categories"
     Then I should get "category added successfully" message on "Categories" 
     Then Verify details in "Categories"
@@ -332,7 +332,7 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
     Then "Categories" "Edit" page gets open
-    When I enter all mandatory fields for "update" Categories
+    When I enter all mandatory fields for "update" Category
     And Click on "Save and Continue" button in "Categories"
     Then I should get "category updated successfully" message on "Categories"
     Then Verify details in "Categories"
