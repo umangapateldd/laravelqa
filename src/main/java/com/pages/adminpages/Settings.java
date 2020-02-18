@@ -60,15 +60,16 @@ public class Settings {
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
-	public void enterAppName(String appName) {
+	public void enterAppName(String appName) throws InterruptedException {
 		log.info("********************Enter the Author Name********************");
+		Thread.sleep(2000);
 		AppName.clear();
 		AppName.sendKeys(appName);
 	}
 	
 	public String getAppName()
 	{
-		return AppName.getText();
+		return AppName.getAttribute("value");
 	}
 
 	public void enterNoofRecordsperPage(String noofRecordsperPage) {
