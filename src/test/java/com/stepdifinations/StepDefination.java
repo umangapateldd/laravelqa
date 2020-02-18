@@ -67,7 +67,7 @@ public class StepDefination {
 	@FindBy(xpath = "//*[@id='site-config-heading-11']/h5/a")
 	WebElement testimonialsettingtitle;
 
-	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[1]/a/span")
+	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
 	WebElement statuscolumn;
 
 	public StepDefination() {
@@ -156,7 +156,7 @@ public class StepDefination {
 			String lastname = ExcelHelper.getData(1, 1);
 			String email = ExcelHelper.getData(1, 2);
 
-			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
+			CommonVariables.txtSearchCmnVar = email;
 
 			usersPage.enterUserFirstName(firstname);
 			usersPage.enterUserLastName(lastname);
@@ -209,35 +209,32 @@ public class StepDefination {
 		Thread.sleep(1000);
 		String searchText = "";
 		String xpath = "";
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		if (moduleName.equals(CommonVariables.users)) {
 			System.out.println("Inside IF condition");
-			searchText = ExcelHelper.getData(1, 0);
+			searchText = CommonVariables.txtSearchCmnVar;
 			System.out.println("Search text is :- " + searchText);
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[5]/div/a";
+			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[5]/div/a[1]";
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]//div[2][@class='title']";
-
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]//div[2][@class='title']";
 		} else if (moduleName.equals(CommonVariables.blogs)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0_wrapper']/table/tbody/tr[1]/td[4]/a";
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else if (moduleName.equals(CommonVariables.categories)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else if (moduleName.equals(CommonVariables.faqs)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
 		} else if (moduleName.equals(CommonVariables.events)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else if (moduleName.equals(CommonVariables.pages)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else {
 			assert false;
 		}
@@ -257,7 +254,7 @@ public class StepDefination {
 					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
 		} else if (statuscolumn.getAttribute("class").equals("sort active ")) {
 			System.out
-					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
+					.println("Value for active user = " + statuscolumn.getAttribute("class").equals("sort active "));
 
 		} else {
 			System.out.println("Not match record:");
