@@ -443,9 +443,9 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Events" Module
     When Click on "Add" button in "Events"
     Then "Event" "Add" page gets open
-    #When I enter all mandatory fields for "add" Event
+    When I enter all mandatory fields for "add" Event
     And Click on "Save and Continue" button in "Event"
-    Then I should get "event added successfully." message on "Event"
+    Then I should get "event added successfully." message on "Events"
     Then Verify details in "Events"
 
   @EventsEditSaveContinue
@@ -454,7 +454,7 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Events"
     And Click on "Edit" button in "Events"
     Then "Event" "Edit" page gets open
-    #When I enter all mandatory fields for "edit" Event
+    When I enter all mandatory fields for "edit" Event
     And Click on "Save and Continue" button in "Event"
     Then I should get "event updated successfully." message on "Event"
     Then Verify details in "Events"
@@ -467,7 +467,7 @@ Feature: Sanity test functionalities of Laravel CMS
     #And Verify test data with proper validation message for "Pages"
     When I enter all mandatory fields for "add" Page
     And Click on "Save" button in "Page"
-    Then I should get "page created successfully" message on "Pages"
+    Then I should get "page created successfully." message on "Pages"
     Then Verify details in "Pages grid"
 
 
@@ -479,7 +479,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then "Page" "Edit" page gets open
     When I enter all mandatory fields for "edit" Page
     And Click on "Save" button in "Page"
-    Then I should get "page updated successfully" message on "Pages"
+    Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
 
 

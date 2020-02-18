@@ -236,6 +236,9 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.events)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+		} else if (moduleName.equals(CommonVariables.pages)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else {
 			assert false;
 		}
@@ -349,7 +352,7 @@ public class StepDefination {
 			} else if (successmsg.getText().equals(testimonialmsg2)) {
 				System.out.println("Messgae for inactive testimonial = " + testimonialmsg2);
 			} else {
-				System.out.println("Message is not match:");
+				System.out.println("testimonial Message is not match:");
 				assert false;
 
 			}
@@ -374,7 +377,7 @@ public class StepDefination {
 			} else if (successmsg.getText().equals(categorymsg2)) {
 				System.out.println("Messgae for inactive Categories = " + categorymsg2);
 			} else {
-				System.out.println("Message is not match:");
+				System.out.println("categories Message is not match:");
 				assert false;
 
 			}
@@ -421,11 +424,37 @@ public class StepDefination {
 			} else if (successmsg.getText().equals(eventsmsg2)) {
 				System.out.println("Messgae for inactive  = " + eventsmsg2);
 			} else {
-				System.out.println("FAQ Message is not match:");
+				System.out.println("Event Message is not match:");
 				assert false;
 
 			}
 		}
+		
+		else if (moduleName.equals(CommonVariables.pages)) {
+			String pagessmsg = "";
+			String pagessmsg2 = "";
+			if (CommonVariables.inactive.equals("false")) {
+				pagessmsg = "The page successfully inactivated.";
+			} else if (CommonVariables.inactive.equals("true")) {
+				pagessmsg2 = "The page successfully activated.";
+			} else {
+				assert false;
+			}
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+
+			if (successmsg.getText().equals(pagessmsg)) {
+				System.out.println("Messgae for active  = " + pagessmsg);
+			} else if (successmsg.getText().equals(pagessmsg2)) {
+				System.out.println("Messgae for inactive  = " + pagessmsg2);
+			} else {
+				System.out.println("Pages Message is not match:");
+				assert false;
+
+			}
+		}
+
 
 	}
 
