@@ -209,7 +209,6 @@ public class StepDefination {
 		Thread.sleep(1000);
 		String searchText = "";
 		String xpath = "";
-		;
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		if (moduleName.equals(CommonVariables.users)) {
@@ -259,6 +258,7 @@ public class StepDefination {
 
 		} else {
 			System.out.println("Not match record:");
+			assert false;
 		}
 	}
 
@@ -274,6 +274,8 @@ public class StepDefination {
 			Thread.sleep(3000);
 			if (successmsg.getText().equals(Message)) {
 				System.out.println("Messgae for Inactive user = " + successmsg.getText());
+			} else {
+				assert false;
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 
@@ -288,7 +290,6 @@ public class StepDefination {
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
-
 			}
 
 			statuscolumn.click();
@@ -298,6 +299,8 @@ public class StepDefination {
 				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
 			} else if (successmsg.getText().equals(Msg2)) {
 				System.out.println("Messgae for active ourteam = " + successmsg.getText());
+			} else {
+				assert false;
 			}
 		}
 
@@ -314,7 +317,6 @@ public class StepDefination {
 			} else {
 				System.out.println("Blog1 Message is not match:");
 				assert false;
-
 			}
 
 			statuscolumn.click();
@@ -327,7 +329,6 @@ public class StepDefination {
 			} else {
 				System.out.println("Blog2 Message is not match:");
 				assert false;
-
 			}
 
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
@@ -351,7 +352,6 @@ public class StepDefination {
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
-
 			}
 		}
 
@@ -376,7 +376,6 @@ public class StepDefination {
 			} else {
 				System.out.println("Message is not match:");
 				assert false;
-
 			}
 		} else if (moduleName.equals(CommonVariables.faqs)) {
 			String faqsmsg = "";
@@ -399,10 +398,8 @@ public class StepDefination {
 			} else {
 				System.out.println("FAQ Message is not match:");
 				assert false;
-
 			}
-		}
-		else if (moduleName.equals(CommonVariables.events)) {
+		} else if (moduleName.equals(CommonVariables.events)) {
 			String eventsmsg = "";
 			String eventsmsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
@@ -423,7 +420,6 @@ public class StepDefination {
 			} else {
 				System.out.println("FAQ Message is not match:");
 				assert false;
-
 			}
 		}
 
@@ -767,6 +763,7 @@ public class StepDefination {
 			break;
 		}
 	}
+
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Page$")
 	public void I_enter_all_mandatory_fields_for_Add_Page(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
