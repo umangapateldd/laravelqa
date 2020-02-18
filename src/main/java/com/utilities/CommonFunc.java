@@ -18,6 +18,7 @@ import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Pages;
+import com.pages.adminpages.Settings;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 
@@ -34,6 +35,7 @@ public class CommonFunc {
 	FAQ faq;
 	Events events;
 	Pages pages;
+	Settings settings;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")

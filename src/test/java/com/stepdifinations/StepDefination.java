@@ -18,6 +18,7 @@ import com.pages.adminpages.FAQ;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Pages;
+import com.pages.adminpages.Settings;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 import com.pages.commonpages.LoginPage;
@@ -50,6 +51,7 @@ public class StepDefination {
 	FAQ faq;
 	Events events;
 	Pages pages;
+	Settings settings;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -84,6 +86,7 @@ public class StepDefination {
 		faq = new FAQ(driver);
 		events = new Events(driver);
 		pages = new Pages(driver);
+		settings = new Settings(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -404,8 +407,7 @@ public class StepDefination {
 				assert false;
 
 			}
-		}
-		else if (moduleName.equals(CommonVariables.events)) {
+		} else if (moduleName.equals(CommonVariables.events)) {
 			String eventsmsg = "";
 			String eventsmsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
@@ -429,7 +431,7 @@ public class StepDefination {
 
 			}
 		}
-		
+
 		else if (moduleName.equals(CommonVariables.pages)) {
 			String pagessmsg = "";
 			String pagessmsg2 = "";
@@ -454,7 +456,6 @@ public class StepDefination {
 
 			}
 		}
-
 
 	}
 
@@ -796,6 +797,7 @@ public class StepDefination {
 			break;
 		}
 	}
+
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Page$")
 	public void I_enter_all_mandatory_fields_for_Add_Page(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
@@ -832,4 +834,31 @@ public class StepDefination {
 		}
 	}
 
+	@When("^Data update and verify details for Admin \"([^\"]*)\" section$")
+	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
+		System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1, 0));
+
+		String appName = ExcelHelper.getData(1, 0);
+		String noofRecordsperPage = ExcelHelper.getData(1, 1);
+		String footerTitleforAdmin = ExcelHelper.getData(1, 2);
+		String sitetitle = ExcelHelper.getData(1, 3);
+		String tagline = ExcelHelper.getData(1, 4);
+		String copyrightText = ExcelHelper.getData(1, 5);
+		String metaDescription = ExcelHelper.getData(1, 6);
+
+		CommonVariables.txtSearchCmnVar = appName;
+
+		settings.enterAppName(appName);
+		settings.enterNoofRecordsperPage(noofRecordsperPage);
+		settings.enterFooterTitleforAdmin(footerTitleforAdmin);
+		settings.ClickonFrontEndSettings();
+		settings.enterSiteTitle(sitetitle);
+		settings.enterTagline(tagline);
+		settings.enterCopyrighttext(copyrightText);
+		settings.enterMetadescriptionforfront(metaDescription);
+
+		if (appName.equals(settings.getAppName())) {
+		}
+	}
 }
