@@ -17,6 +17,7 @@ import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
+import com.pages.adminpages.Pages;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 import com.pages.commonpages.LoginPage;
@@ -48,6 +49,7 @@ public class StepDefination {
 	Categories categories;
 	FAQ faq;
 	Events events;
+	Pages pages;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -81,6 +83,7 @@ public class StepDefination {
 		categories = new Categories(driver);
 		faq = new FAQ(driver);
 		events = new Events(driver);
+		pages = new Pages(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -232,7 +235,7 @@ public class StepDefination {
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
 		} else if (moduleName.equals(CommonVariables.events)) {
 			searchText = CommonVariables.txtSearchCmnVar;
-			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else {
 			assert false;
 		}
@@ -756,6 +759,41 @@ public class StepDefination {
 			events.enterTitle(updatetitle);
 			Thread.sleep(2000);
 			CommonVariables.txtSearchCmnVar = updatetitle;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+	}
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Page$")
+	public void I_enter_all_mandatory_fields_for_Add_Page(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
+		switch (formName) {
+		case "add":
+			String title = ExcelHelper.getData(1, 0);
+			String status = ExcelHelper.getData(1, 1);
+			String pageContent = ExcelHelper.getData(1, 2);
+			String metaTitle = ExcelHelper.getData(1, 3);
+			String metaDescription = ExcelHelper.getData(1, 4);
+
+			CommonVariables.txtSearchCmnVar = title;
+
+			pages.enterTitle(title);
+			pages.enterStatus(status);
+			pages.enterPageContent(pageContent);
+			pages.enterMetaTitle(metaTitle);
+			pages.enterMetaDescription(metaDescription);
+
+			break;
+
+		case "edit":
+			System.out.println("value of excel =" + ExcelHelper.getData(1, 5));
+			String updateTitle = ExcelHelper.getData(1, 5);
+
+			pages.enterTitle(updateTitle);
+			CommonVariables.txtSearchCmnVar = updateTitle;
 
 			break;
 

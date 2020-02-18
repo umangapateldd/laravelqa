@@ -404,9 +404,8 @@ Feature: Sanity test functionalities of Laravel CMS
     #And Verify test data with proper validation message for "Events"
     When I enter all mandatory fields for "add" Event
     And Click on "Save" button in "Event"
-    Then I should get "event added successfully." message on "Events" 
+    Then I should get "event added successfully." message on "Events"
     Then Verify details in "Events"
-
 
   @EventsEdit
   Scenario: Category Edit successfully with click on Save button
@@ -419,19 +418,17 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "event updated successfully." message on "Events"
     Then Verify details in "Events"
 
-
   @EventsActiveInactive
   Scenario: Event Active Inactive
     Given Login as Admin and Go to "Events" Module
     When Verify details in "Events"
     And "Events" is "Active"
-    Then Make "Event" "Inactive" and verify "success message"
+    Then Make "Events" "Inactive" and verify "success message"
     #Then Verify details in "Events grid with other filters"
-    When Verify details in "Events "
+    When Verify details in "Events"
     And "Events" is "Inactive"
     Then Make "Events" "Active" and verify "success message"
     Then Verify details in "Events"
-
 
   @EventsDelete
   Scenario: Event Delete successfully
@@ -441,7 +438,6 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "Selected event(s) have been deleted successfully." message on "Events"
     Then Verify details in "Events"
 
-
   @EventsAddSaveContinue
   Scenario: Event Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Events" Module
@@ -449,9 +445,8 @@ Feature: Sanity test functionalities of Laravel CMS
     Then "Event" "Add" page gets open
     #When I enter all mandatory fields for "add" Event
     And Click on "Save and Continue" button in "Event"
-    Then I should get "event added successfully" message on "Events"
+    Then I should get "event added successfully." message on "Event"
     Then Verify details in "Events"
-
 
   @EventsEditSaveContinue
   Scenario: Event Edit successfully with click on Save & Continue button
@@ -461,6 +456,72 @@ Feature: Sanity test functionalities of Laravel CMS
     Then "Event" "Edit" page gets open
     #When I enter all mandatory fields for "edit" Event
     And Click on "Save and Continue" button in "Event"
-    Then I should get "event updated successfully" message on "Event"
+    Then I should get "event updated successfully." message on "Event"
     Then Verify details in "Events"
+
+  @PagesAdd
+  Scenario: Page Add successfully with click on Save button
+    Given Login as Admin and Go to "Pages" Module
+    When Click on "Add" button in "Pages"
+    Then "Page" "Add" page gets open
+    #And Verify test data with proper validation message for "Pages"
+    When I enter all mandatory fields for "add" Page
+    And Click on "Save" button in "Page"
+    Then I should get "page created successfully" message on "Pages"
+    Then Verify details in "Pages grid"
+
+
+  @PagesEdit
+  Scenario: Page Edit successfully with click on Save button
+    Given Login as Admin and Go to "Pages" Module
+    When Verify details in "Pages"
+    And Click on "Edit" button in "Pages"
+    Then "Page" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Page
+    And Click on "Save" button in "Page"
+    Then I should get "page updated successfully" message on "Pages"
+    Then Verify details in "Pages"
+
+
+  @PagesActiveInactive
+  Scenario: Page Active Inactive
+    Given Login as Admin and Go to "Pages" Module
+    When Verify details in "Pages"
+    And "Page" is "Active"
+    Then Make "Page" "Inactive" and verify "success message"
+    #Then Verify details in "Pages grid with other filters"
+    When Verify details in "Pages"
+    And "Page" is "Inactive"
+    Then Make "Page" "Active" and verify "success message"
+    Then Verify details in "Pages"
+
+
+  @PagesAddSaveContinue
+  Scenario: Page Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Pages" Module
+    When Click on "Add" button in "Pages"
+    Then "Page" "Add" page gets open
+    #When I enter all mandatory fields for "add" Page
+    And Click on "Save and Continue" button in "Page"
+    Then I should get "page created successfully." message on "Page"
+    Then Verify details in "Pages"
+
+
+  @PagesEditSaveContinue
+  Scenario: Page Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Pages" Module
+    When Verify details in "Pages"
+    And Click on "Edit" button in "Pages"
+    Then "Page" "Edit" page gets open
+    #When I enter all mandatory fields for "update" Page
+    And Click on "Save and Continue" button in "Page"
+    Then I should get "page updated successfully." message on "Page"
+    Then Verify details in "Pages"
+
+
+  #@PagesFrontVerification
+  #Scenario: Page verification on Front side
+    #Given	Login as Admin and Go to "Pages" Module
+    #When	Get Page name from Admin panel
+    #Then	Verify Page name in front side
 

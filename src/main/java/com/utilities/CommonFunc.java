@@ -17,6 +17,7 @@ import com.pages.adminpages.Categories;
 import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
 import com.pages.adminpages.Ourteam;
+import com.pages.adminpages.Pages;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 
@@ -32,6 +33,7 @@ public class CommonFunc {
 	Categories categories;
 	FAQ faq;
 	Events events;
+	Pages pages;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")
@@ -145,10 +147,10 @@ public class CommonFunc {
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
 
-//		System.out.println("module name =" + moduleName);
-//		System.out.println("searchtext name =" + searchText);
-//		System.out.println("xpath = " + xpath);
-//		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
+		System.out.println("module name =" + moduleName);
+		System.out.println("searchtext name =" + searchText);
+		System.out.println("xpath = " + xpath);
+		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
 
 		if (CommonVariables.deleteRecord == true) {
 			if (moduleName.equals(CommonVariables.users)) {

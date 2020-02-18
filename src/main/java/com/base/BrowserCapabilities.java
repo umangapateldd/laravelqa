@@ -11,22 +11,22 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BrowserCapabilities {
 
-	public ChromeOptions getChromeOptions(){
+	public ChromeOptions getChromeOptions() {
 
-		DesiredCapabilities chrome = DesiredCapabilities.chrome();
-		
+		DesiredCapabilities chrome = new DesiredCapabilities();
+
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--test-type");
 		options.addArguments("--disable-popup-blocking");
 		options.setCapability(ChromeOptions.CAPABILITY, chrome);
 		chrome.setJavascriptEnabled(true);
-		
+
 		return options;
 	}
 
 	public FirefoxOptions getFirefoxOptions() {
 
-		DesiredCapabilities firefox = DesiredCapabilities.firefox();
+		DesiredCapabilities firefox = new DesiredCapabilities();
 
 		FirefoxProfile profile = new FirefoxProfile();
 		profile.setAcceptUntrustedCertificates(true);
@@ -42,11 +42,11 @@ public class BrowserCapabilities {
 
 	public InternetExplorerOptions getIExplorerCapabilities() {
 
-		DesiredCapabilities cap = DesiredCapabilities.internetExplorer();
+		DesiredCapabilities cap = new DesiredCapabilities();
 
-		cap.setCapability(InternetExplorerDriver.ELEMENT_SCROLL_BEHAVIOR,true);
+		cap.setCapability(InternetExplorerDriver.ELEMENT_SCROLL_BEHAVIOR, true);
 		cap.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-		cap.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
+		cap.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		cap.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
 		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		cap.setJavascriptEnabled(true);
