@@ -423,10 +423,9 @@ public class StepDefination {
 			} else {
 				System.out.println("Event Message is not match:");
 				assert false;
-
 			}
 		}
-		
+
 		else if (moduleName.equals(CommonVariables.pages)) {
 			String pagessmsg = "";
 			String pagessmsg2 = "";
@@ -450,8 +449,6 @@ public class StepDefination {
 				assert false;
 			}
 		}
-
-
 	}
 
 	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
@@ -644,6 +641,8 @@ public class StepDefination {
 
 			testimonial.entersettingfield(settingfield);
 			Thread.sleep(2000);
+		} else {
+			assert false;
 		}
 	}
 
@@ -654,6 +653,8 @@ public class StepDefination {
 			blogs.ClickonSettingsave();
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			testimonial.ClickonSettingsave();
+		} else {
+			assert false;
 		}
 	}
 
@@ -663,6 +664,8 @@ public class StepDefination {
 		System.out.println("Message : " + successmessage);
 		if (successmsg.getText().equals(successmessage)) {
 			System.out.println("Message mathch:" + successmessage);
+		} else {
+			assert false;
 		}
 	}
 
