@@ -121,17 +121,9 @@ public class CommonFunc {
 			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
 
 			if (m1.equals(menuTitle)) {
-
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
 				Thread.sleep(4000);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.categories);
-
-//				System.out.println("value of date :"+ExcelHelper.getData(1, 6));
 				break;
 			}
 		}
@@ -172,6 +164,8 @@ public class CommonFunc {
 				searchText = "No event(s) found";
 			} else if (moduleName.equals(CommonVariables.pages)) {
 				searchText = "No page(s) found";
+			} else {
+				assert false;
 			}
 		}
 
