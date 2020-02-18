@@ -14,6 +14,7 @@ import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
+import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Testimonial;
@@ -30,6 +31,7 @@ public class CommonFunc {
 	UsersPage userspage;
 	Categories categories;
 	FAQ faq;
+	Events events;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")
@@ -142,7 +144,7 @@ public class CommonFunc {
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
-		
+
 //		System.out.println("module name =" + moduleName);
 //		System.out.println("searchtext name =" + searchText);
 //		System.out.println("xpath = " + xpath);
@@ -162,6 +164,8 @@ public class CommonFunc {
 				searchText = "No category(s) found";
 			} else if (moduleName.equals(CommonVariables.faqs)) {
 				searchText = "No FAQ(s) found";
+			} else if (moduleName.equals(CommonVariables.events)) {
+				searchText = "No event(s) found";
 			}
 		}
 
@@ -206,13 +210,15 @@ public class CommonFunc {
 			System.out.println("edit if Categories");
 			categories = new Categories(driver);
 			categories.ClickonEditbutton();
-		} 
-		else if (moduleName.equals("FAQs")) {
+		} else if (moduleName.equals("FAQs")) {
 			System.out.println("edit if FAQ");
 			faq = new FAQ(driver);
 			faq.ClickonEditbutton();
-		}
-		else {
+		} else if (moduleName.equals("Events")) {
+			System.out.println("edit if Events");
+			events = new Events(driver);
+			events.ClickonEditbutton();
+		} else {
 			System.out.println("edit else - module is not defined");
 			assert false;
 		}
@@ -249,9 +255,10 @@ public class CommonFunc {
 
 	}
 
-	public void clickOnSave() {
+	public void clickOnSave() throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
+		Thread.sleep(2000);
 	}
 
 }

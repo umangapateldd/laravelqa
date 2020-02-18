@@ -13,6 +13,7 @@ import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
+import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
 import com.pages.adminpages.HomePage;
 import com.pages.adminpages.Ourteam;
@@ -46,6 +47,7 @@ public class StepDefination {
 	Testimonial testimonial;
 	Categories categories;
 	FAQ faq;
+	Events events;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -78,6 +80,7 @@ public class StepDefination {
 		testimonial = new Testimonial(driver);
 		categories = new Categories(driver);
 		faq = new FAQ(driver);
+		events = new Events(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -227,6 +230,9 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.faqs)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
+		} else if (moduleName.equals(CommonVariables.events)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]";
 		} else {
 			assert false;
 		}
@@ -235,7 +241,6 @@ public class StepDefination {
 			xpath = "//*[@id='frmlist']/table/tbody/tr/td";
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
-		
 
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
@@ -370,8 +375,7 @@ public class StepDefination {
 				assert false;
 
 			}
-		}
-		else if (moduleName.equals(CommonVariables.faqs)) {
+		} else if (moduleName.equals(CommonVariables.faqs)) {
 			String faqsmsg = "";
 			String faqsmsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
@@ -389,6 +393,30 @@ public class StepDefination {
 				System.out.println("Messgae for active faqsmsg = " + faqsmsg);
 			} else if (successmsg.getText().equals(faqsmsg2)) {
 				System.out.println("Messgae for inactive faqsmsg = " + faqsmsg2);
+			} else {
+				System.out.println("FAQ Message is not match:");
+				assert false;
+
+			}
+		}
+		else if (moduleName.equals(CommonVariables.events)) {
+			String eventsmsg = "";
+			String eventsmsg2 = "";
+			if (CommonVariables.inactive.equals("false")) {
+				eventsmsg = "The event successfully inactivated.";
+			} else if (CommonVariables.inactive.equals("true")) {
+				eventsmsg = "The event successfully activated.";
+			} else {
+				assert false;
+			}
+
+			statuscolumn.click();
+			Thread.sleep(3000);
+
+			if (successmsg.getText().equals(eventsmsg)) {
+				System.out.println("Messgae for active  = " + eventsmsg);
+			} else if (successmsg.getText().equals(eventsmsg2)) {
+				System.out.println("Messgae for inactive  = " + eventsmsg2);
 			} else {
 				System.out.println("FAQ Message is not match:");
 				assert false;
@@ -674,6 +702,60 @@ public class StepDefination {
 
 			faq.enterQuestion(updatequestion);
 			CommonVariables.txtSearchCmnVar = updatequestion;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+	}
+
+	@When("^I enter all mandatory fields for \"([^\"]*)\" Event$")
+	public void I_enter_all_mandatory_fields_for_Add_Event(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.events);
+		switch (formName) {
+		case "add":
+			String title = ExcelHelper.getData(1, 0);
+			String recurrence = ExcelHelper.getData(1, 1);
+			String startDate = ExcelHelper.getData(1, 2);
+			String endDate = ExcelHelper.getData(1, 3);
+			String eventTime = ExcelHelper.getData(1, 4);
+			String status = ExcelHelper.getData(1, 5);
+			String description = ExcelHelper.getData(1, 6);
+			String url = ExcelHelper.getData(1, 7);
+			String address1 = ExcelHelper.getData(1, 8);
+			String address2 = ExcelHelper.getData(1, 9);
+			String city = ExcelHelper.getData(1, 10);
+			String state = ExcelHelper.getData(1, 11);
+			String zipcode = ExcelHelper.getData(1, 12);
+			String country = ExcelHelper.getData(1, 13);
+
+			CommonVariables.txtSearchCmnVar = title;
+
+			events.enterTitle(title);
+			events.enterRecurrence(recurrence);
+			events.enterStartDate(startDate);
+			events.enterEndDate(endDate);
+			events.enterEventTime(eventTime);
+			events.enterStatus(status);
+			events.enterDescription(description);
+			events.enterURL(url);
+			events.enterAddress1(address1);
+			events.enterAddress2(address2);
+			events.enterCity(city);
+			events.enterState(state);
+			events.enterZipcode(zipcode);
+			events.enterCountry(country);
+
+			break;
+
+		case "edit":
+			String updatetitle = ExcelHelper.getData(1, 14);
+
+			events.enterTitle(updatetitle);
+			Thread.sleep(2000);
+			CommonVariables.txtSearchCmnVar = updatetitle;
 
 			break;
 
