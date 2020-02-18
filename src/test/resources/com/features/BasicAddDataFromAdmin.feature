@@ -468,8 +468,7 @@ Feature: Sanity test functionalities of Laravel CMS
     When I enter all mandatory fields for "add" Page
     And Click on "Save" button in "Page"
     Then I should get "page created successfully." message on "Pages"
-    Then Verify details in "Pages grid"
-
+    Then Verify details in "Pages"
 
   @PagesEdit
   Scenario: Page Edit successfully with click on Save button
@@ -482,30 +481,27 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
 
-
   @PagesActiveInactive
   Scenario: Page Active Inactive
     Given Login as Admin and Go to "Pages" Module
     When Verify details in "Pages"
-    And "Page" is "Active"
-    Then Make "Page" "Inactive" and verify "success message"
+    And "Pages" is "Active"
+    Then Make "Pages" "Inactive" and verify "success message"
     #Then Verify details in "Pages grid with other filters"
     When Verify details in "Pages"
-    And "Page" is "Inactive"
-    Then Make "Page" "Active" and verify "success message"
+    And "Pages" is "Inactive"
+    Then Make "Pages" "Active" and verify "success message"
     Then Verify details in "Pages"
-
 
   @PagesAddSaveContinue
   Scenario: Page Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Pages" Module
     When Click on "Add" button in "Pages"
     Then "Page" "Add" page gets open
-    #When I enter all mandatory fields for "add" Page
+    When I enter all mandatory fields for "add" Page
     And Click on "Save and Continue" button in "Page"
-    Then I should get "page created successfully." message on "Page"
+    Then I should get "page created successfully." message on "Pages"
     Then Verify details in "Pages"
-
 
   @PagesEditSaveContinue
   Scenario: Page Edit successfully with click on Save & Continue button
@@ -513,15 +509,29 @@ Feature: Sanity test functionalities of Laravel CMS
     When Verify details in "Pages"
     And Click on "Edit" button in "Pages"
     Then "Page" "Edit" page gets open
-    #When I enter all mandatory fields for "update" Page
+    When I enter all mandatory fields for "edit" Page
     And Click on "Save and Continue" button in "Page"
-    Then I should get "page updated successfully." message on "Page"
+    Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
-
 
   #@PagesFrontVerification
   #Scenario: Page verification on Front side
-    #Given	Login as Admin and Go to "Pages" Module
-    #When	Get Page name from Admin panel
-    #Then	Verify Page name in front side
+  #Given	Login as Admin and Go to "Pages" Module
+  #When	Get Page name from Admin panel
+  #Then	Verify Page name in front side
+  @Settings
+  Scenario: Update Settings details
+    Given Login as Admin and Go to "Settings" Module
+    When Data update and verify details for Admin Settings section
+    #Then Test case pass for Admin Settings section
+
+
+  @Settings
+  Scenario: Other validations except Required Settings
+    Given	Login as Admin and Go to "Settings" Module
+    When	Company Detail__Check zip code and email field validations and verify error message
+    When	Email Settings__Check from email field validations and verify error message
+    When	Social Networking Links__Check URL field enter invalid URL and verify error message
+    When	Password Settings__Check No of attempt to block user while login field and User Block Time field to enter invalid value and verify error message
+    When	Password Settings__Check Minimum Password Length field and invalid value and verify error message
 

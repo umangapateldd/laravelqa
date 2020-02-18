@@ -160,7 +160,9 @@ public class CommonFunc {
 				searchText = "No FAQ(s) found";
 			} else if (moduleName.equals(CommonVariables.events)) {
 				searchText = "No event(s) found";
-			}else {
+			} else if (moduleName.equals(CommonVariables.pages)) {
+				searchText = "No page(s) found";
+			} else {
 				assert false;
 			}
 		}
@@ -214,6 +216,10 @@ public class CommonFunc {
 			System.out.println("edit if Events");
 			events = new Events(driver);
 			events.ClickonEditbutton();
+		} else if (moduleName.equals("Pages")) {
+			System.out.println("edit if Pages");
+			pages = new Pages(driver);
+			pages.ClickonEditbutton();
 		} else {
 			System.out.println("edit else - module is not defined");
 			assert false;
