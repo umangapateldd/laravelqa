@@ -5,7 +5,7 @@ Feature: Sanity test functionalities of Laravel CMS
   Scenario: Our Team Member Add successfully with click on Save button
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
-    Then "Our Team" "Add" page gets open
+    Then "Team Member" "Add" page gets open
     #And	 Verify test data with proper validation message for "Our Team"
     When I enter all mandatory fields for "add" Our Team
     And Click on "Save" button in "Our Team"
@@ -17,7 +17,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Our Team" Module
     And Verify details in "Our Team"
     And Click on "Edit" button in "Our Team"
-    Then "Our Team" "Edit" page gets open
+    Then "Team Member" "Edit" page gets open
     When I enter all mandatory fields for "edit" Our Team
     And Click on "Save" button in "Our Team"
     Then I should get "member updated successfully" message on "Our Team"
@@ -45,7 +45,7 @@ Feature: Sanity test functionalities of Laravel CMS
   Scenario: Our Team Member Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
-    Then "User" "Add" page gets open
+    Then "Team Member" "Add" page gets open
     When I enter all mandatory fields for "add" Our Team
     And Click on "Save and Continue" button in "Our Team"
     Then I should get "member added successfully" message on "Our Team"
@@ -56,7 +56,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And Click on "Edit" button in "Our Team"
-    Then "Our Team" "Edit" page gets open
+    Then "Team Member" "Edit" page gets open
     When I enter all mandatory fields for "edit" Our Team
     And Click on "Save and Continue" button in "Our Team"
     Then I should get "member updated successfully" message on "Our Team"

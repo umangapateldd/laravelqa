@@ -173,6 +173,7 @@ public class CommonFunc {
 		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 			Thread.sleep(3000);
+			CommonVariables.deleteRecord = false;
 			assert true;
 		} else {
 			System.out.println("no record found");

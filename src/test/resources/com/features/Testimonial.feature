@@ -34,14 +34,6 @@ Feature: Sanity test functionalities of Laravel CMS
     And "Testimonial" is "Inactive"
     Then Make "Testimonial" "Active" and verify "success message"
 
-  @TestimonialDelete
-  Scenario: Testimonial Delete successfully
-    Given Login as Admin and Go to "Testimonials" Module
-    When Verify details in "Testimonial"
-    And Click on "Delete" button in "Testimonial"
-    Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
-    Then Verify details in "Testimonial"
-
   @TestimonialAddSaveContinue
   Scenario: Testimonial Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Testimonials" Module
@@ -62,6 +54,14 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
+     
+  @TestimonialDelete
+  Scenario: Testimonial Delete successfully
+    Given Login as Admin and Go to "Testimonials" Module
+    When Verify details in "Testimonial"
+    And Click on "Delete" button in "Testimonial"
+    Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
+    Then Verify details in "Testimonial"
 
   @TestimonialSettings
   Scenario: Testimonial Settings field
@@ -72,8 +72,4 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save" button in "Testimonial" Settings
     Then I should get "Settings have been saved successfully" message on "Testimonial" Settings
 
-  #@TestimonialFrontVerification
-  #Scenario: Testimonial verification on Front side
-  #Given Login as Admin and Go to "Testimonials" Module
-  #When Get Testimonial from Admin panel
-  #Then Verify Testimonial in front side
+  
