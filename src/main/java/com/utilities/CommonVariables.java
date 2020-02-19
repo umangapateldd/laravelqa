@@ -23,7 +23,12 @@ public class CommonVariables {
 	public static String users ="Users";
 	public static String ourteam ="Our Team";
 	public static String blogs ="Blogs";
+	public static String faqs ="FAQs";
+	public static String events ="Events";
+	public static String pages ="Pages";
+	public static String settings ="Settings";
 	public static String testimonial ="Testimonial";
+	public static String categories ="Categories";
 	public static String txtSearchCmnVar = "";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;

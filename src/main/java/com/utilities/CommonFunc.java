@@ -10,10 +10,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.DropDownHelper;
-import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.pages.adminpages.Blogs;
+import com.pages.adminpages.Categories;
+import com.pages.adminpages.Events;
+import com.pages.adminpages.FAQ;
 import com.pages.adminpages.Ourteam;
+import com.pages.adminpages.Pages;
+import com.pages.adminpages.Settings;
 import com.pages.adminpages.Testimonial;
 import com.pages.adminpages.UsersPage;
 
@@ -26,6 +30,11 @@ public class CommonFunc {
 	Blogs blogs;
 	Testimonial testimonial;
 	UsersPage userspage;
+	Categories categories;
+	FAQ faq;
+	Events events;
+	Pages pages;
+	Settings settings;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
 	@FindBy(xpath = "//*[@id='add-btn']")
@@ -111,15 +120,9 @@ public class CommonFunc {
 			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
 
 			if (m1.equals(menuTitle)) {
-
 				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
-				Thread.sleep(3000);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
-//				System.out.println("value of date :"+ExcelHelper.getData(1, 6));
+				Thread.sleep(4000);
 				break;
 			}
 		}
@@ -137,15 +140,31 @@ public class CommonFunc {
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 		Thread.sleep(4000);
 
+		System.out.println("module name =" + moduleName);
+		System.out.println("searchtext name =" + searchText);
+		System.out.println("xpath = " + xpath);
+		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
+
 		if (CommonVariables.deleteRecord == true) {
 			if (moduleName.equals(CommonVariables.users)) {
 				searchText = "No user(s) found";
 			} else if (moduleName.equals(CommonVariables.ourteam)) {
 				searchText = "No team member(s) found";
 			} else if (moduleName.equals(CommonVariables.blogs)) {
-				searchText = "No blogs(s) found";
+				searchText = "No blog(s) found";
+				System.out.println("SEARCH TEXT2" + searchText);
 			} else if (moduleName.equals(CommonVariables.testimonial)) {
 				searchText = "No testimonial(s) found";
+			} else if (moduleName.equals(CommonVariables.categories)) {
+				searchText = "No category(s) found";
+			} else if (moduleName.equals(CommonVariables.faqs)) {
+				searchText = "No FAQ(s) found";
+			} else if (moduleName.equals(CommonVariables.events)) {
+				searchText = "No event(s) found";
+			} else if (moduleName.equals(CommonVariables.pages)) {
+				searchText = "No page(s) found";
+			} else {
+				assert false;
 			}
 		}
 
@@ -182,13 +201,27 @@ public class CommonFunc {
 			System.out.println("edit if blogs");
 			blogs = new Blogs(driver);
 			blogs.ClickonEditbutton();
-		}
-		else if (moduleName.equals("Testimonial")) {
+		} else if (moduleName.equals("Testimonial")) {
 			System.out.println("edit if Testimonial");
 			testimonial = new Testimonial(driver);
 			testimonial.ClickonEditbutton();
-		}
-		else {
+		} else if (moduleName.equals("Categories")) {
+			System.out.println("edit if Categories");
+			categories = new Categories(driver);
+			categories.ClickonEditbutton();
+		} else if (moduleName.equals("FAQs")) {
+			System.out.println("edit if FAQ");
+			faq = new FAQ(driver);
+			faq.ClickonEditbutton();
+		} else if (moduleName.equals("Events")) {
+			System.out.println("edit if Events");
+			events = new Events(driver);
+			events.ClickonEditbutton();
+		} else if (moduleName.equals("Pages")) {
+			System.out.println("edit if Pages");
+			pages = new Pages(driver);
+			pages.ClickonEditbutton();
+		} else {
 			System.out.println("edit else - module is not defined");
 			assert false;
 		}
@@ -225,9 +258,10 @@ public class CommonFunc {
 
 	}
 
-	public void clickOnSave() {
+	public void clickOnSave() throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
+		Thread.sleep(2000);
 	}
 
 }

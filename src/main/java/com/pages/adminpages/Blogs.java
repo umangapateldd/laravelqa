@@ -89,7 +89,7 @@ public class Blogs {
 	}
 
 	public void enterBlogCategory(String blogCategory) throws InterruptedException {
-		log.info("********************Enter the Blog Category********************");
+		log.info("********************Enter the Blog Categories********************");
 		Thread.sleep(3000);
 		dropDownHelper.selectVisibleText(BlogCategory, blogCategory);
 		Thread.sleep(5000);

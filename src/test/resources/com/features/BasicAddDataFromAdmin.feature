@@ -120,11 +120,11 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @blog
+  @blogAdd
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
-    Then "Blogs" "Add" page gets open
+    Then "Blog" "Add" page gets open
     #And Verify test data with proper validation message for Users
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save" button in "Blogs"
@@ -160,22 +160,22 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blogSaveandContinue
+  @blogAddSaveandContinue
   Scenario: Blogs Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
-    Then "Blogs" "Add" page gets open
+    Then "Blog" "Add" page gets open
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save and Continue" button in "Blogs"
     Then I should get "blog added successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blogSaveandContinue
+  @blogEditSaveandContinue
   Scenario: Blogs Edit successfully with click on Save & Continue button
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
     And Click on "Edit" button in "Blogs"
-    Then "Blogs" "Edit" page gets open
+    Then "Blog" "Edit" page gets open
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save and Continue" button in "Blogs"
     Then I should get "blog updated successfully" message on "Blogs"
@@ -184,7 +184,7 @@ Feature: Sanity test functionalities of Laravel CMS
   @blogSettings
   Scenario: Blogs Settings field
     Given Login as Admin and Go to "Blogs" Module
-    When Click on "Blogs Settings" menu
+    When Click on "Blogs" Settings menu
     Then "Blogs" "Settings" page gets open
     When I enter all mandatory fields for "Blogs" Settings
     And Click on "Save" button in "Blogs" Settings
@@ -195,8 +195,7 @@ Feature: Sanity test functionalities of Laravel CMS
   #Given	Login as Admin and Go to "Blogs" Module
   #When	Get Blog name from Admin panel
   #Then	Verify Blog name in front side
-  
-  @Testimonial
+  @TestimonialAdd
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
     When Click on "Add" button in "Testimonial"
@@ -218,7 +217,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
-  @Testimonial
+  @TestimonialActiveInactive
   Scenario: Testimonial Active Inactive
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
@@ -243,7 +242,7 @@ Feature: Sanity test functionalities of Laravel CMS
     When Click on "Add" button in "Testimonial"
     Then "Testimonial" "Add" page gets open
     When I enter all mandatory fields for "add" Testimonial
-    And Click on "Save & Continue" button in "Testimonial"
+    And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial added successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
@@ -254,21 +253,283 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Edit" button in "Testimonial"
     Then "Testimonial" "Edit" page gets open
     When I enter all mandatory fields for "edit" Testimonial
-    And Click on "Save & Continue" button in "Testimonial"
+    And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
   @TestimonialSettings
   Scenario: Testimonial Settings field
-    Given Login as Admin and Go to "Testimonial" Module
-    When Click on "Testimonial Settings" menu
-    Then  "Testimonial" "Settings" page gets open
+    Given Login as Admin and Go to "Testimonials" Module
+    When Click on "Testimonial" Settings menu
+    Then "Testimonial" "Settings" page gets open
     When I enter all mandatory fields for "Testimonial" Settings
     And Click on "Save" button in "Testimonial" Settings
     Then I should get "Settings have been saved successfully" message on "Testimonial" Settings
-    
+
   #@TestimonialFrontVerification
   #Scenario: Testimonial verification on Front side
-    #Given Login as Admin and Go to "Testimonials" Module
-    #When Get Testimonial from Admin panel
-    #Then Verify Testimonial in front side
+  #Given Login as Admin and Go to "Testimonials" Module
+  #When Get Testimonial from Admin panel
+  #Then Verify Testimonial in front side
+  @CategoriesAdd
+  Scenario: Category Add successfully with click on Save button
+    Given Login as Admin and Go to "Categories" Module
+    When Click on "Add" button in "Categories"
+    Then "Category" "Add" page gets open
+    #And Verify test data with proper validation message for "Categories"
+    When I enter all mandatory fields for "add" Category
+    And Click on "Save" button in "Category"
+    Then I should get "category added successfully" message on "Category"
+    Then Verify details in "Categories"
+
+  @CategoriesEdit
+  Scenario: Category Edit successfully with click on Save button
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And Click on "Edit" button in "Categories"
+    Then "Category" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Category
+    And Click on "Save" button in "Category"
+    Then I should get "category updated successfully" message on "Category"
+    Then Verify details in "Categories"
+
+  @CategoriesActiveInactive
+  Scenario: Category Active Inactive
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And "Categories" is "Active"
+    Then Make "Categories" "Inactive" and verify "success message"
+    #Then Verify details in "Categories grid with other filters"
+    When Verify details in "Categories"
+    And "Categories" is "Inactive"
+    Then Make "Categories" "Active" and verify "success message"
+
+  #Then Verify details in "Categories grid with other filters"
+  @CategoriesDelete
+  Scenario: Category Delete successfully
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And Click on "Delete" button in "Categories"
+    Then I should get "Selected category(s) have been deleted successfully." message on "Categories"
+    Then Verify details in "Categories"
+
+  @CategoriesAddSaveContinue
+  Scenario: Category Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Categories" Module
+    When Click on "Add" button in "Categories"
+    Then "Category" "Add" page gets open
+    When I enter all mandatory fields for "add" Category
+    And Click on "Save and Continue" button in "Category"
+    Then I should get "category added successfully" message on "Category"
+    Then Verify details in "Categories"
+
+  @CategoriesEditSaveContinue
+  Scenario: Category Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Categories" Module
+    When Verify details in "Categories"
+    And Click on "Edit" button in "Categories"
+    Then "Category" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Category
+    And Click on "Save and Continue" button in "Category"
+    Then I should get "category updated successfully" message on "Category"
+    Then Verify details in "Categories"
+
+  @FAQAdd
+  Scenario: FAQ Add successfully with click on Save button
+    Given Login as Admin and Go to "FAQs" Module
+    When Click on "Add" button in "FAQs"
+    Then "FAQ" "Add" page gets open
+    #And Verify test data with proper validation message for "FAQs"
+    When I enter all mandatory fields for "add" FAQ
+    And Click on "Save" button in "FAQ"
+    Then I should get "added successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @FAQEdit
+  Scenario: FAQ Edit successfully with click on Save button
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And Click on "Edit" button in "FAQs"
+    Then "FAQ" "Edit" page gets open
+    When I enter all mandatory fields for "edit" FAQ
+    And Click on "Save" button in "FAQ"
+    Then I should get "updated successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @FAQActiveInactive
+  Scenario: FAQ Active - Inactive
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And "FAQs" is "Active"
+    Then Make "FAQs" "Inactive" and verify "success message"
+    When Verify details in "FAQs"
+    And "FAQs" is "Inactive"
+    Then Make "FAQs" "Active" and verify "success message"
+    Then Verify details in "FAQs"
+
+  @FAQDelete
+  Scenario: FAQ Delete successfully
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And Click on "Delete" button in "FAQs"
+    Then I should get "Selected FAQ(s) have been deleted successfully." message on "FAQs"
+    Then Verify details in "FAQs"
+
+  @FAQAddSaveContinue
+  Scenario: FAQ Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "FAQs" Module
+    When Click on "Add" button in "FAQs"
+    Then "FAQ" "Add" page gets open
+    When I enter all mandatory fields for "add" FAQ
+    And Click on "Save and Continue" button in "FAQ"
+    Then I should get "added successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @FAQEditSaveContinue
+  Scenario: FAQ Edit successfully with click on Save & Contnue button
+    Given Login as Admin and Go to "FAQs" Module
+    When Verify details in "FAQs"
+    And Click on "Edit" button in "FAQs"
+    Then "FAQ" "Edit" page gets open
+    When I enter all mandatory fields for "edit" FAQ
+    And Click on "Save and Continue" button in "FAQ"
+    Then I should get "updated successfully." message on "FAQ"
+    Then Verify details in "FAQs"
+
+  @EventsAdd
+  Scenario: Event Add successfully with click on Save button
+    Given Login as Admin and Go to "Events" Module
+    When Click on "Add" button in "Events"
+    Then "Event" "Add" page gets open
+    #And Verify test data with proper validation message for "Events"
+    When I enter all mandatory fields for "add" Event
+    And Click on "Save" button in "Event"
+    Then I should get "event added successfully." message on "Events"
+    Then Verify details in "Events"
+
+  @EventsEdit
+  Scenario: Category Edit successfully with click on Save button
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And Click on "Edit" button in "Events"
+    Then "Event" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Event
+    And Click on "Save" button in "Event"
+    Then I should get "event updated successfully." message on "Events"
+    Then Verify details in "Events"
+
+  @EventsActiveInactive
+  Scenario: Event Active Inactive
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And "Events" is "Active"
+    Then Make "Events" "Inactive" and verify "success message"
+    #Then Verify details in "Events grid with other filters"
+    When Verify details in "Events"
+    And "Events" is "Inactive"
+    Then Make "Events" "Active" and verify "success message"
+    Then Verify details in "Events"
+
+  @EventsDelete
+  Scenario: Event Delete successfully
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And Click on "Delete" button in "Events"
+    Then I should get "Selected event(s) have been deleted successfully." message on "Events"
+    Then Verify details in "Events"
+
+  @EventsAddSaveContinue
+  Scenario: Event Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Events" Module
+    When Click on "Add" button in "Events"
+    Then "Event" "Add" page gets open
+    When I enter all mandatory fields for "add" Event
+    And Click on "Save and Continue" button in "Event"
+    Then I should get "event added successfully." message on "Events"
+    Then Verify details in "Events"
+
+  @EventsEditSaveContinue
+  Scenario: Event Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Events" Module
+    When Verify details in "Events"
+    And Click on "Edit" button in "Events"
+    Then "Event" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Event
+    And Click on "Save and Continue" button in "Event"
+    Then I should get "event updated successfully." message on "Event"
+    Then Verify details in "Events"
+
+  @PagesAdd
+  Scenario: Page Add successfully with click on Save button
+    Given Login as Admin and Go to "Pages" Module
+    When Click on "Add" button in "Pages"
+    Then "Page" "Add" page gets open
+    #And Verify test data with proper validation message for "Pages"
+    When I enter all mandatory fields for "add" Page
+    And Click on "Save" button in "Page"
+    Then I should get "page created successfully." message on "Pages"
+    Then Verify details in "Pages"
+
+  @PagesEdit
+  Scenario: Page Edit successfully with click on Save button
+    Given Login as Admin and Go to "Pages" Module
+    When Verify details in "Pages"
+    And Click on "Edit" button in "Pages"
+    Then "Page" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Page
+    And Click on "Save" button in "Page"
+    Then I should get "page updated successfully." message on "Pages"
+    Then Verify details in "Pages"
+
+  @PagesActiveInactive
+  Scenario: Page Active Inactive
+    Given Login as Admin and Go to "Pages" Module
+    When Verify details in "Pages"
+    And "Pages" is "Active"
+    Then Make "Pages" "Inactive" and verify "success message"
+    #Then Verify details in "Pages grid with other filters"
+    When Verify details in "Pages"
+    And "Pages" is "Inactive"
+    Then Make "Pages" "Active" and verify "success message"
+    Then Verify details in "Pages"
+
+  @PagesAddSaveContinue
+  Scenario: Page Add successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Pages" Module
+    When Click on "Add" button in "Pages"
+    Then "Page" "Add" page gets open
+    When I enter all mandatory fields for "add" Page
+    And Click on "Save and Continue" button in "Page"
+    Then I should get "page created successfully." message on "Pages"
+    Then Verify details in "Pages"
+
+  @PagesEditSaveContinue
+  Scenario: Page Edit successfully with click on Save & Continue button
+    Given Login as Admin and Go to "Pages" Module
+    When Verify details in "Pages"
+    And Click on "Edit" button in "Pages"
+    Then "Page" "Edit" page gets open
+    When I enter all mandatory fields for "edit" Page
+    And Click on "Save and Continue" button in "Page"
+    Then I should get "page updated successfully." message on "Pages"
+    Then Verify details in "Pages"
+
+  #@PagesFrontVerification
+  #Scenario: Page verification on Front side
+  #Given	Login as Admin and Go to "Pages" Module
+  #When	Get Page name from Admin panel
+  #Then	Verify Page name in front side
+  @Settings
+  Scenario: Update Settings details
+    Given Login as Admin and Go to "Settings" Module
+    When Data update and verify details for Admin "Settings" section
+  #@Settings
+  #Scenario: Other validations except Required Settings
+    #Given	Login as Admin and Go to "Settings" Module
+    #When	Company Detail__Check zip code and email field validations and verify error message
+    #When	Email Settings__Check from email field validations and verify error message
+    #When	Social Networking Links__Check URL field enter invalid URL and verify error message
+    #When	Password Settings__Check No of attempt to block user while login field and User Block Time field to enter
+     #invalid value and verify error message
+    #When	Password Settings__Check Minimum Password Length field and invalid value and verify error message
+#
