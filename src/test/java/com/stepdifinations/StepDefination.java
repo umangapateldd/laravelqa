@@ -860,8 +860,9 @@ public class StepDefination {
 		String zipcode = ExcelHelper.getData(5, 7);
 		String phone = ExcelHelper.getData(5, 8);
 		String email = ExcelHelper.getData(5, 9);
+		String googlemap = ExcelHelper.getData(5, 10);
 
-		settings.companySettings(companyName, addressline1, addressline2, city, state, country, zipcode, phone, email);
+		settings.companySettings(companyName, addressline1, addressline2, city, state, country, zipcode, phone, email,googlemap);
 		
 		//Email Settings
 		String fromName =ExcelHelper.getData(7, 1);
@@ -872,18 +873,28 @@ public class StepDefination {
 		
 		//Password Settings
 		
-		String passwordStrength =ExcelHelper.getData(7, 1);
-		String loginattempt = ExcelHelper.getData(7, 2);
-		String minpwdlength = ExcelHelper.getData(7, 3);
-		String userBlockTime = ExcelHelper.getData(7, 3);
+		String passwordStrength =ExcelHelper.getData(9, 1);
+		String loginattempt = ExcelHelper.getData(9, 2);
+		String minpwdlength = ExcelHelper.getData(9, 3);
+		String userBlockTime = ExcelHelper.getData(9, 4);
 		
 		settings.passwordSettings(passwordStrength, loginattempt, minpwdlength, userBlockTime);
 		
 		//Social link Settings
-		String facebook =ExcelHelper.getData(7, 1);
-		String twitter = ExcelHelper.getData(7, 2);
-		String linkedIn = ExcelHelper.getData(7, 3);
+		String facebook =ExcelHelper.getData(11, 1);
+		String twitter = ExcelHelper.getData(11, 2);
+		String linkedIn = ExcelHelper.getData(11, 3);
+		settings.sociallinkSettings(facebook, twitter, linkedIn);
 		
+		// Google Captcha
+		String googleRecaptchaSiteKey =ExcelHelper.getData(13, 1);
+		String googleRecaptchaSecertKey =ExcelHelper.getData(13, 2);
+		settings.googlecaptchaSettings(googleRecaptchaSiteKey, googleRecaptchaSecertKey);
+		
+		//SEO Settings
+		String robotsMetaTag =ExcelHelper.getData(15, 1);
+		String googleAnalyticsCode =ExcelHelper.getData(15, 2);
+		settings.SEOSettings(googleAnalyticsCode, robotsMetaTag);
 		
 	}
 }

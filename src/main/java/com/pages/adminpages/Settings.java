@@ -61,8 +61,14 @@ public class Settings {
 	@FindBy(xpath = "//*[@id='site-config-heading-4']/h5/a")
 	WebElement passwordAccordion;
 
-	@FindBy(xpath = "//*[@id='site-config-heading-4']/h5/a")
+	@FindBy(xpath = "//*[@id='site-config-heading-5']/h5/a")
 	WebElement sociallinkAccordion;
+	
+	@FindBy(xpath = "//*[@id='site-config-heading-6']/h5/a")
+	WebElement googleCaptchaAccordion;
+	
+	@FindBy(xpath = "//*[@id='site-config-heading-7']/h5/a")
+	WebElement SEOAccordion;
 	
 	@FindBy(xpath = "//*[@id='company_name']")
 	WebElement CompanyName;
@@ -115,11 +121,27 @@ public class Settings {
 	@FindBy(xpath = "//*[@id='facebook_link']")
 	WebElement Facebook;
 	
+	@FindBy(xpath = "//*[@id='googlemap_embedded']")
+	WebElement Googlemap;
+	
 	@FindBy(xpath = "//*[@id='twitter_link']")
 	WebElement Twitter;
 	
 	@FindBy(xpath = "//*[@id='linkedin_link']")
 	WebElement LinkedIn;
+	
+	@FindBy(xpath = "//*[@id='GOOGLE_RECAPTCHA_KEY']")
+	WebElement GoogleRecaptchaSiteKey;
+	
+	@FindBy(xpath = "//*[@id='GOOGLE_RECAPTCHA_SECRET']")
+	WebElement GoogleRecaptchaSecertKey;
+	
+	@FindBy(xpath = "//*[@id='robots_meta_tag']")
+	WebElement RobotsMetaTag;
+	
+	@FindBy(xpath = "//*[@id='google_analytics_code']")
+	WebElement GoogleAnalyticsCode;
+	
 	
 	public Settings(WebDriver driver) {
 		this.driver = driver;
@@ -220,6 +242,24 @@ public class Settings {
 	public String getLinkedIn() {
 		return LinkedIn.getAttribute("value");
 	}
+	public String getGooglemap() {
+		return Googlemap.getAttribute("value");
+	}
+	public String getGoogleRecaptchaSiteKey() {
+		return GoogleRecaptchaSiteKey.getAttribute("value");
+	}
+	public String getGoogleRecaptchaSecertKey() {
+		return GoogleRecaptchaSecertKey.getAttribute("value");
+	}
+	
+	public String getRobotsMetaTag() {
+		return RobotsMetaTag.getAttribute("value");
+	}
+
+	public String getGoogleAnalyticsCode() {
+		return GoogleAnalyticsCode.getAttribute("value");
+	}
+
 
 	public void adminSettings(String appName, String noofRecordsperPage, String footerTitleforAdmin)
 			throws InterruptedException {
@@ -250,7 +290,7 @@ public class Settings {
 		
 	}
 
-	public void companySettings(String companyName, String addressline1, String addressline2, String city, String state,String country,String zipcode, String phone, String email)
+	public void companySettings(String companyName, String addressline1, String addressline2, String city, String state,String country,String zipcode, String phone, String email,String googlemap)
 			throws InterruptedException {
 		companyAccordion.click();
 		Thread.sleep(1000);
@@ -263,6 +303,7 @@ public class Settings {
 		enterZipcode(zipcode);
 		enterPhone(phone);
 		enterEmail(email);
+		enterGooglemap(googlemap);
 		
 		ClickonSavebutton();
 		assert companyName.equals(getCompanyName()) ? true : false;
@@ -274,6 +315,7 @@ public class Settings {
 		assert zipcode.equals(getZipcode()) ? true : false;
 		assert phone.equals(getPhone()) ? true : false;
 		assert email.equals(getEmail()) ? true : false;
+		assert googlemap.equals(getGooglemap()) ? true : false;
 	}
 	public void emailSettings(String fromName, String fromEmail, String adminEmail)
 			throws InterruptedException {
@@ -317,10 +359,33 @@ public class Settings {
 		ClickonSavebutton();
 		assert facebook.equals(getFacebook()) ? true : false;
 		assert twitter.equals(getTwitter()) ? true : false;
-		assert linkedIn.equals(getLinkedIn()) ? true : false;
-		
-		
+		assert linkedIn.equals(getLinkedIn()) ? true : false;	
 	}
+	
+	public void googlecaptchaSettings(String googleRecaptchaSiteKey, String googleRecaptchaSecertKey)
+			throws InterruptedException {
+		googleCaptchaAccordion.click();
+		Thread.sleep(1000);
+		enterGoogleRecaptchaSiteKey(googleRecaptchaSiteKey);
+		enterGoogleRecaptchaSecertKey(googleRecaptchaSecertKey);
+		
+		ClickonSavebutton();
+		assert googleRecaptchaSiteKey.equals(getGoogleRecaptchaSiteKey()) ? true : false;
+		assert googleRecaptchaSecertKey.equals(getGoogleRecaptchaSecertKey()) ? true : false;	
+	}
+
+	public void SEOSettings(String googleAnalyticsCode, String robotsMetaTag)
+			throws InterruptedException {
+		SEOAccordion.click();
+		Thread.sleep(1000);
+		enterGoogleAnalyticsCode(googleAnalyticsCode);
+		enterRobotsMetaTag(robotsMetaTag);
+		
+		ClickonSavebutton();
+		assert googleAnalyticsCode.equals(getGoogleAnalyticsCode()) ? true : false;
+		assert robotsMetaTag.equals(getRobotsMetaTag()) ? true : false;	
+	}
+
 
 
 	public void enterNoofRecordsperPage(String noofRecordsperPage) {
@@ -476,5 +541,31 @@ public class Settings {
 		log.info("********************Enter the Meta Description********************");
 		LinkedIn.clear();
 		LinkedIn.sendKeys(linkedIn);
+	}
+	
+	public void enterGoogleRecaptchaSiteKey(String googleRecaptchaSiteKey) {
+		log.info("********************Enter the Meta Description********************");
+		GoogleRecaptchaSiteKey.clear();
+		GoogleRecaptchaSiteKey.sendKeys(googleRecaptchaSiteKey);
+	}
+	public void enterGoogleRecaptchaSecertKey(String googleRecaptchaSecertKey) {
+		log.info("********************Enter the Meta Description********************");
+		GoogleRecaptchaSecertKey.clear();
+		GoogleRecaptchaSecertKey.sendKeys(googleRecaptchaSecertKey);
+	}
+	public void enterGooglemap(String googlemap) {
+		log.info("********************Enter the Meta Description********************");
+		Googlemap.clear();
+		Googlemap.sendKeys(googlemap);
+	}
+	public void enterRobotsMetaTag(String robotsMetaTag) {
+		log.info("********************Enter the Meta Description********************");
+		RobotsMetaTag.clear();
+		RobotsMetaTag.sendKeys(robotsMetaTag);
+	}
+	public void enterGoogleAnalyticsCode(String googleAnalyticsCode) {
+		log.info("********************Enter the Meta Description********************");
+		GoogleAnalyticsCode.clear();
+		GoogleAnalyticsCode.sendKeys(googleAnalyticsCode);
 	}
 }
