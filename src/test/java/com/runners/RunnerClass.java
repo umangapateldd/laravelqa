@@ -9,8 +9,8 @@ import com.pages.adminpages.HomePage;
 import com.pages.commonpages.LoginPage;
 import com.utilities.ReadPropFile;
 
-import cucumber.api.CucumberOptions;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
 public class RunnerClass {
 
@@ -18,7 +18,7 @@ public class RunnerClass {
 //			tags={"@Smoke, @navigation"},
 //			tags={"@smoke_ops"},
 			plugin = { "pretty", "html:target/cucumber",
-					"json:target/cucumber.json" }, monochrome = true, dryRun = false)
+					"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)
 	public class runner extends AbstractTestNGCucumberTests {
 
 		public WebDriver driver;

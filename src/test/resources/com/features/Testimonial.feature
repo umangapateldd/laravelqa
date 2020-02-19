@@ -34,14 +34,6 @@ Feature: Sanity test functionalities of Laravel CMS
     And "Testimonial" is "Inactive"
     Then Make "Testimonial" "Active" and verify "success message"
 
-  @TestimonialDelete
-  Scenario: Testimonial Delete successfully
-    Given Login as Admin and Go to "Testimonials" Module
-    When Verify details in "Testimonial"
-    And Click on "Delete" button in "Testimonial"
-    Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
-    Then Verify details in "Testimonial"
-
   @TestimonialAddSaveContinue
   Scenario: Testimonial Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Testimonials" Module
@@ -61,6 +53,14 @@ Feature: Sanity test functionalities of Laravel CMS
     When I enter all mandatory fields for "edit" Testimonial
     And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
+    Then Verify details in "Testimonial"
+
+ @TestimonialDelete
+  Scenario: Testimonial Delete successfully
+    Given Login as Admin and Go to "Testimonials" Module
+    When Verify details in "Testimonial"
+    And Click on "Delete" button in "Testimonial"
+    Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
   @TestimonialSettings

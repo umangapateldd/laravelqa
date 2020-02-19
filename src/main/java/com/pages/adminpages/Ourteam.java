@@ -12,6 +12,7 @@ import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.FilesPaths;
 
 public class Ourteam {
 	WebDriver driver;
@@ -38,20 +39,20 @@ public class Ourteam {
 
 	@FindBy(id = "meta_title")
 	WebElement Metatitle;
-	
+
 	@FindBy(id = "meta_desc")
 	WebElement MetaDescription;
-	
+
 	@FindBy(id = "short_bio")
 	WebElement ShortBio;
-	
+
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement Description;
 
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement AdditionalBio;
-	
-	@FindBy(xpath ="//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
 	WebElement editbutton;
 
 //	@FindBy(xpath = "//input[@type='file']")
@@ -103,7 +104,7 @@ public class Ourteam {
 		ShortBio.clear();
 		ShortBio.sendKeys(shortBio);
 	}
-	
+
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
 		editbutton.click();
@@ -121,9 +122,8 @@ public class Ourteam {
 
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
-		Image.sendKeys(image);
+		Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
 		Thread.sleep(5000);
-
 	}
 
 	public void enterImageAlt(String imageAlt) {

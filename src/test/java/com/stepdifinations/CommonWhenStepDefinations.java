@@ -10,7 +10,7 @@ import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 
 public class CommonWhenStepDefinations {
 
@@ -26,7 +26,7 @@ public class CommonWhenStepDefinations {
 		commonFunc = new CommonFunc(driver);
 	}
 
-	@When("^user navigate to \"([^\"]*)\" page$")
+	@When("user navigate to {string} page")
 	public void user_navigate_to_page(String menuType) throws Throwable {
 		switch (menuType) {
 		case "Users":

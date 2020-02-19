@@ -10,7 +10,7 @@ import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.ReadPropFile;
 
-import cucumber.api.java.en.Given;
+import io.cucumber.java.en.Given;
 
 public class CommonStepDefinations {
 
@@ -27,7 +27,7 @@ public class CommonStepDefinations {
 		commonFunc = new CommonFunc(driver);
 	}
 
-	@Given("^Login as Admin and Go to \"([^\"]*)\" Module$")
+	@Given("Login as Admin and Go to {string} Module")
 	public void user_on_admin_dashboard_page(String moduleName) throws Throwable {
 		testBase = new TestBase();
 		readPropFile = new ReadPropFile();

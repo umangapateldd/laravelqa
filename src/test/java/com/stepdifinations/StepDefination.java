@@ -29,9 +29,9 @@ import com.utilities.CurrentDateFormat;
 import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class StepDefination {
 
@@ -90,7 +90,7 @@ public class StepDefination {
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
-	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\"$")
+	/*@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\"$")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
 
 		switch (buttonName) {
@@ -119,7 +119,7 @@ public class StepDefination {
 			break;
 		}
 
-	}
+	}*/
 
 	@Then("^\"([^\"]*)\" \"([^\"]*)\" page gets open$")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
@@ -159,7 +159,7 @@ public class StepDefination {
 			String lastname = ExcelHelper.getData(1, 1);
 			String email = ExcelHelper.getData(1, 2);
 
-			CommonVariables.txtSearchCmnVar = email;
+			CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
 
 			usersPage.enterUserFirstName(firstname);
 			usersPage.enterUserLastName(lastname);
@@ -204,6 +204,7 @@ public class StepDefination {
 
 		if (CommonVariables.saveandcontinue == true) {
 			commonFunc.clickOnCancelbutton();
+			CommonVariables.saveandcontinue = false;
 		}
 	}
 
@@ -216,7 +217,7 @@ public class StepDefination {
 			System.out.println("Inside IF condition");
 			searchText = CommonVariables.txtSearchCmnVar;
 			System.out.println("Search text is :- " + searchText);
-			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[5]/div/a[1]";
+			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[4]";
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]//div[2][@class='title']";
@@ -286,7 +287,7 @@ public class StepDefination {
 			Thread.sleep(3000);
 
 			if (CommonVariables.inactive.equals("false")) {
-				Msg = "The team member successfully inactivated";
+				Msg = "The team member successfully inactivated.";
 			} else if (CommonVariables.inactive.equals("true")) {
 				Msg2 = "The team member successfully activated.";
 			} else {
@@ -832,7 +833,7 @@ public class StepDefination {
 	@When("^Data update and verify details for Admin \"([^\"]*)\" section$")
 	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
-		//System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1,1));
+		// System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1,1));
 
 		// Admin Settings
 		String appName = ExcelHelper.getData(1, 1);
@@ -844,7 +845,7 @@ public class StepDefination {
 		// Front End Settings
 		String sitetitle = ExcelHelper.getData(3, 1);
 		String tagline = ExcelHelper.getData(3, 2);
-		System.out.println("Tagline = " +ExcelHelper.getData(3, 2));
+		System.out.println("Tagline = " + ExcelHelper.getData(3, 2));
 		String copyrightText = ExcelHelper.getData(3, 3);
 		String metaDescription = ExcelHelper.getData(3, 4);
 
@@ -862,39 +863,40 @@ public class StepDefination {
 		String email = ExcelHelper.getData(5, 9);
 		String googlemap = ExcelHelper.getData(5, 10);
 
-		settings.companySettings(companyName, addressline1, addressline2, city, state, country, zipcode, phone, email,googlemap);
-		
-		//Email Settings
-		String fromName =ExcelHelper.getData(7, 1);
+		settings.companySettings(companyName, addressline1, addressline2, city, state, country, zipcode, phone, email,
+				googlemap);
+
+		// Email Settings
+		String fromName = ExcelHelper.getData(7, 1);
 		String fromEmail = ExcelHelper.getData(7, 2);
 		String adminEmail = ExcelHelper.getData(7, 3);
-		
+
 		settings.emailSettings(fromName, fromEmail, adminEmail);
-		
-		//Password Settings
-		
-		String passwordStrength =ExcelHelper.getData(9, 1);
+
+		// Password Settings
+
+		String passwordStrength = ExcelHelper.getData(9, 1);
 		String loginattempt = ExcelHelper.getData(9, 2);
 		String minpwdlength = ExcelHelper.getData(9, 3);
 		String userBlockTime = ExcelHelper.getData(9, 4);
-		
+
 		settings.passwordSettings(passwordStrength, loginattempt, minpwdlength, userBlockTime);
-		
-		//Social link Settings
-		String facebook =ExcelHelper.getData(11, 1);
+
+		// Social link Settings
+		String facebook = ExcelHelper.getData(11, 1);
 		String twitter = ExcelHelper.getData(11, 2);
 		String linkedIn = ExcelHelper.getData(11, 3);
 		settings.sociallinkSettings(facebook, twitter, linkedIn);
-		
+
 		// Google Captcha
-		String googleRecaptchaSiteKey =ExcelHelper.getData(13, 1);
-		String googleRecaptchaSecertKey =ExcelHelper.getData(13, 2);
+		String googleRecaptchaSiteKey = ExcelHelper.getData(13, 1);
+		String googleRecaptchaSecertKey = ExcelHelper.getData(13, 2);
 		settings.googlecaptchaSettings(googleRecaptchaSiteKey, googleRecaptchaSecertKey);
-		
-		//SEO Settings
-		String robotsMetaTag =ExcelHelper.getData(15, 1);
-		String googleAnalyticsCode =ExcelHelper.getData(15, 2);
+
+		// SEO Settings
+		String robotsMetaTag = ExcelHelper.getData(15, 1);
+		String googleAnalyticsCode = ExcelHelper.getData(15, 2);
 		settings.SEOSettings(googleAnalyticsCode, robotsMetaTag);
-		
+
 	}
 }
