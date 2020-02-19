@@ -174,6 +174,7 @@ public class CommonFunc {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 			CommonVariables.deleteRecord = false;
 			Thread.sleep(3000);
+			CommonVariables.deleteRecord = false;
 			assert true;
 		} else {
 			System.out.println("no record found");

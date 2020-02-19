@@ -1,6 +1,10 @@
 package com.stepdifinations;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -62,4 +66,23 @@ public class CommonStepDefinations {
 
 	}
 
+	@Given("^Open Front site and Go to \"([^\"]*)\" Module$")
+	public void Open_Front_site_and_Go_to_Testimonials_Module(String menuTitle) throws Throwable {
+		String url = "http://laravelcms.devdigdev.com/";
+		driver.get(url);
+		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li/a"));
+
+		int count = menu.size();
+		for (int i = 1; i <= count; i++) {
+			String m1 = driver.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[" + i + "]/a")).getText();
+			
+
+			if (m1.equalsIgnoreCase(menuTitle)) {
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[" + i + "]/a")).click();
+				Thread.sleep(4000);
+				break;
+			}
+		}
+	}
 }
