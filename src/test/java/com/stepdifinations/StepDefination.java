@@ -1,7 +1,5 @@
 package com.stepdifinations;
 
-import static org.junit.Assert.assertArrayEquals;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +32,6 @@ import com.utilities.ReadPropFile;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import junit.framework.Assert;
 
 public class StepDefination {
 
@@ -837,29 +834,19 @@ public class StepDefination {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
 		System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1, 0));
 
+		// Admin Settings
 		String appName = ExcelHelper.getData(1, 0);
-//		String noofRecordsperPage = ExcelHelper.getData(1, 1);
-//		String footerTitleforAdmin = ExcelHelper.getData(1, 2);
-//		String sitetitle = ExcelHelper.getData(1, 3);
-//		String tagline = ExcelHelper.getData(1, 4);
-//		String copyrightText = ExcelHelper.getData(1, 5);
-//		String metaDescription = ExcelHelper.getData(1, 6);
+		String noofRecordsperPage = ExcelHelper.getData(1, 1);
+		String footerTitleforAdmin = ExcelHelper.getData(1, 2);
 
-		CommonVariables.txtSearchCmnVar = appName;
+		settings.adminSettings(appName, noofRecordsperPage, footerTitleforAdmin);
 
-		settings.enterAppName(appName);
-//		settings.enterNoofRecordsperPage(noofRecordsperPage);
-//		settings.enterFooterTitleforAdmin(footerTitleforAdmin);
-//		settings.ClickonFrontEndSettings();
-//		settings.enterSiteTitle(sitetitle);
-//		settings.enterTagline(tagline);
-//		settings.enterCopyrighttext(copyrightText);
-//		settings.enterMetadescriptionforfront(metaDescription);
-
-		if (appName.equals(settings.getAppName())) {
-			assert true;
-		} else {
-			assert false;
-		}
+		// Front End Settings
+		String sitetitle = ExcelHelper.getData(1, 3);
+		String tagline = ExcelHelper.getData(1, 4);
+		String copyrightText = ExcelHelper.getData(1, 5);
+		String metaDescription = ExcelHelper.getData(1, 6);
+		
+		settings.frontEndSettings(sitetitle, tagline, copyrightText, metaDescription);
 	}
 }

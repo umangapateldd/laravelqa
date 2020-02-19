@@ -27,31 +27,33 @@ public class Settings {
 
 	@FindBy(xpath = "//*[@id='status']")
 	WebElement Status;
-	
+
 	@FindBy(xpath = "//*[@id='site-config-heading-1']/h5/a")
 	WebElement FrontEndSettings;
-	
+
 	@FindBy(id = "site_title")
 	WebElement Sitetitle;
 
 	@FindBy(id = "tagline")
 	WebElement Tagline;
-	
+
 	@FindBy(xpath = "//*[@id='btnsave']")
 	WebElement Save;
-	
+
 	@FindBy(id = "copyright_text")
 	WebElement Copyrighttext;
-	
+
 	@FindBy(id = "meta_description_for_front")
 	WebElement Meta_description_for_front;
-	
+
 	@FindBy(xpath = "//*[@id='records_per_page']")
 	WebElement NoofRecordsperPage;
 
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
 	WebElement editbutton;
 
+	@FindBy(xpath = "//*[@id='site-config-heading-1']/h5/a")
+	WebElement frontEndAccordion;
 
 	public Settings(WebDriver driver) {
 		this.driver = driver;
@@ -66,27 +68,55 @@ public class Settings {
 		AppName.clear();
 		AppName.sendKeys(appName);
 	}
-	
-	public String getAppName()
-	{
+
+	public String getAppName() {
 		return AppName.getAttribute("value");
+	}
+
+	public String noofRecordsperPage() {
+		return AppName.getAttribute("value");
+	}
+
+	public String footerTitleforAdmin() {
+		return AppName.getAttribute("value");
+	}
+
+	public void adminSettings(String appName, String noofRecordsperPage, String footerTitleforAdmin)
+			throws InterruptedException {
+		enterAppName(appName);
+		enterNoofRecordsperPage(noofRecordsperPage);
+		enterFooterTitleforAdmin(footerTitleforAdmin);
+		
+		ClickonSavebutton();
+		assert appName.equals(getAppName()) ? true : false;
+	}
+
+	public void frontEndSettings(String sitetitle, String tagline, String copyrightText, String metaDescription)
+			throws InterruptedException {
+		frontEndAccordion.click();
+		Thread.sleep(1000);
+		enterSiteTitle(sitetitle);
+		enterTagline(tagline);
+
+		ClickonSavebutton();
 	}
 
 	public void enterNoofRecordsperPage(String noofRecordsperPage) {
 		log.info("********************Enter the Status********************");
 		dropDownHelper.selectVisibleText(NoofRecordsperPage, noofRecordsperPage);
-	
+
 	}
 
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
 		editbutton.click();
 	}
-	
+
 	public void ClickonSavebutton() {
 		log.info("********************Click on Save button********************");
 		Save.click();
 	}
+
 	public void ClickonFrontEndSettings() {
 		log.info("********************Click on Save button********************");
 		FrontEndSettings.click();
@@ -101,21 +131,22 @@ public class Settings {
 
 	public void enterSiteTitle(String sitetitle) {
 		log.info("********************Enter the Meta Title********************");
-        Sitetitle.clear();
+		Sitetitle.clear();
 		Sitetitle.sendKeys(sitetitle);
 	}
 
 	public void enterTagline(String tagline) {
 		log.info("********************Enter the Meta Description********************");
-        Tagline.clear();
+		Tagline.clear();
 		Tagline.sendKeys(tagline);
 	}
-	
+
 	public void enterCopyrighttext(String copyrighttext) {
 		log.info("********************Enter the Meta Description********************");
 		Copyrighttext.clear();
 		Copyrighttext.sendKeys(copyrighttext);
 	}
+
 	public void enterMetadescriptionforfront(String metadescriptionforfront) {
 		log.info("********************Enter the Meta Description********************");
 		Meta_description_for_front.clear();
