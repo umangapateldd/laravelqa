@@ -832,21 +832,58 @@ public class StepDefination {
 	@When("^Data update and verify details for Admin \"([^\"]*)\" section$")
 	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
-		System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1, 0));
+		//System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1,1));
 
 		// Admin Settings
-		String appName = ExcelHelper.getData(1, 0);
-		String noofRecordsperPage = ExcelHelper.getData(1, 1);
-		String footerTitleforAdmin = ExcelHelper.getData(1, 2);
+		String appName = ExcelHelper.getData(1, 1);
+		String noofRecordsperPage = ExcelHelper.getData(1, 2);
+		String footerTitleforAdmin = ExcelHelper.getData(1, 3);
 
 		settings.adminSettings(appName, noofRecordsperPage, footerTitleforAdmin);
 
 		// Front End Settings
-		String sitetitle = ExcelHelper.getData(1, 3);
-		String tagline = ExcelHelper.getData(1, 4);
-		String copyrightText = ExcelHelper.getData(1, 5);
-		String metaDescription = ExcelHelper.getData(1, 6);
-		
+		String sitetitle = ExcelHelper.getData(3, 1);
+		String tagline = ExcelHelper.getData(3, 2);
+		System.out.println("Tagline = " +ExcelHelper.getData(3, 2));
+		String copyrightText = ExcelHelper.getData(3, 3);
+		String metaDescription = ExcelHelper.getData(3, 4);
+
 		settings.frontEndSettings(sitetitle, tagline, copyrightText, metaDescription);
+
+		// Company Settings
+		String companyName = ExcelHelper.getData(5, 1);
+		String addressline1 = ExcelHelper.getData(5, 2);
+		String addressline2 = ExcelHelper.getData(5, 3);
+		String city = ExcelHelper.getData(5, 4);
+		String state = ExcelHelper.getData(5, 5);
+		String country = ExcelHelper.getData(5, 6);
+		String zipcode = ExcelHelper.getData(5, 7);
+		String phone = ExcelHelper.getData(5, 8);
+		String email = ExcelHelper.getData(5, 9);
+
+		settings.companySettings(companyName, addressline1, addressline2, city, state, country, zipcode, phone, email);
+		
+		//Email Settings
+		String fromName =ExcelHelper.getData(7, 1);
+		String fromEmail = ExcelHelper.getData(7, 2);
+		String adminEmail = ExcelHelper.getData(7, 3);
+		
+		settings.emailSettings(fromName, fromEmail, adminEmail);
+		
+		//Password Settings
+		
+		String passwordStrength =ExcelHelper.getData(7, 1);
+		String loginattempt = ExcelHelper.getData(7, 2);
+		String minpwdlength = ExcelHelper.getData(7, 3);
+		String userBlockTime = ExcelHelper.getData(7, 3);
+		
+		settings.passwordSettings(passwordStrength, loginattempt, minpwdlength, userBlockTime);
+		
+		//Social link Settings
+		String facebook =ExcelHelper.getData(7, 1);
+		String twitter = ExcelHelper.getData(7, 2);
+		String linkedIn = ExcelHelper.getData(7, 3);
+		
+		
 	}
 }
