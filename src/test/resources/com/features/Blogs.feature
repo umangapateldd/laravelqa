@@ -33,14 +33,6 @@ Feature: Sanity test functionalities of Laravel CMS
     And "Blogs" is "Inactive"
     Then Make "Blogs" "Active" and verify "success message"
 
-  @blogDelete
-  Scenario: Blogs Delete successfully
-    Given Login as Admin and Go to "Blogs" Module
-    When Verify details in "Blogs"
-    And Click on "Delete" button in "Blogs"
-    Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
-    Then Verify details in "Blogs"
-
   @blogAddSaveandContinue
   Scenario: Blogs Add successfully with click on Save & Continue button
     Given Login as Admin and Go to "Blogs" Module
@@ -71,6 +63,13 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save" button in "Blogs" Settings
     Then I should get "Settings have been saved successfully" message on "Blogs" Settings
 
+  @blogDelete
+  Scenario: Blogs Delete successfully
+    Given Login as Admin and Go to "Blogs" Module
+    When Verify details in "Blogs"
+    And Click on "Delete" button in "Blogs"
+    Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
+    Then Verify details in "Blogs"
   #@BlogFrontVerification
   #Scenario: Blog verification on Front side
   #Given	Login as Admin and Go to "Blogs" Module
