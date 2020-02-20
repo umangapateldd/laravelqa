@@ -1,8 +1,11 @@
 package com.stepdifinations;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -37,6 +40,25 @@ public class FrontStepDefination {
 	public void Verify_Testimonial_in_front_side() throws Throwable {
 		if (driver.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[8]/div/div[3]/p")).getText()
 				.equals("By" + " " + CommonVariables.txtSearchCmnVar)) {
+			String value = "By" + " " + CommonVariables.txtSearchCmnVar;
+
+			List<WebElement> ele = driver.findElements(By.xpath("//*[@id='testimonial']/div/div[2]/div/div/div[3]/p"));
+			int count = ele.size();
+			System.out.println("element size= " + count);
+
+			for (int i = 1; i <= count; i++) {
+				String e1 = driver
+						.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[" + i + "]/div/div[3]/p"))
+						.getText();
+
+				if (driver.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[" + i + "]/div/div[3]/p"))
+						.getText().equals("By" + " " + CommonVariables.txtSearchCmnVar)) {
+					System.out.println("Verify the value = " + driver
+							.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[" + i + "]/div/div[3]/p"))
+							.getText());
+					assert true;
+				}
+			}
 		}
 	}
 }
