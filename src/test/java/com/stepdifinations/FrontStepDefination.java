@@ -13,7 +13,7 @@ import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 import com.utilities.ReadPropFile;
 
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Then;
 
 public class FrontStepDefination {
 	WebDriver driver;
@@ -33,10 +33,10 @@ public class FrontStepDefination {
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
-	@Then("^Verify Testimonial in front side$")
+	@Then("Verify Testimonial in front side")
 	public void Verify_Testimonial_in_front_side() throws Throwable {
 		if (driver.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[8]/div/div[3]/p")).getText()
-				.equals("By"+" "+CommonVariables.txtSearchCmnVar)) {
+				.equals("By" + " " + CommonVariables.txtSearchCmnVar)) {
 		}
 	}
 }

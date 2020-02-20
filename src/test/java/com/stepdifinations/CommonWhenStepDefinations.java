@@ -28,6 +28,7 @@ public class CommonWhenStepDefinations {
 
 	@When("user navigate to {string} page")
 	public void user_navigate_to_page(String menuType) throws Throwable {
+		System.out.println("menuType = " + menuType);
 		switch (menuType) {
 		case "Users":
 			homePage.clickOnUsersMenu();

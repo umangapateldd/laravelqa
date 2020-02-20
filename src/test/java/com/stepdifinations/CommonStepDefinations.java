@@ -66,8 +66,9 @@ public class CommonStepDefinations {
 
 	}
 
-	@Given("^Open Front site and Go to \"([^\"]*)\" Module$")
+	@Given("Open Front site and Go to {string} Module")
 	public void Open_Front_site_and_Go_to_Testimonials_Module(String menuTitle) throws Throwable {
+		System.out.println("menuTitle = " + menuTitle);
 		String url = "http://laravelcms.devdigdev.com/";
 		driver.get(url);
 		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li/a"));
@@ -75,7 +76,6 @@ public class CommonStepDefinations {
 		int count = menu.size();
 		for (int i = 1; i <= count; i++) {
 			String m1 = driver.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[" + i + "]/a")).getText();
-			
 
 			if (m1.equalsIgnoreCase(menuTitle)) {
 				Thread.sleep(1000);

@@ -4,13 +4,13 @@ Feature: Sanity test functionalities of Laravel CMS
   @userAdd
   Scenario: Create User and verify details
     Given Login as Admin and Go to "Users" Module
-    #When Click on "Add" button in "Users"
-    #Then "User" "Add" page gets open
+    When Click on "Add" button in "Users"
+    Then "User" "Add" page gets open
     #And Verify test data with proper validation message for Users
-    #When I enter all mandatory fields for "add" User
-    #And Click on "Save" button in "Users"
-    #Then I should get "account created successfully" message on "Users"
-    #Then Verify details in "Users"
+    When I enter all mandatory fields for "add" User
+    And Click on "Save" button in "Users"
+    Then I should get "account created successfully" message on "Users"
+    Then Verify details in "Users"
 
   @userEdit
   Scenario: Edit User and verify details
@@ -50,8 +50,8 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save and Continue" button in "Users"
     Then I should get "account updated successfully" message on "Users"
     Then Verify details in "Users"
-    
-    @userDelete
+
+  @userDelete
   Scenario: User Delete successfully
     Given Login as Admin and Go to "Users" Module
     When Verify details in "Users"

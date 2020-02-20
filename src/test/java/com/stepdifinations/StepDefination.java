@@ -90,7 +90,7 @@ public class StepDefination {
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
-	/*@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\"$")
+	@And("Click on {string} button in {string}")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
 
 		switch (buttonName) {
@@ -119,9 +119,9 @@ public class StepDefination {
 			break;
 		}
 
-	}*/
+	}
 
-	@Then("^\"([^\"]*)\" \"([^\"]*)\" page gets open$")
+	@Then("{string} {string} page gets open")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
 
 		String page = formName + " " + moduleName;
@@ -150,7 +150,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" User$")
+	@When("I enter all mandatory fields for {string} User")
 	public void I_enter_all_mandatory_fields_for_add_User(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		switch (formName) {
@@ -183,7 +183,7 @@ public class StepDefination {
 
 	}
 
-	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\"$")
+	@Then("I should get {string} message on {string}")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
 
@@ -208,7 +208,7 @@ public class StepDefination {
 		}
 	}
 
-	@And("^Verify details in \"([^\"]*)\"$")
+	@And("Verify details in {string}")
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
 		Thread.sleep(1000);
 		String searchText = "";
@@ -251,7 +251,7 @@ public class StepDefination {
 		commonFunc.searchRecord(searchText, xpath, moduleName);
 	}
 
-	@And("^\"([^\"]*)\" is Inactive$")
+	@And("{string} is Inactive")
 	public void User_is_Inactive(String moduleName) throws Throwable {
 		if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
 			System.out
@@ -265,7 +265,7 @@ public class StepDefination {
 		}
 	}
 
-	@Then("^Make \"([^\"]*)\" \"([^\"]*)\" and verify \"([^\"]*)\"$")
+	@Then("Make {string} {string} and verify {string}")
 	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message)
 			throws Throwable {
 
@@ -449,7 +449,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Our Team$")
+	@When("I enter all mandatory fields for {string} Our Team")
 	public void I_enter_all_mandatory_fields_for_add_Our_Team(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		switch (formName) {
@@ -497,7 +497,7 @@ public class StepDefination {
 
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Blogs$")
+	@When("I enter all mandatory fields for {string} Blogs")
 	public void I_enter_all_mandatory_fields_for_Add_Blogs(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
 		switch (formName) {
@@ -544,7 +544,7 @@ public class StepDefination {
 		}
 	}
 
-	@And("^\"([^\"]*)\" is \"([^\"]*)\"$")
+	@And("{string} is {string}")
 	public void User_is_Active(String moduleName, String status) throws Throwable {
 		if (statuscolumn.getAttribute("class").equals("sort active ")) {
 
@@ -572,7 +572,7 @@ public class StepDefination {
 
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Testimonial$")
+	@When("I enter all mandatory fields for {string} Testimonial")
 	public void I_enter_all_mandatory_fields_for_Add_Testimonial(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
 		switch (formName) {
@@ -606,7 +606,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^Click on \"([^\"]*)\" Settings menu$")
+	@When("Click on {string} Settings menu")
 	public void Click_on_Settings_menu(String moduleName) throws Throwable {
 		Thread.sleep(2000);
 		if (moduleName.equals(CommonVariables.blogs)) {
@@ -618,7 +618,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Settings$")
+	@When("I enter all mandatory fields for {string} Settings")
 	public void I_enter_all_mandatory_fields_for_blogs_setting(String moduleName) throws Throwable {
 
 		if (moduleName.equals(CommonVariables.blogs)) {
@@ -644,7 +644,7 @@ public class StepDefination {
 		}
 	}
 
-	@And("^Click on \"([^\"]*)\" button in \"([^\"]*)\" Settings$")
+	@And("Click on {string} button in {string} Settings")
 	public void Click_on_Save_button_in_Blogs_Settings(String buttonName, String moduleName) throws Throwable {
 		Thread.sleep(2000);
 		if (moduleName.equals(CommonVariables.blogs)) {
@@ -656,7 +656,7 @@ public class StepDefination {
 		}
 	}
 
-	@Then("^I should get \"([^\"]*)\" message on \"([^\"]*)\" Settings$")
+	@Then("I should get {string} message on {string} Settings")
 	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String successmessage,
 			String moduleName) throws Throwable {
 		System.out.println("Message : " + successmessage);
@@ -667,7 +667,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Category$")
+	@When("I enter all mandatory fields for {string} Category")
 	public void I_enter_all_mandatory_fields_for_Add_category(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.categories);
 		switch (formName) {
@@ -707,7 +707,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" FAQ$")
+	@When("I enter all mandatory fields for {string} FAQ")
 	public void I_enter_all_mandatory_fields_for_Add_FAQ(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.faqs);
 		System.out.println("Print excel data = " + ExcelHelper.getData(1, 0));
@@ -740,7 +740,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Event$")
+	@When("I enter all mandatory fields for {string} Event")
 	public void I_enter_all_mandatory_fields_for_Add_Event(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.events);
 		switch (formName) {
@@ -794,7 +794,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^I enter all mandatory fields for \"([^\"]*)\" Page$")
+	@When("I enter all mandatory fields for {string} Page")
 	public void I_enter_all_mandatory_fields_for_Add_Page(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
 		switch (formName) {
@@ -830,7 +830,7 @@ public class StepDefination {
 		}
 	}
 
-	@When("^Data update and verify details for Admin \"([^\"]*)\" section$")
+	@When("Data update and verify details for Admin {string} section")
 	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
 		// System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1,1));
