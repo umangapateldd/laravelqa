@@ -75,10 +75,9 @@ public class Blogs {
 
 	@FindBy(xpath = "//*[@id='main_image_alt']")
 	WebElement ImageAlt;
-	
-	@FindBy(xpath = "//*[@id=\"display_order_376\"]/td[6]")
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]")
 	WebElement date;
-	
 
 	public Blogs(WebDriver driver) {
 		this.driver = driver;
@@ -137,10 +136,13 @@ public class Blogs {
 		Thread.sleep(3000);
 		time.click();
 		Thread.sleep(4000);
+
 	}
 
-	
+	public String getPublishdate() {
+		return date.getText().trim();
 
+	}
 
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");

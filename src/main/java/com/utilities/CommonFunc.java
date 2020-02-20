@@ -172,7 +172,11 @@ public class CommonFunc {
 
 		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
-			CommonVariables.deleteRecord = false;
+
+			if (moduleName.equals(CommonVariables.blogs)) {
+				CommonVariables.publishdate = blogs.getPublishdate();
+			}
+
 			Thread.sleep(3000);
 			CommonVariables.deleteRecord = false;
 			assert true;
