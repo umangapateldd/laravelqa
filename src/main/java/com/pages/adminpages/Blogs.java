@@ -59,13 +59,13 @@ public class Blogs {
 
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")
 	WebElement selecttime;
-	
+
 	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
 	WebElement Settingmenu;
-	
+
 	@FindBy(xpath = "//*[@id='btnsave']")
 	WebElement Settingsave;
-	
+
 	@FindBy(xpath = "//*[@id='field_blog_per_page_display']")
 	WebElement Fieldblog;
 
@@ -74,10 +74,9 @@ public class Blogs {
 
 	@FindBy(xpath = "//*[@id='main_image_alt']")
 	WebElement ImageAlt;
-	
-	@FindBy(xpath = "//*[@id=\"display_order_376\"]/td[6]")
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]")
 	WebElement date;
-	
 
 	public Blogs(WebDriver driver) {
 		this.driver = driver;
@@ -110,6 +109,7 @@ public class Blogs {
 		AuthorLastName.clear();
 		AuthorLastName.sendKeys(AuthorlastName);
 	}
+
 	public void enterFieldblog(String fieldblog) {
 		log.info("********************Enter the Author LastName********************");
 		Fieldblog.clear();
@@ -135,27 +135,30 @@ public class Blogs {
 		Thread.sleep(3000);
 		time.click();
 		Thread.sleep(4000);
+
 	}
 
-	
+	public String getPublishdate() {
+		return date.getText().trim();
 
+	}
 
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
 		editbutton.click();
 	}
+
 	public void ClickonSettingmenu() throws InterruptedException {
 		log.info("********************Click on Setting Menu********************");
 		Settingmenu.click();
 		Thread.sleep(2000);
 	}
-	
+
 	public void ClickonSettingsave() throws InterruptedException {
 		log.info("********************Click on Setting save********************");
 		Settingsave.click();
 		Thread.sleep(2000);
 	}
-
 
 	public void enterDescription(String description) throws InterruptedException {
 		log.info("********************Enter the Description********************");

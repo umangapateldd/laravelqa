@@ -72,7 +72,7 @@ public class Frontblog {
 //	System.out.println("date xpath = " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
 	System.out.println("date value = " +date.getText());
 	if (driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText().trim()
-			.equals(date.getText())) {
+			.equals(CommonVariables.publishdate)) {
 		System.out.println("Value match : " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
 	}
 	
