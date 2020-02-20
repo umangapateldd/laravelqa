@@ -1,7 +1,7 @@
 Feature: Sanity test functionalities of Laravel CMS
   As a admin user add, update, delete, search, verify details the below sanity functioanlities
 
-  @TestimonialAdd
+  @Testimonial
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
     When Click on "Add" button in "Testimonial"
@@ -54,7 +54,7 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save and Continue" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
-     
+
   @TestimonialDelete
   Scenario: Testimonial Delete successfully
     Given Login as Admin and Go to "Testimonials" Module
@@ -72,4 +72,7 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save" button in "Testimonial" Settings
     Then I should get "Settings have been saved successfully" message on "Testimonial" Settings
 
-  
+  @Testimonial
+  Scenario: Testimonial verification on Front side
+    Given Open Front site and Go to "TESTIMONIAL" Module
+    Then Verify Testimonial in front side
