@@ -30,6 +30,8 @@ public class CommonVariables {
 	public static String testimonial ="Testimonial";
 	public static String categories ="Categories";
 	public static String txtSearchCmnVar = "";
+	public static String adminauthor = "";
+	public static String publishdate = "";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
 	public static boolean OurTeam = false;

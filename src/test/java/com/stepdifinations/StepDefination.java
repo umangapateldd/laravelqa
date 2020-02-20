@@ -508,13 +508,15 @@ public class StepDefination {
 			String authorlastName = ExcelHelper.getData(1, 3);
 			String image = ExcelHelper.getData(1, 4);
 			String imageAlt = ExcelHelper.getData(1, 5);
-			String publishdate = ExcelHelper.getData(1, 6);
+//			String publishdate = ExcelHelper.getData(1, 6);
 			String status = ExcelHelper.getData(1, 7);
 			String description = ExcelHelper.getData(1, 8);
 			String metaTitle = ExcelHelper.getData(1, 9);
 			String metaDescription = ExcelHelper.getData(1, 10);
 
 			CommonVariables.txtSearchCmnVar = title;
+			CommonVariables.adminauthor = authorfirstName+ " "+authorlastName;
+			
 
 			blogs.enterTitle(title);
 			blogs.enterBlogCategory(blogCategory);
@@ -522,7 +524,7 @@ public class StepDefination {
 			blogs.enterAuthorLastName(authorlastName);
 			blogs.enterImage(image);
 			blogs.enterImageAlt(imageAlt);
-			blogs.enterPublishDate(publishdate);
+			blogs.enterPublishDate();
 			blogs.enterStatus(status);
 			blogs.enterDescription(description);
 			blogs.enterMetaTitle(metaTitle);
