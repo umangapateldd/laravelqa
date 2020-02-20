@@ -23,10 +23,6 @@ public class Frontblog {
 	private Logger log = LogHelper.getLogger(Blogs.class);
 	boolean verifyDetails = false;
 
-	
-	@FindBy(xpath = "//*[@id=\"display_order_376\"]/td[6]")
-	WebElement date;
-
 	public Frontblog(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -69,12 +65,15 @@ public class Frontblog {
 				System.out.println("Value match : " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[1]")).getText());
 			}
 	
-//	System.out.println("date xpath = " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
-	System.out.println("date value = " +date.getText());
+	System.out.println("date xpath = " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
+	System.out.println("date value = " +CommonVariables.publishdate);
 	if (driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText().trim()
-			.equals(CommonVariables.publishdate)) {
+			.equals("Date |"+ CommonVariables.publishdate)) {
 		System.out.println("Value match : " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
 	}
-	
+	else
+	{
+		assert false;
+	}
 }
 }

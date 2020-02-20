@@ -34,6 +34,7 @@ public class CommonFunc {
 	FAQ faq;
 	Events events;
 	Pages pages;
+	
 	Settings settings;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
@@ -69,6 +70,7 @@ public class CommonFunc {
 		PageFactory.initElements(driver, this);
 		commonVariables = new CommonVariables(driver);
 		dropDownHelper = new DropDownHelper(driver);
+		
 	}
 
 	public void checkElementAvailable(List<WebElement> xpathListElement) {
@@ -175,6 +177,7 @@ public class CommonFunc {
 
 			if (moduleName.equals(CommonVariables.blogs)) {
 				CommonVariables.publishdate = blogs.getPublishdate();
+				System.out.println("Publish date value : " +CommonVariables.publishdate);
 			}
 
 			Thread.sleep(3000);
