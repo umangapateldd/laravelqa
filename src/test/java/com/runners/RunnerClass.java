@@ -18,7 +18,7 @@ public class RunnerClass {
 
 	@RunWith(Cucumber.class)
 	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations", "com.runners" },
-//			tags={"@Smoke, @navigation"},
+//			tags={"@userAdd, @userDelete"},
 //			tags={"@smoke_ops"},
 			plugin = { "pretty", "html:target/cucumber",
 					"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)
