@@ -1,7 +1,7 @@
 Feature: Sanity test functionalities of Laravel CMS
   As a admin user add, update, delete, search, verify details the below sanity functioanlities
 
-  @blogAdd
+  @blog
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
@@ -70,8 +70,8 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Delete" button in "Blogs"
     Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
     Then Verify details in "Blogs"
-  #@BlogFrontVerification
-  #Scenario: Blog verification on Front side
-  #Given	Login as Admin and Go to "Blogs" Module
-  #When	Get Blog name from Admin panel
-  #Then	Verify Blog name in front side
+
+  @blog
+  Scenario: Blog verification on Front side
+    Given Open Front site and Go to "BLOG" Module
+    Then Verify Blog in front side

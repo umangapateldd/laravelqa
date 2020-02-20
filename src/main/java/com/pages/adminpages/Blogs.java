@@ -75,6 +75,10 @@ public class Blogs {
 
 	@FindBy(xpath = "//*[@id='main_image_alt']")
 	WebElement ImageAlt;
+	
+	@FindBy(xpath = "//*[@id=\"display_order_376\"]/td[6]")
+	WebElement date;
+	
 
 	public Blogs(WebDriver driver) {
 		this.driver = driver;
@@ -120,7 +124,7 @@ public class Blogs {
 		Status.sendKeys(status);
 	}
 
-	public void enterPublishDate(String publishDate) throws InterruptedException {
+	public void enterPublishDate() throws InterruptedException {
 		log.info("********************Enter the Publish Date********************");
 
 //		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", PublishDate);
@@ -134,6 +138,9 @@ public class Blogs {
 		time.click();
 		Thread.sleep(4000);
 	}
+
+	
+
 
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
