@@ -60,20 +60,21 @@ public class Frontblog {
 //		    String adminvalue = " Author |" +CommonVariables.adminauthor;
 //			System.out.println("author xpath = " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[1]")).getText());
 //			System.out.println("admin value = " +adminvalue);
-			if (driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[1]")).getText().trim()
-					.equals("Author |"+" " +CommonVariables.adminauthor)) {
-				System.out.println("Value match : " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[1]")).getText());
-			}
-	
-	System.out.println("date xpath = " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
-	System.out.println("date value = " +CommonVariables.publishdate);
-	if (driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText().trim()
-			.equals("Date |"+ CommonVariables.publishdate)) {
-		System.out.println("Value match : " +driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
+		if (driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[1]")).getText().trim()
+				.equals("Author | " + CommonVariables.adminauthor)) {
+			System.out.println("Value match : "
+					+ driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[1]")).getText());
+		}
+
+		System.out.println("date xpath = "
+				+ driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
+		System.out.println("date value = " + CommonVariables.publishdate);
+		if (driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText().trim()
+				.equals("Date | " + CommonVariables.publishdate)) {
+			System.out.println("Value match : "
+					+ driver.findElement(By.xpath("/html/body/main/div/div/div[1]/div[1]/div[1]/ul/li[2]")).getText());
+		} else {
+			assert false;
+		}
 	}
-	else
-	{
-		assert false;
-	}
-}
 }

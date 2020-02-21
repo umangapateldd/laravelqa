@@ -176,6 +176,9 @@ public class CommonFunc {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
 			if (moduleName.equals(CommonVariables.blogs)) {
+				blogs = new Blogs(driver);
+				System.out.println("Module name ="+moduleName);
+				System.out.println("commonvariable ="+CommonVariables.blogs);
 				CommonVariables.publishdate = blogs.getPublishdate();
 				System.out.println("Publish date value : " +CommonVariables.publishdate);
 			}
