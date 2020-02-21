@@ -1,7 +1,7 @@
 Feature: Sanity test functionalities of Laravel CMS
   As a admin user add, update, delete, search, verify details the below sanity functioanlities
 
-  @ourteamAdd
+  @ourteam
   Scenario: Our Team Member Add successfully with click on Save button
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
@@ -61,3 +61,8 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save and Continue" button in "Our Team"
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
+    
+  @ourteam
+  Scenario: Our team verification on Front side
+    Given Open Front site and Go to "TEAM" Module
+    Then Verify Our team in front side

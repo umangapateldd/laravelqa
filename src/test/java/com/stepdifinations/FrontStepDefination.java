@@ -9,6 +9,7 @@ import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.frontpages.Frontblog;
 import com.pages.frontpages.Frontfaq;
+import com.pages.frontpages.Frontourteam;
 import com.pages.frontpages.Fronttestimonial;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
@@ -25,6 +26,7 @@ public class FrontStepDefination {
 	CommonFunc commonFunc;
 	Frontblog frontblog;
 	Frontfaq frontfaq;
+	Frontourteam frontourteam;
 	Fronttestimonial fronttestimonial;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(FrontStepDefination.class);
@@ -37,6 +39,7 @@ public class FrontStepDefination {
 		frontblog = new Frontblog(driver);
 		fronttestimonial = new Fronttestimonial(driver);
 		frontfaq = new Frontfaq(driver);
+		frontourteam = new Frontourteam(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -56,4 +59,11 @@ public class FrontStepDefination {
 
 		frontfaq.verifyFAQtitle();
 	}
+	
+	@Then("Verify Our team in front side")
+	public void Verify_Our_team_in_front_side() throws Throwable {
+
+		frontourteam.verifyOurteamtitle();
+	}
+	
 }
