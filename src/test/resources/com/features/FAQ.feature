@@ -62,3 +62,9 @@ Feature: Sanity test functionalities of Laravel CMS
     And Click on "Save and Continue" button in "FAQ"
     Then I should get "updated successfully." message on "FAQ"
     Then Verify details in "FAQs"
+    
+  @FAQ
+  Scenario: FAQ verification on Front side
+    Given Open Front site and Go to "FAQ" Module
+    Then Verify FAQ in front side
+    

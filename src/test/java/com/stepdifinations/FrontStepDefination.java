@@ -47,4 +47,10 @@ public class FrontStepDefination {
 
 		frontblog.verifyBlogtitle();
 	}
+	
+	@Then("Verify FAQ in front side")
+	public void Verify_FAQ_in_front_side() throws Throwable {
+
+		frontblog.verifyBlogtitle();
+	}
 }
