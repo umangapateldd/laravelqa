@@ -1,7 +1,7 @@
 Feature: Sanity test functionalities of Laravel CMS
   As a admin user add, update, delete, search, verify details the below sanity functioanlities
 
-  @FAQ1
+  @FAQ
   Scenario: FAQ Add successfully with click on Save button
     Given Login as Admin and Go to "FAQs" Module
     When Click on "Add" button in "FAQs"

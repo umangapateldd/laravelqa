@@ -28,36 +28,36 @@ public class Frontfaq {
 		commonFunc = new CommonFunc(driver);
 		dropDownHelper = new DropDownHelper(driver);
 	}
+
 	public void verifyFAQtitle() {
 		log.info("********************Enter the Title********************");
 
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='faq-accordions']/div/div/h5/a"));
 		int count = ele.size();
 		System.out.println("element size= " + count);
-		int tmp = 1;
-		
-			for (int i = 1; i <= count; i++) {
-				
 
-				if (driver.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a"))
-						.getText().trim().equals(CommonVariables.txtSearchCmnVar)) {
-					System.out.println("Verify the value = " + driver
-							.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a"))
-							.getText().trim());
-					driver
-					.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a")).click();
-					tmp = 0;
-					
-				}
-			}
+		boolean FAQVal = false;
 
-			if (tmp == 0) {
+		for (int i = 1; i <= count; i++) {
 
-			} else {
+			if (driver.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a")).getText().trim()
+					.equals(CommonVariables.txtSearchCmnVar)) {
+				System.out.println("Verify the value = " + driver
+						.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a")).getText().trim());
+				driver.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a")).click();
 
-				assert false;
+				FAQVal = true;
+				break;
+
 			}
 		}
+
+		if (FAQVal == true) {
+			System.out.println(CommonVariables.txtSearchCmnVar + " FAQ is matched");
+			assert true;
+		} else {
+			System.out.println(CommonVariables.txtSearchCmnVar + " FAQ is not matched");
+			assert false;
+		}
 	}
-
-
+}
