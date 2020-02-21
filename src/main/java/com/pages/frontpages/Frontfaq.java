@@ -31,20 +31,23 @@ public class Frontfaq {
 	public void verifyFAQtitle() {
 		log.info("********************Enter the Title********************");
 
-		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='testimonial']/div/div[2]/div/div/div[3]/p"));
+		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='faq-accordions']/div/div/h5/a"));
 		int count = ele.size();
 		System.out.println("element size= " + count);
 		int tmp = 1;
 		
 			for (int i = 1; i <= count; i++) {
+				
 
-				if (driver.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[" + i + "]/div/div[3]/p"))
-						.getText().equals("By" + " " + CommonVariables.txtSearchCmnVar)) {
+				if (driver.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a"))
+						.getText().trim().equals(CommonVariables.txtSearchCmnVar)) {
 					System.out.println("Verify the value = " + driver
-							.findElement(By.xpath("//*[@id='testimonial']/div/div[2]/div[" + i + "]/div/div[3]/p"))
-							.getText());
+							.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a"))
+							.getText().trim());
+					driver
+					.findElement(By.xpath("//*[@id='faq-accordions']/div[" + i + "]/div/h5/a")).click();
 					tmp = 0;
-					break;
+					
 				}
 			}
 
@@ -57,4 +60,4 @@ public class Frontfaq {
 		}
 	}
 
-}
+
