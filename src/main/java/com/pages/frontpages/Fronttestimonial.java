@@ -39,6 +39,7 @@ public class Fronttestimonial {
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='testimonial']/div/div[2]/div/div/div[3]/p"));
 		int count = ele.size();
 		System.out.println("element size= " + count);
+
 		boolean testimonialVal = false;
 
 		for (int i = 1; i <= count; i++) {
@@ -59,5 +60,7 @@ public class Fronttestimonial {
 			System.out.println(CommonVariables.txtSearchCmnVar + " testimonial is not matched");
 			assert false;
 		}
+
 	}
+
 }
