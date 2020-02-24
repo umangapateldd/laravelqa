@@ -32,7 +32,7 @@ public class Frontourteam {
 	}
 
 	public void verifyOurteamtitle() throws InterruptedException {
-		log.info("********************Enter the Title********************");
+		log.info("********************verify the Title********************");
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
 		String linkdin = ExcelHelper.getData(1, 3);
 
@@ -108,11 +108,9 @@ public class Frontourteam {
 							assert false;
 						}
 					}
+					ourteamVal = true;
+					break;
 				}
-
-				ourteamVal = true;
-				break;
-
 			} else {
 				assert false;
 			}

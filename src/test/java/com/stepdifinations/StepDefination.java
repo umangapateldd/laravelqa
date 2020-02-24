@@ -831,6 +831,19 @@ public class StepDefination {
 			break;
 		}
 	}
+	
+	 @When("Verify details in Pages with other filters")
+	 public void Verify_details_in_pages_grid_with_other_filters() throws Throwable {
+		 pages.Searchfilters();
+		 
+	 }
+	
+	 @When("Get list of pages title")
+	 public void Get_list_of_pages_title() throws Throwable {
+        pages.Admintitle();
+    
+		 
+	 }
 
 	@When("Data update and verify details for Admin {string} section")
 	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {

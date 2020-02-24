@@ -1,6 +1,9 @@
 package com.pages.adminpages;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,6 +42,17 @@ public class Pages {
 
 	@FindBy(id = "meta_desc")
 	WebElement MetaDescription;
+	
+	@FindBy(xpath = "//*[@id='status']")
+	WebElement gridStatus;
+	
+	@FindBy(xpath = "//*[@id='status']/option[3]")
+	WebElement Statusoption;
+	
+	@FindBy(xpath = "//*[@id='btnsearch']")
+	WebElement Searchbutton;
+
+	
 
 	public Pages(WebDriver driver) {
 		this.driver = driver;
@@ -85,4 +99,32 @@ public class Pages {
 		MetaDescription.sendKeys(metaDescription);
 	}
 
+	public void Admintitle() {
+		log.info("********************Enter the Admin title********************");
+
+		List<WebElement> Admintitle = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
+		int count = Admintitle.size();
+		for (int i = 1; i <= count; i++) {
+			String title = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a"))
+					.getText();
+			System.out.println("value of admin title = " + driver
+					.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a")).getText());
+			CommonVariables.pagetitle = title;
+			System.out.println("Admin commvariable = "+CommonVariables.pagetitle);
+
+		}
+	}
+
+	public void Searchfilters() throws InterruptedException {
+		log.info("********************Search filters********************");
+		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
+		Thread.sleep(3000);
+		gridStatus.click();
+		Thread.sleep(2000);
+		Statusoption.click();
+		Thread.sleep(2000);
+		Searchbutton.click();	
+		Thread.sleep(4000);
+		
+	}
 }

@@ -56,8 +56,10 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
 
-  #@PagesFrontVerification
-  #Scenario: Page verification on Front side
-  #Given	Login as Admin and Go to "Pages" Module
-  #When	Get Page name from Admin panel
-  #Then	Verify Page name in front side
+  @Pages
+  Scenario: Page verification on Front side
+   Given Login as Admin and Go to "Pages" Module
+   When Verify details in Pages with other filters
+   Then Get list of pages title
+   And Open Front site and Go to "PAGES" Module
+   Then Open front side and compare pages title with admin list

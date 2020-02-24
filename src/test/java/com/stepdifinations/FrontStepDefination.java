@@ -10,6 +10,7 @@ import com.basicactions.WaitHelper;
 import com.pages.frontpages.Frontblog;
 import com.pages.frontpages.Frontfaq;
 import com.pages.frontpages.Frontourteam;
+import com.pages.frontpages.Frontpages;
 import com.pages.frontpages.Fronttestimonial;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
@@ -28,6 +29,7 @@ public class FrontStepDefination {
 	Frontfaq frontfaq;
 	Frontourteam frontourteam;
 	Fronttestimonial fronttestimonial;
+	Frontpages frontpages;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(FrontStepDefination.class);
 
@@ -40,6 +42,7 @@ public class FrontStepDefination {
 		fronttestimonial = new Fronttestimonial(driver);
 		frontfaq = new Frontfaq(driver);
 		frontourteam = new Frontourteam(driver);
+		frontpages = new Frontpages(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -53,17 +56,24 @@ public class FrontStepDefination {
 
 		frontblog.verifyBlogtitle();
 	}
-	
+
 	@Then("Verify FAQ in front side")
 	public void Verify_FAQ_in_front_side() throws Throwable {
 
 		frontfaq.verifyFAQtitle();
 	}
-	
+
 	@Then("Verify Our team in front side")
 	public void Verify_Our_team_in_front_side() throws Throwable {
 
 		frontourteam.verifyOurteamtitle();
 	}
-	
+
+	@Then("Open front side and compare pages title with admin list")
+	public void Verify_Page_in_front_side() throws Throwable {
+		{
+            frontpages.verifypagestitle();
+		}
+	}
+
 }
