@@ -32,27 +32,33 @@ public class Frontpages {
 
 	public void verifypagestitle() throws InterruptedException {
 		log.info("********************verify the Title********************");
-		driver.findElement(By.xpath("//*[@id='pages']")).click();
-		Thread.sleep(2000);
-		
-		System.out.println("value = " + CommonVariables.pagetitle);
-	
+
+		System.out.println("value = " + CommonVariables.strArray.get(0));
 
 		List<WebElement> pagetitlelist = driver.findElements(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[2]/div/a"));
 
 		int count = pagetitlelist.size();
-		System.out.println("Page count := " +count);
+		System.out.println("Page count := " + count);
+
+		System.out.println("Page Title = "
+				+ driver.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[2]/div/a[1]")).getText());
+		Thread.sleep(5000);
+
+		int ar = 0;
 		for (int i = 1; i <= count; i++) {
 			String pagetitle = driver.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[2]/div/a[" + i + "]"))
 					.getText();
+			System.out.println("value of page title = " + pagetitle);
 
-			if (pagetitle.equals(CommonVariables.pagetitle)) {
+			if (pagetitle.equals(CommonVariables.strArray.get(ar))) {
 				Thread.sleep(1000);
 				System.out.println("Page title match = " + driver
 						.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[2]/div/a[" + i + "]")).getText());
-				Thread.sleep(4000);
-				break;
+				Thread.sleep(4000);				
+			} else {
+				System.out.println("Page title is not match");
 			}
+			ar++;
 		}
 
 	}

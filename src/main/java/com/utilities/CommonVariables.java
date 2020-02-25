@@ -32,6 +32,7 @@ public class CommonVariables {
 	public static String txtSearchCmnVar = "";
 	public static String pagetitle = "";
 	public static String adminauthor = "";
+	public static List<String> strArray = new ArrayList<String>();
 	public static String publishdate = "";
 	public static boolean deleteRecord = false;
 	public static boolean saveandcontinue = false;
