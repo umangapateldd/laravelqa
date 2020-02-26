@@ -281,40 +281,19 @@ public class StepDefination {
 				assert false;
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-
-			commonFunc.checkSuccessMessage("The team member successfully inactivated.",
-					"The team member successfully activated.", moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("team member");
 		} else if (moduleName.equals(CommonVariables.blogs)) {
-
-			commonFunc.checkSuccessMessage("The blog successfully inactivated.", "The blog successfully activated.",
-					moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("blog");
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
-
-			commonFunc.checkSuccessMessage("The testimonial successfully inactivated.",
-					"The testimonial successfully activated.", moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("testimonial");
 		} else if (moduleName.equals(CommonVariables.categories)) {
-
-			commonFunc.checkSuccessMessage("The category successfully inactivated.",
-					"The category successfully activated.", moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("category");
 		} else if (moduleName.equals(CommonVariables.faqs)) {
-
-			commonFunc.checkSuccessMessage("The FAQ successfully inactivated.", "The FAQ successfully activated.",
-					moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("FAQ");
 		} else if (moduleName.equals(CommonVariables.events)) {
-
-			commonFunc.checkSuccessMessage("The event successfully inactivated.", "The event successfully activated.",
-					moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("event");
 		} else if (moduleName.equals(CommonVariables.pages)) {
-
-			commonFunc.checkSuccessMessage("The page successfully inactivated.", "The page successfully activated.",
-					moduleName, statuscolumn, successmsg);
-
+			commonFunc.clickOnstatuscolumn("page");
 		}
 	}
 

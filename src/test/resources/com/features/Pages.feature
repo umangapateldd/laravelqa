@@ -1,7 +1,7 @@
 Feature: Sanity test functionalities of Laravel CMS
   As a admin user add, update, delete, search, verify details the below sanity functioanlities
 
-  @PagesAdd
+  @Pages
   Scenario: Page Add successfully with click on Save button
     Given Login as Admin and Go to "Pages" Module
     When Click on "Add" button in "Pages"
@@ -23,7 +23,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
 
-  @PagesActiveInactive
+  @Pages
   Scenario: Page Active Inactive
     Given Login as Admin and Go to "Pages" Module
     When Verify details in "Pages"
@@ -56,7 +56,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
 
-  @Pages
+  @Pages1
   Scenario: Page verification on Front side
    Given Login as Admin and Go to "Pages" Module
    When Verify details in Pages with other filters
