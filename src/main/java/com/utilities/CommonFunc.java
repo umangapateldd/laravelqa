@@ -34,7 +34,7 @@ public class CommonFunc {
 	FAQ faq;
 	Events events;
 	Pages pages;
-	
+
 	Settings settings;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
@@ -70,7 +70,6 @@ public class CommonFunc {
 		PageFactory.initElements(driver, this);
 		commonVariables = new CommonVariables(driver);
 		dropDownHelper = new DropDownHelper(driver);
-		
 	}
 
 	public void checkElementAvailable(List<WebElement> xpathListElement) {
@@ -122,9 +121,7 @@ public class CommonFunc {
 			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
 
 			if (m1.equals(menuTitle)) {
-				Thread.sleep(1000);
 				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
-				Thread.sleep(4000);
 				break;
 			}
 		}
@@ -133,14 +130,12 @@ public class CommonFunc {
 	public void searchRecord(String searchText, String xpath, String moduleName) throws InterruptedException {
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
-//		Thread.sleep(1000);
 		System.out.println(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).clear();
-//		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
-		Thread.sleep(1000);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
-		Thread.sleep(4000);
+		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
+				"display: none;");
 
 		System.out.println("module name =" + moduleName);
 		System.out.println("searchtext name =" + searchText);
@@ -170,20 +165,17 @@ public class CommonFunc {
 			}
 		}
 
-		Thread.sleep(5000);
-
 		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
 			if (moduleName.equals(CommonVariables.blogs)) {
 				blogs = new Blogs(driver);
-				System.out.println("Module name ="+moduleName);
-				System.out.println("commonvariable ="+CommonVariables.blogs);
+				System.out.println("Module name =" + moduleName);
+				System.out.println("commonvariable =" + CommonVariables.blogs);
 				CommonVariables.publishdate = blogs.getPublishdate();
-				System.out.println("Publish date value : " +CommonVariables.publishdate);
+				System.out.println("Publish date value : " + CommonVariables.publishdate);
 			}
 
-			Thread.sleep(3000);
 			CommonVariables.deleteRecord = false;
 			assert true;
 		} else {
@@ -192,10 +184,38 @@ public class CommonFunc {
 		}
 	}
 
+	public void checkSuccessMessage(String inactive_msg, String active_msg, String moduleName) {
+
+		String blogsmsg = "";
+
+		String blogmsg2 = "";
+
+		if (CommonVariables.inactive.equals("false")) {
+			blogsmsg = inactive_msg;
+		} else if (CommonVariables.inactive.equals("true")) {
+			blogmsg2 = active_msg;
+		} else {
+			System.out.println(moduleName + " Message is not match");
+			assert false;
+		}
+
+		statuscolumn.click();
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
+
+		if (successmsg.getText().equals(blogsmsg)) {
+			System.out.println("Messgae for active blogs = " + blogsmsg);
+		} else if (successmsg.getText().equals(blogmsg2)) {
+			System.out.println("Messgae for inactive blogs = " + blogmsg2);
+		} else {
+			System.out.println("Blog2 Message is not match:");
+			assert false;
+		}
+	}
+
 	public void clickOnAddNewButton() throws InterruptedException {
 		log.info("********************Click on add new user button********************");
 		addNewButton.click();
-		Thread.sleep(2000);
 	}
 
 	public void clickOnEditButton(String moduleName) throws InterruptedException {
@@ -257,23 +277,17 @@ public class CommonFunc {
 
 	public void clickOnCancelbutton() throws InterruptedException {
 		log.info("********************Click on confirm yes button********************");
-		Thread.sleep(5000);
 		CancelButton.click();
-		Thread.sleep(5000);
 	}
 
 	public void clickOnsavecontinuebutton() throws InterruptedException {
 		log.info("********************Click on save and continue button********************");
-		Thread.sleep(5000);
 		savecontinueButton.click();
-		Thread.sleep(2000);
-
 	}
 
 	public void clickOnSave() throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
-		Thread.sleep(2000);
 	}
 
 }

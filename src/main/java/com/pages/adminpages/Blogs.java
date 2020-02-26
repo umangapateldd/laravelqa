@@ -94,9 +94,7 @@ public class Blogs {
 
 	public void enterBlogCategory(String blogCategory) throws InterruptedException {
 		log.info("********************Enter the Blog Categories********************");
-		Thread.sleep(3000);
 		dropDownHelper.selectVisibleText(BlogCategory, blogCategory);
-		Thread.sleep(5000);
 	}
 
 	public void enterAuthorFirstName(String AuthorfirstName) {
@@ -127,16 +125,10 @@ public class Blogs {
 		log.info("********************Enter the Publish Date********************");
 
 //		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", PublishDate);
-		Thread.sleep(5000);
 		PublishDate.click();
-		Thread.sleep(3000);
 		selectdate.click();
-		Thread.sleep(4000);
 		selecttime.click();
-		Thread.sleep(3000);
-		time.click();
-		Thread.sleep(4000);
-
+		time.click();		
 	}
 
 	public String getPublishdate() {
@@ -152,13 +144,11 @@ public class Blogs {
 	public void ClickonSettingmenu() throws InterruptedException {
 		log.info("********************Click on Setting Menu********************");
 		Settingmenu.click();
-		Thread.sleep(2000);
 	}
 
 	public void ClickonSettingsave() throws InterruptedException {
 		log.info("********************Click on Setting save********************");
 		Settingsave.click();
-		Thread.sleep(2000);
 	}
 
 	public void enterDescription(String description) throws InterruptedException {
@@ -168,23 +158,18 @@ public class Blogs {
 		driver.switchTo().defaultContent();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='meta_title']")));
-		Thread.sleep(2000);
 	}
 
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
-		Thread.sleep(8000);
 		Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
-		Thread.sleep(10000);
-
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 	}
 
 	public void enterImageAlt(String imageAlt) throws InterruptedException {
 		log.info("********************Enter the Image Alt********************");
-
 		ImageAlt.sendKeys(imageAlt);
-		Thread.sleep(2000);
-
 	}
 
 	public void enterMetaTitle(String metaTitle) {

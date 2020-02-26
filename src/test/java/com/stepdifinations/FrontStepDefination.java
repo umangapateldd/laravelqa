@@ -72,7 +72,7 @@ public class FrontStepDefination {
 	@Then("Open front side and compare pages title with admin list")
 	public void Verify_Page_in_front_side() throws Throwable {
 		{
-            frontpages.verifypagestitle();
+			frontpages.verifypagestitle();
 		}
 	}
 

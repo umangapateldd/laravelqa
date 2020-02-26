@@ -92,7 +92,8 @@ public class StepDefination {
 
 	@And("Click on {string} button in {string}")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
-
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		switch (buttonName) {
 		case "Add":
 			commonFunc.clickOnAddNewButton();
@@ -123,7 +124,8 @@ public class StepDefination {
 
 	@Then("{string} {string} page gets open")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
-
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		String page = formName + " " + moduleName;
 		String settingpage = moduleName + " " + formName;
 
@@ -186,16 +188,13 @@ public class StepDefination {
 	@Then("I should get {string} message on {string}")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
-
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		if (successmsg.getText().contains("account restored successfully.")) {
 			System.out.println("Message :" + successmsg.getText());
-
-			Thread.sleep(5000);
 		} else {
 			if (successmsg.getText().contains(sucessmessage)) {
 				System.out.println("Message :" + successmsg.getText());
-
-				Thread.sleep(5000);
 			} else {
 				System.out.println("Message is not match: ");
 				assert false;
@@ -210,7 +209,8 @@ public class StepDefination {
 
 	@And("Verify details in {string}")
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
-		Thread.sleep(1000);
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		String searchText = "";
 		String xpath = "";
 		if (moduleName.equals(CommonVariables.users)) {
@@ -269,23 +269,20 @@ public class StepDefination {
 	public void Make_User_Active_and_verify_error_message(String moduleName, String status, String message)
 			throws Throwable {
 
-		if (moduleName.equals(CommonVariables.users)) {
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 
+		if (moduleName.equals(CommonVariables.users)) {
 			String Message = "The user account is not validated yet, user needs to validate his/her account.";
-			Thread.sleep(3000);
 			statuscolumn.click();
-			Thread.sleep(3000);
 			if (successmsg.getText().equals(Message)) {
 				System.out.println("Messgae for Inactive user = " + successmsg.getText());
 			} else {
 				assert false;
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-
 			String Msg = "";
 			String Msg2 = "";
-			Thread.sleep(3000);
-
 			if (CommonVariables.inactive.equals("false")) {
 				Msg = "The team member successfully inactivated.";
 			} else if (CommonVariables.inactive.equals("true")) {
@@ -294,9 +291,10 @@ public class StepDefination {
 				System.out.println("Message is not match:");
 				assert false;
 			}
-
 			statuscolumn.click();
-			Thread.sleep(3000);
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
 
 			if (successmsg.getText().equals(Msg)) {
 				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
@@ -305,34 +303,8 @@ public class StepDefination {
 			} else {
 				assert false;
 			}
-		}
-
-		else if (moduleName.equals(CommonVariables.blogs)) {
-
-			String blogsmsg = "";
-
-			String blogmsg2 = "";
-
-			if (CommonVariables.inactive.equals("false")) {
-				blogsmsg = "The blog successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				blogmsg2 = "The blog successfully activated.";
-			} else {
-				System.out.println("Blog1 Message is not match:");
-				assert false;
-			}
-
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(blogsmsg)) {
-				System.out.println("Messgae for active blogs = " + blogsmsg);
-			} else if (successmsg.getText().equals(blogmsg2)) {
-				System.out.println("Messgae for inactive blogs = " + blogmsg2);
-			} else {
-				System.out.println("Blog2 Message is not match:");
-				assert false;
-			}
+		} else if (moduleName.equals(CommonVariables.blogs)) {
+			commonFunc.checkSuccessMessage("The blog successfully inactivated.", "The blog successfully activated.", moduleName);
 
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			String testimonialsmsg = "";
@@ -346,7 +318,8 @@ public class StepDefination {
 			}
 
 			statuscolumn.click();
-			Thread.sleep(3000);
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
 
 			if (successmsg.getText().equals(testimonialsmsg)) {
 				System.out.println("Messgae for active testimonial = " + testimonialsmsg);
@@ -356,9 +329,7 @@ public class StepDefination {
 				System.out.println("testimonial Message is not match:");
 				assert false;
 			}
-		}
-
-		else if (moduleName.equals(CommonVariables.categories)) {
+		} else if (moduleName.equals(CommonVariables.categories)) {
 			String categorymsg = "";
 			String categorymsg2 = "";
 			if (CommonVariables.inactive.equals("false")) {
@@ -370,7 +341,8 @@ public class StepDefination {
 			}
 
 			statuscolumn.click();
-			Thread.sleep(3000);
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
 
 			if (successmsg.getText().equals(categorymsg)) {
 				System.out.println("Messgae for active Categories = " + categorymsg);
@@ -392,7 +364,8 @@ public class StepDefination {
 			}
 
 			statuscolumn.click();
-			Thread.sleep(3000);
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
 
 			if (successmsg.getText().equals(faqsmsg)) {
 				System.out.println("Messgae for active faqsmsg = " + faqsmsg);
@@ -414,7 +387,8 @@ public class StepDefination {
 			}
 
 			statuscolumn.click();
-			Thread.sleep(3000);
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
 
 			if (successmsg.getText().equals(eventsmsg)) {
 				System.out.println("Messgae for active  = " + eventsmsg);
@@ -436,7 +410,8 @@ public class StepDefination {
 			}
 
 			statuscolumn.click();
-			Thread.sleep(3000);
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
 
 			if (successmsg.getText().equals(pagessmsg)) {
 				System.out.println("Messgae for active  = " + pagessmsg);
@@ -499,6 +474,8 @@ public class StepDefination {
 
 	@When("I enter all mandatory fields for {string} Blogs")
 	public void I_enter_all_mandatory_fields_for_Add_Blogs(String formName) throws Throwable {
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
 		switch (formName) {
 		case "add":
@@ -515,8 +492,7 @@ public class StepDefination {
 			String metaDescription = ExcelHelper.getData(1, 10);
 
 			CommonVariables.txtSearchCmnVar = title;
-			CommonVariables.adminauthor = authorfirstName+ " "+authorlastName;
-			
+			CommonVariables.adminauthor = authorfirstName + " " + authorlastName;
 
 			blogs.enterTitle(title);
 			blogs.enterBlogCategory(blogCategory);
@@ -548,30 +524,23 @@ public class StepDefination {
 
 	@And("{string} is {string}")
 	public void User_is_Active(String moduleName, String status) throws Throwable {
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		if (statuscolumn.getAttribute("class").equals("sort active ")) {
-
 			CommonVariables.inactive = "false";
 			if (status.equals("Inactive")) {
 				assert false;
 			}
-//			statuscolumn.click();
-//			Thread.sleep(2000);
-
 		} else if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
-
 			CommonVariables.inactive = "true";
 			if (status.equals("Active")) {
 				assert false;
 			}
-//			statuscolumn.click();
-//			Thread.sleep(2000);
-
 		} else {
 			CommonVariables.inactive = "";
 			System.out.println("Not click on status column");
 			assert false;
 		}
-
 	}
 
 	@When("I enter all mandatory fields for {string} Testimonial")
@@ -831,19 +800,18 @@ public class StepDefination {
 			break;
 		}
 	}
-	
-	 @When("Verify details in Pages with other filters")
-	 public void Verify_details_in_pages_grid_with_other_filters() throws Throwable {
-		 pages.Searchfilters();
-		 
-	 }
-	
-	 @When("Get list of pages title")
-	 public void Get_list_of_pages_title() throws Throwable {
-        pages.Admintitle();
-    
-		 
-	 }
+
+	@When("Verify details in Pages with other filters")
+	public void Verify_details_in_pages_grid_with_other_filters() throws Throwable {
+		pages.Searchfilters();
+
+	}
+
+	@When("Get list of pages title")
+	public void Get_list_of_pages_title() throws Throwable {
+		pages.Admintitle();
+
+	}
 
 	@When("Data update and verify details for Admin {string} section")
 	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {
