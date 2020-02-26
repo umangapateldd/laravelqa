@@ -26,4 +26,6 @@ public class FilesPaths {
 			+ "\\src\\main\\resources\\com\\extrafiles\\";
 
 	public final static String excel_data_file_name = EXTRA_FILES_FOLDER + "Laraveldata.xls";
+
+	public final static String excel_data_file = EXTRA_FILES_FOLDER + "TestData.xls";
 }
