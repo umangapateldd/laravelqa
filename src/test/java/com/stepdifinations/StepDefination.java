@@ -281,146 +281,40 @@ public class StepDefination {
 				assert false;
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
-			String Msg = "";
-			String Msg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				Msg = "The team member successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				Msg2 = "The team member successfully activated.";
-			} else {
-				System.out.println("Message is not match:");
-				assert false;
-			}
-			statuscolumn.click();
 
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
+			commonFunc.checkSuccessMessage("The team member successfully inactivated.",
+					"The team member successfully activated.", moduleName, statuscolumn, successmsg);
 
-			if (successmsg.getText().equals(Msg)) {
-				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
-			} else if (successmsg.getText().equals(Msg2)) {
-				System.out.println("Messgae for active ourteam = " + successmsg.getText());
-			} else {
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.blogs)) {
-			commonFunc.checkSuccessMessage("The blog successfully inactivated.", "The blog successfully activated.", moduleName);
+
+			commonFunc.checkSuccessMessage("The blog successfully inactivated.", "The blog successfully activated.",
+					moduleName, statuscolumn, successmsg);
 
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
-			String testimonialsmsg = "";
-			String testimonialmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				testimonialsmsg = "The testimonial successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				testimonialmsg2 = "The testimonial successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
+			commonFunc.checkSuccessMessage("The testimonial successfully inactivated.",
+					"The testimonial successfully activated.", moduleName, statuscolumn, successmsg);
 
-			if (successmsg.getText().equals(testimonialsmsg)) {
-				System.out.println("Messgae for active testimonial = " + testimonialsmsg);
-			} else if (successmsg.getText().equals(testimonialmsg2)) {
-				System.out.println("Messgae for inactive testimonial = " + testimonialmsg2);
-			} else {
-				System.out.println("testimonial Message is not match:");
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.categories)) {
-			String categorymsg = "";
-			String categorymsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				categorymsg = "The category successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				categorymsg2 = "The category successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
+			commonFunc.checkSuccessMessage("The category successfully inactivated.",
+					"The category successfully activated.", moduleName, statuscolumn, successmsg);
 
-			if (successmsg.getText().equals(categorymsg)) {
-				System.out.println("Messgae for active Categories = " + categorymsg);
-			} else if (successmsg.getText().equals(categorymsg2)) {
-				System.out.println("Messgae for inactive Categories = " + categorymsg2);
-			} else {
-				System.out.println("categories Message is not match:");
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.faqs)) {
-			String faqsmsg = "";
-			String faqsmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				faqsmsg = "The FAQ successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				faqsmsg2 = "The FAQ successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
+			commonFunc.checkSuccessMessage("The FAQ successfully inactivated.", "The FAQ successfully activated.",
+					moduleName, statuscolumn, successmsg);
 
-			if (successmsg.getText().equals(faqsmsg)) {
-				System.out.println("Messgae for active faqsmsg = " + faqsmsg);
-			} else if (successmsg.getText().equals(faqsmsg2)) {
-				System.out.println("Messgae for inactive faqsmsg = " + faqsmsg2);
-			} else {
-				System.out.println("FAQ Message is not match:");
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.events)) {
-			String eventsmsg = "";
-			String eventsmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				eventsmsg = "The event successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				eventsmsg = "The event successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
+			commonFunc.checkSuccessMessage("The event successfully inactivated.", "The event successfully activated.",
+					moduleName, statuscolumn, successmsg);
 
-			if (successmsg.getText().equals(eventsmsg)) {
-				System.out.println("Messgae for active  = " + eventsmsg);
-			} else if (successmsg.getText().equals(eventsmsg2)) {
-				System.out.println("Messgae for inactive  = " + eventsmsg2);
-			} else {
-				System.out.println("Event Message is not match:");
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.pages)) {
-			String pagessmsg = "";
-			String pagessmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				pagessmsg = "The page successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				pagessmsg2 = "The page successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
+			commonFunc.checkSuccessMessage("The page successfully inactivated.", "The page successfully activated.",
+					moduleName, statuscolumn, successmsg);
 
-			if (successmsg.getText().equals(pagessmsg)) {
-				System.out.println("Messgae for active  = " + pagessmsg);
-			} else if (successmsg.getText().equals(pagessmsg2)) {
-				System.out.println("Messgae for inactive  = " + pagessmsg2);
-			} else {
-				System.out.println("Pages Message is not match:");
-				assert false;
-			}
 		}
 	}
 

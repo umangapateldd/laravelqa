@@ -184,31 +184,33 @@ public class CommonFunc {
 		}
 	}
 
-	public void checkSuccessMessage(String inactive_msg, String active_msg, String moduleName) {
+	public void checkSuccessMessage(String inactive_msg, String active_msg, String moduleName, WebElement statuscolumn,
+			WebElement successmsg) {
 
-		String blogsmsg = "";
+		String msg = "";
 
-		String blogmsg2 = "";
+		String msg2 = "";
 
 		if (CommonVariables.inactive.equals("false")) {
-			blogsmsg = inactive_msg;
+			msg = inactive_msg;
 		} else if (CommonVariables.inactive.equals("true")) {
-			blogmsg2 = active_msg;
+			msg2 = active_msg;
 		} else {
 			System.out.println(moduleName + " Message is not match");
 			assert false;
 		}
 
 		statuscolumn.click();
-		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-				"style", "display: none;");
 
-		if (successmsg.getText().equals(blogsmsg)) {
-			System.out.println("Messgae for active blogs = " + blogsmsg);
-		} else if (successmsg.getText().equals(blogmsg2)) {
-			System.out.println("Messgae for inactive blogs = " + blogmsg2);
+		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
+				"display: none;");
+
+		if (successmsg.getText().equals(msg)) {
+			System.out.println("Messgae for active = " + moduleName + " > " + msg);
+		} else if (successmsg.getText().equals(msg2)) {
+			System.out.println("Messgae for inactive = " + moduleName + " > " + msg2);
 		} else {
-			System.out.println("Blog2 Message is not match:");
+			System.out.println(moduleName + " Message is not match:");
 			assert false;
 		}
 	}
