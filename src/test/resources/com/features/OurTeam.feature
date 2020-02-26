@@ -23,7 +23,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @ourteamStatus
+  @ourteam
   Scenario: Our Team Member Try InActive account
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
@@ -62,7 +62,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
     
-  @ourteam
+  @ourteam1
   Scenario: Our team verification on Front side
     Given Open Front site and Go to "TEAM" Module
     Then Verify Our team in front side

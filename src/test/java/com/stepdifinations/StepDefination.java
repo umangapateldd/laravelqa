@@ -282,170 +282,29 @@ public class StepDefination {
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 
-			String Msg = "";
-			String Msg2 = "";
-			Thread.sleep(3000);
-
-			if (CommonVariables.inactive.equals("false")) {
-				Msg = "The team member successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				Msg2 = "The team member successfully activated.";
-			} else {
-				System.out.println("Message is not match:");
-				assert false;
-			}
-
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(Msg)) {
-				System.out.println("Messgae for inactive ourteam = " + successmsg.getText());
-			} else if (successmsg.getText().equals(Msg2)) {
-				System.out.println("Messgae for active ourteam = " + successmsg.getText());
-			} else {
-				assert false;
-			}
+			commonFunc.clickOnstatuscolumn("team member");
 		}
 
 		else if (moduleName.equals(CommonVariables.blogs)) {
+			commonFunc.clickOnstatuscolumn("blog");
+		}
 
-			String blogsmsg = "";
-
-			String blogmsg2 = "";
-
-			if (CommonVariables.inactive.equals("false")) {
-				blogsmsg = "The blog successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				blogmsg2 = "The blog successfully activated.";
-			} else {
-				System.out.println("Blog1 Message is not match:");
-				assert false;
-			}
-
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(blogsmsg)) {
-				System.out.println("Messgae for active blogs = " + blogsmsg);
-			} else if (successmsg.getText().equals(blogmsg2)) {
-				System.out.println("Messgae for inactive blogs = " + blogmsg2);
-			} else {
-				System.out.println("Blog2 Message is not match:");
-				assert false;
-			}
-
-		} else if (moduleName.equals(CommonVariables.testimonial)) {
-			String testimonialsmsg = "";
-			String testimonialmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				testimonialsmsg = "The testimonial successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				testimonialmsg2 = "The testimonial successfully activated.";
-			} else {
-				assert false;
-			}
-
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(testimonialsmsg)) {
-				System.out.println("Messgae for active testimonial = " + testimonialsmsg);
-			} else if (successmsg.getText().equals(testimonialmsg2)) {
-				System.out.println("Messgae for inactive testimonial = " + testimonialmsg2);
-			} else {
-				System.out.println("testimonial Message is not match:");
-				assert false;
-			}
+		else if (moduleName.equals(CommonVariables.testimonial)) {
+			commonFunc.clickOnstatuscolumn("testimonial");
 		}
 
 		else if (moduleName.equals(CommonVariables.categories)) {
-			String categorymsg = "";
-			String categorymsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				categorymsg = "The category successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				categorymsg2 = "The category successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			Thread.sleep(3000);
+			commonFunc.clickOnstatuscolumn("category");
 
-			if (successmsg.getText().equals(categorymsg)) {
-				System.out.println("Messgae for active Categories = " + categorymsg);
-			} else if (successmsg.getText().equals(categorymsg2)) {
-				System.out.println("Messgae for inactive Categories = " + categorymsg2);
-			} else {
-				System.out.println("categories Message is not match:");
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.faqs)) {
-			String faqsmsg = "";
-			String faqsmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				faqsmsg = "The FAQ successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				faqsmsg2 = "The FAQ successfully activated.";
-			} else {
-				assert false;
-			}
 
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(faqsmsg)) {
-				System.out.println("Messgae for active faqsmsg = " + faqsmsg);
-			} else if (successmsg.getText().equals(faqsmsg2)) {
-				System.out.println("Messgae for inactive faqsmsg = " + faqsmsg2);
-			} else {
-				System.out.println("FAQ Message is not match:");
-				assert false;
-			}
+			commonFunc.clickOnstatuscolumn("FAQ");
 		} else if (moduleName.equals(CommonVariables.events)) {
-			String eventsmsg = "";
-			String eventsmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				eventsmsg = "The event successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				eventsmsg = "The event successfully activated.";
-			} else {
-				assert false;
-			}
+			commonFunc.clickOnstatuscolumn("event");
 
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(eventsmsg)) {
-				System.out.println("Messgae for active  = " + eventsmsg);
-			} else if (successmsg.getText().equals(eventsmsg2)) {
-				System.out.println("Messgae for inactive  = " + eventsmsg2);
-			} else {
-				System.out.println("Event Message is not match:");
-				assert false;
-			}
 		} else if (moduleName.equals(CommonVariables.pages)) {
-			String pagessmsg = "";
-			String pagessmsg2 = "";
-			if (CommonVariables.inactive.equals("false")) {
-				pagessmsg = "The page successfully inactivated.";
-			} else if (CommonVariables.inactive.equals("true")) {
-				pagessmsg2 = "The page successfully activated.";
-			} else {
-				assert false;
-			}
-
-			statuscolumn.click();
-			Thread.sleep(3000);
-
-			if (successmsg.getText().equals(pagessmsg)) {
-				System.out.println("Messgae for active  = " + pagessmsg);
-			} else if (successmsg.getText().equals(pagessmsg2)) {
-				System.out.println("Messgae for inactive  = " + pagessmsg2);
-			} else {
-				System.out.println("Pages Message is not match:");
-				assert false;
-			}
+			commonFunc.clickOnstatuscolumn("page");
 		}
 	}
 
@@ -515,8 +374,7 @@ public class StepDefination {
 			String metaDescription = ExcelHelper.getData(1, 10);
 
 			CommonVariables.txtSearchCmnVar = title;
-			CommonVariables.adminauthor = authorfirstName+ " "+authorlastName;
-			
+			CommonVariables.adminauthor = authorfirstName + " " + authorlastName;
 
 			blogs.enterTitle(title);
 			blogs.enterBlogCategory(blogCategory);
@@ -831,19 +689,18 @@ public class StepDefination {
 			break;
 		}
 	}
-	
-	 @When("Verify details in Pages with other filters")
-	 public void Verify_details_in_pages_grid_with_other_filters() throws Throwable {
-		 pages.Searchfilters();
-		 
-	 }
-	
-	 @When("Get list of pages title")
-	 public void Get_list_of_pages_title() throws Throwable {
-        pages.Admintitle();
-    
-		 
-	 }
+
+	@When("Verify details in Pages with other filters")
+	public void Verify_details_in_pages_grid_with_other_filters() throws Throwable {
+		pages.Searchfilters();
+
+	}
+
+	@When("Get list of pages title")
+	public void Get_list_of_pages_title() throws Throwable {
+		pages.Admintitle();
+
+	}
 
 	@When("Data update and verify details for Admin {string} section")
 	public void Data_update_and_verify_details_for_Admin_Settings_section(String formName) throws Throwable {

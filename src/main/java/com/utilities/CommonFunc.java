@@ -34,7 +34,7 @@ public class CommonFunc {
 	FAQ faq;
 	Events events;
 	Pages pages;
-	
+
 	Settings settings;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
 
@@ -65,12 +65,18 @@ public class CommonFunc {
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")
 	WebElement CancelButton;
 
+	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
+	WebElement statuscolumn;
+
+	@FindBy(xpath = "//*[@id='main']/div[1]/span")
+	WebElement successmsg;
+
 	public CommonFunc(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonVariables = new CommonVariables(driver);
 		dropDownHelper = new DropDownHelper(driver);
-		
+
 	}
 
 	public void checkElementAvailable(List<WebElement> xpathListElement) {
@@ -177,10 +183,10 @@ public class CommonFunc {
 
 			if (moduleName.equals(CommonVariables.blogs)) {
 				blogs = new Blogs(driver);
-				System.out.println("Module name ="+moduleName);
-				System.out.println("commonvariable ="+CommonVariables.blogs);
+				System.out.println("Module name =" + moduleName);
+				System.out.println("commonvariable =" + CommonVariables.blogs);
 				CommonVariables.publishdate = blogs.getPublishdate();
-				System.out.println("Publish date value : " +CommonVariables.publishdate);
+				System.out.println("Publish date value : " + CommonVariables.publishdate);
 			}
 
 			Thread.sleep(3000);
@@ -274,6 +280,36 @@ public class CommonFunc {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
 		Thread.sleep(2000);
+	}
+
+	public void clickOnstatuscolumn(String moduleName) throws InterruptedException {
+		log.info("********************Click on status********************");
+		Thread.sleep(2000);
+		String Msg = "";
+		String Msg2 = "";
+		Thread.sleep(3000);
+
+		if (CommonVariables.inactive.equals("false")) {
+			Msg = "The " + moduleName + " successfully inactivated.";
+			System.out.println("test msg1 = " + Msg);
+		} else if (CommonVariables.inactive.equals("true")) {
+			Msg2 = "The " + moduleName + " successfully activated.";
+			System.out.println("test msg2 = " + Msg2);
+		} else {
+			System.out.println("Message is not match:");
+			assert false;
+		}
+
+		statuscolumn.click();
+		Thread.sleep(3000);
+
+		if (successmsg.getText().equals(Msg)) {
+			System.out.println("Messgae for inactive  = " + successmsg.getText());
+		} else if (successmsg.getText().equals(Msg2)) {
+			System.out.println("Messgae for active  = " + successmsg.getText());
+		} else {
+			assert false;
+		}
 	}
 
 }

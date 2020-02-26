@@ -23,7 +23,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "blog updated successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blogStatus
+  @blog
   Scenario: Blogs Try Active before account verification
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
@@ -71,7 +71,7 @@ Feature: Sanity test functionalities of Laravel CMS
     Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blog
+  @blogFront
   Scenario: Blog verification on Front side
     Given Open Front site and Go to "BLOG" Module
     Then Verify Blog in front side
