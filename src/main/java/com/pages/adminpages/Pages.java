@@ -1,6 +1,5 @@
 package com.pages.adminpages;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
@@ -101,7 +99,7 @@ public class Pages {
 
 	public void Admintitle() throws InterruptedException {
 		log.info("********************Enter the Admin title********************");
-		
+
 		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
 		Thread.sleep(2000);
 
@@ -113,16 +111,9 @@ public class Pages {
 			String title = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a"))
 					.getText();
 			CommonVariables.strArray.add(title);
-			
-//			Collections.sort(strArray);
-//			Assert.assertTrue(strArray.equals(title));
-//			String title = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a"))
-//					.getText();
+
 			System.out.println("value of admin title = " + driver
 					.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a")).getText());
-//			CommonVariables.pagetitle = title;
-
-//			System.out.println("Admin commvariable = " + CommonVariables.pagetitle);
 
 		}
 
@@ -132,11 +123,11 @@ public class Pages {
 	public void Searchfilters() throws InterruptedException {
 		log.info("********************Search filters********************");
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
-		Thread.sleep(3000);
-		dropDownHelper.selectByVaule(gridStatus,"1");
-		Thread.sleep(2000);
-		Searchbutton.click();
-		Thread.sleep(4000);
 
+		dropDownHelper.selectByVaule(gridStatus, "1");
+		
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
+		Searchbutton.click();
 	}
 }

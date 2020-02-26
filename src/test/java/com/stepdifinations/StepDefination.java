@@ -697,14 +697,14 @@ public class StepDefination {
 
 	@When("Verify details in Pages with other filters")
 	public void Verify_details_in_pages_grid_with_other_filters() throws Throwable {
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		pages.Searchfilters();
-
 	}
 
 	@When("Get list of pages title")
 	public void Get_list_of_pages_title() throws Throwable {
 		pages.Admintitle();
-
 	}
 
 	@When("Data update and verify details for Admin {string} section")

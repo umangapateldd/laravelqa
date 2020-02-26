@@ -65,15 +65,12 @@ public class FrontStepDefination {
 
 	@Then("Verify Our team in front side")
 	public void Verify_Our_team_in_front_side() throws Throwable {
-
 		frontourteam.verifyOurteamtitle();
 	}
 
 	@Then("Open front side and compare pages title with admin list")
 	public void Verify_Page_in_front_side() throws Throwable {
-		{
-			frontpages.verifypagestitle();
-		}
+		frontpages.verifypagestitle();
 	}
 
 }
