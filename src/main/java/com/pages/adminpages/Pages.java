@@ -1,5 +1,6 @@
 package com.pages.adminpages;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
@@ -97,8 +99,11 @@ public class Pages {
 		MetaDescription.sendKeys(metaDescription);
 	}
 
-	public void Admintitle() {
+	public void Admintitle() throws InterruptedException {
 		log.info("********************Enter the Admin title********************");
+		
+		driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
+		Thread.sleep(2000);
 
 		List<WebElement> Admintitle = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
 		int count = Admintitle.size();
@@ -108,6 +113,9 @@ public class Pages {
 			String title = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a"))
 					.getText();
 			CommonVariables.strArray.add(title);
+			
+//			Collections.sort(strArray);
+//			Assert.assertTrue(strArray.equals(title));
 //			String title = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[" + i + "]/td[4]/a"))
 //					.getText();
 			System.out.println("value of admin title = " + driver
