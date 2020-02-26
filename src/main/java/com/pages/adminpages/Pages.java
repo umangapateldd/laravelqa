@@ -48,8 +48,8 @@ public class Pages {
 	@FindBy(xpath = "//*[@id='status']")
 	WebElement gridStatus;
 
-	@FindBy(xpath = "//*[@id='status']/option[3]")
-	WebElement Statusoption;
+//	@FindBy(xpath = "//*[@id='status']/option[3]")
+//	WebElement Statusoption;
 
 	@FindBy(xpath = "//*[@id='btnsearch']")
 	WebElement Searchbutton;
@@ -133,9 +133,7 @@ public class Pages {
 		log.info("********************Search filters********************");
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		Thread.sleep(3000);
-		gridStatus.click();
-		Thread.sleep(2000);
-		Statusoption.click();
+		dropDownHelper.selectByVaule(gridStatus,"1");
 		Thread.sleep(2000);
 		Searchbutton.click();
 		Thread.sleep(4000);
