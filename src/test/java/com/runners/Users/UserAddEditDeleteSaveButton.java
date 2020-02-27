@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
 public class UserAddEditDeleteSaveButton {
 
 	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations", "com.runners" },
-//			tags={"@userAdd or @userDelete"},
+//			tags={"@userAdd or @userEdit or @userDelete"},
 			tags = { "@userAdd" }, plugin = { "pretty", "html:target/cucumber",
 					"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)
 	public class runner extends AbstractTestNGCucumberTests {

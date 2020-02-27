@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MainSuite">
+	<test name="Blogs">
+		<classes>
+			<class name="com.runners.Blogs.BlogAddEditDeleteSaveButton" />
+			<!-- class
+				name="com.runners.Blogs.BlogAddEditDeleteSaveContinueButton" / -->
+		</classes>
+	</test>
+</suite>
