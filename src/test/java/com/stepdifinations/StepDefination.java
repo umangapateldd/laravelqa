@@ -755,4 +755,20 @@ public class StepDefination {
 		settings.SEOSettings(googleAnalyticsCode, robotsMetaTag);
 
 	}
-}
+
+	@And("Verify test data with proper validation message for {string}")
+	public void Verify_test_data_with_proper_validation_message_for_Users(String formName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.allStrings);
+		System.out.println("4111111111111111111111111111111111111111111111111");
+			
+			String email =ExcelHelper.getData(1, 0);
+			System.out.println("Email value = "+email);
+            usersPage.enterUserEmail(email);
+            Thread.sleep(5000);
+            System.out.println("validation message="+driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+            Thread.sleep(2000);
+          
+            
+
+		}
+	}
