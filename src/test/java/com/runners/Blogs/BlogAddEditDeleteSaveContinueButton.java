@@ -17,9 +17,8 @@ public class BlogAddEditDeleteSaveContinueButton {
 	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations",
 			"com.runners" },
 //			tags = { "@blogAddSaveandContinue or @blogEditSaveandContinue or @blogDelete" },
-					tags = { "@blogDelete" },
-			plugin = {
-					"pretty", "html:target/cucumber",
+			tags = { "@blogAddSaveandContinue or @blogDelete" },
+			plugin = { "pretty", "html:target/cucumber",
 					"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)
 	public class runner extends AbstractTestNGCucumberTests {
 

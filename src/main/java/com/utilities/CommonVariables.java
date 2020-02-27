@@ -39,7 +39,9 @@ public class CommonVariables {
 	public static boolean saveandcontinue = false;
 	public static boolean OurTeam = false;
 	public static String inactive = "";
-
+	ReadPropFile readPropFile;
+	public static String browserName = "";
+	
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;
 
@@ -50,6 +52,9 @@ public class CommonVariables {
 
 	public CommonVariables(WebDriver driver) {
 		this.driver = driver;
+		readPropFile = new ReadPropFile();
+		readPropFile.readProp();
+		browserName = readPropFile.prop.getProperty("browser");
 		PageFactory.initElements(driver, this);
 	}
 

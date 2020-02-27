@@ -34,13 +34,15 @@ import org.testng.collections.Lists;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
 
+import com.utilities.CommonVariables;
+
 public class TestNGCustomReportListener implements IReporter {
 	private PrintWriter writer;
 	private int m_row;
 	private Integer m_testIndex;
 	private int m_methodIndex;
-	private String reportTitle = "TestNG Customized Report";
-	private String reportFileName = "custom-report.html";
+	private String reportTitle = "Laravel CMS";
+	private String reportFileName = "Laravel-CMS-Report.html";
 
 	/** Creates summary of the run */
 	@Override
@@ -288,6 +290,7 @@ public class TestNGCustomReportListener implements IReporter {
 			writer.println("</tr>");
 		}
 		List<String> msgs = Reporter.getOutput(ans);
+		System.out.println(msgs);
 		boolean hasReporterOutput = msgs.size() > 0;
 		Throwable exception = ans.getThrowable();
 		boolean hasThrowable = exception != null;
@@ -420,7 +423,7 @@ public class TestNGCustomReportListener implements IReporter {
 				summaryCell(q, 0);
 
 				// Write OS and Browser
-				summaryCell(suite.getParameter("browserType"), true);
+				summaryCell(CommonVariables.browserName, true);
 				writer.println("</td>");
 
 				SimpleDateFormat summaryFormat = new SimpleDateFormat("hh:mm:ss");
@@ -471,7 +474,7 @@ public class TestNGCustomReportListener implements IReporter {
 	private void startSummaryRow(String label) {
 		m_row += 1;
 		writer.print("<tr" + (m_row % 2 == 0 ? " class='stripe'" : "")
-				+ "><td style='text-align:left;padding-right:2em'><a href='#t'" + m_testIndex + "><b>" + label
+				+ "><td style='text-align:left;padding-right:2em'><a href='#t" + m_testIndex + "'><b>" + label
 				+ "</b></a>" + "</td>");
 
 	}
@@ -512,7 +515,7 @@ public class TestNGCustomReportListener implements IReporter {
 	 * Method to get Date as String
 	 */
 	private String getDateAsString() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date date = new Date();
 		return dateFormat.format(date);
 	}
