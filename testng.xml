@@ -1,17 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Test">
-	<test name="Users" >
-		<classes>
-			<class name="com.runners.Users.UserAddEditDeleteSaveButton" />
-			<class
-				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" />
-		</classes>
-	</test>
-	<test name="Blogs">
-		<classes>
-			<class name="com.runners.Blogs.BlogAddEditDeleteSaveButton" />
-			<class
-				name="com.runners.Blogs.BlogAddEditDeleteSaveContinueButton" />
-		</classes>
-	</test>
+<suite name="MainSuite">
+	<suite-files>
+		<suite-file path="Suites/UsersSuite.xml" />
+		<suite-file path="Suites/BlogsSuite.xml" />
+	</suite-files>
 </suite>

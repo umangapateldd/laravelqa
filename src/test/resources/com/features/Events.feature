@@ -1,5 +1,4 @@
-Feature: Sanity test functionalities of Laravel CMS
-  As a admin user add, update, delete, search, verify details the below sanity functioanlities
+Feature: Event module scenario
 
   @EventsAdd
   Scenario: Event Add successfully with click on Save button

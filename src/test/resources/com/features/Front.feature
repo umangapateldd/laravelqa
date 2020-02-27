@@ -1,5 +1,4 @@
-Feature: Sanity test functionalities of Laravel
-As a fornt user verify details the below sanity functioanlities
+Feature: Front module scenario
 
 
 #@Testimonial

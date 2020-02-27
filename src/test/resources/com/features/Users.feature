@@ -1,5 +1,4 @@
-Feature: Sanity test functionalities of Laravel CMS
-  As a admin user add, update, delete, search, verify details the below sanity functioanlities
+Feature: Users module scenario
 
   @userAdd
   Scenario: Create User and verify details
