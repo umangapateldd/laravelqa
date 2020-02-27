@@ -29,7 +29,7 @@ public class CommonVariables {
 	public static String settings ="Settings";
 	public static String testimonial ="Testimonial";
 	public static String categories ="Categories";
-	public static String allStrings ="All Strings";
+	public static String email ="Email";
 	public static String txtSearchCmnVar = "";
 	public static String pagetitle = "";
 	public static String adminauthor = "";

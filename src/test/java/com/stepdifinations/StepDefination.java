@@ -760,20 +760,27 @@ public class StepDefination {
 
 	@And("Verify test data with proper validation message for {string}")
 	public void Verify_test_data_with_proper_validation_message_for_Users(String formName) throws Throwable {
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.allStrings);
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.email);
 		System.out.println("4111111111111111111111111111111111111111111111111");
 
-		String testdata1 = ExcelHelper.getData(1, 0);
-		System.out.println("Email value = " + testdata1);
-		usersPage.enterUserEmail(testdata1);
+//		String testdata1 = ExcelHelper.getData(0, 0);
+		String testdata2 = ExcelHelper.getData(0, 3);
+		System.out.println("Email value = " + testdata2);
+		usersPage.enterUserEmail(testdata2);
 		Thread.sleep(9000);
 		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText() != null) {
 			System.out.println("validation message="
 					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
-			Thread.sleep(5000);
+			Thread.sleep(7000);
 			assert true;
 		} else {
+			driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText().equals(null);
+			{
+				System.out.println("validation message="
+						+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText()+"Blank message");
+				Thread.sleep(7000);
 			assert false;
 		}
 	}
+}
 }
