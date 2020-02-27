@@ -36,8 +36,6 @@ public class HookHelper {
 		log.info("********************Delete all cookies of browser********************");
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-//		log.info("********************Make full screen of window********************");
-//		driver.manage().window().fullscreen();
 		waitHelper = new WaitHelper(driver);
 		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
 		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
