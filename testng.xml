@@ -3,15 +3,8 @@
 	<test name="Users" >
 		<classes>
 			<class name="com.runners.Users.UserAddEditDeleteSaveButton" />
-			<class
-				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" />
+			
 		</classes>
 	</test>
-	<test name="Blogs">
-		<classes>
-			<class name="com.runners.Blogs.BlogAddEditDeleteSaveButton" />
-			<class
-				name="com.runners.Blogs.BlogAddEditDeleteSaveContinueButton" />
-		</classes>
-	</test>
+	
 </suite>
