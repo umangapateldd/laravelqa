@@ -1,3 +1,4 @@
 /target/
 *.log
 /laravel-base-cms-eclipse/
+/test-output/

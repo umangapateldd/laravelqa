@@ -120,6 +120,9 @@ public class CommonFunc {
 	}
 
 	public void clickonmenuondashboard(String menuTitle) throws InterruptedException {
+		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
+				"display: none;");
+
 		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='main']/div[2]/div/div/div/a"));
 
 		int count = menu.size();
@@ -174,7 +177,7 @@ public class CommonFunc {
 		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
-			if (moduleName.equals(CommonVariables.blogs)) {
+			if (moduleName.equals(CommonVariables.blogs) && CommonVariables.deleteRecord == false) {
 				blogs = new Blogs(driver);
 				System.out.println("Module name =" + moduleName);
 				System.out.println("commonvariable =" + CommonVariables.blogs);

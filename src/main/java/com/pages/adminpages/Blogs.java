@@ -133,7 +133,6 @@ public class Blogs {
 
 	public String getPublishdate() {
 		return date.getText().trim();
-
 	}
 
 	public void ClickonEditbutton() {
