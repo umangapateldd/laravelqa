@@ -2,7 +2,6 @@ package com.stepdifinations;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +11,6 @@ import com.base.TestBase;
 import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
-import com.google.inject.Key;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
 import com.pages.adminpages.Events;
@@ -762,19 +760,45 @@ public class StepDefination {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.email);
 		System.out.println("4111111111111111111111111111111111111111111111111");
 
-//		String testdata1 = ExcelHelper.getData(0, 0);
-		String testdata2 = ExcelHelper.getData(0, 3);
-		System.out.println("Email value = " + testdata2);
-		usersPage.enterUserEmail(testdata2);
-		Thread.sleep(9000);
-		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText() != null) {
-			System.out.println("validation message="
+		int totalNoOfRows = ExcelHelper.getTotalRowsCount();
+		int totalNoOfCols = ExcelHelper.getTotalColsCount();
+		System.out.println("Number of Rows count = " + totalNoOfRows);
+		System.out.println("Number of Column count = " + totalNoOfCols);
+
+		String testdata2 = ExcelHelper.getData(0, 4);
+		String testdata3 = ExcelHelper.getData(0, 5);
+		System.out.println("testdata 2 = " + testdata2);
+		System.out.println("testdata3 = " + testdata3);
+
+		for (int i = 0; i < totalNoOfRows; i++) {
+
+			String testdata = ExcelHelper.getData(0, i);
+
+			System.out.println("Email value = " + testdata);
+
+			usersPage.enterUserEmail(testdata);
+			Thread.sleep(2000);
+			System.out.println("validation message 1="
 					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
-			Thread.sleep(7000);
-			assert true;
-		} else {
-		
-			assert false;
+
+			if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText().isEmpty()) {
+				System.out.println("validation message="
+						+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+				Thread.sleep(7000);
+				assert true;
+			} else {
+				String text = "Error show";
+
+				if (text.equals(ExcelHelper.getData(1, i))) {
+					System.out.println("Error show text is match");
+					assert true;
+				} else {
+					System.out.println("Error show text is not match");
+					assert false;
+				}
+
+			}
+
 		}
 	}
 }
