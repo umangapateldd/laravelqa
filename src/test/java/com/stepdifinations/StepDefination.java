@@ -774,13 +774,8 @@ public class StepDefination {
 			Thread.sleep(7000);
 			assert true;
 		} else {
-			driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText().equals(null);
-			{
-				System.out.println("validation message="
-						+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText()+"Blank message");
-				Thread.sleep(7000);
+		
 			assert false;
 		}
 	}
-}
 }
