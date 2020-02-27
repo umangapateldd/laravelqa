@@ -104,7 +104,6 @@ public class StepDefination {
 			commonFunc.clickOnSave();
 			break;
 		case "Edit":
-//			CommonVariables.OurTeam = true;
 			commonFunc.clickOnEditButton(moduleName);
 			break;
 		case "Delete":
