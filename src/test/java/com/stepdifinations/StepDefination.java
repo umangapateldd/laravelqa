@@ -2,6 +2,7 @@ package com.stepdifinations;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,7 @@ import com.base.TestBase;
 import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
+import com.google.inject.Key;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
 import com.pages.adminpages.Events;
@@ -760,15 +762,18 @@ public class StepDefination {
 	public void Verify_test_data_with_proper_validation_message_for_Users(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.allStrings);
 		System.out.println("4111111111111111111111111111111111111111111111111");
-			
-			String email =ExcelHelper.getData(1, 0);
-			System.out.println("Email value = "+email);
-            usersPage.enterUserEmail(email);
-            Thread.sleep(5000);
-            System.out.println("validation message="+driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
-            Thread.sleep(2000);
-          
-            
 
+		String testdata1 = ExcelHelper.getData(1, 0);
+		System.out.println("Email value = " + testdata1);
+		usersPage.enterUserEmail(testdata1);
+		Thread.sleep(9000);
+		if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText() != null) {
+			System.out.println("validation message="
+					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+			Thread.sleep(5000);
+			assert true;
+		} else {
+			assert false;
 		}
 	}
+}
