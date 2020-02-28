@@ -798,7 +798,19 @@ public class StepDefination {
 				}
 
 			}
+		
+				String text = "The email "+ " must be a valid email address.";
+
+				if (text.equals(ExcelHelper.getData(1, i))) {
+					System.out.println("The email must be a valid email address is match");
+					assert true;
+				} else {
+					System.out.println("The email must be a valid email address is not match");
+					assert false;
+				}
+
+			}
 
 		}
 	}
-}
+
