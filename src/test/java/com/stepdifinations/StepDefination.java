@@ -758,17 +758,9 @@ public class StepDefination {
 	@And("Verify test data with proper validation message for {string}")
 	public void Verify_test_data_with_proper_validation_message_for_Users(String formName) throws Throwable {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.email);
-		System.out.println("4111111111111111111111111111111111111111111111111");
 
 		int totalNoOfRows = ExcelHelper.getTotalRowsCount();
 		int totalNoOfCols = ExcelHelper.getTotalColsCount();
-		System.out.println("Number of Rows count = " + totalNoOfRows);
-		System.out.println("Number of Column count = " + totalNoOfCols);
-
-		String testdata2 = ExcelHelper.getData(0, 4);
-		String testdata3 = ExcelHelper.getData(0, 5);
-		System.out.println("testdata 2 = " + testdata2);
-		System.out.println("testdata3 = " + testdata3);
 
 		for (int i = 0; i < totalNoOfRows; i++) {
 
@@ -791,15 +783,15 @@ public class StepDefination {
 
 				if (text.equals(ExcelHelper.getData(1, i))) {
 					System.out.println("Error show text is match");
-					
-					String excel ="The email "+ ExcelHelper.getData(2, i);
+
+					String excel = "The email " + ExcelHelper.getData(2, i);
 					String emailtext = "The email must be a valid email address.";
 
 					if (emailtext.equals(excel)) {
 						System.out.println("Email text match : = The email must be a valid email address is match");
 						assert true;
 					}
-					
+
 				} else {
 
 					assert false;
@@ -807,13 +799,69 @@ public class StepDefination {
 				String emailtext = "The email " + " must be a valid email address.";
 
 				if (emailtext.equals(ExcelHelper.getData(1, i))) {
-					System.out.println("Email text match : = The email must be a valid email address is match");
+					System.out.println("Email text match : = The email must be a valid email address");
 					assert true;
 				}
 
 			}
 
 		}
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.allStrings);
+		
+			int totalNoOfRows1 = ExcelHelper.getTotalRowsCount();
+			int totalNoOfCols1 = ExcelHelper.getTotalColsCount();
 
+			System.out.println("Text1 =" + totalNoOfRows1);
+			System.out.println("Text2 =" + totalNoOfCols1);
+
+			for (int i = 0; i < totalNoOfRows1; i++) {
+
+				String testdata = ExcelHelper.getData(0, i);
+
+//				System.out.println("Text value = " + testdata);
+
+				usersPage.enterUserFirstName(testdata);
+				Thread.sleep(2000);
+				System.out.println(
+						"validation message 1=" + driver.findElement(By.xpath("//*[@id='first_name']")).getAttribute("value"));
+
+//				if (driver.findElement(By.xpath("//*[@id='first_name']")).getAttribute("value").isEmpty()) {
+				    
+					String text = "Error not show";
+					System.out.println("Text value ="+text);
+					System.out.println("Excel value = "+ExcelHelper.getData(1, i));
+					if(text.equals(ExcelHelper.getData(1, i)))
+					{ 
+						System.out.println("Text is match= "+ExcelHelper.getData(1, i));
+					
+//				} else {
+//					String text = "Error show";
+//
+//					if (text.equals(ExcelHelper.getData(1, i))) {
+//						System.out.println("Error show text is match");
+//
+//						String excel = "The email " + ExcelHelper.getData(2, i);
+//						String emailtext = "The email must be a valid email address.";
+//
+//						if (emailtext.equals(excel)) {
+//							System.out.println("Email text match : = The email must be a valid email address is match");
+//							assert true;
+//						}
+//
+//					} else {
+//
+//						assert false;
+//					}
+//					String emailtext = "The email " + " must be a valid email address.";
+//
+//					if (emailtext.equals(ExcelHelper.getData(1, i))) {
+//						System.out.println("Email text match : = The email must be a valid email address is match");
+//						assert true;
+					}
+
+				}
+			}
+
+		
 	}
-}
+//}
