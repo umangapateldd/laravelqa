@@ -92,8 +92,8 @@ public class Blogs {
 		Title.sendKeys(title);
 	}
 
-	public void enterBlogCategory(String blogCategory) throws InterruptedException {
-		log.info("********************Enter the Blog Categories********************");
+	public void selectBlogCategory(String blogCategory) throws InterruptedException {
+		log.info("********************Select the Blog Categories********************");
 		dropDownHelper.selectVisibleText(BlogCategory, blogCategory);
 	}
 
@@ -115,23 +115,21 @@ public class Blogs {
 		Fieldblog.sendKeys(fieldblog);
 	}
 
-	public void enterStatus(String status) {
+	public void selectStatus(String status) {
 		log.info("********************Enter the Status********************");
-		Status.click();
-		Status.sendKeys(status);
+		dropDownHelper.selectByVaule(Status, status);
 	}
 
 	public void enterPublishDate() throws InterruptedException {
 		log.info("********************Enter the Publish Date********************");
-
-//		((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('readonly')", PublishDate);
 		PublishDate.click();
 		selectdate.click();
 		selecttime.click();
-		time.click();		
+		time.click();
 	}
 
 	public String getPublishdate() {
+		log.info("********************Get Publish Date********************");
 		return date.getText().trim();
 	}
 
@@ -146,7 +144,7 @@ public class Blogs {
 	}
 
 	public void ClickonSettingsave() throws InterruptedException {
-		log.info("********************Click on Setting save********************");
+		log.info("********************Click on Setting Save Button********************");
 		Settingsave.click();
 	}
 
@@ -159,8 +157,8 @@ public class Blogs {
 		js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[@id='meta_title']")));
 	}
 
-	public void enterImage(String image) throws InterruptedException {
-		log.info("********************Enter the Image********************");
+	public void selectImage(String image) throws InterruptedException {
+		log.info("********************Select the Image********************");
 		Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
@@ -184,5 +182,4 @@ public class Blogs {
 		MetaDescription.sendKeys(metaDescription);
 
 	}
-
 }

@@ -367,13 +367,13 @@ public class StepDefination {
 			CommonVariables.adminauthor = authorfirstName + " " + authorlastName;
 
 			blogs.enterTitle(title);
-			blogs.enterBlogCategory(blogCategory);
+			blogs.selectBlogCategory(blogCategory);
 			blogs.enterAuthorFirstName(authorfirstName);
 			blogs.enterAuthorLastName(authorlastName);
-			blogs.enterImage(image);
+			blogs.selectImage(image);
 			blogs.enterImageAlt(imageAlt);
 			blogs.enterPublishDate();
-			blogs.enterStatus(status);
+			blogs.selectStatus(status);
 			blogs.enterDescription(description);
 			blogs.enterMetaTitle(metaTitle);
 			blogs.enterMetaDescription(metaDescription);

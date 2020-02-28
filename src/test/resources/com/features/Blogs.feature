@@ -1,6 +1,6 @@
 Feature: Blog module scenario
 
-  @blogAdd
+  @blogAdd1
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"

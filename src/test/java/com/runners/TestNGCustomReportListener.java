@@ -526,7 +526,7 @@ public class TestNGCustomReportListener implements IReporter {
 				"<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1//EN' 'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'>");
 		out.println("<html xmlns='http://www.w3.org/1999/xhtml'>");
 		out.println("<head>");
-		out.println("<title>TestNG Report</title>");
+		out.println("<title>Laravel CMS</title>");
 		out.println("<style type='text/css'>");
 		out.println("table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}");
 		out.println("td,th {border:1px solid #009;padding:.25em .5em}");
@@ -552,7 +552,7 @@ public class TestNGCustomReportListener implements IReporter {
 
 	/** Finishes HTML stream */
 	protected void endHtml(PrintWriter out) {
-		out.println("<center> TestNG Report </center>");
+		out.println("<center> Laravel CMS </center>");
 		out.println("</body></html>");
 	}
 
