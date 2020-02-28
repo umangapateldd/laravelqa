@@ -67,8 +67,7 @@ public class Pages {
 
 	public void enterStatus(String status) {
 		log.info("********************Enter the Status********************");
-		Status.click();
-		Status.sendKeys(status);
+		dropDownHelper.selectByVaule(Status, status);
 	}
 
 	public void ClickonEditbutton() {
