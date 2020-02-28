@@ -791,26 +791,29 @@ public class StepDefination {
 
 				if (text.equals(ExcelHelper.getData(1, i))) {
 					System.out.println("Error show text is match");
-					assert true;
+					
+					String excel ="The email "+ ExcelHelper.getData(2, i);
+					String emailtext = "The email must be a valid email address.";
+
+					if (emailtext.equals(excel)) {
+						System.out.println("Email text match : = The email must be a valid email address is match");
+						assert true;
+					}
+					
 				} else {
-					System.out.println("Error show text is not match");
+
 					assert false;
 				}
+				String emailtext = "The email " + " must be a valid email address.";
 
-			}
-		
-				String text = "The email "+ " must be a valid email address.";
-
-				if (text.equals(ExcelHelper.getData(1, i))) {
-					System.out.println("The email must be a valid email address is match");
+				if (emailtext.equals(ExcelHelper.getData(1, i))) {
+					System.out.println("Email text match : = The email must be a valid email address is match");
 					assert true;
-				} else {
-					System.out.println("The email must be a valid email address is not match");
-					assert false;
 				}
 
 			}
 
 		}
-	}
 
+	}
+}
