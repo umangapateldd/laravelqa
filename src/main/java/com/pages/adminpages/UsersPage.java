@@ -41,12 +41,14 @@ public class UsersPage {
 		log.info("********************Enter User First Name********************");
 		userFirstName.clear();
 		userFirstName.sendKeys(firstName);
+		userFirstName.sendKeys(Keys.TAB);
 	}
 
 	public void enterUserLastName(String lastName) {
 		log.info("********************Enter User Last Name********************");
 		userLastName.clear();
 		userLastName.sendKeys(lastName);
+		userLastName.sendKeys(Keys.TAB);
 	}
 
 	public void enterUserEmail(String email) {
