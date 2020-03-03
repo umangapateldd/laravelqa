@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.testng.IInvokedMethod;
 import org.testng.IReporter;
 import org.testng.IResultMap;
@@ -34,6 +35,7 @@ import org.testng.collections.Lists;
 import org.testng.internal.Utils;
 import org.testng.xml.XmlSuite;
 
+import com.basicactions.LogHelper;
 import com.utilities.CommonVariables;
 
 public class TestNGCustomReportListener implements IReporter {
@@ -43,6 +45,7 @@ public class TestNGCustomReportListener implements IReporter {
 	private int m_methodIndex;
 	private String reportTitle = "Laravel CMS";
 	private String reportFileName = "Laravel-CMS-Report.html";
+	private Logger log = LogHelper.getLogger(TestNGCustomReportListener.class);
 
 	/** Creates summary of the run */
 	@Override
