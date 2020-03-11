@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -332,68 +333,61 @@ public class CommonFunc {
 		}
 	}
 
-	public void enterthetitle(String moduleName) throws InterruptedException {
-		log.info("********************Click on status********************");
-		String xpath ="";
-		String commemail = CommonVariables.email;
-		System.out.println("String  value = "+commemail);
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, commemail);
+	public void verifyTestAllData(String excelSheetName, String xpathTextbox, String xpathErrorMessage)
+			throws InterruptedException {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, excelSheetName);
 
-		int totalNoOfRows = ExcelHelper.getTotalRowsCount();
-		int totalNoOfCols = ExcelHelper.getTotalColsCount();
+		for (int i = 0; i < ExcelHelper.getTotalRowsCount(); i++) {
+			driver.findElement(By.xpath(xpathTextbox)).clear();
+			driver.findElement(By.xpath(xpathTextbox)).sendKeys(ExcelHelper.getData(0, i));
+			driver.findElement(By.xpath(xpathTextbox)).sendKeys(Keys.TAB);
+			Thread.sleep(1500);
 
-		for (int i = 0; i < totalNoOfRows; i++) {
+			if (driver.findElement(By.xpath(xpathErrorMessage)).getText().isEmpty()) {
+				String msgtext = "Error not show";
+				if (msgtext.equals(ExcelHelper.getData(1, i))) {
+					System.out.println("validation message= " + msgtext);
+					assert true;
+				}
+			} else {
+				assert false;
+			}
+		}
+	}
 
-			String testdata = ExcelHelper.getData(0, i);
+	public void verifyTestEmailData(String excelSheetName, String xpathTextbox, String xpathErrorMessage)
+			throws InterruptedException {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, excelSheetName);
 
-			System.out.println("Email value = " + testdata);
-			System.out.println("Modulename = "+moduleName);
-		    System.out.println("xpath value = "+driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
+		for (int i = 0; i < ExcelHelper.getTotalRowsCount(); i++) {
+			driver.findElement(By.xpath(xpathTextbox)).clear();
+			driver.findElement(By.xpath(xpathTextbox)).sendKeys(ExcelHelper.getData(0, i));
+			driver.findElement(By.xpath(xpathTextbox)).sendKeys(Keys.TAB);
+			Thread.sleep(1500);
 
-			if (moduleName.equals("Add User")) {
-				System.out.println("edit if users");
-				userspage = new UsersPage(driver);
-				userspage.enterUserEmail(testdata);
-				Thread.sleep(2000);
-				xpath = "//*[@id='frmaddedit']/div[2]/div/div[3]/div";
-				System.out.println("validation message 1="
-						+ driver.findElement(By.xpath(xpath)).getText());
+			if (driver.findElement(By.xpath(xpathErrorMessage)).getText().isEmpty()) {
+				String msgtext = "Error not show";
+				if (msgtext.equals(ExcelHelper.getData(1, i))) {
+					System.out.println("validation message email = " + msgtext);
+					assert true;
+				}
+			} else {
+				String text = "Error show";
 
-				if (driver.findElement(By.xpath(xpath)).getText().isEmpty()) {
+				if (text.equals(ExcelHelper.getData(1, i))) {
+					System.out.println("Error show text is match");
 
-					String msgtext = "Error not show";
-					if (msgtext.equals(ExcelHelper.getData(1, i))) {
-						System.out.println("validation message= " + msgtext);
-						Thread.sleep(7000);
+					String emailError = driver.findElement(By.xpath(xpathErrorMessage)).getText();
+					System.out.println("email Error = " + emailError);
+					System.out.println("excel Error = " + ExcelHelper.getData(2, i));
+
+					if (emailError.contains(ExcelHelper.getData(2, i))) {
+						System.out.println("Email text match");
 						assert true;
 					}
 				} else {
-					String text = "Error show";
-
-					if (text.equals(ExcelHelper.getData(1, i))) {
-						System.out.println("Error show text is match");
-
-						String excel = "The email " + ExcelHelper.getData(2, i);
-						String emailtext = "The email must be a valid email address.";
-
-						if (emailtext.equals(excel)) {
-							System.out.println("Email text match : = The email must be a valid email address");
-							assert true;
-						}
-
-					} else {
-
-						assert false;
-					}
-					String emailtext = "The email " + " must be a valid email address.";
-
-					if (emailtext.equals(ExcelHelper.getData(1, i))) {
-						System.out.println("Email text match : = The email must be a valid email address");
-						assert true;
-					}
-
+					assert false;
 				}
-
 			}
 		}
 	}

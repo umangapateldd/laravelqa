@@ -3,7 +3,8 @@ Feature: Settings module scenario
   @Settings
   Scenario: Update Settings details
     Given Login as Admin and Go to "Settings" Module
-    When Data update and verify details for Admin "Settings" section
+    #When Data update and verify details for Admin "Settings" section
+    And Verify test data with proper validation message for "Settings"
   #@Settings
   #Scenario: Other validations except Required Settings
     #Given	Login as Admin and Go to "Settings" Module

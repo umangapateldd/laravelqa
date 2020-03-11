@@ -757,67 +757,30 @@ public class StepDefination {
 
 	@And("Verify test data with proper validation message for {string}")
 	public void Verify_test_data_with_proper_validation_message_for_Users(String moduleName) throws Throwable {
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file, CommonVariables.email);
-		String xpath ="";
-		
-		commonFunc.enterthetitle(moduleName);
-		
-//		if (moduleName.equals(CommonVariables.users)) {
-//			System.out.println("Inside IF condition");
-//			xpath = "//*[@id='frmaddedit']/div[2]/div/div[3]/div";
+		if (moduleName.equals("Add User")) {
+			// First Name
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='first_name']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
 
-//		int totalNoOfRows = ExcelHelper.getTotalRowsCount();
-//		int totalNoOfCols = ExcelHelper.getTotalColsCount();
-//
-//		for (int i = 0; i < totalNoOfRows; i++) {
-//
-//			String testdata = ExcelHelper.getData(0, i);
-//
-//			System.out.println("Email value = " + testdata);
-//
-//			usersPage.enterUserEmail(testdata);
-//			Thread.sleep(1000);
-//			System.out.println("validation message 1="
-//					+ driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
-//
-//			if (driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText().isEmpty()) {
-//
-//				String msgtext = "Error not show";
-//				if (msgtext.equals(ExcelHelper.getData(1, i))) {
-//					System.out.println("validation message= " + msgtext);
-//					Thread.sleep(7000);
-//					assert true;
-//				}
-//			} else {
-//				String text = "Error show";
-//
-//				if (text.equals(ExcelHelper.getData(1, i))) {
-//					System.out.println("Error show text is match");
-//
-//					String excel = "The email " + ExcelHelper.getData(2, i);
-//					String emailtext = "The email must be a valid email address.";
-//
-//					if (emailtext.equals(excel)) {
-//						System.out.println("Email text match : = The email must be a valid email address");
-//						assert true;
-//					}
-//
-//				} else {
-//
-//					assert false;
-//				}
-//				String emailtext = "The email " + " must be a valid email address.";
-//
-//				if (emailtext.equals(ExcelHelper.getData(1, i))) {
-//					System.out.println("Email text match : = The email must be a valid email address");
-//					assert true;
-//				}
-//
-//			}
+			// Email
+			commonFunc.verifyTestEmailData(CommonVariables.email, "//*[@id='email']",
+					"//*[@id='frmaddedit']/div[2]/div/div[3]/div");
 
-//		}
-		
-	}
+		} else if (moduleName.equals("Settings")) {
+
+			// Company Detail
+			driver.findElement(By.xpath("//*[@id='site-config-heading-2']/h5/a")).click();
+
+			commonFunc.verifyTestEmailData(CommonVariables.email, "//*[@id='company_email']",
+					"//*[@id='accordion-item-2']/div/div/div[9]/div");
+
+			// Email Settings
+			driver.findElement(By.xpath("//*[@id='site-config-heading-3']/h5/a")).click();
+
+			commonFunc.verifyTestEmailData(CommonVariables.email, "//*[@id='from_email']",
+					"//*[@id='accordion-item-3']/div/div/div[2]/div");
+		}
 
 	}
 
+}
