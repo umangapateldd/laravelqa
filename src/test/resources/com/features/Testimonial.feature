@@ -17,6 +17,7 @@ Feature: Testimonial module scenario
     When Verify details in "Testimonial"
     And Click on "Edit" button in "Testimonial"
     Then "Testimonial" "Edit" page gets open
+    And Verify test data with proper validation message for "Testimonials"
     When I enter all mandatory fields for "edit" Testimonial
     And Click on "Save" button in "Testimonial"
     Then I should get "testimonial updated successfully" message on "Testimonial"

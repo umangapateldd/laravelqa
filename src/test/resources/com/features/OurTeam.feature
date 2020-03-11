@@ -17,6 +17,7 @@ Feature: Our Team module scenario
     And Verify details in "Our Team"
     And Click on "Edit" button in "Our Team"
     Then "Team Member" "Edit" page gets open
+    And Verify test data with proper validation message for "Our Team"
     When I enter all mandatory fields for "edit" Our Team
     And Click on "Save" button in "Our Team"
     Then I should get "member updated successfully" message on "Our Team"

@@ -17,6 +17,7 @@ Feature: Blog module scenario
     And Verify details in "Blogs"
     And Click on "Edit" button in "Blogs"
     Then "Blog" "Edit" page gets open
+    And Verify test data with proper validation message for "Blogs"
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save" button in "Blogs"
     Then I should get "blog updated successfully" message on "Blogs"

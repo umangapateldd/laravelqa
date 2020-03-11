@@ -17,6 +17,7 @@ Feature: Category module scenario
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
     Then "Category" "Edit" page gets open
+    And Verify test data with proper validation message for "Categories"
     When I enter all mandatory fields for "edit" Category
     And Click on "Save" button in "Category"
     Then I should get "category updated successfully" message on "Category"

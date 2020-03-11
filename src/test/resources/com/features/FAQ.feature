@@ -17,6 +17,7 @@ Feature: FAQ module scenario
     When Verify details in "FAQs"
     And Click on "Edit" button in "FAQs"
     Then "FAQ" "Edit" page gets open
+    And Verify test data with proper validation message for "FAQs"
     When I enter all mandatory fields for "edit" FAQ
     And Click on "Save" button in "FAQ"
     Then I should get "updated successfully." message on "FAQ"
