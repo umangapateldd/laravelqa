@@ -5,7 +5,7 @@ Feature: Our Team module scenario
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
     Then "Team Member" "Add" page gets open
-    #And	 Verify test data with proper validation message for "Our Team"
+    And Verify test data with proper validation message for "Our Team"
     When I enter all mandatory fields for "add" Our Team
     And Click on "Save" button in "Our Team"
     Then I should get "member added successfully" message on "Our Team"
@@ -22,7 +22,7 @@ Feature: Our Team module scenario
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
 
-  @ourteam
+  @ourteam1
   Scenario: Our Team Member Try InActive account
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"

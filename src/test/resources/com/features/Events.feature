@@ -5,7 +5,7 @@ Feature: Events module scenario
     Given Login as Admin and Go to "Events" Module
     When Click on "Add" button in "Events"
     Then "Event" "Add" page gets open
-    #And Verify test data with proper validation message for "Events"
+    And Verify test data with proper validation message for "Events"
     When I enter all mandatory fields for "add" Event
     And Click on "Save" button in "Event"
     Then I should get "event added successfully." message on "Events"

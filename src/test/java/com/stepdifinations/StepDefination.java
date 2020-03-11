@@ -424,6 +424,7 @@ public class StepDefination {
 			String url = ExcelHelper.getData(1, 1);
 			String status = ExcelHelper.getData(1, 2);
 			String description = ExcelHelper.getData(1, 3);
+			String image = ExcelHelper.getData(1, 6);
 
 			CommonVariables.txtSearchCmnVar = authorName;
 
@@ -431,6 +432,7 @@ public class StepDefination {
 			testimonial.enterURL(url);
 			testimonial.enterStatus(status);
 			testimonial.enterDescription(description);
+			testimonial.selectImage(image);
 
 			break;
 
@@ -757,7 +759,7 @@ public class StepDefination {
 
 	@And("Verify test data with proper validation message for {string}")
 	public void Verify_test_data_with_proper_validation_message_for_Users(String moduleName) throws Throwable {
-		if (moduleName.equals("Add User")) {
+		if (moduleName.equals("Users")) {
 			// First Name
 			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='first_name']",
 					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
@@ -779,6 +781,46 @@ public class StepDefination {
 
 			commonFunc.verifyTestEmailData(CommonVariables.email, "//*[@id='from_email']",
 					"//*[@id='accordion-item-3']/div/div/div[2]/div");
+
+		} else if (moduleName.equals("Our Team")) {
+			System.out.println("modulename = " + moduleName);
+			// First Name
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='first_name']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
+
+			// Last Name
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='last_name']",
+					"//*[@id='frmaddedit']/div[2]/div/div[2]/div");
+
+		} else if (moduleName.equals("Categories")) {
+			System.out.println("modulename = " + moduleName);
+			// Title
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='title']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
+
+		} else if (moduleName.equals("Testimonials")) {
+			System.out.println("modulename = " + moduleName);
+			// Title
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='client_name']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
+
+		} else if (moduleName.equals("Blogs")) {
+			System.out.println("modulename = " + moduleName);
+			// Title
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='title']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
+
+		} else if (moduleName.equals("FAQs")) {
+			System.out.println("modulename = " + moduleName);
+			// Title
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='question']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
+			
+		} else if (moduleName.equals("Events")) {
+			System.out.println("modulename = " + moduleName);
+			// Title
+			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='title']",
+					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
 		}
 
 	}

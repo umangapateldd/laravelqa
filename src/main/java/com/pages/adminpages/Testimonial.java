@@ -10,6 +10,7 @@ import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.FilesPaths;
 
 public class Testimonial {
 	WebDriver driver;
@@ -30,6 +31,9 @@ public class Testimonial {
 
 	@FindBy(xpath = "//body[@id='tinymce']")
 	WebElement Description;
+	
+	@FindBy(xpath = "//input[@type='file']")
+	WebElement Image;
 
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[7]/a")
 	WebElement editbutton;
@@ -98,6 +102,12 @@ public class Testimonial {
 		log.info("********************Click on Setting save********************");
 		Settingsave.click();
 		Thread.sleep(2000);
+	}
+	public void selectImage(String image) throws InterruptedException {
+		log.info("********************Select the Image********************");
+		Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 	}
 
 }

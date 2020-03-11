@@ -5,7 +5,7 @@ Feature: Category module scenario
     Given Login as Admin and Go to "Categories" Module
     When Click on "Add" button in "Categories"
     Then "Category" "Add" page gets open
-    #And Verify test data with proper validation message for "Categories"
+    And Verify test data with proper validation message for "Categories"
     When I enter all mandatory fields for "add" Category
     And Click on "Save" button in "Category"
     Then I should get "category added successfully" message on "Category"

@@ -5,7 +5,7 @@ Feature: Testimonial module scenario
     Given Login as Admin and Go to "Testimonials" Module
     When Click on "Add" button in "Testimonial"
     Then "Testimonial" "Add" page gets open
-    #And Verify test data with proper validation message for "Testimonials"
+    And Verify test data with proper validation message for "Testimonials"
     When I enter all mandatory fields for "add" Testimonial
     And Click on "Save" button in "Testimonial"
     Then I should get "testimonial added successfully" message on "Testimonial"
@@ -79,7 +79,7 @@ Feature: Testimonial module scenario
     And Click on "Save" button in "Testimonial" Settings
     Then I should get "Settings have been saved successfully" message on "Testimonial" Settings
 
-  @Testimonial
+  @Testimonial1
   Scenario: Testimonial verification on Front side
     Given Open Front site and Go to "TESTIMONIAL" Module
     Then Verify Testimonial in front side

@@ -5,7 +5,7 @@ Feature: FAQ module scenario
     Given Login as Admin and Go to "FAQs" Module
     When Click on "Add" button in "FAQs"
     Then "FAQ" "Add" page gets open
-    #And Verify test data with proper validation message for "FAQs"
+    And Verify test data with proper validation message for "FAQs"
     When I enter all mandatory fields for "add" FAQ
     And Click on "Save" button in "FAQ"
     Then I should get "added successfully." message on "FAQ"
