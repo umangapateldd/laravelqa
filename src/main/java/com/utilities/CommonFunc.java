@@ -347,13 +347,14 @@ public class CommonFunc {
 			String testdata = ExcelHelper.getData(0, i);
 
 			System.out.println("Email value = " + testdata);
-			
+			System.out.println("Modulename = "+moduleName);
+		    System.out.println("xpath value = "+driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText());
 
-			if (moduleName.equals("Users")) {
+			if (moduleName.equals("Add User")) {
 				System.out.println("edit if users");
-//				userspage = new UsersPage(driver);
+				userspage = new UsersPage(driver);
 				userspage.enterUserEmail(testdata);
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				xpath = "//*[@id='frmaddedit']/div[2]/div/div[3]/div";
 				System.out.println("validation message 1="
 						+ driver.findElement(By.xpath(xpath)).getText());
