@@ -45,6 +45,9 @@ public class CommonVariables {
 	
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;
+	
+	@FindBy(id = "first_name")
+	public static WebElement userFirstName;
 
 	@FindBy(xpath = "//div[@class='loader']")
 	public static WebElement element;

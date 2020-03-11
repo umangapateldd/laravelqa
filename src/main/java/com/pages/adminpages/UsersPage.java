@@ -11,6 +11,7 @@ import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.CommonXpath;
 
 public class UsersPage {
 
@@ -18,44 +19,39 @@ public class UsersPage {
 	DropDownHelper dropDownHelper;
 	CommonFunc commonFunc;
 	CommonVariables commonVariables;
+	CommonXpath commonXpath;
+
 	private Logger log = LogHelper.getLogger(UsersPage.class);
 	boolean verifyDetails = false;
 
-	@FindBy(id = "first_name")
-	WebElement userFirstName;
-
-	@FindBy(id = "last_name")
-	WebElement userLastName;
-
-	@FindBy(id = "email")
-	WebElement userEmail;
 
 	public UsersPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonFunc = new CommonFunc(driver);
+		commonXpath = new CommonXpath(driver);
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
 	public void enterUserFirstName(String firstName) {
 		log.info("********************Enter User First Name********************");
-		userFirstName.clear();
-		userFirstName.sendKeys(firstName);
-		userFirstName.sendKeys(Keys.TAB);
+		commonXpath.FirstName.clear();
+		commonXpath.FirstName.sendKeys(firstName);
+		commonXpath.FirstName.sendKeys(Keys.TAB);
 	}
 
 	public void enterUserLastName(String lastName) {
 		log.info("********************Enter User Last Name********************");
-		userLastName.clear();
-		userLastName.sendKeys(lastName);
-		userLastName.sendKeys(Keys.TAB);
+		commonXpath.LastName.clear();
+		commonXpath.LastName.sendKeys(lastName);
+		commonXpath.LastName.sendKeys(Keys.TAB);
 	}
 
 	public void enterUserEmail(String email) {
 		log.info("********************Enter User Email********************");
-		userEmail.clear();
-		userEmail.sendKeys(email);
-		userEmail.sendKeys(Keys.TAB);
+		commonXpath.userEmail.clear();
+		commonXpath.userEmail.sendKeys(email);
+		commonXpath.userEmail.sendKeys(Keys.TAB);
 	}
 
 }

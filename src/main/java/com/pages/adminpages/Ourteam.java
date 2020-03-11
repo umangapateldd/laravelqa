@@ -12,6 +12,7 @@ import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.CommonXpath;
 import com.utilities.FilesPaths;
 
 public class Ourteam {
@@ -19,6 +20,7 @@ public class Ourteam {
 	DropDownHelper dropDownHelper;
 	CommonFunc commonFunc;
 	CommonVariables commonVariables;
+	CommonXpath commonXpath;
 	private Logger log = LogHelper.getLogger(Ourteam.class);
 	boolean verifyDetails = false;
 
@@ -66,13 +68,14 @@ public class Ourteam {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonFunc = new CommonFunc(driver);
+		commonXpath = new CommonXpath(driver);
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
 	public void enterFirstName(String firstname) {
 		log.info("********************Enter the First Name********************");
-		FirstName.clear();
-		FirstName.sendKeys(firstname);
+		commonXpath.FirstName.clear();
+		commonXpath.FirstName.sendKeys(firstname);
 	}
 
 	public void enterLastName(String lastname) {
