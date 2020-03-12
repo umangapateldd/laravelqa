@@ -26,12 +26,6 @@ public class HomePage {
 		commonXpath = new CommonXpath(driver);
 	}
 
-	// Mouse hover on particular menu
-//	public void navigateToAdmin() {
-//		log.info("********************Navigate to Admin tab********************");
-//		mouseMovement.mouseHover(driver.findElement(By.linkText("Admin")));
-//	}	
-
 	public UsersPage clickOnUsersMenu() {
 		log.info("********************Click on Users Menu********************");
 		commonXpath.usersMenu.click();

@@ -24,10 +24,6 @@ public class Blogs {
 	private Logger log = LogHelper.getLogger(Blogs.class);
 	boolean verifyDetails = false;
 
-	
-	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]")
-	WebElement date;
-
 	public Blogs(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

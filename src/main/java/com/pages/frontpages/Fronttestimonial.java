@@ -23,9 +23,6 @@ public class Fronttestimonial {
 	private Logger log = LogHelper.getLogger(Blogs.class);
 	boolean verifyDetails = false;
 
-	@FindBy(id = "title")
-	WebElement Title;
-
 	public Fronttestimonial(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
