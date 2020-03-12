@@ -3,6 +3,7 @@ Feature: Testimonial module scenario
   @Testimonial
   Scenario: Testimonial Add successfully with click on Save button
     Given Login as Admin and Go to "Testimonials" Module
+    When Verify table column in each grid "Testimonials" page
     When Click on "Add" button in "Testimonial"
     Then "Testimonial" "Add" page gets open
     And Verify test data with proper validation message for "Testimonials"

@@ -3,6 +3,7 @@ Feature: FAQ module scenario
   @FAQ
   Scenario: FAQ Add successfully with click on Save button
     Given Login as Admin and Go to "FAQs" Module
+    When Verify table column in each grid "FAQs" page
     When Click on "Add" button in "FAQs"
     Then "FAQ" "Add" page gets open
     And Verify test data with proper validation message for "FAQs"

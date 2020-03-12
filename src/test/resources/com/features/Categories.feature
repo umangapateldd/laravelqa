@@ -3,6 +3,7 @@ Feature: Category module scenario
   @CategoriesAdd
   Scenario: Category Add successfully with click on Save button
     Given Login as Admin and Go to "Categories" Module
+    When Verify table column in each grid "Categories" page
     When Click on "Add" button in "Categories"
     Then "Category" "Add" page gets open
     And Verify test data with proper validation message for "Categories"
