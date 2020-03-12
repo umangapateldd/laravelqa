@@ -3,6 +3,7 @@ Feature: Blog module scenario
   @blogAdd
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
+    When Verify table column in each grid "Blogs" page
     When Click on "Add" button in "Blogs"
     Then "Blog" "Add" page gets open
     #And Verify test data with proper validation message for "Blogs"

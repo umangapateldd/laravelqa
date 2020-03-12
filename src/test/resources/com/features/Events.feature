@@ -3,6 +3,7 @@ Feature: Events module scenario
   @EventsAdd
   Scenario: Event Add successfully with click on Save button
     Given Login as Admin and Go to "Events" Module
+    When Verify table column in each grid "Events" page
     When Click on "Add" button in "Events"
     Then "Event" "Add" page gets open
     And Verify test data with proper validation message for "Events"

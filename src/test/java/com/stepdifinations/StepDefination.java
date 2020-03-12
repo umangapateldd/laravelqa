@@ -1,7 +1,6 @@
 package com.stepdifinations;
 
 import java.util.ArrayList;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -847,16 +846,23 @@ public class StepDefination {
 		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
 
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
-		System.out.println("Module name =" + moduleName);
-		System.out.println("Excel value =" + ExcelHelper.getData(0, 0));
-		System.out.println("Test Title ="
-				+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[12]")).getText());
 
 		if (moduleName.equals(ExcelHelper.getData(0, 0))) {
-
-			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).getText();
-			System.out.println("Test Title ="
-					+ driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).getText());
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 0));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 1))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 1));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 2))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 2));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 3))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 3));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 4))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 4));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 5))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 5));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 6))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 6));
+		}  else if (moduleName.equals(ExcelHelper.getData(0, 7))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 7));
 		}
 
 		CommonVariables.stepResult.add("Pass");

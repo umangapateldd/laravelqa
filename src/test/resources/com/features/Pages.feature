@@ -3,9 +3,10 @@ Feature: Pages module scenario
   @Pages
   Scenario: Page Add successfully with click on Save button
     Given Login as Admin and Go to "Pages" Module
+    When Verify table column in each grid "Pages" page
     When Click on "Add" button in "Pages"
     Then "Page" "Add" page gets open
-    #And Verify test data with proper validation message for "Pages"
+    And Verify test data with proper validation message for "Pages"
     When I enter all mandatory fields for "add" Page
     And Click on "Save" button in "Page"
     Then I should get "page created successfully." message on "Pages"
@@ -22,7 +23,7 @@ Feature: Pages module scenario
     Then I should get "page updated successfully." message on "Pages"
     Then Verify details in "Pages"
 
-  @Pages
+  @PagesStatus
   Scenario: Page Active Inactive
     Given Login as Admin and Go to "Pages" Module
     When Verify details in "Pages"

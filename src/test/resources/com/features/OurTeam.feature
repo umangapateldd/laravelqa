@@ -3,6 +3,7 @@ Feature: Our Team module scenario
   @ourteam
   Scenario: Our Team Member Add successfully with click on Save button
     Given Login as Admin and Go to "Our Team" Module
+    When Verify table column in each grid "Our Team" page
     When Click on "Add" button in "Our Team"
     Then "Team Member" "Add" page gets open
     And Verify test data with proper validation message for "Our Team"
