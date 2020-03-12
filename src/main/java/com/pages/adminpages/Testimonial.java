@@ -2,14 +2,13 @@ package com.pages.adminpages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.DropDownHelper;
 import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.CommonXpath;
 import com.utilities.FilesPaths;
 
 public class Testimonial {
@@ -17,70 +16,45 @@ public class Testimonial {
 	DropDownHelper dropDownHelper;
 	CommonFunc commonFunc;
 	CommonVariables commonVariables;
+	CommonXpath commonXpath;
 	private Logger log = LogHelper.getLogger(Testimonial.class);
 	boolean verifyDetails = false;
-
-	@FindBy(id = "client_name")
-	WebElement AuthorName;
-
-	@FindBy(id = "url")
-	WebElement URL;
-
-	@FindBy(xpath = "//*[@id='status']")
-	WebElement Status;
-
-	@FindBy(xpath = "//body[@id='tinymce']")
-	WebElement Description;
-	
-	@FindBy(xpath = "//input[@type='file']")
-	WebElement Image;
-
-	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[7]/a")
-	WebElement editbutton;
-
-	@FindBy(xpath = "/html/body/nav/ul/li[6]/div/a[2]")
-	WebElement Settingmenu;
-
-	@FindBy(xpath = "//*[@id='field_testimonial_title_display']")
-	WebElement Settingfield;
-
-	@FindBy(xpath = "//*[@id='btnsave']")
-	WebElement Settingsave;
 
 	public Testimonial(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonFunc = new CommonFunc(driver);
+		commonXpath = new CommonXpath(driver);
 		dropDownHelper = new DropDownHelper(driver);
 	}
 
 	public void enterAuthorName(String authorName) {
 		log.info("********************Enter the Author Name********************");
-		AuthorName.clear();
-		AuthorName.sendKeys(authorName);
+		commonXpath.AuthorName.clear();
+		commonXpath.AuthorName.sendKeys(authorName);
 	}
 
 	public void enterURL(String url) {
 		log.info("********************Enter the URL********************");
-		URL.clear();
-		URL.sendKeys(url);
+		commonXpath.URL.clear();
+		commonXpath.URL.sendKeys(url);
 	}
 
 	public void enterStatus(String status) {
 		log.info("********************Enter the Status********************");
-		dropDownHelper.selectByVaule(Status, status);
+		dropDownHelper.selectByVaule(commonXpath.Status, status);
 		
 	}
 
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
-		editbutton.click();
+		commonXpath.Testimonialeditbutton.click();
 	}
 
 	public void enterDescription(String description) throws InterruptedException {
 		log.info("********************Enter the Additional Bio ********************");
 		driver.switchTo().frame("description_ifr");
-		Description.sendKeys(description);
+		commonXpath.Description.sendKeys(description);
 		driver.switchTo().defaultContent();
 	}
 
@@ -88,24 +62,24 @@ public class Testimonial {
 		log.info("********************Enter the Author LastName********************");
 		
         
-		dropDownHelper.selectVisibleText(Settingfield, settingfield);
+		dropDownHelper.selectVisibleText(commonXpath.Settingfield, settingfield);
 	}
 
 	public void ClickonSettingmenu() throws InterruptedException {
 		log.info("********************Click on Setting Menu********************");
 		Thread.sleep(2000);
-		Settingmenu.click();
+		commonXpath.Settingmenu.click();
 		Thread.sleep(2000);
 	}
 
 	public void ClickonSettingsave() throws InterruptedException {
 		log.info("********************Click on Setting save********************");
-		Settingsave.click();
+		commonXpath.Settingsave.click();
 		Thread.sleep(2000);
 	}
 	public void selectImage(String image) throws InterruptedException {
 		log.info("********************Select the Image********************");
-		Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 	}
