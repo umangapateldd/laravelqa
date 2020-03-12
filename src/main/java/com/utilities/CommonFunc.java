@@ -27,6 +27,7 @@ public class CommonFunc {
 
 	WebDriver driver;
 	CommonVariables commonVariables;
+	CommonXpath commonXpath;
 	DropDownHelper dropDownHelper;
 	Ourteam ourteam;
 	Blogs blogs;
@@ -77,6 +78,7 @@ public class CommonFunc {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		commonVariables = new CommonVariables(driver);
+		commonXpath = new CommonXpath(driver);
 		dropDownHelper = new DropDownHelper(driver);
 	}
 

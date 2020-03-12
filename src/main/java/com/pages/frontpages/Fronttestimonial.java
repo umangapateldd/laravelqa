@@ -22,7 +22,6 @@ public class Fronttestimonial {
 	private Logger log = LogHelper.getLogger(Blogs.class);
 	boolean verifyDetails = false;
 
-
 	public Fronttestimonial(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

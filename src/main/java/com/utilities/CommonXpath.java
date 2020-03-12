@@ -6,6 +6,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonXpath {
+	
+	@FindBy(xpath = "//input[@id='email']")
+	public static WebElement username;
+
+	@FindBy(xpath = "//input[@id='password']")
+	public static WebElement password;
+
+	@FindBy(xpath = "//button[@type='submit']")
+	public static WebElement login;
 
 	@FindBy(id = "first_name")
 	public WebElement FirstName;
@@ -320,14 +329,9 @@ public class CommonXpath {
 	public WebElement statuscolumn;
 	
 	WebDriver driver;
-	ReadPropFile readPropFile;
-	public static String browserName = "";
 
 	public CommonXpath(WebDriver driver) {
 		this.driver = driver;
-		readPropFile = new ReadPropFile();
-		readPropFile.readProp();
-		browserName = readPropFile.prop.getProperty("browser");
 		PageFactory.initElements(driver, this);
 	}
 
