@@ -252,7 +252,72 @@ public class CommonXpath {
 
 	@FindBy(xpath = "/html/body/nav/ul/li[6]/div/a[2]")
 	public WebElement Settingmenu;
+	
+	@FindBy(xpath = "//*[@id='parent_category']")
+	public WebElement BlogCategory;
 
+	@FindBy(id = "author_first_name")
+	public WebElement AuthorFirstName;
+
+	@FindBy(id = "author_last_name")
+	public WebElement AuthorLastName;
+
+	@FindBy(id = "publish_date")
+	public WebElement PublishDate;
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[10]/a")
+	public WebElement Blogeditbutton;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[3]/table/tbody/tr[3]/td[2]")
+	public WebElement Blogselectdate;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")
+	public WebElement selecttime;
+
+	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
+	public WebElement BlogSettingmenu;
+
+	@FindBy(xpath = "//*[@id='field_blog_per_page_display']")
+	public WebElement Fieldblog;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[1]/table/tbody/tr/td/fieldset/span[11]")
+	public WebElement time;
+
+	@FindBy(xpath = "//*[@id='main_image_alt']")
+	public WebElement BlogImageAlt;
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]")
+	public WebElement date;
+	
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]/a")
+	public WebElement Categorieseditbutton;
+	
+	@FindBy(xpath ="//*[@id='question']")
+	public WebElement Question;
+
+	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[6]/a")
+	public WebElement FAQeditbutton;
+
+	@FindBy(xpath = "//body[@id='tinymce']")
+	public WebElement Answer;
+
+	@FindBy(xpath = "//*[@id='main']/div[2]/div/div/div[2]/a")
+	public WebElement usersMenu;
+	
+	@FindBy(xpath = "//*[@id='main']/div[1]/span")
+	public WebElement successmsg;
+
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
+	public WebElement addtitle;
+
+	@FindBy(xpath = "//*[@id='site-config-heading-12']/h5/a")
+	public WebElement blogsettingtitle;
+
+	@FindBy(xpath = "//*[@id='site-config-heading-11']/h5/a")
+	public WebElement testimonialsettingtitle;
+
+	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
+	public WebElement statuscolumn;
 	
 	WebDriver driver;
 	ReadPropFile readPropFile;
