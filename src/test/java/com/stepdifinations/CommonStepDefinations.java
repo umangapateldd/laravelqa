@@ -34,6 +34,10 @@ public class CommonStepDefinations {
 
 	@Given("Login as Admin and Go to {string} Module")
 	public void user_on_admin_dashboard_page(String moduleName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
+		CommonVariables.step.add(givenann.value().replace("{string}", moduleName));
+
 		testBase = new TestBase();
 		readPropFile = new ReadPropFile();
 		driver.get(readPropFile.readProp().getProperty("url"));
@@ -65,10 +69,16 @@ public class CommonStepDefinations {
 		commonFunc.clickonmenuondashboard(moduleName);
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
+		
+		CommonVariables.stepResult.add("Pass");
 	}
 
 	@Given("Open Front site and Go to {string} Module")
 	public void Open_Front_site_and_Go_to_Testimonials_Module(String menuTitle) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
+		CommonVariables.step.add(givenann.value().replace("{string}", menuTitle));
+		
 		System.out.println("menuTitle = " + menuTitle);
 		String url = "http://laravelcms.devdigdev.com/";
 		driver.get(url);
@@ -85,5 +95,6 @@ public class CommonStepDefinations {
 				break;
 			}
 		}
+		CommonVariables.stepResult.add("Pass");
 	}
 }

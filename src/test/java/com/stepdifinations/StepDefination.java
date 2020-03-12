@@ -1,4 +1,6 @@
 package com.stepdifinations;
+
+import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -77,6 +79,10 @@ public class StepDefination {
 
 	@And("Click on {string} button in {string}")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		When whenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
+
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 		switch (buttonName) {
@@ -103,11 +109,32 @@ public class StepDefination {
 			log.error(buttonName + " is not defined in " + moduleName);
 			break;
 		}
+		CommonVariables.stepResult.add("Pass");
+	}
 
+	public void getSteps(int paramCount, String step) {
+		String[] words = step.split(" ");
+		String word = "{string}";
+		int count = 0;
+		for (int i = 0; i < words.length; i++) {
+			// if match found increase count
+//			if (word.equals(words[i])) {
+//				words[i].replace(word, )
+//				count++;
+//			}
+		}
+		
+//		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
 	}
 
 	@Then("{string} {string} page gets open")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+		String[] arr = null;
+//		Then thenann1 = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0].;
+//		getSteps(2, thenann.value(), {moduleName, formName});
+
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 		String page = formName + " " + moduleName;
@@ -134,6 +161,7 @@ public class StepDefination {
 		} else {
 			assert false;
 		}
+		CommonVariables.stepResult.add("Pass");
 	}
 
 	@When("I enter all mandatory fields for {string} User")
@@ -813,8 +841,11 @@ public class StepDefination {
 
 	@When("Verify table column in each grid {string} page")
 	public void Verify_table_column_in_each_grid_users_page(String moduleName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		When whenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
+
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
-		
 
 		if (moduleName.equals(ExcelHelper.getData(0, 0))) {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 0));
@@ -833,5 +864,7 @@ public class StepDefination {
 		}  else if (moduleName.equals(ExcelHelper.getData(0, 7))) {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 7));
 		}
+
+		CommonVariables.stepResult.add("Pass");
 	}
 }

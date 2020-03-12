@@ -6,7 +6,7 @@ Feature: Users module scenario
     When Verify table column in each grid "Users" page
     When Click on "Add" button in "Users"
     Then "User" "Add" page gets open
-    And Verify test data with proper validation message for "Users"
+    #And Verify test data with proper validation message for "Users"
     When I enter all mandatory fields for "add" User
     And Click on "Save" button in "Users"
     Then I should get "account created successfully" message on "Users"
@@ -18,7 +18,7 @@ Feature: Users module scenario
     When Verify details in "Users"
     And Click on "Edit" button in "Users"
     Then "User" "Edit" page gets open
-    And Verify test data with proper validation message for "Users"
+    #And Verify test data with proper validation message for "Users"
     When I enter all mandatory fields for "edit" User
     And Click on "Save" button in "Users"
     Then I should get "account updated successfully" message on "Users"
