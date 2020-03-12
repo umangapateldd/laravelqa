@@ -393,4 +393,25 @@ public class CommonFunc {
 			}
 		}
 	}
+
+	public void verifytablegridData(String Excelvalue) {
+
+		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th"));
+		int count = ele.size();
+		int j = 0;
+
+		String[] values = Excelvalue.split(",");
+
+		for (int i = 4; i <= count; i++) {
+			if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
+					.equals(values[j].trim())) {
+				System.out.println("Test Title =" + driver
+						.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText());
+			} else {
+				assert false;
+			}
+			j++;
+		}
+
+	}
 }
