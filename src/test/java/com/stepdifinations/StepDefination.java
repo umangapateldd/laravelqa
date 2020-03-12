@@ -3,8 +3,6 @@ package com.stepdifinations;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -25,6 +23,7 @@ import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.CommonXpath;
 import com.utilities.CurrentDateFormat;
 import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
@@ -52,25 +51,11 @@ public class StepDefination {
 	Events events;
 	Pages pages;
 	Settings settings;
+	CommonXpath commonXpath;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
 	CurrentDateFormat dateTime = new CurrentDateFormat();
-
-	@FindBy(xpath = "//*[@id='main']/div[1]/span")
-	WebElement successmsg;
-
-	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
-	WebElement addtitle;
-
-	@FindBy(xpath = "//*[@id='site-config-heading-12']/h5/a")
-	WebElement blogsettingtitle;
-
-	@FindBy(xpath = "//*[@id='site-config-heading-11']/h5/a")
-	WebElement testimonialsettingtitle;
-
-	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
-	WebElement statuscolumn;
 
 	public StepDefination() {
 		driver = HookHelper.driver;
@@ -87,6 +72,7 @@ public class StepDefination {
 		events = new Events(driver);
 		pages = new Pages(driver);
 		settings = new Settings(driver);
+		commonXpath = new CommonXpath(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -130,22 +116,22 @@ public class StepDefination {
 
 		if (formName.equals("Settings")) {
 			if (moduleName.equals(CommonVariables.blogs)) {
-				if (blogsettingtitle.getText().equalsIgnoreCase(settingpage)) {
-					System.out.println("Verify the title:" + blogsettingtitle.getText());
+				if (commonXpath.blogsettingtitle.getText().equalsIgnoreCase(settingpage)) {
+					System.out.println("Verify the title:" + commonXpath.blogsettingtitle.getText());
 				} else {
 					assert false;
 				}
 			} else if (moduleName.equals(CommonVariables.testimonial)) {
-				if (testimonialsettingtitle.getText().equalsIgnoreCase(settingpage)) {
-					System.out.println("Verify the title:" + testimonialsettingtitle.getText());
+				if (commonXpath.testimonialsettingtitle.getText().equalsIgnoreCase(settingpage)) {
+					System.out.println("Verify the title:" + commonXpath.testimonialsettingtitle.getText());
 				} else {
 					assert false;
 				}
 			} else {
 				assert false;
 			}
-		} else if (addtitle.getText().equalsIgnoreCase(page)) {
-			System.out.println("Verify the title:" + addtitle.getText());
+		} else if (commonXpath.addtitle.getText().equalsIgnoreCase(page)) {
+			System.out.println("Verify the title:" + commonXpath.addtitle.getText());
 		} else {
 			assert false;
 		}
@@ -189,11 +175,11 @@ public class StepDefination {
 			String moduleName) throws Throwable {
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
-		if (successmsg.getText().contains("account restored successfully.")) {
-			System.out.println("Message :" + successmsg.getText());
+		if (commonXpath.successmsg.getText().contains("account restored successfully.")) {
+			System.out.println("Message :" + commonXpath.successmsg.getText());
 		} else {
-			if (successmsg.getText().contains(sucessmessage)) {
-				System.out.println("Message :" + successmsg.getText());
+			if (commonXpath.successmsg.getText().contains(sucessmessage)) {
+				System.out.println("Message :" + commonXpath.successmsg.getText());
 			} else {
 				System.out.println("Message is not match: ");
 				assert false;
@@ -252,11 +238,11 @@ public class StepDefination {
 
 	@And("{string} is Inactive")
 	public void User_is_Inactive(String moduleName) throws Throwable {
-		if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
+		if (commonXpath.statuscolumn.getAttribute("class").equals("sort inactive ")) {
 			System.out
-					.println("Value for Inactive user = " + statuscolumn.getAttribute("class").equals("sort active "));
-		} else if (statuscolumn.getAttribute("class").equals("sort active ")) {
-			System.out.println("Value for active user = " + statuscolumn.getAttribute("class").equals("sort active "));
+					.println("Value for Inactive user = " + commonXpath.statuscolumn.getAttribute("class").equals("sort active "));
+		} else if (commonXpath.statuscolumn.getAttribute("class").equals("sort active ")) {
+			System.out.println("Value for active user = " + commonXpath.statuscolumn.getAttribute("class").equals("sort active "));
 
 		} else {
 			System.out.println("Not match record:");
@@ -273,9 +259,9 @@ public class StepDefination {
 
 		if (moduleName.equals(CommonVariables.users)) {
 			String Message = "The user account is not validated yet, user needs to validate his/her account.";
-			statuscolumn.click();
-			if (successmsg.getText().equals(Message)) {
-				System.out.println("Messgae for Inactive user = " + successmsg.getText());
+			commonXpath.statuscolumn.click();
+			if (commonXpath.successmsg.getText().equals(Message)) {
+				System.out.println("Messgae for Inactive user = " + commonXpath.successmsg.getText());
 			} else {
 				assert false;
 			}
@@ -398,12 +384,12 @@ public class StepDefination {
 	public void User_is_Active(String moduleName, String status) throws Throwable {
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
-		if (statuscolumn.getAttribute("class").equals("sort active ")) {
+		if (commonXpath.statuscolumn.getAttribute("class").equals("sort active ")) {
 			CommonVariables.inactive = "false";
 			if (status.equals("Inactive")) {
 				assert false;
 			}
-		} else if (statuscolumn.getAttribute("class").equals("sort inactive ")) {
+		} else if (commonXpath.statuscolumn.getAttribute("class").equals("sort inactive ")) {
 			CommonVariables.inactive = "true";
 			if (status.equals("Active")) {
 				assert false;
@@ -505,7 +491,7 @@ public class StepDefination {
 	public void I_should_get_Settings_have_been_saved_successfully_message_on_Blogs_Settings(String successmessage,
 			String moduleName) throws Throwable {
 		System.out.println("Message : " + successmessage);
-		if (successmsg.getText().equals(successmessage)) {
+		if (commonXpath.successmsg.getText().equals(successmessage)) {
 			System.out.println("Message mathch:" + successmessage);
 		} else {
 			assert false;

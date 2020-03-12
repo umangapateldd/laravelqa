@@ -2,13 +2,12 @@ package com.pages.adminpages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.LogHelper;
 import com.basicactions.MouseMovement;
 import com.basicactions.WaitHelper;
+import com.utilities.CommonXpath;
 
 public class HomePage {
 
@@ -16,16 +15,15 @@ public class HomePage {
 	MouseMovement mouseMovement;
 	WaitHelper waitHelper;
 	UsersPage usersPage;
+	CommonXpath commonXpath;
 	private Logger log = LogHelper.getLogger(HomePage.class);
-
-	@FindBy(xpath = "//*[@id=\"main\"]/div[2]/div/div/div[2]/a")
-	WebElement usersMenu;
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		mouseMovement = new MouseMovement(driver);
 		waitHelper = new WaitHelper(driver);
+		commonXpath = new CommonXpath(driver);
 	}
 
 	// Mouse hover on particular menu
@@ -36,7 +34,7 @@ public class HomePage {
 
 	public UsersPage clickOnUsersMenu() {
 		log.info("********************Click on Users Menu********************");
-		usersMenu.click();
+		commonXpath.usersMenu.click();
 		return usersPage;
 	}
 
