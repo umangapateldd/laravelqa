@@ -1,8 +1,11 @@
 package com.stepdifinations;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -239,10 +242,11 @@ public class StepDefination {
 	@And("{string} is Inactive")
 	public void User_is_Inactive(String moduleName) throws Throwable {
 		if (commonXpath.statuscolumn.getAttribute("class").equals("sort inactive ")) {
-			System.out
-					.println("Value for Inactive user = " + commonXpath.statuscolumn.getAttribute("class").equals("sort active "));
+			System.out.println("Value for Inactive user = "
+					+ commonXpath.statuscolumn.getAttribute("class").equals("sort active "));
 		} else if (commonXpath.statuscolumn.getAttribute("class").equals("sort active ")) {
-			System.out.println("Value for active user = " + commonXpath.statuscolumn.getAttribute("class").equals("sort active "));
+			System.out.println(
+					"Value for active user = " + commonXpath.statuscolumn.getAttribute("class").equals("sort active "));
 
 		} else {
 			System.out.println("Not match record:");
@@ -801,7 +805,7 @@ public class StepDefination {
 			// Title
 			commonFunc.verifyTestAllData(CommonVariables.allStrings, "//*[@id='question']",
 					"//*[@id='frmaddedit']/div[2]/div/div[1]/div");
-			
+
 		} else if (moduleName.equals("Events")) {
 			System.out.println("modulename = " + moduleName);
 			// Title
@@ -811,4 +815,18 @@ public class StepDefination {
 
 	}
 
+	@When("Verify table column in each grid {string} page")
+	public void Verify_table_column_in_each_grid_users_page(String moduleName) throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
+		System.out.println("Module name ="+moduleName);
+		System.out.println("Excel value ="+ExcelHelper.getData(0, 0));
+		System.out.println("Test Title =" +driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).getText());
+		
+		if(moduleName.equals(ExcelHelper.getData(0, 0)))
+		{
+		
+          driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).getText();
+          System.out.println("Test Title =" +driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).getText());
+	}
+}
 }
