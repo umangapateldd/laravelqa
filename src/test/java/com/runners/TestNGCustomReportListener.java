@@ -282,15 +282,28 @@ public class TestNGCustomReportListener implements IReporter {
 		if (hasParameters) {
 			tableStart("result", null);
 			writer.print("<tr class='param'>");
-			for (int x = 1; x <= parameters.length; x++) {
-				writer.print("<th>Param." + x + "</th>");
+			for (int x = 0; x < parameters.length; x++) {
+				writer.print("<th>Param." + parameters[x] + "</th>");
 			}
 			writer.println("</tr>");
-			writer.print("<tr class='param stripe'>");
-			for (Object p : parameters) {
-				writer.println("<td>" + Utils.escapeHtml(Utils.toString(p)) + "</td>");
+
+			for (int k = 0; k < CommonVariables.step.size(); k++) {
+				if (k < CommonVariables.stepResult.size()) {
+					writer.print("<tr class='param' style='background-color:green; color:white;'>");
+				} else {
+					writer.print("<tr class='param' style='background-color:red; color:white;'>");
+				}
+//				writer.println("<td>" + Utils.escapeHtml(Utils.toString(p)) + "</td>");
+				writer.println("<td>" + CommonVariables.step.get(k) + "</td>");
+				if (k < CommonVariables.stepResult.size()) {
+					writer.println("<td>" + CommonVariables.stepResult.get(k) + "</td>");
+				} else {
+					writer.println("<td>Fail</td>");
+				}
+
+				writer.println("</tr>");
 			}
-			writer.println("</tr>");
+
 		}
 		List<String> msgs = Reporter.getOutput(ans);
 		System.out.println(msgs);

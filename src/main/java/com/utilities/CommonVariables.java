@@ -43,6 +43,8 @@ public class CommonVariables {
 	public static String inactive = "";
 	ReadPropFile readPropFile;
 	public static String browserName = "";
+	public static ArrayList<String> step = new ArrayList<String>();
+	public static ArrayList<String> stepResult = new ArrayList<String>();
 	
 	@FindBy(xpath = "//div[@class='loader']")
 	public static List<WebElement> elementList;
