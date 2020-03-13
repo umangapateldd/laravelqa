@@ -1,6 +1,7 @@
 package com.stepdifinations;
 
 import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -80,8 +81,11 @@ public class StepDefination {
 	@And("Click on {string} button in {string}")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		When whenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
-		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
+		And thenann = (And) StepDefination.class.getMethod(methodName, String.class, String.class).getAnnotations()[0];
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add(buttonName);
+		arr.add(moduleName);
+		CommonVariables.step.add(getStepsName(thenann.value(), arr));
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
@@ -112,28 +116,31 @@ public class StepDefination {
 		CommonVariables.stepResult.add("Pass");
 	}
 
-	public void getSteps(int paramCount, String step) {
+	public String getStepsName(String step, ArrayList<String> arr) {
 		String[] words = step.split(" ");
 		String word = "{string}";
+		String sent = "";
 		int count = 0;
 		for (int i = 0; i < words.length; i++) {
 			// if match found increase count
-//			if (word.equals(words[i])) {
-//				words[i].replace(word, )
-//				count++;
-//			}
+			if (word.equals(words[i])) {
+				words[i] = arr.get(count);
+				count++;
+			}
+			sent = sent + " " + words[i];
 		}
-		
-//		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
+		return sent.trim();
 	}
 
 	@Then("{string} {string} page gets open")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
-		String[] arr = null;
-//		Then thenann1 = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0].;
-//		getSteps(2, thenann.value(), {moduleName, formName});
+		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class, String.class)
+				.getAnnotations()[0];
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add(moduleName);
+		arr.add(formName);
+		CommonVariables.step.add(getStepsName(thenann.value(), arr));
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
@@ -166,6 +173,12 @@ public class StepDefination {
 
 	@When("I enter all mandatory fields for {string} User")
 	public void I_enter_all_mandatory_fields_for_add_User(String formName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		When thenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add(formName);
+		CommonVariables.step.add(getStepsName(thenann.value(), arr));
+
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		switch (formName) {
 		case "add":
@@ -194,12 +207,20 @@ public class StepDefination {
 			assert false;
 			break;
 		}
-
+		CommonVariables.stepResult.add("Pass");
 	}
 
 	@Then("I should get {string} message on {string}")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class, String.class)
+				.getAnnotations()[0];
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add(sucessmessage);
+		arr.add(moduleName);
+		CommonVariables.step.add(getStepsName(thenann.value(), arr));
+
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 		if (commonXpath.successmsg.getText().contains("account restored successfully.")) {
@@ -217,10 +238,17 @@ public class StepDefination {
 			commonFunc.clickOnCancelbutton();
 			CommonVariables.saveandcontinue = false;
 		}
+		CommonVariables.stepResult.add("Pass");
 	}
 
 	@And("Verify details in {string}")
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
+		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+		And thenann = (And) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add(moduleName);
+		CommonVariables.step.add(getStepsName(thenann.value(), arr));
+
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 		String searchText = "";
@@ -261,6 +289,7 @@ public class StepDefination {
 		}
 
 		commonFunc.searchRecord(searchText, xpath, moduleName);
+		CommonVariables.stepResult.add("Pass");
 	}
 
 	@And("{string} is Inactive")
@@ -842,8 +871,11 @@ public class StepDefination {
 	@When("Verify table column in each grid {string} page")
 	public void Verify_table_column_in_each_grid_users_page(String moduleName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		When whenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
-		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
+		When thenann = (When) StepDefination.class.getMethod(methodName, String.class)
+				.getAnnotations()[0];
+		ArrayList<String> arr = new ArrayList<String>();
+		arr.add(moduleName);
+		CommonVariables.step.add(getStepsName(thenann.value(), arr));
 
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
 
@@ -861,7 +893,7 @@ public class StepDefination {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 5));
 		} else if (moduleName.equals(ExcelHelper.getData(0, 6))) {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 6));
-		}  else if (moduleName.equals(ExcelHelper.getData(0, 7))) {
+		} else if (moduleName.equals(ExcelHelper.getData(0, 7))) {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 7));
 		}
 

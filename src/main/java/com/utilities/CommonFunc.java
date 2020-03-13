@@ -405,8 +405,6 @@ public class CommonFunc {
 		for (int i = 4; i <= count; i++) {
 			if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
 					.equals(values[j].trim())) {
-				System.out.println("Test Title =" + driver
-						.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText());
 			} else {
 				assert false;
 			}

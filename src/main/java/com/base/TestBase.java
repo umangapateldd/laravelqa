@@ -19,7 +19,6 @@ public class TestBase {
 	BrowserCapabilities browserCapabilities;
 
 	public WebDriver launchBrowser(String BrowserName) {
-		System.out.println("user directory = " + System.getProperty("user.dir"));
 		System.setProperty("java.library.path", System.getProperty("user.dir"));
 		System.load(FilesPaths.EXTRA_FILES_FOLDER + "chilkat.dll");
 

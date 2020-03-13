@@ -35,7 +35,7 @@ public class HookHelper {
 		driver = testBase.launchBrowser(readPropFile.prop.getProperty("browser"));
 		log.info("********************Delete all cookies of browser********************");
 		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
+//		driver.manage().window().maximize();
 		waitHelper = new WaitHelper(driver);
 		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
 		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
