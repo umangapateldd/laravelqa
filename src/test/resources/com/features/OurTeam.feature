@@ -63,7 +63,7 @@ Feature: Our Team module scenario
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
     
-  @ourteam1
+  @ourteam11
   Scenario: Our team verification on Front side
     Given Open Front site and Go to "TEAM" Module
     Then Verify Our team in front side

@@ -79,9 +79,9 @@ public class StepDefination {
 
 	@And("Click on {string} button in {string}")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
-		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		When whenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
-		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
+//		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+//		When whenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+//		CommonVariables.step.add(whenann.value().replace("{string}", moduleName));
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
@@ -129,10 +129,10 @@ public class StepDefination {
 
 	@Then("{string} {string} page gets open")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
-		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
-		String[] arr = null;
-//		Then thenann1 = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0].;
+//		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+//		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
+//		String[] arr = null;
+//		Then thenann1 = (Then) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
 //		getSteps(2, thenann.value(), {moduleName, formName});
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,

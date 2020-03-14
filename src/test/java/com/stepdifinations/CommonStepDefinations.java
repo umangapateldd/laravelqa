@@ -80,7 +80,7 @@ public class CommonStepDefinations {
 		CommonVariables.step.add(givenann.value().replace("{string}", menuTitle));
 		
 		System.out.println("menuTitle = " + menuTitle);
-		String url = "http://laravelcms.devdigdev.com/";
+		String url = "http://laravelcms-qa.devdigdev.com/";
 		driver.get(url);
 		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li/a"));
 

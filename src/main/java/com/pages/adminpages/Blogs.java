@@ -4,8 +4,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.DropDownHelper;
@@ -40,7 +38,7 @@ public class Blogs {
 
 	public void selectBlogCategory(String blogCategory) throws InterruptedException {
 		log.info("********************Select the Blog Categories********************");
-		dropDownHelper.selectVisibleText(commonXpath.BlogCategory, blogCategory);
+		dropDownHelper.selectByVaule(commonXpath.BlogCategory, "1");
 	}
 
 	public void enterAuthorFirstName(String AuthorfirstName) {
@@ -63,7 +61,7 @@ public class Blogs {
 
 	public void selectStatus(String status) {
 		log.info("********************Enter the Status********************");
-		dropDownHelper.selectByVaule(commonXpath.Status, status);
+		dropDownHelper.selectByVaule(commonXpath.Status, "1");
 	}
 
 	public void enterPublishDate() throws InterruptedException {
