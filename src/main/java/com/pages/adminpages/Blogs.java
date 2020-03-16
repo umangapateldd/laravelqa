@@ -38,7 +38,7 @@ public class Blogs {
 
 	public void selectBlogCategory(String blogCategory) throws InterruptedException {
 		log.info("********************Select the Blog Categories********************");
-		dropDownHelper.selectVisibleText(commonXpath.BlogCategory, blogCategory);
+		dropDownHelper.selectByVaule(commonXpath.BlogCategory, "1");
 	}
 
 	public void enterAuthorFirstName(String AuthorfirstName) {
@@ -61,7 +61,7 @@ public class Blogs {
 
 	public void selectStatus(String status) {
 		log.info("********************Enter the Status********************");
-		dropDownHelper.selectByVaule(commonXpath.Status, status);
+		dropDownHelper.selectByVaule(commonXpath.Status, "1");
 	}
 
 	public void enterPublishDate() throws InterruptedException {

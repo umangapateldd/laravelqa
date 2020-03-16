@@ -3,7 +3,7 @@ Feature: Blog module scenario
   @blogAdd
   Scenario: Create Blog and verify details
     Given Login as Admin and Go to "Blogs" Module
-    When Verify table column in each grid "Blogs" page
+    #When Verify table column in each grid "Blogs" page
     When Click on "Add" button in "Blogs"
     Then "Blog" "Add" page gets open
     #And Verify test data with proper validation message for "Blogs"
@@ -24,7 +24,7 @@ Feature: Blog module scenario
     Then I should get "blog updated successfully" message on "Blogs"
     Then Verify details in "Blogs"
 
-  @blog
+  @blogStatus
   Scenario: Blogs Try Active before account verification
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
@@ -62,7 +62,7 @@ Feature: Blog module scenario
     Then "Blogs" "Settings" page gets open
     When I enter all mandatory fields for "Blogs" Settings
     And Click on "Save" button in "Blogs" Settings
-    Then I should get "Settings have been saved successfully" message on "Blogs" Settings
+    Then I should get "Settings have been saved successfully." message on "Blogs" Settings
 
   @blogDelete
   Scenario: Delete blog and verify details

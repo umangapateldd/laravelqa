@@ -80,12 +80,14 @@ public class StepDefination {
 
 	@And("Click on {string} button in {string}")
 	public void Click_on_Add_button_in_Users_grid(String buttonName, String moduleName) throws Throwable {
+
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		And thenann = (And) StepDefination.class.getMethod(methodName, String.class, String.class).getAnnotations()[0];
 		ArrayList<String> arr = new ArrayList<String>();
 		arr.add(buttonName);
 		arr.add(moduleName);
 		CommonVariables.step.add(getStepsName(thenann.value(), arr));
+
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
@@ -134,6 +136,7 @@ public class StepDefination {
 
 	@Then("{string} {string} page gets open")
 	public void Users_Add_page_gets_open(String moduleName, String formName) throws Throwable {
+
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class, String.class)
 				.getAnnotations()[0];
@@ -141,6 +144,7 @@ public class StepDefination {
 		arr.add(moduleName);
 		arr.add(formName);
 		CommonVariables.step.add(getStepsName(thenann.value(), arr));
+
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");

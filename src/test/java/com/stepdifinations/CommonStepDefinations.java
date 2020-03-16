@@ -1,5 +1,7 @@
 package com.stepdifinations;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -14,6 +16,7 @@ import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
 import io.cucumber.java.en.Given;
@@ -98,7 +101,7 @@ public class CommonStepDefinations {
 				"style", "display: none;");
 
 		CommonVariables.stepResult.add("=================");
-		CommonVariables.stepResult.add("Pass");
+		CommonVariables.stepResult.add("Pass");		
 
 	}
 
