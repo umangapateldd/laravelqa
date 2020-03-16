@@ -40,8 +40,11 @@ public class CommonStepDefinations {
 	public void user_on_admin_dashboard_page(String moduleName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
+		CommonVariables.step.add("=================");
 		CommonVariables.step.add(givenann.value().replace("{string}", moduleName));
+
 		commonFunc.verifythesheetname(moduleName);
+
 		
 		testBase = new TestBase();
 		readPropFile = new ReadPropFile();
@@ -98,7 +101,9 @@ public class CommonStepDefinations {
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 
-		CommonVariables.stepResult.add("Pass");
+		CommonVariables.stepResult.add("=================");
+		CommonVariables.stepResult.add("Pass");		
+
 	}
 
 	@Given("Open Front site and Go to {string} Module")
