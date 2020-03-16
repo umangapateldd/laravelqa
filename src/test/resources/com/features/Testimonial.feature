@@ -1,7 +1,7 @@
 Feature: Testimonial module scenario
 
   @TestimonialAdd
-  Scenario: Testimonial Add successfully with click on Save button
+  Scenario: Create Testimonial and verify details
     Given Login as Admin and Go to "Testimonials" Module
     When Verify table column in each grid "Testimonials" page
     When Click on "Add" button in "Testimonial"
@@ -13,7 +13,7 @@ Feature: Testimonial module scenario
     Then Verify details in "Testimonial"
 
   @TestimonialEdit
-  Scenario: Testimonial Edit successfully with click on Save button
+  Scenario: Edit Testimonial and verify details
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
     And Click on "Edit" button in "Testimonial"
@@ -36,7 +36,7 @@ Feature: Testimonial module scenario
     Then Make "Testimonial" "Active" and verify "success message"
 
   @TestimonialAddSaveContinue
-  Scenario: Testimonial Add successfully with click on Save & Continue button
+  Scenario: Create Testimonial and verify details
     Given Login as Admin and Go to "Testimonials" Module
     When Click on "Add" button in "Testimonial"
     Then "Testimonial" "Add" page gets open
@@ -46,7 +46,7 @@ Feature: Testimonial module scenario
     Then Verify details in "Testimonial"
 
   @TestimonialEditSaveContinue
-  Scenario: Testimonial Edit successfully with click on Save & Continue button
+  Scenario: Edit Testimonial and verify details
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
     And Click on "Edit" button in "Testimonial"
@@ -65,7 +65,7 @@ Feature: Testimonial module scenario
     Then Verify details in "Testimonial"
 
  @TestimonialDelete
-  Scenario: Testimonial Delete successfully
+  Scenario: Delete Testimonial and verify details
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
     And Click on "Delete" button in "Testimonial"

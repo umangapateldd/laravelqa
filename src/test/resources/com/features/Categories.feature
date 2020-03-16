@@ -1,7 +1,7 @@
 Feature: Category module scenario
 
   @CategoriesAdd
-  Scenario: Category Add successfully with click on Save button
+  Scenario: Create Category and verify details
     Given Login as Admin and Go to "Categories" Module
     When Verify table column in each grid "Categories" page
     When Click on "Add" button in "Categories"
@@ -13,7 +13,7 @@ Feature: Category module scenario
     Then Verify details in "Categories"
 
   @CategoriesEdit
-  Scenario: Category Edit successfully with click on Save button
+  Scenario: Edit Category and verify details
     Given Login as Admin and Go to "Categories" Module
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"
@@ -37,7 +37,7 @@ Feature: Category module scenario
 
   #Then Verify details in "Categories grid with other filters"
   @CategoriesDelete
-  Scenario: Category Delete successfully
+  Scenario: Delete Category and verify details
     Given Login as Admin and Go to "Categories" Module
     When Verify details in "Categories"
     And Click on "Delete" button in "Categories"
@@ -45,7 +45,7 @@ Feature: Category module scenario
     Then Verify details in "Categories"
 
   @CategoriesAddSaveContinue
-  Scenario: Category Add successfully with click on Save & Continue button
+  Scenario: Create Category and verify details
     Given Login as Admin and Go to "Categories" Module
     When Click on "Add" button in "Categories"
     Then "Category" "Add" page gets open
@@ -55,7 +55,7 @@ Feature: Category module scenario
     Then Verify details in "Categories"
 
   @CategoriesEditSaveContinue
-  Scenario: Category Edit successfully with click on Save & Continue button
+  Scenario: Edit Category and verify details
     Given Login as Admin and Go to "Categories" Module
     When Verify details in "Categories"
     And Click on "Edit" button in "Categories"

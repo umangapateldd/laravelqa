@@ -25,7 +25,7 @@ Feature: Our Team module scenario
     Then Verify details in "Our Team"
 
   @ourteamStatus
-  Scenario: Our Team Member Try InActive account
+  Scenario: Our Team Active InActive 
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And "Our Team" is "Active"
@@ -35,7 +35,7 @@ Feature: Our Team module scenario
     Then Make "Our Team" "Active" and verify "success message"
 
   @ourteamDelete
-  Scenario: Our Team Member Delete successfully
+  Scenario: Delete Our Team and verify details
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And Click on "Delete" button in "Our Team"
@@ -43,7 +43,7 @@ Feature: Our Team module scenario
     Then Verify details in "Our Team"
 
   @ourteamAddSaveandContinue
-  Scenario: Our Team Member Add successfully with click on Save & Continue button
+  Scenario: Create Our Team Member and verify details
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
     Then "Team Member" "Add" page gets open
@@ -53,7 +53,7 @@ Feature: Our Team module scenario
     Then Verify details in "Our Team"
 
   @ourteamEditSaveandContinue
-  Scenario: Our Team Member Edit successfully with click on Save & Continue button
+  Scenario: Edit Our Team Member and verify details
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And Click on "Edit" button in "Our Team"

@@ -1,7 +1,7 @@
 Feature: Events module scenario
 
   @EventsAdd
-  Scenario: Event Add successfully with click on Save button
+  Scenario: Create Event and verify details
     Given Login as Admin and Go to "Events" Module
     When Verify table column in each grid "Events" page
     When Click on "Add" button in "Events"
@@ -13,7 +13,7 @@ Feature: Events module scenario
     Then Verify details in "Events"
 
   @EventsEdit
-  Scenario: Category Edit successfully with click on Save button
+  Scenario: Edit Category and verify details
     Given Login as Admin and Go to "Events" Module
     When Verify details in "Events"
     And Click on "Edit" button in "Events"
@@ -37,7 +37,7 @@ Feature: Events module scenario
     Then Verify details in "Events"
 
   @EventsDelete
-  Scenario: Event Delete successfully
+  Scenario: Delete Event and verify details
     Given Login as Admin and Go to "Events" Module
     When Verify details in "Events"
     And Click on "Delete" button in "Events"
@@ -45,7 +45,7 @@ Feature: Events module scenario
     Then Verify details in "Events"
 
   @EventsAddSaveContinue
-  Scenario: Event Add successfully with click on Save & Continue button
+  Scenario: Create Event and verify details
     Given Login as Admin and Go to "Events" Module
     When Click on "Add" button in "Events"
     Then "Event" "Add" page gets open
@@ -55,7 +55,7 @@ Feature: Events module scenario
     Then Verify details in "Events"
 
   @EventsEditSaveContinue
-  Scenario: Event Edit successfully with click on Save & Continue button
+  Scenario: Edit Event and verify details
     Given Login as Admin and Go to "Events" Module
     When Verify details in "Events"
     And Click on "Edit" button in "Events"

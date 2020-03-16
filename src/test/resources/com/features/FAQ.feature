@@ -1,7 +1,7 @@
 Feature: FAQ module scenario
 
   @FAQAdd
-  Scenario: FAQ Add successfully with click on Save button
+  Scenario: Create FAQ and verify details
     Given Login as Admin and Go to "FAQs" Module
     When Verify table column in each grid "FAQs" page
     When Click on "Add" button in "FAQs"
@@ -13,7 +13,7 @@ Feature: FAQ module scenario
     Then Verify details in "FAQs"
 
   @FAQEdit
-  Scenario: FAQ Edit successfully with click on Save button
+  Scenario: Edit FAQ and verify details
     Given Login as Admin and Go to "FAQs" Module
     When Verify details in "FAQs"
     And Click on "Edit" button in "FAQs"
@@ -25,7 +25,7 @@ Feature: FAQ module scenario
     Then Verify details in "FAQs"
 
   @FAQActiveInactive
-  Scenario: FAQ Active - Inactive
+  Scenario: FAQ Active Inactive
     Given Login as Admin and Go to "FAQs" Module
     When Verify details in "FAQs"
     And "FAQs" is "Active"
@@ -36,7 +36,7 @@ Feature: FAQ module scenario
     Then Verify details in "FAQs"
 
   @FAQDelete
-  Scenario: FAQ Delete successfully
+  Scenario: Delete FAQ and verify details
     Given Login as Admin and Go to "FAQs" Module
     When Verify details in "FAQs"
     And Click on "Delete" button in "FAQs"
@@ -44,7 +44,7 @@ Feature: FAQ module scenario
     Then Verify details in "FAQs"
 
   @FAQAddSaveContinue
-  Scenario: FAQ Add successfully with click on Save & Continue button
+  Scenario: Create FAQ and verify details
     Given Login as Admin and Go to "FAQs" Module
     When Click on "Add" button in "FAQs"
     Then "FAQ" "Add" page gets open
@@ -54,7 +54,7 @@ Feature: FAQ module scenario
     Then Verify details in "FAQs"
 
   @FAQEditSaveContinue
-  Scenario: FAQ Edit successfully with click on Save & Contnue button
+  Scenario: FAQ Edit and verify details
     Given Login as Admin and Go to "FAQs" Module
     When Verify details in "FAQs"
     And Click on "Edit" button in "FAQs"

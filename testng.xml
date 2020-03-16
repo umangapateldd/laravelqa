@@ -2,7 +2,7 @@
 <suite name="MainSuite">
 	<suite-files>
 		<!-- <suite-file path="Suites/UsersSuite.xml" /> -->
-		<suite-file path="Suites/BlogsSuite.xml" />
+		<suite-file path="Suites/AllSuite.xml" />
 	</suite-files>
 	<!--<suite-files>
 		<suite-file path="Suites/OurteamSuite.xml" />

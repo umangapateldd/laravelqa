@@ -25,7 +25,7 @@ Feature: Users module scenario
     Then Verify details in "Users"
 
   @userStatus
-  Scenario: User Try Active before account verification
+  Scenario: User Active Inactive
     Given Login as Admin and Go to "Users" Module
     When Verify details in "Users"
     And "User" is Inactive
