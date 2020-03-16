@@ -46,7 +46,9 @@ public class TestNGCustomReportListener implements IReporter {
 	private String reportTitle = "Laravel CMS";
 	private String reportFileName = "Laravel-CMS-Report.html";
 	private Logger log = LogHelper.getLogger(TestNGCustomReportListener.class);
-	int k = CommonVariables.step.size();
+	int k = 0;
+	ArrayList<String> newstep = new ArrayList<String>();
+	ArrayList<String> newstepResult = new ArrayList<String>();
 
 	/** Creates summary of the run */
 	@Override
@@ -58,6 +60,26 @@ public class TestNGCustomReportListener implements IReporter {
 			e.printStackTrace();
 			return;
 		}
+		k = CommonVariables.step.size();
+		k = k - 1;
+		
+		while (true) {
+			newstep.add(CommonVariables.step.get(k));
+			if (k > 0) {
+				if (k < CommonVariables.stepResult.size()) {
+					newstepResult.add(CommonVariables.stepResult.get(k));
+				} else {
+					newstepResult.add("Fail");
+				}
+			} else {
+				break;
+			}
+			k--;
+		}
+
+		k = newstep.size();
+
+		k = k - 2;
 
 		startHtml(writer);
 		writeReportTitle(reportTitle);
@@ -264,7 +286,7 @@ public class TestNGCustomReportListener implements IReporter {
 		List<ITestResult> testResultsList = new ArrayList<ITestResult>(testResults);
 		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 		System.setProperty("java.util.Collections.useLegacyMergeSort", "true");
-		Collections.sort(testResultsList, new TestResultsSorter());
+		Collections.sort(testResultsList);
 		for (ITestResult result : testResultsList) {
 			ITestNGMethod method = result.getMethod();
 			m_methodIndex++;
@@ -287,24 +309,26 @@ public class TestNGCustomReportListener implements IReporter {
 				writer.print("<th>Param." + parameters[x] + "</th>");
 			}
 			writer.println("</tr>");
-			System.out.println("lllllllllllllllllllllll = " + CommonVariables.step.size());
-			System.out.println("lllllllllllllllllllllll = " + CommonVariables.stepResult.size());
-
-			for (;;) {
-				System.out.println("===================> " + CommonVariables.step.get(k));
-				if (k > 0) {
-					writer.print("<tr class='param' style='background-color:green; color:white;'>");
+			
+			while (true) {
+				if (k >= 0) {
+					if (newstepResult.get(k).toLowerCase().equals("pass")) {
+						writer.print("<tr class='param' style='background-color:green; color:white;'>");
+					} else {
+						writer.print("<tr class='param' style='background-color:red; color:white;'>");
+					}
 				} else {
-					writer.print("<tr class='param' style='background-color:red; color:white;'>");
+					break;
 				}
+
 //				writer.println("<td>" + Utils.escapeHtml(Utils.toString(p)) + "</td>");
-				if (CommonVariables.step.get(k).toString().equals("=================")) {
+				if (newstep.get(k).toString().equals("=================")) {
 					k--;
 					break;
 				} else {
-					writer.println("<td>" + CommonVariables.step.get(k) + "</td>");
-					if (k < CommonVariables.stepResult.size()) {
-						writer.println("<td>" + CommonVariables.stepResult.get(k) + "</td>");
+					writer.println("<td>" + newstep.get(k) + "</td>");
+					if (newstepResult.get(k).toLowerCase().equals("pass")) {
+						writer.println("<td>" + newstepResult.get(k) + "</td>");
 					} else {
 						writer.println("<td>Fail</td>");
 					}
@@ -312,9 +336,7 @@ public class TestNGCustomReportListener implements IReporter {
 				}
 
 				writer.println("</tr>");
-
 			}
-
 		}
 		List<String> msgs = Reporter.getOutput(ans);
 		boolean hasReporterOutput = msgs.size() > 0;

@@ -36,11 +36,12 @@ public class CommonStepDefinations {
 	public void user_on_admin_dashboard_page(String moduleName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
-		CommonVariables.step.add(givenann.value().replace("{string}", moduleName));
 		CommonVariables.step.add("=================");
-//		testBase = new TestBase();
-//		readPropFile = new ReadPropFile();
-//		driver.get(readPropFile.readProp().getProperty("url"));
+		CommonVariables.step.add(givenann.value().replace("{string}", moduleName));
+		
+		testBase = new TestBase();
+		readPropFile = new ReadPropFile();
+		driver.get(readPropFile.readProp().getProperty("url"));
 
 		// Mail Send Functionality
 
@@ -63,14 +64,14 @@ public class CommonStepDefinations {
 //		ExcelHelper.createExcel("abc", "xyz");
 //		ExcelHelper.closeNewlyCreatedExcel();
 
-//		loginPage = new LoginPage(driver);
-//		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
-//				readPropFile.readProp().getProperty("password"));
-//		commonFunc.clickonmenuondashboard(moduleName);
-//		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-//				"style", "display: none;");
-		CommonVariables.stepResult.add("Pass");
+		loginPage = new LoginPage(driver);
+		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
+				readPropFile.readProp().getProperty("password"));
+		commonFunc.clickonmenuondashboard(moduleName);
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 		CommonVariables.stepResult.add("=================");
+		CommonVariables.stepResult.add("Pass");		
 	}
 
 	@Given("Open Front site and Go to {string} Module")
