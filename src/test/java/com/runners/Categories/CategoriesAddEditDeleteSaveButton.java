@@ -1,4 +1,4 @@
-package com.runners.Users;
+package com.runners.Categories;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -12,11 +12,11 @@ import com.utilities.ReadPropFile;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
-public class UserAddEditDeleteSaveContinueButton {
-
-	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations",
-			"com.runners" }, tags = { "@useraddSaveandContinue or @userEditSaveandContinue or @userDelete" }, plugin = {
-					"pretty", "html:target/cucumber",
+public class CategoriesAddEditDeleteSaveButton {
+	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations", "com.runners" },
+			tags={"@CategoriesAdd or @CategoriesEdit or @CategoriesDelete"},
+//			tags={"@blogAdd"},
+			plugin = { "pretty", "html:target/cucumber",
 					"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)
 	public class runner extends AbstractTestNGCucumberTests {
 
@@ -28,4 +28,5 @@ public class UserAddEditDeleteSaveContinueButton {
 
 		Logger log = LogHelper.getLogger(runner.class);
 	}
+
 }

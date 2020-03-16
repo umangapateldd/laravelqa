@@ -11,6 +11,7 @@ import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
 import com.utilities.CommonXpath;
+import com.utilities.FilesPaths;
 
 public class Categories {
 	WebDriver driver;
@@ -20,8 +21,6 @@ public class Categories {
 	CommonXpath commonXpath;
 	private Logger log = LogHelper.getLogger(Categories.class);
 	boolean verifyDetails = false;
-
-	
 
 	public Categories(WebDriver driver) {
 		this.driver = driver;
@@ -39,7 +38,7 @@ public class Categories {
 
 	public void enterStatus(String status) {
 		log.info("********************Enter the Status********************");
-		dropDownHelper.selectByVaule(commonXpath.Status, status);
+		dropDownHelper.selectByVaule(commonXpath.Status, "1");
 	}
 
 	public void ClickonEditbutton() throws InterruptedException {
@@ -48,7 +47,6 @@ public class Categories {
 		commonXpath.Categorieseditbutton.click();
 		System.out.println("click on edit");
 	}
-	
 
 	public void enterDescription(String description) throws InterruptedException {
 		log.info("********************Enter the Description********************");
@@ -63,8 +61,9 @@ public class Categories {
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
 		Thread.sleep(8000);
-		commonXpath.Image.sendKeys(image);
-		Thread.sleep(10000);
+		commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
 
 	}
 
@@ -85,7 +84,7 @@ public class Categories {
 	public void enterMetaDescription(String metaDescription) {
 		log.info("********************Enter the Meta Description********************");
 
-		commonXpath.MetaDescription.sendKeys(metaDescription);
+		commonXpath.categories_metadesc.sendKeys(metaDescription);
 
 	}
 }
