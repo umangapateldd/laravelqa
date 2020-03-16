@@ -1,6 +1,6 @@
 Feature: Pages module scenario
 
-  @Pages
+  @PagesAdd
   Scenario: Page Add successfully with click on Save button
     Given Login as Admin and Go to "Pages" Module
     When Verify table column in each grid "Pages" page

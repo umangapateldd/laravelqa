@@ -1,6 +1,6 @@
 Feature: FAQ module scenario
 
-  @FAQ
+  @FAQAdd
   Scenario: FAQ Add successfully with click on Save button
     Given Login as Admin and Go to "FAQs" Module
     When Verify table column in each grid "FAQs" page
