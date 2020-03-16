@@ -1,7 +1,7 @@
 Feature: Blog module scenario
 
   @blogAdd
-  Scenario: Create Blog and verify details
+  Scenario: Create blog and verify details
     Given Login as Admin and Go to "Blogs" Module
     #When Verify table column in each grid "Blogs" page
     When Click on "Add" button in "Blogs"
@@ -25,7 +25,7 @@ Feature: Blog module scenario
     Then Verify details in "Blogs"
 
   @blogStatus
-  Scenario: Blogs Try Active before account verification
+  Scenario: Blogs Active Inactive
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
     And "Blogs" is "Active"
@@ -35,7 +35,7 @@ Feature: Blog module scenario
     Then Make "Blogs" "Active" and verify "success message"
 
   @blogAddSaveandContinue
-  Scenario: Blogs Add successfully with click on Save & Continue button
+  Scenario: Create blog and verify details
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Add" button in "Blogs"
     Then "Blog" "Add" page gets open
@@ -45,7 +45,7 @@ Feature: Blog module scenario
     Then Verify details in "Blogs"
 
   @blogEditSaveandContinue
-  Scenario: Blogs Edit successfully with click on Save & Continue button
+  Scenario: Edit blog and verify details
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
     And Click on "Edit" button in "Blogs"
@@ -56,7 +56,7 @@ Feature: Blog module scenario
     Then Verify details in "Blogs"
 
   @blogSettings
-  Scenario: Blogs Settings field
+  Scenario: Blogs Settings
     Given Login as Admin and Go to "Blogs" Module
     When Click on "Blogs" Settings menu
     Then "Blogs" "Settings" page gets open
@@ -73,6 +73,6 @@ Feature: Blog module scenario
     Then Verify details in "Blogs"
 
   @blogFront
-  Scenario: Blog verification on Front side
+  Scenario: Blog verification on front side
     Given Open Front site and Go to "BLOG" Module
     Then Verify Blog in front side

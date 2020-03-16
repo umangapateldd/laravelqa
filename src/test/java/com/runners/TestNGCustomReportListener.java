@@ -259,7 +259,7 @@ public class TestNGCustomReportListener implements IReporter {
 	private void startResultSummaryTable(String style) {
 		tableStart(style, "summary");
 		writer.println("<tr><th>Class</th>"
-				+ "<th>Method</th><th>Exception Info</th><th>Start Time </th><th>Execution Time<br/>(hh:mm:ss)</th></tr>");
+				+ "<th>Method</th><th>Exception Info</th><th>Start Time</th><th>Execution Time<br/>(hh:mm:ss)</th></tr>");
 		m_row = 0;
 	}
 
@@ -284,9 +284,9 @@ public class TestNGCustomReportListener implements IReporter {
 	private void resultDetail(IResultMap tests) {
 		Set<ITestResult> testResults = tests.getAllResults();
 		List<ITestResult> testResultsList = new ArrayList<ITestResult>(testResults);
-		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
-		System.setProperty("java.util.Collections.useLegacyMergeSort", "true");
-		Collections.sort(testResultsList);
+//		System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+//		System.setProperty("java.util.Collections.useLegacyMergeSort", "true");
+//		Collections.sort(testResultsList);
 		for (ITestResult result : testResultsList) {
 			ITestNGMethod method = result.getMethod();
 			m_methodIndex++;

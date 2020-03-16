@@ -1,7 +1,7 @@
 package com.stepdifinations;
 
-import static org.testng.Assert.assertEquals;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -16,7 +16,6 @@ import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
-import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
 import io.cucumber.java.en.Given;
@@ -38,6 +37,10 @@ public class CommonStepDefinations {
 
 	@Given("Login as Admin and Go to {string} Module")
 	public void user_on_admin_dashboard_page(String moduleName) throws Throwable {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		System.out.println(dtf.format(now));
+
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
 		CommonVariables.step.add("=================");
@@ -101,7 +104,7 @@ public class CommonStepDefinations {
 				"style", "display: none;");
 
 		CommonVariables.stepResult.add("=================");
-		CommonVariables.stepResult.add("Pass");		
+		CommonVariables.stepResult.add("Pass");
 
 	}
 

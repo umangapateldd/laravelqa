@@ -32,7 +32,7 @@ Feature: Users module scenario
     Then Make "User" "Active" and verify "error message"
 
   @useraddSaveandContinue
-  Scenario: User Add successfully with click on Save & Continue button
+  Scenario: Create user and verify details
     Given Login as Admin and Go to "Users" Module
     When Click on "Add" button in "Users"
     Then "User" "Add" page gets open
@@ -42,7 +42,7 @@ Feature: Users module scenario
     Then Verify details in "Users"
 
   @userEditSaveandContinue
-  Scenario: User Edit successfully with click on Save & Continue button
+  Scenario: Edit user and verify details
     Given Login as Admin and Go to "Users" Module
     When Verify details in "Users"
     And Click on "Edit" button in "Users"
