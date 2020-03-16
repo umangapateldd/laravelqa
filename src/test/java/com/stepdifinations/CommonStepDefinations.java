@@ -1,5 +1,7 @@
 package com.stepdifinations;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,11 +10,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
+import com.basicactions.ExcelHelper;
 import com.pages.adminpages.HomePage;
 import com.pages.commonpages.LoginPage;
 import com.runners.HookHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
+import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 
 import io.cucumber.java.en.Given;
@@ -37,7 +41,8 @@ public class CommonStepDefinations {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
 		CommonVariables.step.add(givenann.value().replace("{string}", moduleName));
-
+		commonFunc.verifythesheetname(moduleName);
+		
 		testBase = new TestBase();
 		readPropFile = new ReadPropFile();
 		driver.get(readPropFile.readProp().getProperty("url"));
@@ -66,10 +71,33 @@ public class CommonStepDefinations {
 		loginPage = new LoginPage(driver);
 		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
 				readPropFile.readProp().getProperty("password"));
+		
+		String excelval = ExcelHelper.getData(2, 0);
+		String excelans = ExcelHelper.getData(3, 0);
+		String ans1 = "yes";
+		String ans2 = "no";
+		String value = "Testing allow";
+
+		System.out.println("Excel value 3 =" + excelval);
+		System.out.println("Excel value 4 =" + excelans);
+		System.out.println("String ans1 =" + ans1);
+		System.out.println("String ans1 =" + ans2);
+		System.out.println("String ans1 =" + value);
+		
+		if (value.equalsIgnoreCase(excelval)) {
+			if (excelans.equalsIgnoreCase(ans1)) {
+				System.out.println("Testing allow condition is true");
+				assert true;
+			} else if (excelans.equalsIgnoreCase(ans2)) {
+				System.out.println("Testing allow condition is false");
+				assert false;
+			}
+
+		}
 		commonFunc.clickonmenuondashboard(moduleName);
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
-		
+
 		CommonVariables.stepResult.add("Pass");
 	}
 
@@ -78,7 +106,7 @@ public class CommonStepDefinations {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
 		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
 		CommonVariables.step.add(givenann.value().replace("{string}", menuTitle));
-		
+
 		System.out.println("menuTitle = " + menuTitle);
 		String url = "http://laravelcms-qa.devdigdev.com/";
 		driver.get(url);

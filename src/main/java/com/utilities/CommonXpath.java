@@ -328,6 +328,10 @@ public class CommonXpath {
 	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
 	public WebElement statuscolumn;
 	
+	@FindBy(xpath = "//*[@id='meta_description']")
+	public WebElement categories_metadesc;
+	//*[@id="meta_description"]
+	
 	WebDriver driver;
 
 	public CommonXpath(WebDriver driver) {

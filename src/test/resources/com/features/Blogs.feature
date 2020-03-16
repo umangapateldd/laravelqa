@@ -3,10 +3,10 @@ Feature: Blog module scenario
   @blogAdd
   Scenario: Blog Add successfully with click on Save button
     Given Login as Admin and Go to "Blogs" Module
-    When Verify table column in each grid "Blogs" page
+    #When Verify table column in each grid "Blogs" page
     When Click on "Add" button in "Blogs"
     Then "Blog" "Add" page gets open
-    And Verify test data with proper validation message for "Blogs"
+    #And Verify test data with proper validation message for "Blogs"
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save" button in "Blogs"
     Then I should get "blog added successfully" message on "Blogs"
