@@ -291,7 +291,8 @@ public class TestNGCustomReportListener implements IReporter {
 			ITestNGMethod method = result.getMethod();
 			m_methodIndex++;
 			String cname = method.getTestClass().getName();
-			writer.println("<h2 id='m" + m_methodIndex + "'>" + cname + ":" + method.getMethodName() + "</h2>");
+//            writer.println("<h2 id='m" + m_methodIndex + "'>" + cname + ":" + method.getMethodName() + "</h2>");
+			writer.println("<h2 id='m" + m_methodIndex + "'>" + result.getParameters()[0].toString().replace("\"", "") + "</h2>");
 			Set<ITestResult> resultSet = tests.getResults(method);
 			generateResult(result, method, resultSet.size());
 			writer.println("<p class='totop'><a href='#summary'>back to summary</a></p>");

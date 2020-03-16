@@ -410,7 +410,10 @@ public class StepDefination {
 			CommonVariables.adminauthor = authorfirstName + " " + authorlastName;
 
 			blogs.enterTitle(title);
-			blogs.selectBlogCategory(blogCategory);
+			System.out.println("blogCategory =456" + blogCategory + "123123");
+			if (blogCategory != "" || !blogCategory.isEmpty()) {
+				blogs.selectBlogCategory(blogCategory);
+			}
 			blogs.enterAuthorFirstName(authorfirstName);
 			blogs.enterAuthorLastName(authorlastName);
 			blogs.selectImage(image);
@@ -871,8 +874,7 @@ public class StepDefination {
 	@When("Verify table column in each grid {string} page")
 	public void Verify_table_column_in_each_grid_users_page(String moduleName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		When thenann = (When) StepDefination.class.getMethod(methodName, String.class)
-				.getAnnotations()[0];
+		When thenann = (When) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
 		ArrayList<String> arr = new ArrayList<String>();
 		arr.add(moduleName);
 		CommonVariables.step.add(getStepsName(thenann.value(), arr));

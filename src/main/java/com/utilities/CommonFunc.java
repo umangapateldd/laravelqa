@@ -348,7 +348,6 @@ public class CommonFunc {
 			if (driver.findElement(By.xpath(xpathErrorMessage)).getText().isEmpty()) {
 				String msgtext = "Error not show";
 				if (msgtext.equals(ExcelHelper.getData(1, i))) {
-					System.out.println("validation message= " + msgtext);
 					assert true;
 				}
 			} else {
@@ -370,7 +369,6 @@ public class CommonFunc {
 			if (driver.findElement(By.xpath(xpathErrorMessage)).getText().isEmpty()) {
 				String msgtext = "Error not show";
 				if (msgtext.equals(ExcelHelper.getData(1, i))) {
-					System.out.println("validation message email = " + msgtext);
 					assert true;
 				}
 			} else {
@@ -380,11 +378,7 @@ public class CommonFunc {
 					System.out.println("Error show text is match");
 
 					String emailError = driver.findElement(By.xpath(xpathErrorMessage)).getText();
-					System.out.println("email Error = " + emailError);
-					System.out.println("excel Error = " + ExcelHelper.getData(2, i));
-
 					if (emailError.contains(ExcelHelper.getData(2, i))) {
-						System.out.println("Email text match");
 						assert true;
 					}
 				} else {

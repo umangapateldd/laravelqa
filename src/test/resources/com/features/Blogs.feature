@@ -1,7 +1,7 @@
 Feature: Blog module scenario
 
   @blogAdd
-  Scenario: Blog Add successfully with click on Save button
+  Scenario: Create Blog and verify details
     Given Login as Admin and Go to "Blogs" Module
     When Verify table column in each grid "Blogs" page
     When Click on "Add" button in "Blogs"
@@ -18,7 +18,7 @@ Feature: Blog module scenario
     And Verify details in "Blogs"
     And Click on "Edit" button in "Blogs"
     Then "Blog" "Edit" page gets open
-    #And Verify test data with proper validation message for "Blogs"
+    And Verify test data with proper validation message for "Blogs"
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save" button in "Blogs"
     Then I should get "blog updated successfully" message on "Blogs"
@@ -65,7 +65,7 @@ Feature: Blog module scenario
     Then I should get "Settings have been saved successfully" message on "Blogs" Settings
 
   @blogDelete
-  Scenario: Blogs Delete successfully
+  Scenario: Delete blog and verify details
     Given Login as Admin and Go to "Blogs" Module
     When Verify details in "Blogs"
     And Click on "Delete" button in "Blogs"
