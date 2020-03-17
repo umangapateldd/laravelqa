@@ -4,7 +4,6 @@ Feature: Users module scenario
   Scenario: Create user and verify details
     Given Login as Admin and Go to "Users" Module
     When Verify table column in each grid "Users" page
-    Then Verify details in "Users"
     When Click on "Add" button in "Users"
     Then "User" "Add" page gets open
     And Verify test data with proper validation message for "Users"

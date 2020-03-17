@@ -26,11 +26,11 @@
 			<class name="com.runners.Users.UserAddEditDeleteSaveButton" />
 			 <class
 				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> 
-		</classes> -->
+		</classes> 
 		
-		<test name="IPTracker">
+	<!-- 	<test name="IPTracker">
 		<classes>
 			<class name="com.runners.IPTracker.IPTracker" />
-		</classes> 
+		</classes>  -->
 	</test>
 </suite>
