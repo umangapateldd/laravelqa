@@ -246,6 +246,7 @@ public class StepDefination {
 	@And("Verify details in {string}")
 	public void Verify_details_in_Users_grid(String moduleName) throws Throwable {
 		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+
 		And thenann = (And) StepDefination.class.getMethod(methodName, String.class).getAnnotations()[0];
 		ArrayList<String> arr = new ArrayList<String>();
 		arr.add(moduleName);
@@ -259,7 +260,28 @@ public class StepDefination {
 			System.out.println("Inside IF condition");
 			searchText = CommonVariables.txtSearchCmnVar;
 			System.out.println("Search text is :- " + searchText);
-			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[4]";
+			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[5]";
+			if (searchText.equals(xpath)) {
+				commonFunc.clickOnselectcheckbox();
+				commonFunc.clickOnDeleteButton();
+				commonFunc.clickOnconfirmyesbutton();
+				CommonVariables.deleteRecord = true;
+				Thread.sleep(4000);
+				commonFunc.clickOnAddNewButton();
+
+				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+				String firstname = ExcelHelper.getData(1, 0);
+				String lastname = ExcelHelper.getData(1, 1);
+				String email = ExcelHelper.getData(1, 2);
+
+				CommonVariables.txtSearchCmnVar = firstname + " " + lastname;
+
+				usersPage.enterUserFirstName(firstname);
+				usersPage.enterUserLastName(lastname);
+				usersPage.enterUserEmail(email);
+
+				commonFunc.clickOnSave();
+			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]//div[2][@class='title']";
@@ -289,12 +311,14 @@ public class StepDefination {
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[2]";
 			System.out.println("Search text is :- " + searchText);
 			String loggedin = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]")).getText();
-			String lastactivity = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[1]/td[5]")).getText();
-			if(loggedin.equals(lastactivity))
-			{
-				System.out.println("string1="+loggedin);
-				System.out.println("string2="+lastactivity);
+			String lastactivity = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[1]/td[5]"))
+					.getText();
+			if (loggedin.equals(lastactivity)) {
+				System.out.println("string1=" + loggedin);
+				System.out.println("string2=" + lastactivity);
 				System.out.println("date and time is match");
+			} else {
+				assert false;
 			}
 
 		} else {

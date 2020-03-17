@@ -21,6 +21,13 @@
 				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> 
 		</classes> -->
 		
+		<test name="Users">
+		<classes>
+			<class name="com.runners.Users.UserAddEditDeleteSaveButton" />
+			 <class
+				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> 
+		</classes> -->
+		
 		<test name="IPTracker">
 		<classes>
 			<class name="com.runners.IPTracker.IPTracker" />
