@@ -235,13 +235,6 @@
 			<version>2.6.12</version>
 		</dependency>
 
-		<dependency>
-			<groupId>chilkatsoft</groupId>
-			<artifactId>chilkat</artifactId>
-			<version>9.5.0</version>
-		</dependency>
-
-
 		<!-- Log4j Dependencies -->
 
 		<dependency>
