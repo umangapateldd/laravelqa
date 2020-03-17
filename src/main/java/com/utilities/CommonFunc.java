@@ -418,32 +418,22 @@ public class CommonFunc {
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th"));
 		int count = ele.size();
 		int j = 0;
-		boolean flag = false;
-
-		String[] values = Excelvalue.split(",");
 		
+		String[] values = Excelvalue.split(",");
+		int i = 4;
 		if (ExcelHelper.getData(0, 8).equals("IP Tracker")) {
-			for (int i = 2; i <= count; i++) {
-				System.out.println(
-						driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText());
-				if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText()
-						.trim().equals(values[j].trim())) {
-				} else {
-					assert false;
-				}
-				j++;
+			i = 2;
+		} else {
+			i = 4;
+		}
+		
+		for (; i <= count; i++) {
+			if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
+					.equals(values[j].trim())) {
+			} else {
+				assert false;
 			}
-		}else {
-			for (int i = 4; i <= count; i++) {
-				System.out.println(
-						driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText());
-				if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
-						.equals(values[j].trim())) {
-				} else {
-					assert false;
-				}
-				j++;
-			}
+			j++;
 		}
 	}
 }
