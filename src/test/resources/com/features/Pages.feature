@@ -1,7 +1,7 @@
 Feature: Pages module scenario
 
   @PagesAdd
-  Scenario: Page Add successfully with click on Save button
+  Scenario: Create Page and verify details
     Given Login as Admin and Go to "Pages" Module
     When Verify table column in each grid "Pages" page
     When Click on "Add" button in "Pages"
@@ -13,7 +13,7 @@ Feature: Pages module scenario
     Then Verify details in "Pages"
 
   @PagesEdit
-  Scenario: Page Edit successfully with click on Save button
+  Scenario: Edit Page and verify details
     Given Login as Admin and Go to "Pages" Module
     When Verify details in "Pages"
     And Click on "Edit" button in "Pages"
@@ -36,7 +36,7 @@ Feature: Pages module scenario
     Then Verify details in "Pages"
 
   @PagesAddSaveContinue
-  Scenario: Page Add successfully with click on Save & Continue button
+  Scenario: Create Page and verify details
     Given Login as Admin and Go to "Pages" Module
     When Click on "Add" button in "Pages"
     Then "Page" "Add" page gets open
@@ -46,7 +46,7 @@ Feature: Pages module scenario
     Then Verify details in "Pages"
 
   @PagesEditSaveContinue
-  Scenario: Page Edit successfully with click on Save & Continue button
+  Scenario: Edit Page and verify details
     Given Login as Admin and Go to "Pages" Module
     When Verify details in "Pages"
     And Click on "Edit" button in "Pages"

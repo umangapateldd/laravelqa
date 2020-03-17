@@ -88,7 +88,6 @@ public class StepDefination {
 		arr.add(moduleName);
 		CommonVariables.step.add(getStepsName(thenann.value(), arr));
 
-
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 		switch (buttonName) {
@@ -144,7 +143,6 @@ public class StepDefination {
 		arr.add(moduleName);
 		arr.add(formName);
 		CommonVariables.step.add(getStepsName(thenann.value(), arr));
-
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
@@ -283,6 +281,10 @@ public class StepDefination {
 		} else if (moduleName.equals(CommonVariables.pages)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
+		} else if (moduleName.equals(CommonVariables.iptracker)) {
+			searchText = ExcelHelper.getData(1, 9);
+			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[2]";
+			System.out.println("Search text is :- " + searchText);
 		} else {
 			assert false;
 		}
@@ -901,6 +903,8 @@ public class StepDefination {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 6));
 		} else if (moduleName.equals(ExcelHelper.getData(0, 7))) {
 			commonFunc.verifytablegridData(ExcelHelper.getData(1, 7));
+		} else if (moduleName.equals(ExcelHelper.getData(0, 8))) {
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 8));
 		}
 
 		CommonVariables.stepResult.add("Pass");
