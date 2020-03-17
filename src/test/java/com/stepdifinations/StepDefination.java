@@ -282,9 +282,21 @@ public class StepDefination {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]/a";
 		} else if (moduleName.equals(CommonVariables.iptracker)) {
-			searchText = ExcelHelper.getData(1, 9);
+			String searchvar = driver.findElement(By.xpath("//*[@id='dropdownMenu2']/span/span[1]")).getText();
+			String[] values = searchvar.split(":");
+			System.out.println("string value =" + values[1]);
+			searchText = values[1];
 			xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[2]";
 			System.out.println("Search text is :- " + searchText);
+			String loggedin = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[1]/td[4]")).getText();
+			String lastactivity = driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr[1]/td[5]")).getText();
+			if(loggedin.equals(lastactivity))
+			{
+				System.out.println("string1="+loggedin);
+				System.out.println("string2="+lastactivity);
+				System.out.println("date and time is match");
+			}
+
 		} else {
 			assert false;
 		}
@@ -294,7 +306,7 @@ public class StepDefination {
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
 
-		commonFunc.searchRecord(searchText, xpath, moduleName);
+		commonFunc.searchRecord(searchText.trim(), xpath, moduleName);
 		CommonVariables.stepResult.add("Pass");
 	}
 

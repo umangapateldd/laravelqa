@@ -202,8 +202,8 @@ public class CommonFunc {
 				assert false;
 			}
 		}
-
-		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(searchText)) {
+		
+		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
 			if (moduleName.equals(CommonVariables.blogs) && CommonVariables.deleteRecord == false) {
@@ -418,7 +418,7 @@ public class CommonFunc {
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th"));
 		int count = ele.size();
 		int j = 0;
-		
+
 		String[] values = Excelvalue.split(",");
 		int i = 4;
 		if (ExcelHelper.getData(0, 8).equals("IP Tracker")) {
@@ -426,7 +426,7 @@ public class CommonFunc {
 		} else {
 			i = 4;
 		}
-		
+
 		for (; i <= count; i++) {
 			if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
 					.equals(values[j].trim())) {
