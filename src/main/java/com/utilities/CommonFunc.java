@@ -139,29 +139,31 @@ public class CommonFunc {
 			}
 		}
 	}
-	public void verifythesheetname(String moduleName) throws InterruptedException {
-		
-			if (moduleName.equals(CommonVariables.users)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
-			} else if (moduleName.equals(CommonVariables.ourteam)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
-			} else if (moduleName.equals(CommonVariables.blogs)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
-			} else if (moduleName.equals(CommonVariables.testimonial)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
-			} else if (moduleName.equals(CommonVariables.categories)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.categories);
-			} else if (moduleName.equals(CommonVariables.faqs)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.faqs);
-			} else if (moduleName.equals(CommonVariables.events)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.events);
-			} else if (moduleName.equals(CommonVariables.pages)) {
-				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
-			} else {
-				assert false;
-			}
-		}
 
+	public void verifythesheetname(String moduleName) throws InterruptedException {
+
+		if (moduleName.equals(CommonVariables.users)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
+		} else if (moduleName.equals(CommonVariables.blogs)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+		} else if (moduleName.equals(CommonVariables.testimonial)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
+		} else if (moduleName.equals(CommonVariables.categories)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.categories);
+		} else if (moduleName.equals(CommonVariables.faqs)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.faqs);
+		} else if (moduleName.equals(CommonVariables.events)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.events);
+		} else if (moduleName.equals(CommonVariables.pages)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
+		} else if (moduleName.equals(CommonVariables.iptracker)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
+		} else {
+			assert false;
+		}
+	}
 
 	public void searchRecord(String searchText, String xpath, String moduleName) throws InterruptedException {
 
@@ -416,17 +418,32 @@ public class CommonFunc {
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th"));
 		int count = ele.size();
 		int j = 0;
+		boolean flag = false;
 
 		String[] values = Excelvalue.split(",");
-
-		for (int i = 4; i <= count; i++) {
-			if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
-					.equals(values[j].trim())) {
-			} else {
-				assert false;
+		
+		if (ExcelHelper.getData(0, 8).equals("IP Tracker")) {
+			for (int i = 2; i <= count; i++) {
+				System.out.println(
+						driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText());
+				if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText()
+						.trim().equals(values[j].trim())) {
+				} else {
+					assert false;
+				}
+				j++;
 			}
-			j++;
+		}else {
+			for (int i = 4; i <= count; i++) {
+				System.out.println(
+						driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText());
+				if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
+						.equals(values[j].trim())) {
+				} else {
+					assert false;
+				}
+				j++;
+			}
 		}
-
 	}
 }

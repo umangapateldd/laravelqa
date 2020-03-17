@@ -26,6 +26,7 @@ public class CommonVariables {
 	public static String faqs ="FAQs";
 	public static String events ="Events";
 	public static String pages ="Pages";
+	public static String iptracker ="IP Tracker";
 	public static String settings ="Settings";
 	public static String testimonial ="Testimonial";
 	public static String categories ="Categories";
