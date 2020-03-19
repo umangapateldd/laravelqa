@@ -3,13 +3,13 @@ Feature: Users module scenario
   @userAdd
   Scenario: Create user and verify details
     Given Login as Admin and Go to "Users" Module
-    When Verify table column in each grid "Users" page
+    #When Verify table column in each grid "Users" page
     When Click on "Add" button in "Users"
     Then "User" "Add" page gets open
-    And Verify test data with proper validation message for "Users"
+    #And Verify test data with proper validation message for "Users"
     When I enter all mandatory fields for "add" User
     And Click on "Save" button in "Users"
-    Then I should get "account created successfully" message on "Users"
+    Then I should get "account created successfully." message on "Users"
     Then Verify details in "Users"
 
   @userEdit
@@ -21,7 +21,7 @@ Feature: Users module scenario
     And Verify test data with proper validation message for "Users"
     When I enter all mandatory fields for "edit" User
     And Click on "Save" button in "Users"
-    Then I should get "account updated successfully" message on "Users"
+    Then I should get "account updated successfully." message on "Users"
     Then Verify details in "Users"
 
   @userStatus
@@ -38,7 +38,7 @@ Feature: Users module scenario
     Then "User" "Add" page gets open
     When I enter all mandatory fields for "add" User
     And Click on "Save and Continue" button in "Users"
-    Then I should get "account created successfully" message on "Users"
+    Then I should get "account created successfully." message on "Users"
     Then Verify details in "Users"
 
   @userEditSaveandContinue
@@ -49,7 +49,7 @@ Feature: Users module scenario
     Then "User" "Edit" page gets open
     When I enter all mandatory fields for "edit" User
     And Click on "Save and Continue" button in "Users"
-    Then I should get "account updated successfully" message on "Users"
+    Then I should get "account updated successfully." message on "Users"
     Then Verify details in "Users"
 
   @userDelete
@@ -57,5 +57,5 @@ Feature: Users module scenario
     Given Login as Admin and Go to "Users" Module
     When Verify details in "Users"
     And Click on "Delete" button in "Users"
-    Then I should get "acccount has been deleted successfully" message on "Users"
+    Then I should get "acccount has been deleted successfully." message on "Users"
     Then Verify details in "Users"

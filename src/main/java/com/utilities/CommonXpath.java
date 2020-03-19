@@ -15,10 +15,10 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//button[@id='dropdownMenu2']")
 	public static WebElement profileMainMenu;
-	
+
 	@FindBy(xpath = "//div[@aria-labelledby='dropdownMenu2']/a[1]")
 	public static WebElement myProfileMenu;
-	
+
 	@FindBy(xpath = "//div[@aria-labelledby='dropdownMenu2']/a[2]")
 	public static WebElement changePasswordMenu;
 

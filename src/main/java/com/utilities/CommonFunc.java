@@ -167,13 +167,14 @@ public class CommonFunc {
 		} else if (moduleName.equals(CommonVariables.pages)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
 		} else if (moduleName.equals(CommonVariables.iptracker)) {
-			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
+            ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
 		} else {
 			assert false;
 		}
 	}
 
 	public void searchRecord(String searchText, String xpath, String moduleName) throws InterruptedException {
+
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		System.out.println(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).clear();
@@ -335,6 +336,37 @@ public class CommonFunc {
 	public void clickOnSave() throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
+		String moduleName = "Users";
+		if (moduleName.equals(CommonVariables.users)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+			String msg = "The email has already been taken.";
+			String msgtext = driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText();
+			if (msg.equals(msgtext)) {
+				String searchText = ExcelHelper.getData(1, 2);
+				System.out.println("message text is match");
+				driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//*[@id='search-btn']")).click();
+				driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
+				System.out.println(searchText);
+				driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
+				Thread.sleep(2000);
+				driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div")).click();
+				deletebutton.click();
+				confirmyesbutton.click();
+				Thread.sleep(2000);
+			}
+			addNewButton.click();
+			Thread.sleep(2000);
+			String firstname = ExcelHelper.getData(1, 0);
+			String lastname = ExcelHelper.getData(1, 1);
+			String email = ExcelHelper.getData(1, 2);
+			commonXpath.FirstName.sendKeys(firstname);
+			commonXpath.LastName.sendKeys(lastname);
+			commonXpath.userEmail.sendKeys(email);
+
+			saveButton.click();
+		}
 	}
 
 	public void clickOnstatuscolumn(String moduleName) throws InterruptedException {
