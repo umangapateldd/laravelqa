@@ -945,4 +945,24 @@ public class StepDefination {
 
 		CommonVariables.stepResult.add("Pass");
 	}
+
+	@When("Change First Name and Last Name")
+	public void change_First_Name_and_Last_Name() {
+
+	}
+
+	@When("Verify in {string} Module")
+	public void verify_in_Module(String string) {
+
+	}
+
+	@When("Set new password")
+	public void set_new_password() {
+
+	}
+
+	@Then("Login with new password and verify logged in profile details")
+	public void login_with_new_password_and_verify_logged_in_profile_details() {
+
+	}
 }

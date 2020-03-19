@@ -52,54 +52,18 @@ public class CommonStepDefinations {
 		readPropFile = new ReadPropFile();
 		driver.get(readPropFile.readProp().getProperty("url"));
 
-		// Mail Send Functionality
-
-//		String gmailEmail = "gmailEmail";
-//		String gmailPassword = "gmailPassword";
-//		String emailTo = "abc@yopmail.com, xyz@yopmail.com, pqr@yopmail.com";
-//		String emailSubject = "emailSubject";
-//		String emailBodyContent = "emailBodyContent";
-//		String[] attachmentWithExtension = { "C:\\Users\\Vivek Bhatt\\Pictures\\c4611_sample_explain.pdf",
-//				"C:\\Users\\Vivek Bhatt\\Pictures\\image.png" };
-
-//		MailSend m = new MailSend();
-
-		// Mail Send without Attachment
-//		m.mailSend(gmailEmail, gmailPassword, emailTo, emailSubject, emailBodyContent);
-
-		// Mail Send with Attachment
-//		m.mailSend(gmailEmail, gmailPassword, emailTo, emailSubject, emailBodyContent, attachmentWithExtension);
-
-//		ExcelHelper.createExcel("abc", "xyz");
-//		ExcelHelper.closeNewlyCreatedExcel();
-
 		loginPage = new LoginPage(driver);
 		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
 				readPropFile.readProp().getProperty("password"));
 
-		String excelval = ExcelHelper.getData(2, 0);
-		String excelans = ExcelHelper.getData(3, 0);
-		String ans1 = "yes";
-		String ans2 = "no";
-		String value = "Testing allow";
-
-		System.out.println("Excel value 3 =" + excelval);
-		System.out.println("Excel value 4 =" + excelans);
-		System.out.println("String ans1 =" + ans1);
-		System.out.println("String ans1 =" + ans2);
-		System.out.println("String ans1 =" + value);
-
-		if (value.equalsIgnoreCase(excelval)) {
-			if (excelans.equalsIgnoreCase(ans1)) {
-				System.out.println("Testing allow condition is true");
-				assert true;
-			} else if (excelans.equalsIgnoreCase(ans2)) {
-				System.out.println("Testing allow condition is false");
-				assert false;
-			}
-
+		// Testing Allow - yes or no
+		if (ExcelHelper.getData(3, 0).equalsIgnoreCase("yes")) {
+			assert true;
+		} else {
+			assert false;
 		}
-		commonFunc.clickonmenuondashboard(moduleName);
+
+		commonFunc.clickMenuOption(moduleName);
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 

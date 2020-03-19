@@ -6,25 +6,34 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonXpath {
-	
+
 	@FindBy(xpath = "//input[@id='email']")
 	public static WebElement username;
 
 	@FindBy(xpath = "//input[@id='password']")
 	public static WebElement password;
 
+	@FindBy(xpath = "//button[@id='dropdownMenu2']")
+	public static WebElement profileMainMenu;
+	
+	@FindBy(xpath = "//div[@aria-labelledby='dropdownMenu2']/a[1]")
+	public static WebElement myProfileMenu;
+	
+	@FindBy(xpath = "//div[@aria-labelledby='dropdownMenu2']/a[2]")
+	public static WebElement changePasswordMenu;
+
 	@FindBy(xpath = "//button[@type='submit']")
 	public static WebElement login;
 
 	@FindBy(id = "first_name")
 	public WebElement FirstName;
-	
+
 	@FindBy(id = "last_name")
 	public WebElement LastName;
-	
+
 	@FindBy(id = "email")
 	public WebElement userEmail;
-	
+
 	@FindBy(id = "position")
 	public WebElement Position;
 
@@ -57,7 +66,7 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='image_alt']")
 	public WebElement ImageAlt;
-	
+
 	@FindBy(id = "title")
 	public WebElement Title;
 
@@ -126,13 +135,13 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='status']")
 	public WebElement gridStatus;
-	
+
 	@FindBy(xpath = "//*[@id='status']/option[3]")
 	public WebElement Statusoption;
 
 	@FindBy(xpath = "//*[@id='btnsearch']")
 	public WebElement Searchbutton;
-	
+
 	@FindBy(id = "app_name")
 	public WebElement AppName;
 
@@ -162,25 +171,25 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='site-config-heading-1']/h5/a")
 	public WebElement frontEndAccordion;
-	
+
 	@FindBy(xpath = "//*[@id='site-config-heading-2']/h5/a")
 	public WebElement companyAccordion;
-	
+
 	@FindBy(xpath = "//*[@id='site-config-heading-3']/h5/a")
 	public WebElement emailAccordion;
-	
+
 	@FindBy(xpath = "//*[@id='site-config-heading-4']/h5/a")
 	public WebElement passwordAccordion;
 
 	@FindBy(xpath = "//*[@id='site-config-heading-5']/h5/a")
 	public WebElement sociallinkAccordion;
-	
+
 	@FindBy(xpath = "//*[@id='site-config-heading-6']/h5/a")
 	public WebElement googleCaptchaAccordion;
-	
+
 	@FindBy(xpath = "//*[@id='site-config-heading-7']/h5/a")
 	public WebElement SEOAccordion;
-	
+
 	@FindBy(xpath = "//*[@id='company_name']")
 	public WebElement CompanyName;
 
@@ -207,52 +216,52 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='company_email']")
 	public WebElement Email;
-	
+
 	@FindBy(xpath = "//*[@id='from_name']")
 	public WebElement FromName;
 
 	@FindBy(xpath = "//*[@id='from_email']")
-	public WebElement FromEmail ;
+	public WebElement FromEmail;
 
 	@FindBy(xpath = "//*[@id='admin_email']")
 	public WebElement AdminEmail;
-	
+
 	@FindBy(xpath = "//*[@id='password_strength']")
 	public WebElement PasswordStrength;
-	
+
 	@FindBy(xpath = "//*[@id='login_attempt']")
 	public WebElement Loginattempt;
-	
+
 	@FindBy(xpath = "//*[@id='minimum_password_length']")
 	public WebElement Minpwdlength;
-	
+
 	@FindBy(xpath = "//*[@id='user_block_time']")
 	public WebElement UserBlockTime;
-	
+
 	@FindBy(xpath = "//*[@id='facebook_link']")
 	public WebElement Facebook;
-	
+
 	@FindBy(xpath = "//*[@id='googlemap_embedded']")
 	public WebElement Googlemap;
-	
+
 	@FindBy(xpath = "//*[@id='twitter_link']")
 	public WebElement Twitter;
-	
+
 	@FindBy(xpath = "//*[@id='linkedin_link']")
 	public WebElement LinkedIn;
-	
+
 	@FindBy(xpath = "//*[@id='GOOGLE_RECAPTCHA_KEY']")
 	public WebElement GoogleRecaptchaSiteKey;
-	
+
 	@FindBy(xpath = "//*[@id='GOOGLE_RECAPTCHA_SECRET']")
 	public WebElement GoogleRecaptchaSecertKey;
-	
+
 	@FindBy(xpath = "//*[@id='robots_meta_tag']")
 	public WebElement RobotsMetaTag;
-	
+
 	@FindBy(xpath = "//*[@id='google_analytics_code']")
 	public WebElement GoogleAnalyticsCode;
-	
+
 	@FindBy(id = "client_name")
 	public WebElement AuthorName;
 
@@ -261,7 +270,7 @@ public class CommonXpath {
 
 	@FindBy(xpath = "/html/body/nav/ul/li[6]/div/a[2]")
 	public WebElement Settingmenu;
-	
+
 	@FindBy(xpath = "//*[@id='parent_category']")
 	public WebElement BlogCategory;
 
@@ -297,11 +306,11 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]")
 	public WebElement date;
-	
+
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[6]/a")
 	public WebElement Categorieseditbutton;
-	
-	@FindBy(xpath ="//*[@id='question']")
+
+	@FindBy(xpath = "//*[@id='question']")
 	public WebElement Question;
 
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr/td[6]/a")
@@ -312,7 +321,7 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='main']/div[2]/div/div/div[2]/a")
 	public WebElement usersMenu;
-	
+
 	@FindBy(xpath = "//*[@id='main']/div[1]/span")
 	public WebElement successmsg;
 
@@ -327,12 +336,10 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
 	public WebElement statuscolumn;
-	
+
 	@FindBy(xpath = "//*[@id='meta_description']")
 	public WebElement categories_metadesc;
-	
-	
-	
+
 	WebDriver driver;
 
 	public CommonXpath(WebDriver driver) {

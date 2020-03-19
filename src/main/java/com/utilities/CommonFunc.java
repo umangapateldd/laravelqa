@@ -123,19 +123,27 @@ public class CommonFunc {
 		} while (tmp == 1);
 	}
 
-	public void clickonmenuondashboard(String menuTitle) throws InterruptedException {
+	public void clickMenuOption(String menuTitle) throws InterruptedException {
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
 				"display: none;");
 
-		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='main']/div[2]/div/div/div/a"));
+		if (menuTitle.toLowerCase().equals("my profile")) {
+			CommonXpath.profileMainMenu.click();
+			CommonXpath.myProfileMenu.click();
+		} else if (menuTitle.toLowerCase().equals("change password")) {
+			CommonXpath.profileMainMenu.click();
+			CommonXpath.changePasswordMenu.click();
+		} else {
+			List<WebElement> menu = driver.findElements(By.xpath("//*[@id='main']/div[2]/div/div/div/a"));
 
-		int count = menu.size();
-		for (int i = 1; i <= count; i++) {
-			String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
+			int count = menu.size();
+			for (int i = 1; i <= count; i++) {
+				String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
 
-			if (m1.equals(menuTitle)) {
-				driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
-				break;
+				if (m1.equals(menuTitle)) {
+					driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
+					break;
+				}
 			}
 		}
 	}
@@ -159,14 +167,13 @@ public class CommonFunc {
 		} else if (moduleName.equals(CommonVariables.pages)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
 		} else if (moduleName.equals(CommonVariables.iptracker)) {
-			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
 		} else {
 			assert false;
 		}
 	}
 
 	public void searchRecord(String searchText, String xpath, String moduleName) throws InterruptedException {
-
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		System.out.println(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).clear();
@@ -202,7 +209,7 @@ public class CommonFunc {
 				assert false;
 			}
 		}
-		
+
 		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
