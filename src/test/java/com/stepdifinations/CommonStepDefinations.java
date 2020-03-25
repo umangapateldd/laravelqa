@@ -46,8 +46,6 @@ public class CommonStepDefinations {
 		CommonVariables.step.add("=================");
 		CommonVariables.step.add(givenann.value().replace("{string}", moduleName));
 
-		commonFunc.verifythesheetname(moduleName);
-
 		testBase = new TestBase();
 		readPropFile = new ReadPropFile();
 		driver.get(readPropFile.readProp().getProperty("url"));
@@ -56,11 +54,17 @@ public class CommonStepDefinations {
 		homePage = loginPage.login(readPropFile.readProp().getProperty("username"),
 				readPropFile.readProp().getProperty("password"));
 
-		// Testing Allow - yes or no
-		if (ExcelHelper.getData(3, 0).equalsIgnoreCase("yes")) {
-			assert true;
-		} else {
-			assert false;
+		commonFunc.verifythesheetname(moduleName);
+
+		
+		
+		if (!moduleName.toLowerCase().equals("change password") && !moduleName.toLowerCase().equals("my profile")) {
+			// Testing Allow - yes or no
+			if (ExcelHelper.getData(3, 0).equalsIgnoreCase("yes")) {
+				assert true;
+			} else {
+				assert false;
+			}
 		}
 
 		commonFunc.clickMenuOption(moduleName);

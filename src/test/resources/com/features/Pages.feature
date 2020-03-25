@@ -63,3 +63,14 @@ Feature: Pages module scenario
    Then Get list of pages title
    And Open Front site and Go to "PAGES" Module
    Then Open front side and compare pages title with admin list
+   
+   @multiplepageAdd
+  Scenario: Add multiple page and verify details
+    Given Login as Admin and Go to "Pages" Module
+    When Click on "Add" button in "Pages"
+    Then "Page" "Add" page gets open
+    When I enter all fields for "add" "Pages"
+    #And Click on "Save" button in "Users"
+    #Then I should get "account created successfully." message on "Users"
+    #Then Verify details in "Users"
+   

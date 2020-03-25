@@ -1,10 +1,16 @@
 package com.stepdifinations;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.Logger;
+import org.apache.poi.hssf.record.PageBreakRecord.Break;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
@@ -13,6 +19,7 @@ import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
+import com.pages.adminpages.Changepassword;
 import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
 import com.pages.adminpages.HomePage;
@@ -54,6 +61,7 @@ public class StepDefination {
 	Pages pages;
 	Settings settings;
 	CommonXpath commonXpath;
+	Changepassword changepwd;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -74,6 +82,7 @@ public class StepDefination {
 		events = new Events(driver);
 		pages = new Pages(driver);
 		settings = new Settings(driver);
+		changepwd = new Changepassword(driver);
 		commonXpath = new CommonXpath(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
@@ -95,7 +104,7 @@ public class StepDefination {
 			commonFunc.clickOnAddNewButton();
 			break;
 		case "Save":
-			commonFunc.clickOnSave();
+			commonFunc.clickOnSave(moduleName);
 			break;
 		case "Edit":
 			commonFunc.clickOnEditButton(moduleName);
@@ -280,7 +289,7 @@ public class StepDefination {
 				usersPage.enterUserLastName(lastname);
 				usersPage.enterUserEmail(email);
 
-				commonFunc.clickOnSave();
+				commonFunc.clickOnSave(moduleName);
 			}
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
@@ -330,7 +339,7 @@ public class StepDefination {
 			System.out.println("delete record " + driver.findElement(By.xpath(xpath)).getText());
 		}
 
-		commonFunc.searchRecord(searchText.trim(), xpath, moduleName);
+		commonFunc.searchRecord(searchText.trim(), searchText.trim(), xpath, moduleName);
 		CommonVariables.stepResult.add("Pass");
 	}
 
@@ -947,22 +956,151 @@ public class StepDefination {
 	}
 
 	@When("Change First Name and Last Name")
-	public void change_First_Name_and_Last_Name() {
+	public void change_First_Name_and_Last_Name() throws InterruptedException {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+		System.out.println("user value=" + CommonVariables.users);
 
+		String changefirstname = ExcelHelper.getData(1, 5);
+		String changelastName = ExcelHelper.getData(1, 6);
+		System.out.println("String value1 =" + changefirstname);
+		System.out.println("String value2 =" + changelastName);
+
+		usersPage.enterchangeFirstName(changefirstname);
+		usersPage.enterchangeLastName(changelastName);
+
+		CommonVariables.changename = changefirstname + " " + changelastName;
+
+		System.out.println("check value commvariable=" + CommonVariables.changename);
+
+		CommonVariables.txtSearchCmnVar = driver.findElement(By.xpath("//*[@id='email']")).getAttribute("value");
+		System.out.println("Email value =" + CommonVariables.txtSearchCmnVar);
+
+		commonXpath.Settingsave.click();
 	}
 
 	@When("Verify in {string} Module")
-	public void verify_in_Module(String string) {
+	public void verify_in_Module(String modulename) throws InterruptedException {
 
+		commonFunc.clickMenuOption(modulename);
+
+		commonFunc.searchRecord(CommonVariables.txtSearchCmnVar, CommonVariables.changename,
+				"//*[@id='DataTables_Table_0']/tbody/tr/td[4]", modulename);
 	}
 
 	@When("Set new password")
-	public void set_new_password() {
+	public void set_new_password() throws ConfigurationException, InterruptedException {
+		readPropFile = new ReadPropFile();
+
+		String password = readPropFile.readProp().getProperty("password").toString();
+		String newpassword = readPropFile.readProp().getProperty("newpassword").toString();
+
+		changepwd.entercurrentpwd(password);
+		changepwd.enternewpwd(newpassword);
+		changepwd.enterconfirmpwd(newpassword);
+
+		commonXpath.Settingsave.click();
+
+		PropertiesConfiguration out = new PropertiesConfiguration(FilesPaths.CONFIG_PROPERTIES_FILE);
+		out.setProperty("password", newpassword);
+		out.save();
+		Thread.sleep(5000);
 
 	}
 
-	@Then("Login with new password and verify logged in profile details")
-	public void login_with_new_password_and_verify_logged_in_profile_details() {
+	@Then("Logged out the admin user")
+	public void Logged_out_the_admin_user() throws InterruptedException {
+
+		commonXpath.profilemenu.click();
+		Thread.sleep(3000);
+		commonXpath.logoutprofile.click();
+	}
+
+	@Then("Verify checkbox for login user {string} Module")
+	public void Verify_checkbox_for_login_user_string_Module(String modulename) throws InterruptedException {
+
+		String username = driver.findElement(By.xpath("// *[@id='dropdownMenu2']/span/span[1]")).getText();
+		String[] user = username.split(":");
+		System.out.println("Verify the user=" + user[1]);
+
+		commonFunc.searchRecord(CommonVariables.email, user[1], "//*[@id='DataTables_Table_0']/tbody/tr/td[4]",
+				modulename);
+
+		List<WebElement> checkbox = driver.findElements(By.xpath("//input[@type='checkbox']"));
+		int count = checkbox.size();
+
+		if (count > 0) {
+			System.out.println("Checkbox is not aviable for login user");
+		} else {
+			System.out.println("condition is not match");
+		}
+
+	}
+
+	@When("I enter all fields for {string} {string}")
+	public void I_enter_all_fields_for_add_User(String sheetname, String modulename) throws Throwable {
+		if (modulename.equals("Users")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
+			int endvalue = 17;
+			for (int i = 8; i <= endvalue; i++) {
+				String firstname = ExcelHelper.getData(1, i);
+				usersPage.enterUserFirstName(firstname);
+				String lastname = ExcelHelper.getData(3, i);
+				usersPage.enterUserLastName(lastname);
+				String email = ExcelHelper.getData(5, i);
+				usersPage.enterUserEmail(email);
+				CommonVariables.email = email;
+				Thread.sleep(2000);
+				commonFunc.clickOnSave(modulename);
+				Thread.sleep(2000);
+				commonFunc.clickOnAddNewButton();
+
+			}
+		} else if (modulename.equals("Pages")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
+			System.out.println("commvar="+CommonVariables.pages);
+			int endvalue1 = 16;
+			for (int i = 8; i <= endvalue1; i++) {
+				System.out.println("Excel value="+ExcelHelper.getData(0, i));
+				String title = ExcelHelper.getData(0, i);
+				System.out.println("Excel value="+ExcelHelper.getData(0, i));
+				pages.enterTitle(title);
+				String status = ExcelHelper.getData(1, i);
+				pages.enterStatus(status);
+				String pageContent = ExcelHelper.getData(2, i);
+				pages.enterPageContent(pageContent);
+				String metaTitle = ExcelHelper.getData(3, i);
+				pages.enterMetaTitle(metaTitle);
+				String metaDescription = ExcelHelper.getData(4, i);
+				pages.enterMetaDescription(metaDescription);
+				Thread.sleep(2000);
+				commonFunc.clickOnSave(modulename);
+				Thread.sleep(2000);
+				commonFunc.clickOnAddNewButton();
+			}
+			
+		} else if (modulename.equals("Our Team")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
+			int endvalue1 = 16;
+			for (int i = 8; i <= endvalue1; i++) {
+				System.out.println("Excel value="+ExcelHelper.getData(0, i));
+				String title = ExcelHelper.getData(0, i);
+				System.out.println("Excel value="+ExcelHelper.getData(0, i));
+				pages.enterTitle(title);
+				String status = ExcelHelper.getData(1, i);
+				pages.enterStatus(status);
+				String pageContent = ExcelHelper.getData(2, i);
+				pages.enterPageContent(pageContent);
+				String metaTitle = ExcelHelper.getData(3, i);
+				pages.enterMetaTitle(metaTitle);
+				String metaDescription = ExcelHelper.getData(4, i);
+				pages.enterMetaDescription(metaDescription);
+				Thread.sleep(2000);
+				commonFunc.clickOnSave(modulename);
+				Thread.sleep(2000);
+				commonFunc.clickOnAddNewButton();
+			}
+
+		}
 
 	}
 }

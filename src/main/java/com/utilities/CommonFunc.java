@@ -126,13 +126,14 @@ public class CommonFunc {
 	public void clickMenuOption(String menuTitle) throws InterruptedException {
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
 				"display: none;");
-
+		System.out.println("Menu Title =" + menuTitle);
 		if (menuTitle.toLowerCase().equals("my profile")) {
 			CommonXpath.profileMainMenu.click();
 			CommonXpath.myProfileMenu.click();
 		} else if (menuTitle.toLowerCase().equals("change password")) {
 			CommonXpath.profileMainMenu.click();
 			CommonXpath.changePasswordMenu.click();
+
 		} else {
 			List<WebElement> menu = driver.findElements(By.xpath("//*[@id='main']/div[2]/div/div/div/a"));
 
@@ -167,26 +168,34 @@ public class CommonFunc {
 		} else if (moduleName.equals(CommonVariables.pages)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
 		} else if (moduleName.equals(CommonVariables.iptracker)) {
-            ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
+		} else if (moduleName.toLowerCase().equals("change password")) {
+
+		} else if (moduleName.toLowerCase().equals("my profile")) {
+
 		} else {
 			assert false;
 		}
 	}
 
-	public void searchRecord(String searchText, String xpath, String moduleName) throws InterruptedException {
+	public void searchRecord(String searchText, String verifyTableText, String xpath, String moduleName)
+			throws InterruptedException {
+		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
+				"display: none;");
 
 		driver.findElement(By.xpath("//*[@id='search-btn']")).click();
 		System.out.println(searchText);
 		driver.findElement(By.xpath("//*[@id='search']")).clear();
 		driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
 		driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
+
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
 				"display: none;");
 
 		System.out.println("module name =" + moduleName);
 		System.out.println("searchtext name =" + searchText);
-		System.out.println("xpath = " + xpath);
 		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
+		System.out.println("verify table text=" + verifyTableText);
 
 		if (CommonVariables.deleteRecord == true) {
 			if (moduleName.equals(CommonVariables.users)) {
@@ -210,8 +219,7 @@ public class CommonFunc {
 				assert false;
 			}
 		}
-
-		if (driver.findElement(By.xpath(xpath)).getText().equalsIgnoreCase(searchText)) {
+		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(verifyTableText.trim())) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
 			if (moduleName.equals(CommonVariables.blogs) && CommonVariables.deleteRecord == false) {
@@ -249,7 +257,7 @@ public class CommonFunc {
 		statuscolumn.click();
 
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
-				"display: none;");
+					"display: none;");
 
 		if (successmsg.getText().equals(msg)) {
 			System.out.println("Messgae for active = " + moduleName + " > " + msg);
@@ -333,22 +341,25 @@ public class CommonFunc {
 		savecontinueButton.click();
 	}
 
-	public void clickOnSave() throws InterruptedException {
+	
+	public void clickOnSave(String moduleName) throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
-		String moduleName = "Users";
+		System.out.println("email vlaue="+CommonVariables.email);
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 			String msg = "The email has already been taken.";
-			String msgtext = driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText();
-			if (msg.equals(msgtext)) {
-				String searchText = ExcelHelper.getData(1, 2);
+			
+
+			if ((driver.findElements(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).size() > 0) && msg
+					.equals(driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText())) {
+				System.out.println("email vlaue="+CommonVariables.email);
 				System.out.println("message text is match");
 				driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")).click();
 				Thread.sleep(2000);
 				driver.findElement(By.xpath("//*[@id='search-btn']")).click();
-				driver.findElement(By.xpath("//*[@id='search']")).sendKeys(searchText);
-				System.out.println(searchText);
+				driver.findElement(By.xpath("//*[@id='search']")).sendKeys(CommonVariables.email);
+				System.out.println(CommonVariables.email);
 				driver.findElement(By.xpath("//*[@id='btnsearch']")).click();
 				Thread.sleep(2000);
 				driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]/div")).click();
@@ -356,16 +367,16 @@ public class CommonFunc {
 				confirmyesbutton.click();
 				Thread.sleep(2000);
 			}
-			addNewButton.click();
-			Thread.sleep(2000);
-			String firstname = ExcelHelper.getData(1, 0);
-			String lastname = ExcelHelper.getData(1, 1);
-			String email = ExcelHelper.getData(1, 2);
-			commonXpath.FirstName.sendKeys(firstname);
-			commonXpath.LastName.sendKeys(lastname);
-			commonXpath.userEmail.sendKeys(email);
-
-			saveButton.click();
+//			addNewButton.click();
+//			Thread.sleep(2000);
+//			String firstname = ExcelHelper.getData(1, 0);
+//			String lastname = ExcelHelper.getData(1, 1);
+//			String email = ExcelHelper.getData(1, 2);
+//			commonXpath.FirstName.sendKeys(firstname);
+//			commonXpath.LastName.sendKeys(lastname);
+//			commonXpath.userEmail.sendKeys(email);
+//
+//			saveButton.click();
 		}
 	}
 

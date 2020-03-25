@@ -51,5 +51,19 @@ public class UsersPage {
 		commonXpath.userEmail.sendKeys(email);
 		commonXpath.userEmail.sendKeys(Keys.TAB);
 	}
+	public void enterchangeFirstName(String changefirstname) throws InterruptedException {
+		log.info("********************Enter User First Name********************");
+		commonXpath.FirstName.clear();
+		commonXpath.FirstName.sendKeys(changefirstname);
+		Thread.sleep(3000);
+	}
+
+	public void enterchangeLastName(String changelastName) throws InterruptedException {
+		log.info("********************Enter User Last Name********************");
+		commonXpath.LastName.clear();
+		commonXpath.LastName.sendKeys(changelastName);
+		Thread.sleep(3000);
+		
+	}
 
 }

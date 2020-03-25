@@ -16,7 +16,8 @@ public class UserAddEditDeleteSaveButton {
 
 	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations",
 	"com.runners" },
-	tags = { "@userAdd or @userEdit or @userDelete" },
+	tags = { "@multiplepageAdd" },		
+//	tags = { "@userAdd or @userEdit or @userDelete" },
 //	tags = { "@userAdd or @userDelete" },
 	plugin = { "pretty", "html:target/cucumber",
 			"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)

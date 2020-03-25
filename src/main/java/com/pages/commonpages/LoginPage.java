@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.LogHelper;
 import com.pages.adminpages.HomePage;
+import com.utilities.CommonVariables;
 import com.utilities.CommonXpath;
 
 public class LoginPage {
@@ -22,6 +23,7 @@ public class LoginPage {
 
 	public HomePage login(String un, String pw) {
 		CommonXpath.username.sendKeys(un);
+		CommonVariables.email = un;
 		log.info("********************Entered the admin username********************");
 		CommonXpath.password.sendKeys(pw);
 		log.info("********************Entered the admin password********************");

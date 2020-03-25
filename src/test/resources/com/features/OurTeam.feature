@@ -67,3 +67,11 @@ Feature: Our Team module scenario
   Scenario: Our team verification on Front side
     Given Open Front site and Go to "TEAM" Module
     Then Verify Our team in front side
+    
+    
+ @multiplepageAdd
+  Scenario: Add multiple page and verify details
+    Given Login as Admin and Go to "Our Team" Module
+    When Click on "Add" button in "Our Team"
+    Then "Team Member" "Add" page gets open
+    When I enter all fields for "add" "Our Team"

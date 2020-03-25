@@ -141,6 +141,12 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='btnsearch']")
 	public WebElement Searchbutton;
+	
+	@FindBy(xpath = "//*[@id='search-btn']")
+	public WebElement userSearchbutton;
+	
+	@FindBy(xpath = "/html/body/div[2]/div[3]/div/div[1]/form/div/div[1]/input")
+	public WebElement usersearchtextbox;
 
 	@FindBy(id = "app_name")
 	public WebElement AppName;
@@ -337,8 +343,25 @@ public class CommonXpath {
 	@FindBy(xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[1]/a[1]/span[1]")
 	public WebElement statuscolumn;
 
+	@FindBy(xpath = "//*[@id='current-password']")
+	public WebElement currentpwd;
+
 	@FindBy(xpath = "//*[@id='meta_description']")
 	public WebElement categories_metadesc;
+	
+	@FindBy(xpath = "//*[@id='new-password']")
+	public WebElement newpwd;
+	
+	@FindBy(xpath = "//*[@id='password-confirm']")
+	public WebElement passwordconfirm;
+	
+	@FindBy(xpath = "//*[@id='dropdownMenu2']")
+	public WebElement profilemenu;
+	
+	@FindBy(xpath = "/html/body/header/div/div/div[2]/div/div/a[4]")
+	public WebElement logoutprofile;
+	
+	
 
 	WebDriver driver;
 

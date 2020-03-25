@@ -29,12 +29,14 @@ public class CommonVariables {
 	public static String iptracker ="IP Tracker";
 	public static String settings ="Settings";
 	public static String testimonial ="Testimonial";
+	public static String changepwd ="Changepwd";
 	public static String categories ="Categories";
 	public static String email ="Email";
 	public static String allStrings ="All Strings";
 	public static String tableColumns ="Table Columns";
 	public static String txtSearchCmnVar = "";
 	public static String pagetitle = "";
+	public static String changename = "";
 	public static String adminauthor = "";
 	public static List<String> strArray = new ArrayList<String>();
 	public static String publishdate = "";
