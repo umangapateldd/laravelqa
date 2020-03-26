@@ -28,7 +28,7 @@ public class CommonVariables {
 	public static String pages ="Pages";
 	public static String iptracker ="IP Tracker";
 	public static String settings ="Settings";
-	public static String testimonial ="Testimonial";
+	public static String testimonial ="Testimonials";
 	public static String changepwd ="Changepwd";
 	public static String categories ="Categories";
 	public static String email ="Email";

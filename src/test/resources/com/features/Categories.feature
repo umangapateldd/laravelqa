@@ -64,3 +64,10 @@ Feature: Category module scenario
     And Click on "Save and Continue" button in "Category"
     Then I should get "category updated successfully" message on "Category"
     Then Verify details in "Categories"
+
+  @multiplecategoriesAdd
+  Scenario: Add multiple page and verify details
+    Given Login as Admin and Go to "Categories" Module
+    When Click on "Add" button in "Categories"
+    Then "Category" "Add" page gets open
+    When I enter all fields for "add" "Categories"

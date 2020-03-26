@@ -69,7 +69,7 @@ Feature: Our Team module scenario
     Then Verify Our team in front side
     
     
- @multiplepageAdd
+ @multipleourteamAdd
   Scenario: Add multiple page and verify details
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"

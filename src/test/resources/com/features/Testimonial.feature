@@ -64,7 +64,7 @@ Feature: Testimonial module scenario
     Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
     Then Verify details in "Testimonial"
 
- @TestimonialDelete
+  @TestimonialDelete
   Scenario: Delete Testimonial and verify details
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
@@ -85,3 +85,11 @@ Feature: Testimonial module scenario
   Scenario: Testimonial verification on Front side
     Given Open Front site and Go to "TESTIMONIAL" Module
     Then Verify Testimonial in front side
+    
+
+  @multipletestimonialAdd
+  Scenario: Add multiple page and verify details
+    Given Login as Admin and Go to "Testimonials" Module
+    When Click on "Add" button in "Testimonial"
+    Then "Testimonial" "Add" page gets open
+    When I enter all fields for "add" "Testimonial"

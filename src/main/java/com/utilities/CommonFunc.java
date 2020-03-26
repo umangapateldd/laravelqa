@@ -150,6 +150,8 @@ public class CommonFunc {
 	}
 
 	public void verifythesheetname(String moduleName) throws InterruptedException {
+		System.out.println("module name" +moduleName);
+		System.out.println("sheet name"+CommonVariables.testimonial);
 
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);

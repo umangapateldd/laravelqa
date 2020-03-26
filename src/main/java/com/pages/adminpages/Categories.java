@@ -60,7 +60,7 @@ public class Categories {
 
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
-		Thread.sleep(8000);
+		Thread.sleep(3000);
 		commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
