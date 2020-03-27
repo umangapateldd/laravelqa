@@ -140,7 +140,8 @@ public class CommonFunc {
 			int count = menu.size();
 			for (int i = 1; i <= count; i++) {
 				String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
-
+                System.out.println("m1="+m1);
+                System.out.println("menu title="+menuTitle);
 				if (m1.equals(menuTitle)) {
 					driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
 					break;
@@ -150,9 +151,9 @@ public class CommonFunc {
 	}
 
 	public void verifythesheetname(String moduleName) throws InterruptedException {
-		System.out.println("module name" +moduleName);
-		System.out.println("sheet name"+CommonVariables.testimonial);
-
+		System.out.println("module name" + moduleName);
+		System.out.println("sheet name"+ CommonVariables.testimonial);
+		
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		} else if (moduleName.equals(CommonVariables.ourteam)) {

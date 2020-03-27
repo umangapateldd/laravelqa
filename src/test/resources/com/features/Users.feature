@@ -69,11 +69,12 @@ Feature: Users module scenario
   @multipleuserAdd
   Scenario: Add multiple user and verify details
     Given Login as Admin and Go to "Users" Module
-    #When Verify table column in each grid "Users" page
     When Click on "Add" button in "Users"
     Then "User" "Add" page gets open
-    #And Verify test data with proper validation message for "Users"
     When I enter all fields for "add" "Users"
-    #And Click on "Save" button in "Users"
-    #Then I should get "account created successfully." message on "Users"
-    #Then Verify details in "Users"
+
+  @multipleuserDelete
+  Scenario: Delete multiple user and verify details
+    Given Login as Admin and Go to "Users" Module
+    And Select all record and Click on "Delete" button in "Users"
+    Then I should get "acccount has been deleted successfully." message on "Users"

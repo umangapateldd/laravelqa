@@ -42,7 +42,7 @@ public class Testimonial {
 
 	public void enterStatus(String status) {
 		log.info("********************Enter the Status********************");
-		dropDownHelper.selectByVaule(commonXpath.Status, status);
+		dropDownHelper.selectByVaule(commonXpath.Status, "1");
 		
 	}
 

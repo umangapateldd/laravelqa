@@ -69,3 +69,11 @@ Feature: FAQ module scenario
     Given Open Front site and Go to "FAQ" Module
     Then Verify FAQ in front side
     
+    
+  @multipleteFAQAdd
+  Scenario: Add multiple FAQ and verify details
+    Given Login as Admin and Go to "FAQs" Module
+    When Click on "Add" button in "FAQs"
+    Then "FAQ" "Add" page gets open
+    When I enter all fields for "add" "FAQs"
+    

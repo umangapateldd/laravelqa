@@ -12,6 +12,9 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//input[@id='password']")
 	public static WebElement password;
+	
+	@FindBy(xpath = "//*[@id='action_btns']/div/a[3]")
+	public static WebElement deletebutton;
 
 	@FindBy(xpath = "//button[@id='dropdownMenu2']")
 	public static WebElement profileMainMenu;
@@ -24,6 +27,9 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//button[@type='submit']")
 	public static WebElement login;
+	
+	@FindBy(xpath = "//*[@id='selectAll']")
+	public static WebElement selectallcheckbox;
 
 	@FindBy(id = "first_name")
 	public WebElement FirstName;

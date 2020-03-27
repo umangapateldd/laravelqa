@@ -1042,6 +1042,9 @@ public class StepDefination {
 			System.out.println("count = " + ExcelHelper.getTotalRowsCount());
 			for (int i = 8; i < endvalue; i++) {
 				String firstname = ExcelHelper.getData(1, i);
+				if (firstname.isEmpty()) {
+					break;
+				}
 				usersPage.enterUserFirstName(firstname);
 				String lastname = ExcelHelper.getData(3, i);
 				usersPage.enterUserLastName(lastname);
@@ -1059,22 +1062,24 @@ public class StepDefination {
 			int endvalue = ExcelHelper.getTotalRowsCount();
 			System.out.println("count = " + ExcelHelper.getTotalRowsCount());
 			for (int i = 8; i < endvalue; i++) {
-				System.out.println("Excel value=" + ExcelHelper.getData(0, i));
 				String title = ExcelHelper.getData(0, i);
-				System.out.println("Excel value=" + ExcelHelper.getData(0, i));
-				pages.enterTitle(title);
-				String status = ExcelHelper.getData(1, i);
-				pages.enterStatus(status);
-				String pageContent = ExcelHelper.getData(2, i);
-				pages.enterPageContent(pageContent);
-				String metaTitle = ExcelHelper.getData(3, i);
-				pages.enterMetaTitle(metaTitle);
-				String metaDescription = ExcelHelper.getData(4, i);
-				pages.enterMetaDescription(metaDescription);
-				Thread.sleep(2000);
-				commonFunc.clickOnSave(modulename);
-				Thread.sleep(2000);
-				commonFunc.clickOnAddNewButton();
+				if (title.isEmpty()) {
+					break;
+				} else {
+					pages.enterTitle(title);
+					String status = ExcelHelper.getData(1, i);
+					pages.enterStatus(status);
+					String pageContent = ExcelHelper.getData(2, i);
+					pages.enterPageContent(pageContent);
+					String metaTitle = ExcelHelper.getData(3, i);
+					pages.enterMetaTitle(metaTitle);
+					String metaDescription = ExcelHelper.getData(4, i);
+					pages.enterMetaDescription(metaDescription);
+					Thread.sleep(2000);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
 			}
 
 		} else if (modulename.equals("Our Team")) {
@@ -1084,21 +1089,25 @@ public class StepDefination {
 			for (int i = 13; i < endvalue; i++) {
 				System.out.println("Excel value=" + ExcelHelper.getData(0, i));
 				String firstname = ExcelHelper.getData(0, i);
-				ourteam.enterFirstName(firstname);
-				String lastname = ExcelHelper.getData(1, i);
-				ourteam.enterLastName(lastname);
-				String position = ExcelHelper.getData(2, i);
-				ourteam.enterPosition(position);
-				String status = ExcelHelper.getData(3, i);
-				ourteam.enterStatus(status);
-				String image = ExcelHelper.getData(4, i);
-				ourteam.enterImage(image);
-				String imageAlt = ExcelHelper.getData(5, i);
-				ourteam.enterImageAlt(imageAlt);
-				Thread.sleep(2000);
-				commonFunc.clickOnSave(modulename);
-				Thread.sleep(2000);
-				commonFunc.clickOnAddNewButton();
+				if (firstname.isEmpty()) {
+					break;
+				} else {
+					ourteam.enterFirstName(firstname);
+					String lastname = ExcelHelper.getData(1, i);
+					ourteam.enterLastName(lastname);
+					String position = ExcelHelper.getData(2, i);
+					ourteam.enterPosition(position);
+					String status = ExcelHelper.getData(3, i);
+					ourteam.enterStatus(status);
+					String image = ExcelHelper.getData(4, i);
+					ourteam.enterImage(image);
+					String imageAlt = ExcelHelper.getData(5, i);
+					ourteam.enterImageAlt(imageAlt);
+					Thread.sleep(2000);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
 			}
 
 		} else if (modulename.equals("Categories")) {
@@ -1108,41 +1117,125 @@ public class StepDefination {
 			for (int i = 10; i < categoriesendvalue; i++) {
 				System.out.println("Excel value=" + ExcelHelper.getData(0, i));
 				String title = ExcelHelper.getData(0, i);
-				categories.enterTitle(title);
-				String status = ExcelHelper.getData(1, i);
-				categories.enterStatus(status);
-				String imageAlt = ExcelHelper.getData(2, i);
-				categories.enterImageAlt(imageAlt);
-				String image = ExcelHelper.getData(3, i);
-				categories.enterImage(image);
-				String description = ExcelHelper.getData(4, i);
-				categories.enterDescription(description);
-				Thread.sleep(2000);
-				commonFunc.clickOnSave(modulename);
-				Thread.sleep(2000);
-				commonFunc.clickOnAddNewButton();
+				if (title.isEmpty()) {
+					break;
+				} else {
+					categories.enterTitle(title);
+					String status = ExcelHelper.getData(1, i);
+					categories.enterStatus(status);
+					String imageAlt = ExcelHelper.getData(2, i);
+					categories.enterImageAlt(imageAlt);
+					String image = ExcelHelper.getData(3, i);
+					categories.enterImage(image);
+					String description = ExcelHelper.getData(4, i);
+					categories.enterDescription(description);
+					Thread.sleep(2000);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
 			}
-
-		} else if (modulename.equals("Testimonial")) {
+		} else if (modulename.equals("Testimonials")) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.testimonial);
 			int testimonialendvalue = ExcelHelper.getTotalRowsCount();
 			System.out.println("count = " + ExcelHelper.getTotalRowsCount());
 			for (int i = 9; i < testimonialendvalue; i++) {
-				System.out.println("Excel value=" + ExcelHelper.getData(0, i));
 				String authorName = ExcelHelper.getData(0, i);
-				testimonial.enterAuthorName(authorName);
-				String url = ExcelHelper.getData(1, i);
-				testimonial.enterURL(url);
-				String status = ExcelHelper.getData(2, i);
-				testimonial.enterStatus(status);
-				String description = ExcelHelper.getData(3, i);
-				testimonial.enterDescription(description);
-				commonFunc.clickOnSave(modulename);
-				Thread.sleep(2000);
-				commonFunc.clickOnAddNewButton();
+				if (authorName.isEmpty()) {
+					break;
+				} else {
+					testimonial.enterAuthorName(authorName);
+					String url = ExcelHelper.getData(1, i);
+					testimonial.enterURL(url);
+					String status = ExcelHelper.getData(2, i);
+					testimonial.enterStatus(status);
+					String description = ExcelHelper.getData(3, i);
+					testimonial.enterDescription(description);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
+			}
+		} else if (modulename.equals("FAQs")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.faqs);
+			System.out.println("FAQ =" + CommonVariables.faqs);
+			int faqendvalue = ExcelHelper.getTotalRowsCount();
+			for (int i = 6; i < faqendvalue; i++) {
+				String question = ExcelHelper.getData(0, i);
+				if (question.isEmpty()) {
+					break;
+				} else {
+					faq.enterQuestion(question);
+					String status = ExcelHelper.getData(1, i);
+					faq.enterStatus(status);
+					String answer = ExcelHelper.getData(2, i);
+					faq.enterAnswer(answer);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
+			}
+
+		} else if (modulename.equals("Event")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.events);
+			int eventendvalue = ExcelHelper.getTotalRowsCount();
+			for (int i = 17; i < eventendvalue; i++) {
+				String title = ExcelHelper.getData(0, i);
+				if (title.isEmpty()) {
+					break;
+				} else {
+					events.enterTitle(title);
+					String startDate = ExcelHelper.getData(1, i);
+					events.enterStartDate(startDate);
+					String endDate = ExcelHelper.getData(2, i);
+					events.enterEndDate(endDate);
+					String eventTime = ExcelHelper.getData(3, i);
+					events.enterEventTime(eventTime);
+					String status = ExcelHelper.getData(4, i);
+					events.enterStatus(status);
+					String description = ExcelHelper.getData(5, i);
+					events.enterDescription(description);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
 			}
 
 		}
+		else if (modulename.equals("Blogs")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
+			int blogendvalue = ExcelHelper.getTotalRowsCount();
+			for (int i = 17; i < blogendvalue; i++) {
+				String title = ExcelHelper.getData(0, i);
+				if (title.isEmpty()) {
+					break;
+				} else {
+					events.enterTitle(title);
+					String startDate = ExcelHelper.getData(1, i);
+					events.enterStartDate(startDate);
+					String endDate = ExcelHelper.getData(2, i);
+					events.enterEndDate(endDate);
+					String eventTime = ExcelHelper.getData(3, i);
+					events.enterEventTime(eventTime);
+					String status = ExcelHelper.getData(4, i);
+					events.enterStatus(status);
+					String description = ExcelHelper.getData(5, i);
+					events.enterDescription(description);
+					commonFunc.clickOnSave(modulename);
+					Thread.sleep(2000);
+					commonFunc.clickOnAddNewButton();
+				}
+			}
 
+		}
+	}
+
+	@And("Select all record and Click on {string} button in {string}")
+	public void Select_all_record_and_Click_on_Delete_button_in_Users(String FormName, String ModuleName)
+			throws Throwable {
+		CommonXpath.selectallcheckbox.click();
+		Thread.sleep(2000);
+		CommonXpath.deletebutton.click();
+		Thread.sleep(2000);
 	}
 }

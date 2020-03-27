@@ -90,6 +90,6 @@ Feature: Testimonial module scenario
   @multipletestimonialAdd
   Scenario: Add multiple page and verify details
     Given Login as Admin and Go to "Testimonials" Module
-    When Click on "Add" button in "Testimonial"
+    When Click on "Add" button in "Testimonials"
     Then "Testimonial" "Add" page gets open
-    When I enter all fields for "add" "Testimonial"
+    When I enter all fields for "add" "Testimonials"

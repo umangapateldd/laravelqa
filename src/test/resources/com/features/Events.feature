@@ -64,3 +64,10 @@ Feature: Events module scenario
     And Click on "Save and Continue" button in "Event"
     Then I should get "event updated successfully." message on "Event"
     Then Verify details in "Events"
+
+  @multipleEventsAdd
+  Scenario: Add multiple page and verify details
+    Given Login as Admin and Go to "Events" Module
+    When Click on "Add" button in "Events"
+    Then "Event" "Add" page gets open
+    When I enter all fields for "add" "Event"
