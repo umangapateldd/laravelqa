@@ -76,3 +76,22 @@ Feature: Blog module scenario
   Scenario: Blog verification on front side
     Given Open Front site and Go to "BLOG" Module
     Then Verify Blog in front side
+
+  @multipleblogAdd
+  Scenario: Add multiple blog and verify details
+    Given Login as Admin and Go to "Blogs" Module
+    When Click on "Add" button in "Blogs"
+    Then "Blog" "Add" page gets open
+    When I enter all fields for "add" "Blogs"
+
+  @multipleblogDelete
+  Scenario: Delete multiple Blog and verify details
+    Given Login as Admin and Go to "Blogs" Module
+    And Select all record and Click on "Delete" button in "Blogs"
+    Then I should get "Selected blog(s) have been deleted successfully." message on "Blogs"
+
+  @blogPagination
+  Scenario: Blog Pagination record verification
+    Given Login as Admin and Go to "Settings" Module
+    And value get in Settings Module
+    And Verify Pagination count in "Blogs"

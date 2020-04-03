@@ -78,3 +78,9 @@ Feature: Users module scenario
     Given Login as Admin and Go to "Users" Module
     And Select all record and Click on "Delete" button in "Users"
     Then I should get "acccount has been deleted successfully." message on "Users"
+
+  @userPagination
+  Scenario: user Pagination record verification
+    Given Login as Admin and Go to "Settings" Module
+    And value get in Settings Module
+    And Verify Pagination count in "Users"

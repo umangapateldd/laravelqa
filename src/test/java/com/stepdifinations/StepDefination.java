@@ -1201,26 +1201,27 @@ public class StepDefination {
 				}
 			}
 
-		}
-		else if (modulename.equals("Blogs")) {
+		} else if (modulename.equals("Blogs")) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
 			int blogendvalue = ExcelHelper.getTotalRowsCount();
-			for (int i = 17; i < blogendvalue; i++) {
+			System.out.println("Excel value =" + ExcelHelper.getData(0, 15));
+			for (int i = 15; i < blogendvalue; i++) {
 				String title = ExcelHelper.getData(0, i);
 				if (title.isEmpty()) {
 					break;
 				} else {
-					events.enterTitle(title);
-					String startDate = ExcelHelper.getData(1, i);
-					events.enterStartDate(startDate);
-					String endDate = ExcelHelper.getData(2, i);
-					events.enterEndDate(endDate);
-					String eventTime = ExcelHelper.getData(3, i);
-					events.enterEventTime(eventTime);
-					String status = ExcelHelper.getData(4, i);
-					events.enterStatus(status);
-					String description = ExcelHelper.getData(5, i);
-					events.enterDescription(description);
+					blogs.enterTitle(title);
+					String image = ExcelHelper.getData(1, i);
+					blogs.selectImage(image);
+					String imageAlt = ExcelHelper.getData(2, i);
+					blogs.enterImageAlt(imageAlt);
+					blogs.enterPublishDate();
+					String description = ExcelHelper.getData(3, i);
+					blogs.enterDescription(description);
+					String metaTitle = ExcelHelper.getData(4, i);
+					blogs.enterMetaTitle(metaTitle);
+					String metaDescription = ExcelHelper.getData(5, i);
+					blogs.enterMetaDescription(metaDescription);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
 					commonFunc.clickOnAddNewButton();
@@ -1228,6 +1229,7 @@ public class StepDefination {
 			}
 
 		}
+
 	}
 
 	@And("Select all record and Click on {string} button in {string}")
@@ -1237,5 +1239,63 @@ public class StepDefination {
 		Thread.sleep(2000);
 		CommonXpath.deletebutton.click();
 		Thread.sleep(2000);
+		CommonXpath.confirmyesbutton.click();
+		Thread.sleep(3000);
 	}
+
+	@And("value get in Settings Module")
+	public void value_get_in_Settings_Module() throws Throwable {
+		Thread.sleep(2000);
+		String setting = commonXpath.NoofRecordsperPage.getAttribute("value");
+		System.out.println("value of common variable =" + setting);
+		CommonVariables.Numrecord = setting;
+	}
+
+	@And("Verify Pagination count in {string}")
+	public void Verify_Pagination_count_in_FAQ(String menuTitle) throws Throwable {
+		driver.findElement(By.xpath("/html/body/nav/ul/li[1]/a")).click();
+
+		commonFunc.clickMenuOption(menuTitle);
+
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
+		commonFunc.verifypaginationcount();
+
+//				String paginationcount = driver.findElement(By.xpath("//*[@id='DataTables_Table_0_paginate']/ul/li[3]/a")).getText();
+//				
+//				if (paginationcount.matches("2")) {
+//							
+//					driver.findElement(By.xpath("//*[@id='DataTables_Table_0_paginate']/ul/li[3]/a")).click();
+//					Thread.sleep(2000);
+//					System.out.println("click on 2 page");
+//					 commonFunc.verifypaginationcount();
+//				} else {
+//					
+//					System.out.println("button is not found");
+//					assert true;
+//				}
+
+//		int pagecount = pagec1.size();
+		List<WebElement> pagec11 = driver.findElements(By.xpath("//*[@style='cursor:pointer']"));
+		int countc1 = pagec11.size();
+		System.out.println("Number page count =" + countc1);
+		for (int i = 1; i <= countc1; i++) {
+			String paginationcount = driver
+					.findElement(By.xpath("//*[@id='DataTables_Table_0_paginate']/ul/li[" + (i + 1) + "]/a")).getText();
+
+			System.out.println("paginationcount = " + paginationcount);
+
+			if (Integer.parseInt(paginationcount) > 1) {
+				driver.findElement(By.xpath("//*[@id='DataTables_Table_0_paginate']/ul/li[" + (i + 1) + "]/a")).click();
+				Thread.sleep(2000);
+				System.out.println("click on next page");
+				commonFunc.verifypaginationcount();
+			} else {
+				System.out.println("button is not found");
+				assert true;
+			}
+
+		}
+	}
+
 }

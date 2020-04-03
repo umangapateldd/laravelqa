@@ -25,7 +25,7 @@ Feature: Our Team module scenario
     Then Verify details in "Our Team"
 
   @ourteamStatus
-  Scenario: Our Team Active InActive 
+  Scenario: Our Team Active InActive
     Given Login as Admin and Go to "Our Team" Module
     When Verify details in "Our Team"
     And "Our Team" is "Active"
@@ -62,16 +62,27 @@ Feature: Our Team module scenario
     And Click on "Save and Continue" button in "Our Team"
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
-    
+
   @ourteamFront
   Scenario: Our team verification on Front side
     Given Open Front site and Go to "TEAM" Module
     Then Verify Our team in front side
-    
-    
- @multipleourteamAdd
+
+  @multipleourteamAdd
   Scenario: Add multiple page and verify details
     Given Login as Admin and Go to "Our Team" Module
     When Click on "Add" button in "Our Team"
     Then "Team Member" "Add" page gets open
     When I enter all fields for "add" "Our Team"
+
+  @multipleourteamDelete
+  Scenario: Delete multiple our team and verify details
+    Given Login as Admin and Go to "Our Team" Module
+    And Select all record and Click on "Delete" button in "Our Team"
+    Then I should get "Selected team member(s) have been deleted successfully." message on "Our Team"
+
+  @ourteamPagination
+  Scenario: Our team Pagination record verification
+    Given Login as Admin and Go to "Settings" Module
+    And value get in Settings Module
+    And Verify Pagination count in "Our Team"

@@ -71,3 +71,15 @@ Feature: Events module scenario
     When Click on "Add" button in "Events"
     Then "Event" "Add" page gets open
     When I enter all fields for "add" "Event"
+
+  @multipleEventsDelete
+  Scenario: Delete multiple Event and verify details
+    Given Login as Admin and Go to "Events" Module
+    And Select all record and Click on "Delete" button in "Events"
+    Then I should get "Selected event(s) have been deleted successfully." message on "Events"
+
+  @EventsPagination
+  Scenario: Events Pagination record verification
+    Given Login as Admin and Go to "Settings" Module
+    And value get in Settings Module
+    And Verify Pagination count in "Events"

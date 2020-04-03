@@ -56,9 +56,8 @@ public class CommonStepDefinations {
 
 		commonFunc.verifythesheetname(moduleName);
 
-		
-		
-		if (!moduleName.toLowerCase().equals("change password") && !moduleName.toLowerCase().equals("my profile")) {
+		if (!moduleName.toLowerCase().equals("change password") && !moduleName.toLowerCase().equals("settings")
+				&& !moduleName.toLowerCase().equals("my profile")) {
 			// Testing Allow - yes or no
 			if (ExcelHelper.getData(3, 0).equalsIgnoreCase("yes")) {
 				assert true;
@@ -82,7 +81,6 @@ public class CommonStepDefinations {
 		Given givenann = (Given) CommonStepDefinations.class.getMethod(methodName, String.class).getAnnotations()[0];
 		CommonVariables.step.add(givenann.value().replace("{string}", menuTitle));
 
-		System.out.println("menuTitle = " + menuTitle);
 		String url = "http://laravelcms-qa.devdigdev.com/";
 		driver.get(url);
 		List<WebElement> menu = driver.findElements(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li/a"));

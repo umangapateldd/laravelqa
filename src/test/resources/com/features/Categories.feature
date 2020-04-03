@@ -71,3 +71,15 @@ Feature: Category module scenario
     When Click on "Add" button in "Categories"
     Then "Category" "Add" page gets open
     When I enter all fields for "add" "Categories"
+
+  @multiplecategoriesDelete
+  Scenario: Delete multiple Blog and verify details
+    Given Login as Admin and Go to "Categories" Module
+    And Select all record and Click on "Delete" button in "Categories"
+    Then I should get "Selected category(s) have been deleted successfully." message on "Categories"
+
+  @categoriesPagination
+  Scenario: Categories Pagination record verification
+    Given Login as Admin and Go to "Settings" Module
+    And value get in Settings Module
+    And Verify Pagination count in "Categories"

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import com.basicactions.DropDownHelper;
 import com.basicactions.ExcelHelper;
@@ -126,7 +127,7 @@ public class CommonFunc {
 	public void clickMenuOption(String menuTitle) throws InterruptedException {
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
 				"display: none;");
-		System.out.println("Menu Title =" + menuTitle);
+
 		if (menuTitle.toLowerCase().equals("my profile")) {
 			CommonXpath.profileMainMenu.click();
 			CommonXpath.myProfileMenu.click();
@@ -140,8 +141,8 @@ public class CommonFunc {
 			int count = menu.size();
 			for (int i = 1; i <= count; i++) {
 				String m1 = driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).getText();
-                System.out.println("m1="+m1);
-                System.out.println("menu title="+menuTitle);
+				System.out.println("m1=" + m1);
+				System.out.println("menu title=" + menuTitle);
 				if (m1.equals(menuTitle)) {
 					driver.findElement(By.xpath("//*[@id='main']/div[2]/div/div/div[" + i + "]/a")).click();
 					break;
@@ -151,9 +152,7 @@ public class CommonFunc {
 	}
 
 	public void verifythesheetname(String moduleName) throws InterruptedException {
-		System.out.println("module name" + moduleName);
-		System.out.println("sheet name"+ CommonVariables.testimonial);
-		
+
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
@@ -172,6 +171,8 @@ public class CommonFunc {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.pages);
 		} else if (moduleName.equals(CommonVariables.iptracker)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
+		} else if (moduleName.equals(CommonVariables.settings)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
 		} else if (moduleName.toLowerCase().equals("change password")) {
 
 		} else if (moduleName.toLowerCase().equals("my profile")) {
@@ -195,8 +196,6 @@ public class CommonFunc {
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
 				"display: none;");
 
-		System.out.println("module name =" + moduleName);
-		System.out.println("searchtext name =" + searchText);
 		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
 		System.out.println("verify table text=" + verifyTableText);
 
@@ -260,7 +259,7 @@ public class CommonFunc {
 		statuscolumn.click();
 
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
-					"display: none;");
+				"display: none;");
 
 		if (successmsg.getText().equals(msg)) {
 			System.out.println("Messgae for active = " + moduleName + " > " + msg);
@@ -344,19 +343,17 @@ public class CommonFunc {
 		savecontinueButton.click();
 	}
 
-	
 	public void clickOnSave(String moduleName) throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
-		System.out.println("email vlaue="+CommonVariables.email);
+		System.out.println("email vlaue=" + CommonVariables.email);
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 			String msg = "The email has already been taken.";
-			
 
 			if ((driver.findElements(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).size() > 0) && msg
 					.equals(driver.findElement(By.xpath("//*[@id='frmaddedit']/div[2]/div/div[3]/div")).getText())) {
-				System.out.println("email vlaue="+CommonVariables.email);
+				System.out.println("email vlaue=" + CommonVariables.email);
 				System.out.println("message text is match");
 				driver.findElement(By.xpath("//*[@id='frmaddedit']/div[1]/div[2]/div/div/a")).click();
 				Thread.sleep(2000);
@@ -487,6 +484,28 @@ public class CommonFunc {
 				assert false;
 			}
 			j++;
+		}
+	}
+
+	public void verifypaginationcount() {
+		List<WebElement> numofrecord = driver.findElements(By.xpath(" //*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+		int rcount = numofrecord.size();
+		System.out.println("record of count=" + rcount);
+
+		Select select = new Select(driver.findElement(By.xpath("//*[@id='DataTables_Table_0_length']/label/select")));
+		WebElement option = select.getFirstSelectedOption();
+		String defaultItem = option.getText();
+		System.out.println("selected item = " + defaultItem);
+		System.out.println("value of test=" + String.valueOf(rcount));
+
+		if (defaultItem.equals(CommonVariables.Numrecord)) {
+			System.out.println("Count is match");
+			if (Integer.parseInt(defaultItem) >= rcount) {
+				System.out.println("page count match");
+			}
+		} else {
+			assert false;
+
 		}
 	}
 }

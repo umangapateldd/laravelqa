@@ -69,7 +69,7 @@ Feature: Testimonial module scenario
     Given Login as Admin and Go to "Testimonials" Module
     When Verify details in "Testimonial"
     And Click on "Delete" button in "Testimonial"
-    Then I should get "Selected testimonial(s) have been deleted successfully" message on "Testimonial"
+    Then I should get "Selected testimonial(s) have been deleted successfully." message on "Testimonial"
     Then Verify details in "Testimonial"
 
   @TestimonialSettings
@@ -85,7 +85,6 @@ Feature: Testimonial module scenario
   Scenario: Testimonial verification on Front side
     Given Open Front site and Go to "TESTIMONIAL" Module
     Then Verify Testimonial in front side
-    
 
   @multipletestimonialAdd
   Scenario: Add multiple page and verify details
@@ -93,3 +92,15 @@ Feature: Testimonial module scenario
     When Click on "Add" button in "Testimonials"
     Then "Testimonial" "Add" page gets open
     When I enter all fields for "add" "Testimonials"
+
+  @multipletestimonialDelete
+  Scenario: Delete multiple Testimonials and verify details
+    Given Login as Admin and Go to "Testimonials" Module
+    And Select all record and Click on "Delete" button in "Testimonials"
+    Then I should get "Selected testimonial(s) have been deleted successfully." message on "Testimonials"
+
+  @testimonialPagination
+  Scenario: Testimonial Pagination record verification
+    Given Login as Admin and Go to "Settings" Module
+    And value get in Settings Module
+    And Verify Pagination count in "Testimonials"
