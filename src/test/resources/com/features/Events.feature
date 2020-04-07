@@ -83,3 +83,8 @@ Feature: Events module scenario
     Given Login as Admin and Go to "Settings" Module
     And value get in Settings Module
     And Verify Pagination count in "Events"
+
+  @Eventssorting
+  Scenario: Events Sorting record verification
+    Given Login as Admin and Go to "Events" Module
+    And Verify Sorting record in "Events"

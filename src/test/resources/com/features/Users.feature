@@ -84,3 +84,8 @@ Feature: Users module scenario
     Given Login as Admin and Go to "Settings" Module
     And value get in Settings Module
     And Verify Pagination count in "Users"
+
+  @usersorting
+  Scenario: user Sorting record verification
+    Given Login as Admin and Go to "Users" Module
+    And Verify Sorting record in "Users"

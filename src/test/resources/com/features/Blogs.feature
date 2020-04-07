@@ -95,3 +95,8 @@ Feature: Blog module scenario
     Given Login as Admin and Go to "Settings" Module
     And value get in Settings Module
     And Verify Pagination count in "Blogs"
+
+  @blogsorting
+  Scenario: Blog Sorting record verification
+    Given Login as Admin and Go to "Blogs" Module
+    And Verify Sorting record in "Blogs"

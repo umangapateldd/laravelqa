@@ -73,4 +73,9 @@ Feature: Pages module scenario
     #And Click on "Save" button in "Users"
     #Then I should get "account created successfully." message on "Users"
     #Then Verify details in "Users"
+    
+    @Pagessorting
+  Scenario: Page Sorting record verification
+    Given Login as Admin and Go to "Pages" Module
+    And Verify Sorting record in "Pages"
    

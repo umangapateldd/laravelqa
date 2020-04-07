@@ -24,8 +24,8 @@
 		<test name="Users">
 		<classes>
 			<class name="com.runners.Users.UserAddEditDeleteSaveButton" />
-			 <class
-				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> 
+			 <!--  class
+				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /--> 
 		</classes> 
 		
 	<!-- 	<test name="IPTracker">

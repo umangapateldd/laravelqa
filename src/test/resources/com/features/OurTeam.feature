@@ -86,3 +86,8 @@ Feature: Our Team module scenario
     Given Login as Admin and Go to "Settings" Module
     And value get in Settings Module
     And Verify Pagination count in "Our Team"
+
+  @ourteamsorting
+  Scenario:  Our team Sorting record verification
+    Given Login as Admin and Go to "Our Team" Module
+    And Verify Sorting record in "Our Team"

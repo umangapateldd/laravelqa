@@ -87,3 +87,8 @@ Feature: FAQ module scenario
     Given Login as Admin and Go to "Settings" Module
     And value get in Settings Module
     And Verify Pagination count in "FAQs"
+
+  @FAQsorting
+  Scenario: Events Sorting record verification
+    Given Login as Admin and Go to "FAQs" Module
+    And Verify Sorting record in "FAQs"
