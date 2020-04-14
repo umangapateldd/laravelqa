@@ -1332,12 +1332,163 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArryList before for column 2= " + list2);
+			Collections.sort(list2, String.CASE_INSENSITIVE_ORDER);
+
+//		Collections.sort(list);
+
+			System.out.println("ArryList after sorting for column 2= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list3.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data for column 2 :" + list3);
+
+		}
+		
+		if (ModuleName.equals("FAQs")) {
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+			ArrayList<String> list = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArryList before= " + list);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//		Collections.sort(list);
+
+			System.out.println("ArryList after sorting= " + list);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+			ArrayList<String> list1 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list1.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data :" + list1);
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArryList before for column 2= " + list2);
+			Collections.sort(list2, String.CASE_INSENSITIVE_ORDER);
+
+//		Collections.sort(list);
+
+			System.out.println("ArryList after sorting for column 2= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list3.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data for column 2 :" + list3);
+
+		}
+		if (ModuleName.equals("Testimonials")) {
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+			ArrayList<String> list = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArryList before= " + list);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//		Collections.sort(list);
+
+			System.out.println("ArryList after sorting= " + list);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
+			ArrayList<String> list1 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list1.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data :" + list1);
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArryList before for column 2= " + list2);
+			Collections.sort(list2, String.CASE_INSENSITIVE_ORDER);
+
+//		Collections.sort(list);
+
+			System.out.println("ArryList after sorting for column 2= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list3.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data for column 2 :" + list3);
+
 		}
 		if (ModuleName.equals("Pages")) {
-			System.out.println("TEST PAGES MODULES:=			" + "");
+			System.out.println("TEST PAGES MODULES:=" + ModuleName);
 			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
 			ArrayList<String> list = new ArrayList<String>();
 			for (int i = 0; i < tdList.size(); i++) {
+
 				list.add(tdList.get(i).getText());
 			}
 			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
@@ -1364,9 +1515,42 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+			
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+
+				list2.add(tdList2.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("2nd column: ArryList before= " + list2);
+			Collections.sort(list2, String.CASE_INSENSITIVE_ORDER);
+
+//		Collections.sort(list);
+
+			System.out.println("ArryList after sorting= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list3.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data :" + list3);
 		}
 		if (ModuleName.equals("Blogs")) {
-			System.out.println("TEST BLOGS MODULES:=			" + "");
+			System.out.println("TEST BLOGS MODULES:=" + "");
 			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
 			ArrayList<String> list = new ArrayList<String>();
 			for (int i = 0; i < tdList.size(); i++) {
@@ -1396,9 +1580,39 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			
+			List<WebElement> tdList1 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList1.size(); i++) {
+				list2.add(tdList1.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("ArryList before for 2nd column = " + list2);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//	Collections.sort(list);
+
+			System.out.println("ArryList after sorting for 2nd column = " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list3.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data for 2nd column:" + list3);
 		}
 		if (ModuleName.equals("Our Team")) {
-			System.out.println("TEST Our Team MODULES:=			" + "");
+			System.out.println("TEST Our Team MODULES:=" + ModuleName);
 			List<WebElement> tdList = driver
 					.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/div[2]"));
 			ArrayList<String> list = new ArrayList<String>();
@@ -1429,11 +1643,41 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("2nd column :ArryList before= " + list2);
+			Collections.sort(list2, String.CASE_INSENSITIVE_ORDER);
+
+//	Collections.sort(list);
+
+			System.out.println("2nd column :ArryList after sorting= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list3.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("2nd column :ArrayList Ascendtion data :" + list3);
 		}
 		if (ModuleName.equals("Events")) {
-			System.out.println("TEST Events MODULES:=			" + "");
-			List<WebElement> tdList = driver
-					.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
+			System.out.println("TEST Events MODULES:=" + "");
+			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
 			ArrayList<String> list = new ArrayList<String>();
 			for (int i = 0; i < tdList.size(); i++) {
 				list.add(tdList.get(i).getText());
@@ -1462,24 +1706,52 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("ArryList before 2nd column= " + list2);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//	Collections.sort(list);
+
+			System.out.println("ArryList after sorting= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list3.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data 2nd column:" + list3);
 		}
 		if (ModuleName.equals("Categories")) {
-			System.out.println("TEST Categories MODULES:=			" + "");
-			List<WebElement> tdList = driver
-					.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
+
+			System.out.println("TEST Categories MODULES:=" + ModuleName);
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
 			ArrayList<String> list = new ArrayList<String>();
 			for (int i = 0; i < tdList.size(); i++) {
 				list.add(tdList.get(i).getText());
 			}
-			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
-
-			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
-					"style", "display: none;");
 
 			System.out.println("ArryList before= " + list);
 			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
-
-//	Collections.sort(list);
 
 			System.out.println("ArryList after sorting= " + list);
 
@@ -1495,11 +1767,38 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("2nd column : ArryList before= " + list2);
+			Collections.sort(list2, String.CASE_INSENSITIVE_ORDER);
+
+			System.out.println("2nd column : ArryList after sorting= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list3.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data :" + list3);
 		}
 		if (ModuleName.equals("IP Tracker")) {
-			System.out.println("TEST IP Tracker MODULES:=			" + "");
-			List<WebElement> tdList = driver
-					.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]"));
+			System.out.println("TEST IP Tracker MODULES:=" + "");
+			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]"));
 			ArrayList<String> list = new ArrayList<String>();
 			for (int i = 0; i < tdList.size(); i++) {
 				list.add(tdList.get(i).getText());
@@ -1528,6 +1827,36 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
+			
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[3]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list2.add(tdList.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("ArryList before for 2nd column= " + list2);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//	Collections.sort(list);
+
+			System.out.println("ArryList after sorting for 2nd column= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[3]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list3.add(tdList2.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data for 2nd column :" + list3);
 		}
 
 	}
