@@ -17,7 +17,12 @@ public class ReadPropFile {
 	public Properties readProp() {
 		log.info("********************Initialization of properties file********************");
 		try {
-			FileInputStream fi = new FileInputStream(FilesPaths.CONFIG_PROPERTIES_FILE);
+			FileInputStream fi = null;
+			if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+				fi = new FileInputStream(FilesPaths.CONFIG_PROPERTIES_FILE_linux);
+			}else{
+				fi = new FileInputStream(FilesPaths.CONFIG_PROPERTIES_FILE);
+			}
 			prop.load(fi);
 			log.info("********************Loading of config properties file********************");
 		} catch (FileNotFoundException e) {

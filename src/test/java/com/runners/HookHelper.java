@@ -3,13 +3,12 @@ package com.runners;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.base.TestBase;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
+import com.utilities.FilesPaths;
 import com.utilities.ReadPropFile;
 import com.utilities.TimeOutWait;
 
@@ -27,19 +26,22 @@ public class HookHelper {
 
 	@Before
 	public void setUp() {
-		System.out.println("os name = " + System.getProperty("os.name"));
-//		readPropFile = new ReadPropFile();
-//		readPropFile.readProp();
-//		testBase = new TestBase();
-//		log.info("Open " + readPropFile.prop.getProperty("browser").toString()
-//				+ " browser from reading properties file");
-//		driver = testBase.launchBrowser(readPropFile.prop.getProperty("browser"));
-//		log.info("********************Delete all cookies of browser********************");
-//		driver.manage().deleteAllCookies();
-//		driver.manage().window().maximize();
-//		waitHelper = new WaitHelper(driver);
-//		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
-//		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+		readPropFile = new ReadPropFile();
+		readPropFile.readProp();
+		testBase = new TestBase();
+		log.info("Open " + readPropFile.prop.getProperty("browser").toString()
+				+ " browser from reading properties file");
+		driver = testBase.launchBrowser(readPropFile.prop.getProperty("browser"));
+		log.info("********************Delete all cookies of browser********************");
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		waitHelper = new WaitHelper(driver);
+		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
+		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			FilesPaths.excel_data_file_name = FilesPaths.excel_data_file_name_linux;
+			FilesPaths.excel_data_file = FilesPaths.excel_data_file_linux;
+		}
 	}
 
 	@After

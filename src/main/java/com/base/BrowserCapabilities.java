@@ -18,6 +18,7 @@ public class BrowserCapabilities {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--test-type");
 		options.addArguments("--disable-popup-blocking");
+		options.addArguments("--headless");
 		options.setCapability(ChromeOptions.CAPABILITY, chrome);
 		chrome.setJavascriptEnabled(true);
 

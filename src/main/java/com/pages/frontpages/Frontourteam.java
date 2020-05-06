@@ -33,7 +33,11 @@ public class Frontourteam {
 
 	public void verifyOurteamtitle() throws InterruptedException {
 		log.info("********************verify the Title********************");
-		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name_linux, CommonVariables.ourteam);
+		}else{
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
+		}
 		String linkdin = ExcelHelper.getData(1, 3);
 
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='team']/div/div[2]/div"));

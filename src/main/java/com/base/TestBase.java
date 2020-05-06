@@ -20,13 +20,22 @@ public class TestBase {
 
 	public WebDriver launchBrowser(String BrowserName) {
 		System.setProperty("java.library.path", System.getProperty("user.dir"));
-		System.load(FilesPaths.EXTRA_FILES_FOLDER + "chilkat.dll");
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			System.load(FilesPaths.EXTRA_FILES_FOLDER_linux + "chilkat.dll");
+		}else{
+			System.load(FilesPaths.EXTRA_FILES_FOLDER + "chilkat.dll");	
+		}
+		
 
 		if (BrowserName.equalsIgnoreCase("chrome")) {
 			log.info("********************Initializing chrome browser********************");
 			browserCapabilities = new BrowserCapabilities();
 			ChromeOptions cap = browserCapabilities.getChromeOptions();
-			System.setProperty("webdriver.chrome.driver", FilesPaths.CHROME_DRIVER);
+			if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+				System.setProperty("webdriver.chrome.driver", FilesPaths.CHROME_DRIVER_linux);
+			}else{
+				System.setProperty("webdriver.chrome.driver", FilesPaths.CHROME_DRIVER);	
+			}
 			driver = new ChromeDriver(cap);
 			log.info("********************Initialized chrome browser********************");
 

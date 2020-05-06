@@ -152,6 +152,9 @@ public class CommonFunc {
 	}
 
 	public void verifythesheetname(String moduleName) throws InterruptedException {
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			FilesPaths.excel_data_file_name = FilesPaths.excel_data_file_name_linux;
+		}
 
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);

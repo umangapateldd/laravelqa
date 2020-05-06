@@ -84,7 +84,11 @@ public class Ourteam {
 
 	public void enterImage(String image) throws InterruptedException {
 		log.info("********************Enter the Image********************");
-		commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER_linux + image);
+		}else{
+			commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		}
 		Thread.sleep(5000);
 	}
 

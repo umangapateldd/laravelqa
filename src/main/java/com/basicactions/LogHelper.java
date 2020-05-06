@@ -17,7 +17,12 @@ public class LogHelper {
 			return Logger.getLogger(clss);
 		}
 		
-		PropertyConfigurator.configure(FilesPaths.LOG_PROPERTIES_FILE);
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			PropertyConfigurator.configure(FilesPaths.LOG_PROPERTIES_FILE_linux);
+		}else{
+			PropertyConfigurator.configure(FilesPaths.LOG_PROPERTIES_FILE);
+		}
+		
 		root = true;
 		return Logger.getLogger(clss);
 	}

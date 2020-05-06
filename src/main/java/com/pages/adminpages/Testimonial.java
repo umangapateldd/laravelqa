@@ -79,7 +79,11 @@ public class Testimonial {
 	}
 	public void selectImage(String image) throws InterruptedException {
 		log.info("********************Select the Image********************");
-		commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER_linux + image);
+		}else{
+			commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);
+		}
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
 	}

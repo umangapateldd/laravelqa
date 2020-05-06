@@ -998,8 +998,14 @@ public class StepDefination {
 		changepwd.enterconfirmpwd(newpassword);
 
 		commonXpath.Settingsave.click();
-
-		PropertiesConfiguration out = new PropertiesConfiguration(FilesPaths.CONFIG_PROPERTIES_FILE);
+		PropertiesConfiguration out = null;
+		
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			out = new PropertiesConfiguration(FilesPaths.CONFIG_PROPERTIES_FILE_linux);
+		}else{
+			out = new PropertiesConfiguration(FilesPaths.CONFIG_PROPERTIES_FILE);
+		}
+		
 		out.setProperty("password", newpassword);
 		out.save();
 		Thread.sleep(5000);

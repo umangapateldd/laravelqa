@@ -76,7 +76,12 @@ public class ExcelHelper {
 
 	public static void createExcel(String filenameWithoutExtension, String sheetName) throws IOException {
 		File outputWorkbook;
-		outputWorkbook = new File(FilesPaths.EXTRA_FILES_FOLDER + filenameWithoutExtension + ".xls");
+		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+			outputWorkbook = new File(FilesPaths.EXTRA_FILES_FOLDER_linux + filenameWithoutExtension + ".xls");
+		}else{
+			outputWorkbook = new File(FilesPaths.EXTRA_FILES_FOLDER + filenameWithoutExtension + ".xls");	
+		}
+		
 		if (outputWorkbook.exists() != true) {
 			workbook1 = Workbook.createWorkbook(outputWorkbook);
 			sheet1 = workbook1.createSheet(sheetName, 0);
