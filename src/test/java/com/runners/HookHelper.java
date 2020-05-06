@@ -27,7 +27,7 @@ public class HookHelper {
 
 	@Before
 	public void setUp() {
-		System.out.println("os name 1 = " + System.getProperty("os.name"));
+		System.out.println("os name = " + System.getProperty("os.name"));
 //		readPropFile = new ReadPropFile();
 //		readPropFile.readProp();
 //		testBase = new TestBase();
