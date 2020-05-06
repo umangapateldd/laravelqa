@@ -19,12 +19,12 @@ public class TestBase {
 	BrowserCapabilities browserCapabilities;
 
 	public WebDriver launchBrowser(String BrowserName) {
-		System.setProperty("java.library.path", System.getProperty("user.dir"));
+		/*System.setProperty("java.library.path", System.getProperty("user.dir"));
 		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
 			System.load(FilesPaths.EXTRA_FILES_FOLDER_linux + "chilkat.dll");
 		}else{
 			System.load(FilesPaths.EXTRA_FILES_FOLDER + "chilkat.dll");	
-		}
+		}*/
 		
 
 		if (BrowserName.equalsIgnoreCase("chrome")) {
