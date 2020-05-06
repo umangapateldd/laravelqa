@@ -3,6 +3,8 @@ package com.runners;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.base.TestBase;
@@ -46,13 +48,13 @@ public class HookHelper {
 
 	@After
 	public void tearDown(Scenario scenario) {
-//		if (scenario.isFailed()) {
-//			log.info("********************Take a screenshot of failed scenario********************");
-//			final byte[] screenshot = ((TakesScreenshot) TestBase.driver).getScreenshotAs(OutputType.BYTES);
-//			scenario.embed(screenshot, "image/png", "Fail Image"); // ... and embed it in the report.
-//		}
-//		log.info("********************Closing the browser********************");
-//		TestBase.driver.close();
-//		TestBase.driver.quit();
+		if (scenario.isFailed()) {
+			log.info("********************Take a screenshot of failed scenario********************");
+			final byte[] screenshot = ((TakesScreenshot) TestBase.driver).getScreenshotAs(OutputType.BYTES);
+			scenario.embed(screenshot, "image/png", "Fail Image"); // ... and embed it in the report.
+		}
+		log.info("********************Closing the browser********************");
+		TestBase.driver.close();
+		TestBase.driver.quit();
 	}
 }

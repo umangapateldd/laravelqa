@@ -1,5 +1,7 @@
 package com.base;
 
+import java.io.File;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,22 +21,23 @@ public class TestBase {
 	BrowserCapabilities browserCapabilities;
 
 	public WebDriver launchBrowser(String BrowserName) {
-		/*System.setProperty("java.library.path", System.getProperty("user.dir"));
-		if (System.getProperty("os.name").toLowerCase().equals("linux")) {
-			System.load(FilesPaths.EXTRA_FILES_FOLDER_linux + "chilkat.dll");
-		}else{
-			System.load(FilesPaths.EXTRA_FILES_FOLDER + "chilkat.dll");	
-		}*/
-		
+		/*
+		 * System.setProperty("java.library.path", System.getProperty("user.dir")); if
+		 * (System.getProperty("os.name").toLowerCase().equals("linux")) {
+		 * System.load(FilesPaths.EXTRA_FILES_FOLDER_linux + "chilkat.dll"); }else{
+		 * System.load(FilesPaths.EXTRA_FILES_FOLDER + "chilkat.dll"); }
+		 */
 
 		if (BrowserName.equalsIgnoreCase("chrome")) {
 			log.info("********************Initializing chrome browser********************");
 			browserCapabilities = new BrowserCapabilities();
 			ChromeOptions cap = browserCapabilities.getChromeOptions();
 			if (System.getProperty("os.name").toLowerCase().equals("linux")) {
+				File f = new File(FilesPaths.CHROME_DRIVER_linux);
+				System.out.println("file available = " + f.exists());
 				System.setProperty("webdriver.chrome.driver", FilesPaths.CHROME_DRIVER_linux);
-			}else{
-				System.setProperty("webdriver.chrome.driver", FilesPaths.CHROME_DRIVER);	
+			} else {
+				System.setProperty("webdriver.chrome.driver", FilesPaths.CHROME_DRIVER);
 			}
 			driver = new ChromeDriver(cap);
 			log.info("********************Initialized chrome browser********************");
