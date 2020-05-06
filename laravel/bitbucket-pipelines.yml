@@ -9,4 +9,5 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
-          - ls -lt
+          - cd laravel && mvn clean install assembly:single
+          - mvn test
