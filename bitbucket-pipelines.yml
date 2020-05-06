@@ -9,4 +9,5 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
+          - chmod 777 laravel
           - cd laravel && mvn test
