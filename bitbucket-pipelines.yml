@@ -8,6 +8,18 @@ image: maven:3.6.1
 pipelines:
   default:
     - step:
-        script: # Modify the commands below to build your repository.
+        script:
+          - google-chrome --version
           - chmod 777 laravel
-          - cd laravel && mvn test
+          - cd laravel
+          - ls -lt
+          - cd src
+          - ls -lt
+          - cd main
+          - ls -lt
+          - cd resources
+          - ls - lt
+          - cd com
+          - ls -lt
+          - cd drivers
+          - ls -lt
