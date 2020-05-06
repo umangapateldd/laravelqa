@@ -41,18 +41,26 @@ public class ExcelHelper {
 		try {
 			wb = Workbook.getWorkbook(src);
 			sh1 = wb.getSheet(sheetName);
-			
+
 		} catch (BiffException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static String getData(int col, int row) {
 		c1 = sh1.getCell(col, row);
 		String data1 = c1.getContents();
 		return data1;
+	}
+
+	public static int getTotalRowsCount() {
+		return sh1.getRows();
+	}
+
+	public static int getTotalColsCount() {
+		return sh1.getColumns();
 	}
 
 	public static void deleteXLS(String path) {

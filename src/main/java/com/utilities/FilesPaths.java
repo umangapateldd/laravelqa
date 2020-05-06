@@ -25,5 +25,9 @@ public class FilesPaths {
 	public final static String EXTRA_FILES_FOLDER = System.getProperty("user.dir")
 			+ "\\src\\main\\resources\\com\\extrafiles\\";
 
+	public final static String project_folder = System.getProperty("user.dir") + "\\";
+
 	public final static String excel_data_file_name = EXTRA_FILES_FOLDER + "Laraveldata.xls";
+
+	public final static String excel_data_file = EXTRA_FILES_FOLDER + "TestData.xls";
 }

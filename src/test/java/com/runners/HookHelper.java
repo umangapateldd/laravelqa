@@ -13,9 +13,9 @@ import com.basicactions.WaitHelper;
 import com.utilities.ReadPropFile;
 import com.utilities.TimeOutWait;
 
-import cucumber.api.Scenario;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class HookHelper {
 
@@ -36,8 +36,6 @@ public class HookHelper {
 		log.info("********************Delete all cookies of browser********************");
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-//		log.info("********************Make full screen of window********************");
-//		driver.manage().window().fullscreen();
 		waitHelper = new WaitHelper(driver);
 		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
 		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
@@ -48,7 +46,7 @@ public class HookHelper {
 		if (scenario.isFailed()) {
 			log.info("********************Take a screenshot of failed scenario********************");
 			final byte[] screenshot = ((TakesScreenshot) TestBase.driver).getScreenshotAs(OutputType.BYTES);
-			scenario.embed(screenshot, "image/png"); // ... and embed it in the report.
+			scenario.embed(screenshot, "image/png", "Fail Image"); // ... and embed it in the report.
 		}
 		log.info("********************Closing the browser********************");
 		TestBase.driver.close();

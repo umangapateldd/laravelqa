@@ -2,27 +2,19 @@ package com.pages.commonpages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.basicactions.LogHelper;
 import com.pages.adminpages.HomePage;
+import com.utilities.CommonVariables;
+import com.utilities.CommonXpath;
 
 public class LoginPage {
 
 	WebDriver driver;
 	HomePage homePage;
+
 	private Logger log = LogHelper.getLogger(LoginPage.class);
-
-	@FindBy(xpath = "//input[@id='email']")
-	WebElement username;
-
-	@FindBy(xpath = "//input[@id='password']")
-	WebElement password;
-
-	@FindBy(xpath = "//button[@type='submit']")
-	WebElement login;
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -30,11 +22,12 @@ public class LoginPage {
 	}
 
 	public HomePage login(String un, String pw) {
-		username.sendKeys(un);
+		CommonXpath.username.sendKeys(un);
+		CommonVariables.email = un;
 		log.info("********************Entered the admin username********************");
-		password.sendKeys(pw);
+		CommonXpath.password.sendKeys(pw);
 		log.info("********************Entered the admin password********************");
-		login.click();
+		CommonXpath.login.click();
 		log.info("********************Clicked on the submit button********************");
 		return homePage;
 	}
