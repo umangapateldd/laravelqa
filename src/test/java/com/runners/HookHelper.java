@@ -27,29 +27,30 @@ public class HookHelper {
 
 	@Before
 	public void setUp() {
-		readPropFile = new ReadPropFile();
-		readPropFile.readProp();
-		testBase = new TestBase();
-		log.info("Open " + readPropFile.prop.getProperty("browser").toString()
-				+ " browser from reading properties file");
-		driver = testBase.launchBrowser(readPropFile.prop.getProperty("browser"));
-		log.info("********************Delete all cookies of browser********************");
-		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();
-		waitHelper = new WaitHelper(driver);
-		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
-		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+		System.out.println("os name = " + System.getProperty("os.name"));
+//		readPropFile = new ReadPropFile();
+//		readPropFile.readProp();
+//		testBase = new TestBase();
+//		log.info("Open " + readPropFile.prop.getProperty("browser").toString()
+//				+ " browser from reading properties file");
+//		driver = testBase.launchBrowser(readPropFile.prop.getProperty("browser"));
+//		log.info("********************Delete all cookies of browser********************");
+//		driver.manage().deleteAllCookies();
+//		driver.manage().window().maximize();
+//		waitHelper = new WaitHelper(driver);
+//		waitHelper.pageLoadTime(TimeOutWait.PAGELOAD_TIMEOUT, TimeUnit.SECONDS);
+//		waitHelper.setImplicitWait(TimeOutWait.IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
 	}
 
 	@After
 	public void tearDown(Scenario scenario) {
-		if (scenario.isFailed()) {
-			log.info("********************Take a screenshot of failed scenario********************");
-			final byte[] screenshot = ((TakesScreenshot) TestBase.driver).getScreenshotAs(OutputType.BYTES);
-			scenario.embed(screenshot, "image/png", "Fail Image"); // ... and embed it in the report.
-		}
-		log.info("********************Closing the browser********************");
-		TestBase.driver.close();
-		TestBase.driver.quit();
+//		if (scenario.isFailed()) {
+//			log.info("********************Take a screenshot of failed scenario********************");
+//			final byte[] screenshot = ((TakesScreenshot) TestBase.driver).getScreenshotAs(OutputType.BYTES);
+//			scenario.embed(screenshot, "image/png", "Fail Image"); // ... and embed it in the report.
+//		}
+//		log.info("********************Closing the browser********************");
+//		TestBase.driver.close();
+//		TestBase.driver.quit();
 	}
 }
