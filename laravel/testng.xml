@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MainSuite">
+	<suite-files>
+		<!-- <suite-file path="Suites/UsersSuite.xml" /> -->
+		<suite-file path="Suites/AllSuite.xml" />
+	</suite-files>
+	<!--<suite-files>
+		<suite-file path="Suites/OurteamSuite.xml" />
+	</suite-files>
+	<suite-files>
+		<suite-file path="Suites/CategoriesSuite.xml" />
+	</suite-files>
+	<listeners>
+		<listener class-name="com.runners.TestNGCustomReportListener" />
+	</listeners-->
+</suite>
