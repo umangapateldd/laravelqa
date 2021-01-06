@@ -1,0 +1,9 @@
+{
+	"cases": [
+		{
+			"testcase": "stageURL",
+			"frontURL": "http://laravelcms-qa.devdigdev.com/",
+			"adminURL": "http://laravelcms-qa.devdigdev.com/admin/"
+		}
+	]
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1">
+	<!-- <test name="Blogs">
+		<classes>
+			<class name="com.runners.Blogs.BlogAddEditDeleteSaveButton" />
+			<class
+				name="com.runners.Blogs.BlogAddEditDeleteSaveContinueButton" />
+		</classes>
+	</test>
+	<test name="OurTeam">
+		<classes>
+			<class name="com.runners.Ourteam.OurteamAddEditDeleteSaveButton" />
+			<class
+				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> 
+		</classes>
+	</test>
+	<test name="Categories">
+		<classes>
+			<class name="com.runners.Categories.CategoriesAddEditDeleteSaveButton" />
+			 <class
+				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> 
+		</classes> -->
+		
+		<test name="Users">
+		<classes>
+			<class name="com.runners.Users.UserAddEditDeleteSaveButton" />
+			 <!-- <class
+				name="com.runners.Users.UserAddEditDeleteSaveContinueButton" /> --> 
+		</classes> 
+		
+	<!-- 	<test name="IPTracker">
+		<classes>
+			<class name="com.runners.IPTracker.IPTracker" />
+		</classes>  -->
+	</test>
+</suite>
