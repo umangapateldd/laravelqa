@@ -14,7 +14,9 @@ import io.cucumber.testng.CucumberOptions;
 
 public class TestimonialAddEditDeleteSaveButton {
 	@CucumberOptions(features = { "src/test/resources/com/features" }, glue = { "com.stepdifinations", "com.runners" },
-			tags={"@TestimonialAdd or @TestimonialEdit or TestimonialDelete"},
+//			tags={"@TestimonialAdd or @TestimonialEdit or TestimonialDelete"},
+			tags={"@TestimonialSettings"},
+			
 //			tags={"@blogAdd"},
 			plugin = { "pretty", "html:target/cucumber",
 					"json:target/cucumber.json" }, monochrome = true, dryRun = false, strict = true)
@@ -31,3 +33,4 @@ public class TestimonialAddEditDeleteSaveButton {
 	
 
 }
+

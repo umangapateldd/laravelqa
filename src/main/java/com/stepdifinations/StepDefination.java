@@ -1,5 +1,6 @@
 package com.stepdifinations;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,20 +9,26 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
 import com.basicactions.ExcelHelper;
+import com.basicactions.ExcelHelperPOI;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
 import com.pages.adminpages.Changepassword;
+import com.pages.adminpages.ContactUS;
 import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
+import com.pages.adminpages.Galleries;
 import com.pages.adminpages.HomePage;
+import com.pages.adminpages.Homesliders;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Pages;
 import com.pages.adminpages.Settings;
@@ -59,8 +66,11 @@ public class StepDefination {
 	Events events;
 	Pages pages;
 	Settings settings;
+	ContactUS contactus;
+	Galleries galleries;
 	CommonXpath commonXpath;
 	Changepassword changepwd;
+	Homesliders homesliders;
 	CommonWhenStepDefinations commonWhenStepDefinations;
 	private Logger log = LogHelper.getLogger(StepDefination.class);
 
@@ -80,9 +90,12 @@ public class StepDefination {
 		faq = new FAQ(driver);
 		events = new Events(driver);
 		pages = new Pages(driver);
+		galleries = new Galleries(driver);
 		settings = new Settings(driver);
 		changepwd = new Changepassword(driver);
 		commonXpath = new CommonXpath(driver);
+		contactus = new ContactUS(driver);
+		homesliders = new Homesliders(driver);
 		commonWhenStepDefinations = new CommonWhenStepDefinations();
 	}
 
@@ -100,7 +113,7 @@ public class StepDefination {
 				"style", "display: none;");
 		switch (buttonName) {
 		case "Add":
-			commonFunc.clickOnAddNewButton();
+			commonFunc.clickOnAddNewButton(moduleName);
 			break;
 		case "Save":
 			commonFunc.clickOnSave(moduleName);
@@ -170,9 +183,28 @@ public class StepDefination {
 				} else {
 					assert false;
 				}
-			} else {
-				assert false;
+			} else if (moduleName.equals(CommonVariables.contactsetting)) {
+				if (commonXpath.contactSettingTitle.getText().equalsIgnoreCase(settingpage)) {
+					System.out.println("Verify the title:" + commonXpath.contactSettingTitle.getText());
+				} else {
+					assert false;
+				}
+			} else if (moduleName.equals(CommonVariables.ourteam)) {
+				if (commonXpath.OurteamSettingTitle.getText().equalsIgnoreCase(settingpage)) {
+					System.out.println("Verify the title:" + commonXpath.OurteamSettingTitle.getText());
+				} else {
+					assert false;
+				}
 			}
+//				else if (moduleName.equals(CommonVariables.Homeslider)) {
+//				if (commonXpath.Homeslider_setting.getText().equalsIgnoreCase(settingpage)) {
+//					System.out.println("Verify the title:" + commonXpath.OurteamSettingTitle.getText());
+//				} else {
+//					assert false;
+//				}
+//			} else {
+//				assert false;
+//			}
 		} else if (commonXpath.addtitle.getText().equalsIgnoreCase(page)) {
 			System.out.println("Verify the title:" + commonXpath.addtitle.getText());
 		} else {
@@ -223,22 +255,48 @@ public class StepDefination {
 	@Then("I should get {string} message on {string}")
 	public void I_should_get_account_created_successfully_message_on_Users_list_page(String sucessmessage,
 			String moduleName) throws Throwable {
-		String methodName = new Throwable().getStackTrace()[0].getMethodName();
-		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class, String.class)
-				.getAnnotations()[0];
-		ArrayList<String> arr = new ArrayList<String>();
-		arr.add(sucessmessage);
-		arr.add(moduleName);
-		CommonVariables.step.add(getStepsName(thenann.value(), arr));
+//		String methodName = new Throwable().getStackTrace()[0].getMethodName();
+//		Then thenann = (Then) StepDefination.class.getMethod(methodName, String.class, String.class)
+//				.getAnnotations()[0];
+//		ArrayList<String> arr = new ArrayList<String>();
+//		arr.add(sucessmessage);
+//		arr.add(moduleName);
+//		CommonVariables.step.add(getStepsName(thenann.value(), arr));
 
 		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 				"style", "display: none;");
-		if (commonXpath.successmsg.getText().contains("account restored successfully.")) {
-			System.out.println("Message :" + commonXpath.successmsg.getText());
-		} else {
+		if (moduleName.equals("Home Page Sliders")) {
 			if (commonXpath.successmsg.getText().contains(sucessmessage)) {
 				System.out.println("Message :" + commonXpath.successmsg.getText());
 			} else {
+				System.out.println("message = " + commonXpath.successmsg.getText());
+				System.out.println("Message is not match: ");
+				assert false;
+			}
+		}
+		String Title = ExcelHelper.getData(1, 0);
+		if (moduleName.equals("Galleries")) {
+			if (commonXpath.successmsg.getText().contains(Title + sucessmessage)) {
+				System.out.println("Message :" + commonXpath.successmsg.getText());
+			} else {
+				System.out.println("Message is not match: ");
+				assert false;
+			}
+		}
+		Thread.sleep(1500);
+		String firstname = ExcelHelper.getData(1, 0);
+		String lastname = ExcelHelper.getData(1, 1);
+		System.out.println("Firstname= " + firstname);
+		System.out.println("Lastname= " + lastname);
+		System.out.println("message = " + commonXpath.successmsg.getText());
+		if (commonXpath.successmsg.getText().trim().contains(firstname + lastname + "account restored successfully.")) {
+			System.out.println("Message :" + commonXpath.successmsg.getText());
+		} else {
+
+			if (commonXpath.successmsg.getText().contains(sucessmessage)) {
+				System.out.println("Message :" + commonXpath.successmsg.getText());
+			} else {
+				System.out.println("message = " + commonXpath.successmsg.getText());
 				System.out.println("Message is not match: ");
 				assert false;
 			}
@@ -248,6 +306,7 @@ public class StepDefination {
 			commonFunc.clickOnCancelbutton();
 			CommonVariables.saveandcontinue = false;
 		}
+
 		CommonVariables.stepResult.add("Pass");
 	}
 
@@ -268,14 +327,14 @@ public class StepDefination {
 			System.out.println("Inside IF condition");
 			searchText = CommonVariables.txtSearchCmnVar;
 			System.out.println("Search text is :- " + searchText);
-			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[5]";
+			xpath = "//table[@id='DataTables_Table_0']/tbody[1]/tr[1]/td[4]";
 			if (searchText.equals(xpath)) {
 				commonFunc.clickOnselectcheckbox();
 				commonFunc.clickOnDeleteButton();
 				commonFunc.clickOnconfirmyesbutton();
 				CommonVariables.deleteRecord = true;
 				Thread.sleep(4000);
-				commonFunc.clickOnAddNewButton();
+				commonFunc.clickOnAddNewButton(moduleName);
 
 				ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
 				String firstname = ExcelHelper.getData(1, 0);
@@ -290,6 +349,15 @@ public class StepDefination {
 
 				commonFunc.clickOnSave(moduleName);
 			}
+		} else if (moduleName.equals(CommonVariables.Homeslider)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			System.out.println("searchtext = " + searchText);
+			xpath = "//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[2]/ul/li[2]/div/a";
+		} else if (moduleName.equals(CommonVariables.galleries)) {
+			searchText = CommonVariables.txtSearchCmnVar;
+			System.out.println("searchtext = " + searchText);
+			xpath = "//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[2]/ul/li[2]/p";
+
 		} else if (moduleName.equals(CommonVariables.ourteam)) {
 			searchText = CommonVariables.txtSearchCmnVar;
 			xpath = "//table[@id='DataTables_Table_0']/tbody/tr[1]/td[4]//div[2][@class='title']";
@@ -386,6 +454,8 @@ public class StepDefination {
 			commonFunc.clickOnstatuscolumn("event");
 		} else if (moduleName.equals(CommonVariables.pages)) {
 			commonFunc.clickOnstatuscolumn("page");
+		} else if (moduleName.equals(CommonVariables.galleries)) {
+			commonFunc.clickOnstatuscolumn("galleries");
 		}
 	}
 
@@ -433,6 +503,7 @@ public class StepDefination {
 		default:
 			assert false;
 			break;
+
 		}
 
 	}
@@ -528,7 +599,6 @@ public class StepDefination {
 			testimonial.enterURL(url);
 			testimonial.enterStatus(status);
 			testimonial.enterDescription(description);
-			testimonial.selectImage(image);
 
 			break;
 
@@ -550,10 +620,18 @@ public class StepDefination {
 	@When("Click on {string} Settings menu")
 	public void Click_on_Settings_menu(String moduleName) throws Throwable {
 		Thread.sleep(2000);
+		System.out.println("module name 1 " + moduleName);
+		System.out.println("module name 2 " + CommonVariables.testimonial);
 		if (moduleName.equals(CommonVariables.blogs)) {
 			blogs.ClickonSettingmenu();
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			testimonial.ClickonSettingmenu();
+		} else if (moduleName.equals(CommonVariables.contactus)) {
+			commonXpath.contactSetting.click();
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			commonXpath.OurteamSetting.click();
+		} else if (moduleName.equals(CommonVariables.Homeslider)) {
+			commonXpath.HomeSettingmenu.click();
 		} else {
 			assert false;
 		}
@@ -567,8 +645,10 @@ public class StepDefination {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.blogs);
 
 			String fieldblog = ExcelHelper.getData(1, 12);
+			String commentmoderation = ExcelHelper.getData(1, 13);
 
 			blogs.enterFieldblog(fieldblog);
+			blogs.selectCommentmoderation(commentmoderation);
 			Thread.sleep(2000);
 
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
@@ -579,6 +659,15 @@ public class StepDefination {
 			System.out.println("Excel value : " + settingfield);
 
 			testimonial.entersettingfield(settingfield);
+			Thread.sleep(2000);
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.ourteam);
+
+			System.out.println("Excel value : " + ExcelHelper.getData(1, 11));
+			String ourteamTitlefield = ExcelHelper.getData(1, 11);
+			String ourteamSubTitle = ExcelHelper.getData(1, 12);
+			ourteam.enterOurteamTitle(ourteamTitlefield);
+			ourteam.enterOurteamSubTitle(ourteamSubTitle);
 			Thread.sleep(2000);
 		} else {
 			assert false;
@@ -592,6 +681,8 @@ public class StepDefination {
 			blogs.ClickonSettingsave();
 		} else if (moduleName.equals(CommonVariables.testimonial)) {
 			testimonial.ClickonSettingsave();
+		} else if (moduleName.equals(CommonVariables.ourteam)) {
+			ourteam.ClickonSavebutton();
 		} else {
 			assert false;
 		}
@@ -932,23 +1023,23 @@ public class StepDefination {
 		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.tableColumns);
 
 		if (moduleName.equals(ExcelHelper.getData(0, 0))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 0));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 0), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 1))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 1));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 1), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 2))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 2));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 2), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 3))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 3));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 3), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 4))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 4));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 4), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 5))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 5));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 5), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 6))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 6));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 6), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 7))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 7));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 7), moduleName);
 		} else if (moduleName.equals(ExcelHelper.getData(0, 8))) {
-			commonFunc.verifytablegridData(ExcelHelper.getData(1, 8));
+			commonFunc.verifytablegridData(ExcelHelper.getData(1, 8), moduleName);
 		}
 
 		CommonVariables.stepResult.add("Pass");
@@ -1055,7 +1146,7 @@ public class StepDefination {
 				Thread.sleep(2000);
 				commonFunc.clickOnSave(modulename);
 				Thread.sleep(2000);
-				commonFunc.clickOnAddNewButton();
+				commonFunc.clickOnAddNewButton(modulename);
 
 			}
 		} else if (modulename.equals("Pages")) {
@@ -1079,7 +1170,7 @@ public class StepDefination {
 					Thread.sleep(2000);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 
@@ -1107,7 +1198,7 @@ public class StepDefination {
 					Thread.sleep(2000);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 
@@ -1133,7 +1224,7 @@ public class StepDefination {
 					Thread.sleep(2000);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 		} else if (modulename.equals("Testimonials")) {
@@ -1154,7 +1245,7 @@ public class StepDefination {
 					testimonial.enterDescription(description);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 		} else if (modulename.equals("FAQs")) {
@@ -1173,7 +1264,7 @@ public class StepDefination {
 					faq.enterAnswer(answer);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 
@@ -1198,7 +1289,7 @@ public class StepDefination {
 					events.enterDescription(description);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 
@@ -1225,7 +1316,7 @@ public class StepDefination {
 					blogs.enterMetaDescription(metaDescription);
 					commonFunc.clickOnSave(modulename);
 					Thread.sleep(2000);
-					commonFunc.clickOnAddNewButton();
+					commonFunc.clickOnAddNewButton(modulename);
 				}
 			}
 
@@ -1362,7 +1453,7 @@ public class StepDefination {
 			System.out.println("ArrayList Ascendtion data for column 2 :" + list3);
 
 		}
-		
+
 		if (ModuleName.equals("FAQs")) {
 			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[4]")).click();
 
@@ -1474,7 +1565,7 @@ public class StepDefination {
 			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 					"style", "display: none;");
 
-			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
+			tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]"));
 			ArrayList<String> list3 = new ArrayList<String>();
 			for (int i = 0; i < tdList2.size(); i++) {
 				list3.add(tdList2.get(i).getText());
@@ -1510,14 +1601,15 @@ public class StepDefination {
 
 			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[4]/a"));
 			ArrayList<String> list1 = new ArrayList<String>();
+
 			for (int i = 0; i < tdList.size(); i++) {
 				list1.add(tdList.get(i).getText());
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
-			
+
 			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
-			
+
 			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
 			ArrayList<String> list2 = new ArrayList<String>();
 			for (int i = 0; i < tdList2.size(); i++) {
@@ -1580,7 +1672,7 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
-			
+
 			List<WebElement> tdList1 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
 			ArrayList<String> list2 = new ArrayList<String>();
 			for (int i = 0; i < tdList1.size(); i++) {
@@ -1643,7 +1735,7 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
-			
+
 			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
 			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
 			ArrayList<String> list2 = new ArrayList<String>();
@@ -1706,7 +1798,7 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
-			
+
 			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[5]"));
 			ArrayList<String> list2 = new ArrayList<String>();
 			for (int i = 0; i < tdList2.size(); i++) {
@@ -1767,7 +1859,7 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
-			
+
 			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[5]")).click();
 			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
 					"style", "display: none;");
@@ -1827,7 +1919,7 @@ public class StepDefination {
 			}
 
 			System.out.println("ArrayList Ascendtion data :" + list1);
-			
+
 			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[3]"));
 			ArrayList<String> list2 = new ArrayList<String>();
 			for (int i = 0; i < tdList.size(); i++) {
@@ -1858,6 +1950,406 @@ public class StepDefination {
 
 			System.out.println("ArrayList Ascendtion data for 2nd column :" + list3);
 		}
+		if (ModuleName.equals("Conatct Us")) {
+			System.out.println("TEST MODULES:=" + ModuleName);
+			List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]"));
+			ArrayList<String> list = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list.add(tdList.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[2]")).click();
 
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("ArryList before= " + list);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//	Collections.sort(list);
+
+			System.out.println("ArryList after sorting= " + list);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[2]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]"));
+			ArrayList<String> list1 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list1.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data :" + list1);
+
+			List<WebElement> tdList2 = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[3]"));
+			ArrayList<String> list2 = new ArrayList<String>();
+			for (int i = 0; i < tdList2.size(); i++) {
+				list2.add(tdList2.get(i).getText());
+			}
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[3]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			System.out.println("ArryList before 2nd column= " + list2);
+			Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+//	Collections.sort(list);
+
+			System.out.println("ArryList after sorting= " + list2);
+
+			driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[3]")).click();
+
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+
+			tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[3]"));
+			ArrayList<String> list3 = new ArrayList<String>();
+			for (int i = 0; i < tdList.size(); i++) {
+				list3.add(tdList.get(i).getText());
+			}
+
+			System.out.println("ArrayList Ascendtion data 2nd column:" + list3);
+		}
+	}
+
+	@When("Verify data in Contact Us")
+	public void Verify_data_in_Contact_Us() throws InterruptedException, IOException {
+		List<WebElement> tdList = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/tbody/tr/td[2]"));
+//		ArrayList<String> list = new ArrayList<String>();
+//		for (int i = 0; i < tdList.size(); i++) {
+//			list.add(tdList.get(i).getText());
+//			Thread.sleep(1000);
+//		}
+//		System.out.println("value= " + list);
+//		Thread.sleep(2500);
+//		driver.findElement(By.xpath("//*[@id='DataTables_Table_0_wrapper']/div[1]/div[1]/div/button")).click();
+//		Thread.sleep(5000);
+//		ExcelHelperPOI.getExcelData(FilesPaths.excel_data_file_new, "Sheet1");
+//		System.out.println("File path= "+FilesPaths.excel_data_file_new);
+//		System.out.println("Excel= "+ExcelHelperPOI.getExcelData(FilesPaths.excel_data_file_new, "Sheet1"));
+
+		ExcelHelperPOI.readExcel(FilesPaths.excel_data_file_new, "Sheet1");
+		ExcelHelperPOI.readExcelData(0, 0);
+//		System.out.println("Test Excel" + CommonVariables.contactinquiries);
+//		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_new, "Sheet1");
+//		int i = 0;
+//		for (int k = 2; k < ExcelHelper.getTotalRowsCount(); k++) {
+//			String exceldata = ExcelHelper.getData(0, k);
+//			System.out.println("excel value= " + exceldata);
+//			System.out.println("list value= " + list.get(i));
+//			if (list.get(i).equalsIgnoreCase(exceldata)) {
+//				System.out.println("Excel data match");
+//				assert true;
+//			} else {
+//				System.out.println("ELSE Condition is true");
+//				assert false;
+//			}
+//			i++;
+//		}
+	}
+
+	@And("Verify detail image for add and edit page")
+	public void Verify_detail_image_for_add_and_edit_page() throws InterruptedException, IOException {
+		String Allowimg = ExcelHelper.getData(1, 5);
+		String imgallowyes = "Yes";
+		String imagallowno = "No";
+		List<WebElement> ImageTag = driver.findElements(By.xpath("//*[@id='temp_image']"));
+		List<WebElement> Imagealt = driver.findElements(By.xpath("//*[@id='image_alt']"));
+		if (imgallowyes.equalsIgnoreCase(Allowimg)) {
+			System.out.println("Allow yes found setting section");
+			if ((ImageTag.size() > 0) && (Imagealt.size() > 0)) {
+				System.out.println("Image tag & alt is found");
+			}
+		} else if (imagallowno.equalsIgnoreCase(Allowimg)) {
+			System.out.println("Allow No found setting section");
+			if ((ImageTag.size() <= 0) && (Imagealt.size() <= 0)) {
+				System.out.println("Image tag & alt is not found");
+			} else {
+				System.out.println("allow section is found");
+
+				assert false;
+			}
+		}
+	}
+
+	@And("Verify admintest data for contactUs setting")
+	public void Verify_admintest_data_for_contactUs_setting() throws InterruptedException, IOException {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.contactsetting);
+		// System.out.println("EXCEL VALUE PRINT : = " + ExcelHelper.getData(1,1));
+
+		// Contact Settings
+		String contacttitle = ExcelHelper.getData(1, 0);
+		String contactmessage = ExcelHelper.getData(1, 1);
+		String contactemail = ExcelHelper.getData(1, 2);
+
+		contactus.contactSettings(contacttitle, contactmessage, contactemail);
+
+	}
+
+	@Then("Verify the front site")
+	public void Verify_the_title_in_front() throws InterruptedException, IOException {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.Homeslider);
+		driver.get("http://laravelcms-qa.devdigdev.com/");
+		Thread.sleep(2000);
+		List<WebElement> Element = driver.findElements(By.xpath("//*[@id='carouselCaptions']/div[1]/div/div/div/h3"));
+		int Elementsize = Element.size();
+		System.out.println("Element =" + Elementsize);
+
+		for (int i = 1; i <= Elementsize; i++) {
+			System.out.println("commxpath =" + commonXpath.Slider_Front_Text.getText());
+			System.out.println("Excel value =" + ExcelHelper.getData(1, 1));
+			System.out.println("OVERlay text =" + commonXpath.Overlay_Text.getText());
+			System.out.println("Excel value1 =" + ExcelHelper.getData(1, 3));
+			WebElement Title = driver
+					.findElement(By.xpath("//*[@id='carouselCaptions']/div[1]/div[" + i + "]/div/div/h3"));
+			WebElement Overlay = driver
+					.findElement(By.xpath("//*[@id='carouselCaptions']/div[1]/div[" + i + "]/div/div/p"));
+			if (Title.getText().equals(ExcelHelper.getData(1, 1))) {
+				System.out.println("Slider Title is match");
+				if (Overlay.getText().equals(ExcelHelper.getData(1, 3))) {
+					System.out.println("Overlay Test is match");
+				} else {
+					driver.findElement(By.xpath("//*[@id='carouselCaptions']/div[2]/a")).click();
+					System.out.println("Slider Title is not match");
+				}
+			} else {
+				driver.findElement(By.xpath("//*[@id='carouselCaptions']/div[2]/a")).click();
+				System.out.println("SLider Title");
+
+			}
+		}
+	}
+
+	@And("Verify record per page on blog listing page")
+	public void Verify_record_per_page_on_blog_listing_page() throws InterruptedException, IOException {
+		List<WebElement> bloglist = driver
+				.findElements(By.xpath("/html/body/main/div/div/div[1]/div[1]/div/div/div[2]/h3/a"));
+		String Blogfield = ExcelHelper.getData(1, 12);
+		int bloglist_count = bloglist.size();
+		System.out.println("Blog List count =" + bloglist.size());
+		if (Blogfield.equals(bloglist_count)) {
+			System.out.println("Blog list count is match");
+		} else {
+			assert false;
+			System.out.println("Blog list count is not match");
+		}
+	}
+
+	@When("I enter all mandatory fields for {string} Homeslider")
+	public void I_enter_all_mandatory_fields_for_Add_Homeslider(String formName) throws Throwable {
+		switch (formName) {
+		case "add":
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.Homeslider);
+			String img = ExcelHelper.getData(1, 0);
+			System.out.println("Image =" + FilesPaths.EXTRA_FILES_FOLDER + img);
+//		commonXpath.AddFileButton.click();
+			commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + img);
+			commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+					"style", "display: none;");
+			commonXpath.uploadButton.click();
+			CommonVariables.txtSearchCmnVar = "Slider";
+			Thread.sleep(4000);
+
+			break;
+
+		case "edit":
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.Homeslider);
+			String title = ExcelHelper.getData(1, 2);
+			String overlaytxt = ExcelHelper.getData(1, 3);
+			String imagealt = ExcelHelper.getData(1, 4);
+
+			homesliders.enterTitle(title);
+			homesliders.enterOverlayText(overlaytxt);
+
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+
+			WebElement Element = driver.findElement(By.xpath("//*[@id='alt_image_text']"));
+
+			js.executeScript("arguments[0].scrollIntoView();", Element);
+
+			homesliders.enterImageAlt(imagealt);
+			System.out.println("title = " + title);
+			CommonVariables.txtSearchCmnVar = title;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+	}
+
+	@Then("Verify detail in {string}")
+	public void Verify_detail_in_Home_Slider(String image) throws Throwable {
+		Thread.sleep(2000);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement Element = driver.findElement(By.xpath("//*[@id='addimagebtn']"));
+
+		js.executeScript("arguments[0].scrollIntoView();", Element);
+
+		Thread.sleep(2000);
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.Homeslider);
+		String Text = ExcelHelper.getData(1, 1);
+		String UpdatedTitle = ExcelHelper.getData(1, 2);
+		System.out.println("Excel Text =" + Text);
+		Thread.sleep(2000);
+		commonXpath.Search_Button.click();
+		commonXpath.Slider_searchtextbox.sendKeys(Text);
+		Thread.sleep(2000);
+		commonXpath.Slider_search_button.click();
+		Thread.sleep(2000);
+
+		List<WebElement> img = driver.findElements(By.xpath("//*[@id='main']/div[3]/form/div/div[2]/div/div/div"));
+		int numofimg = img.size();
+		System.out.println("Img size =" + numofimg);
+
+		for (int i = 1; i <= numofimg; i++) {
+
+			if (numofimg > 0)
+
+			{
+				WebElement img1 = driver.findElement(By
+						.xpath("//*[@id='main']/div[3]/form/div/div[2]/div[" + i + "]/div/div/div[2]/ul/li[2]/div/a"));
+				img1.getText();
+				System.out.println("Last image =" + img1.getText());
+				if (img1.getText().equals(Text)) {
+					System.out.println("Slider name is match");
+					Thread.sleep(4000);
+//					img1.click();
+					Actions actions = new Actions(driver);
+					WebElement menuOption = driver.findElement(
+							By.xpath("//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[2]/ul/li[2]/div/a"));
+					actions.moveToElement(menuOption).perform();
+
+				} else {
+					if (img1.equals(UpdatedTitle))
+						System.out.println("Slider name is not match");
+				}
+			}
+		}
+	}
+
+	@And("Click on Delete button in Home Page Sliders")
+	public void Click_on_Delete_button_in_Home_Page_Sliders() throws Throwable {
+		commonXpath.Slider_DELETE.click();
+		Thread.sleep(2000);
+		commonXpath.Slider_submit.click();
+
+	}
+
+	@And("I enter all mandatory fields for Homeslider setting")
+	public void I_enter_all_mandatory_fields_for_Homeslider_setting() throws Throwable {
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.Homeslider);
+		String Dis = ExcelHelper.getData(1, 5);
+
+		homesliders.selectDisplaySlider(Dis);
+		Thread.sleep(2000);
+		commonXpath.DisplaySlider_save.click();
+
+	}
+
+	@When("I enter all mandatory fields for {string} Galleries")
+	public void I_enter_all_mandatory_fields_for_Add_Galleries(String formName) throws Throwable {
+		commonFunc.checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element,
+				"style", "display: none;");
+		ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.galleries);
+		switch (formName) {
+		case "add":
+			String title = ExcelHelper.getData(1, 0);
+			String imagealt = ExcelHelper.getData(1, 1);
+			String image = ExcelHelper.getData(1, 2);
+			String description = ExcelHelper.getData(1, 3);
+			String metaTitle = ExcelHelper.getData(1, 4);
+			String metaDescription = ExcelHelper.getData(1, 5);
+
+			CommonVariables.txtSearchCmnVar = title;
+
+			galleries.enterTitle(title);
+			galleries.enterImageAlt(imagealt);
+			galleries.selectImage(image);
+			galleries.enterDescription(description);
+			galleries.enterMetaTitle(metaTitle);
+			galleries.enterMetaDescription(metaDescription);
+
+			break;
+
+		case "edit":
+			String updatetitle = ExcelHelper.getData(1, 6);
+
+			galleries.enterTitle(updatetitle);
+			CommonVariables.txtSearchCmnVar = updatetitle;
+
+			break;
+
+		default:
+			assert false;
+			break;
+		}
+
+	}
+
+	@And("Click on Delete button in Galleries")
+	public void Click_on_Delete_button_in_Galleries() throws Throwable {
+		Actions actions = new Actions(driver);
+		WebElement menuOption = driver
+				.findElement(By.xpath("//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[1]/div/a[2]"));
+		actions.moveToElement(menuOption).perform();
+		commonXpath.Gallery_DELETE.click();
+		Thread.sleep(2000);
+		commonXpath.Gallery_Submit.click();
+
+	}
+
+	@Then("Make Galleries status and verify {string}")
+	public void Make_Galleries_Active_and_verify_success_message(String message) throws Throwable {
+		Thread.sleep(2000);
+		commonXpath.Selectcheckbox.click();
+		Thread.sleep(2000);
+		commonXpath.Inactive_button.click();
+		commonXpath.Submit_button.click();
+		Thread.sleep(2000);
+		System.out.println("msg =" + commonXpath.Inactive_msg_gallery.getText());
+		System.out.println("Str ="+message);
+		String msg = "Selected Gallery(s) have been inactivated successfully.";
+		if (commonXpath.Inactive_msg_gallery.getText().equals(msg)) {
+			System.out.println("Inactive status msg =" + commonXpath.Inactive_msg_gallery.getText());
+		}
+		commonXpath.Selectcheckbox.click();
+		Thread.sleep(2000);
+		commonXpath.Active_button.click();
+		commonXpath.Submit_button.click();
+		Thread.sleep(2000);
+		String msg1 = "Selected Gallery(s) have been activated successfully.";
+		if (commonXpath.Inactive_msg_gallery.getText().equals(msg1)) {
+			System.out.println("Active status msg =" + commonXpath.Inactive_msg_gallery.getText());
+		}
+	}
+	@Then("Make Home Page Sliders status and verify {string}")
+	public void Make_Home_Page_Sliders_Active_and_verify_success_message(String message) throws Throwable {
+		Thread.sleep(2000);
+		commonXpath.Selectcheckbox.click();
+		Thread.sleep(2000);
+		commonXpath.Inactive_button.click();
+		commonXpath.Submit_button.click();
+		Thread.sleep(2000);
+		System.out.println("msg =" + commonXpath.Inactive_msg_gallery.getText());
+		System.out.println("Str ="+message);
+		String msg = "Selected Slider(s) have been inactivated successfully.";
+		if (commonXpath.Inactive_msg_gallery.getText().equals(msg)) {
+			System.out.println("Inactive status msg =" + commonXpath.Inactive_msg_gallery.getText());
+		}
+		commonXpath.Selectcheckbox.click();
+		Thread.sleep(2000);
+		commonXpath.Active_button.click();
+		commonXpath.Submit_button.click();
+		Thread.sleep(2000);
+		String msg1 = "Selected Slider(s) have been activated successfully.";
+		if (commonXpath.Inactive_msg_gallery.getText().equals(msg1)) {
+			System.out.println("Active status msg =" + commonXpath.Inactive_msg_gallery.getText());
+		}
 	}
 }

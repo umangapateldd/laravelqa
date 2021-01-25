@@ -1,0 +1,10 @@
+{
+	"cases": [
+		{   
+			"testcase": "addUser",
+			"firstName": "abc",
+			"lastName": "xyz",
+			"email": "abc@yopmail.com"
+		}
+	]
+}

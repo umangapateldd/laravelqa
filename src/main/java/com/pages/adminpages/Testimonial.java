@@ -1,10 +1,16 @@
 package com.pages.adminpages;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import com.basicactions.DropDownHelper;
+import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.utilities.CommonFunc;
 import com.utilities.CommonVariables;
@@ -43,7 +49,7 @@ public class Testimonial {
 	public void enterStatus(String status) {
 		log.info("********************Enter the Status********************");
 		dropDownHelper.selectByVaule(commonXpath.Status, "1");
-		
+
 	}
 
 	public void ClickonEditbutton() {
@@ -60,14 +66,19 @@ public class Testimonial {
 
 	public void entersettingfield(String settingfield) {
 		log.info("********************Enter the Author LastName********************");
+		WebElement dropdown = driver.findElement(By.xpath("//*[@id='field_testimonial_title_display']"));
 		
-        
-		dropDownHelper.selectVisibleText(commonXpath.Settingfield, settingfield);
+		if(settingfield.equalsIgnoreCase("no")) {
+			dropDownHelper.selectVisibleText(dropdown, "No");
+		}else {
+			dropDownHelper.selectVisibleText(dropdown, "Yes");
+		}
 	}
 
 	public void ClickonSettingmenu() throws InterruptedException {
 		log.info("********************Click on Setting Menu********************");
 		Thread.sleep(2000);
+		System.out.println("2222222222222222222");
 		commonXpath.Settingmenu.click();
 		Thread.sleep(2000);
 	}
@@ -77,6 +88,7 @@ public class Testimonial {
 		commonXpath.Settingsave.click();
 		Thread.sleep(2000);
 	}
+
 	public void selectImage(String image) throws InterruptedException {
 		log.info("********************Select the Image********************");
 		commonXpath.Image.sendKeys(FilesPaths.EXTRA_FILES_FOLDER + image);

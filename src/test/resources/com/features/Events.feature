@@ -6,7 +6,7 @@ Feature: Events module scenario
     When Verify table column in each grid "Events" page
     When Click on "Add" button in "Events"
     Then "Event" "Add" page gets open
-    And Verify test data with proper validation message for "Events"
+    #And Verify test data with proper validation message for "Events"
     When I enter all mandatory fields for "add" Event
     And Click on "Save" button in "Event"
     Then I should get "event added successfully." message on "Events"
@@ -18,7 +18,7 @@ Feature: Events module scenario
     When Verify details in "Events"
     And Click on "Edit" button in "Events"
     Then "Event" "Edit" page gets open
-    And Verify test data with proper validation message for "Events"
+    #And Verify test data with proper validation message for "Events"
     When I enter all mandatory fields for "edit" Event
     And Click on "Save" button in "Event"
     Then I should get "event updated successfully." message on "Events"

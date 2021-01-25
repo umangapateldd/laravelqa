@@ -30,4 +30,14 @@ public class FilesPaths {
 	public final static String excel_data_file_name = EXTRA_FILES_FOLDER + "Laraveldata.xls";
 
 	public final static String excel_data_file = EXTRA_FILES_FOLDER + "TestData.xls";
+	
+	public final static String excel_data_file_new = EXTRA_FILES_FOLDER + "Contact inquiries.xlsx";
+	
+	public final static String json_data_laravel_file = EXTRA_FILES_FOLDER + "laravel.json";
+
+	public final static String json_data_user_file = EXTRA_FILES_FOLDER + "user.json";
+	
+	public final static String json_data_credentials_file = EXTRA_FILES_FOLDER + "credentials.json";
+	
+ 
 }

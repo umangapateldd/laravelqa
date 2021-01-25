@@ -67,6 +67,17 @@ public class Ourteam {
 		commonXpath.ShortBio.sendKeys(shortBio);
 	}
 
+	public void enterOurteamTitle(String ourteamTitle) {
+		log.info("********************Enter the Short Bio********************");
+		commonXpath.OurteamTitle.clear();
+		commonXpath.OurteamTitle.sendKeys(ourteamTitle);
+	}
+	
+	public void enterOurteamSubTitle(String ourteamSubTitle) {
+		log.info("********************Enter the Short Bio********************");
+		commonXpath.OurteamsubTitle.clear();
+		commonXpath.OurteamsubTitle.sendKeys(ourteamSubTitle);
+	}
 	public void ClickonEditbutton() {
 		log.info("********************Click on Edit button********************");
 		commonXpath.editbutton.click();
@@ -93,6 +104,10 @@ public class Ourteam {
 
 		commonXpath.ImageAlt.sendKeys(imageAlt);
 
+	}
+	public void ClickonSavebutton() {
+		log.info("********************Click on Save button********************");
+		commonXpath.OurteamSAVE.click();
 	}
 
 }

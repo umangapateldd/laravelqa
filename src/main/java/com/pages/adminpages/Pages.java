@@ -60,7 +60,7 @@ public class Pages {
 	public void enterMetaTitle(String metaTitle) {
 		log.info("********************Enter the Meta Title********************");
 
-		commonXpath.Metatitle.sendKeys(metaTitle);
+		commonXpath.MetaTitle.sendKeys(metaTitle);
 	}
 
 	public void enterMetaDescription(String metaDescription) {

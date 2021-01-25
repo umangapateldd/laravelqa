@@ -1,5 +1,7 @@
 package com.base;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -15,11 +17,18 @@ public class BrowserCapabilities {
 
 		DesiredCapabilities chrome = new DesiredCapabilities();
 
+		String downloadFilepath = System.getProperty("user.dir") + "\\src\\main\\resources\\com\\extrafiles";
+		System.out.println("download path = " + downloadFilepath);
+		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+		chromePrefs.put("profile.default_content_settings.popups", 0);
+		chromePrefs.put("download.default_directory", downloadFilepath);
+
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--test-type");
 		options.addArguments("--disable-popup-blocking");
 		options.setCapability(ChromeOptions.CAPABILITY, chrome);
 		chrome.setJavascriptEnabled(true);
+		options.setExperimentalOption("prefs", chromePrefs);
 
 		return options;
 	}

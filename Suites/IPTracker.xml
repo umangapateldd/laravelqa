@@ -2,7 +2,7 @@
 <suite name="Suite1">
 	<test name="IPTraker">
 		<classes>
-			<class name="com.runners.IPTracker.IPTracker" />
+			<class name="com.runners.Iptracker.Iptracker" />
 		</classes>
 	</test>
 </suite>

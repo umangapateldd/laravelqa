@@ -1,6 +1,6 @@
 Feature: Our Team module scenario
 
-  @ourteam
+  @ourteamAdd
   Scenario: Create Our Team Member and verify details
     Given Login as Admin and Go to "Our Team" Module
     When Verify table column in each grid "Our Team" page
@@ -34,14 +34,6 @@ Feature: Our Team module scenario
     And "Our Team" is "Inactive"
     Then Make "Our Team" "Active" and verify "success message"
 
-  @ourteamDelete
-  Scenario: Delete Our Team and verify details
-    Given Login as Admin and Go to "Our Team" Module
-    When Verify details in "Our Team"
-    And Click on "Delete" button in "Our Team"
-    Then I should get "Selected team member(s) have been deleted successfully" message on "Our Team"
-    Then Verify details in "Our Team"
-
   @ourteamAddSaveandContinue
   Scenario: Create Our Team Member and verify details
     Given Login as Admin and Go to "Our Team" Module
@@ -62,6 +54,25 @@ Feature: Our Team module scenario
     And Click on "Save and Continue" button in "Our Team"
     Then I should get "member updated successfully" message on "Our Team"
     Then Verify details in "Our Team"
+
+  @ourteamDelete
+  Scenario: Delete Our Team and verify details
+    Given Login as Admin and Go to "Our Team" Module
+    When Verify details in "Our Team"
+    And Click on "Delete" button in "Our Team"
+    Then I should get "Selected team member(s) have been deleted successfully" message on "Our Team"
+    Then Verify details in "Our Team"
+
+  @ourteamSettings
+  Scenario: Our Team Settings
+    Given Login as Admin and Go to "Our Team" Module
+    When Click on "Our Team" Settings menu
+    Then "Our Team" "Settings" page gets open
+    When I enter all mandatory fields for "Our Team" Settings
+    And Click on "Save" button in "Our Team" Settings
+    Then I should get "Settings have been saved successfully." message on "Our Team" Settings
+    Given Open Front site and Go to "TEAM" Module
+    Then Verify Our team in front side home page
 
   @ourteamFront
   Scenario: Our team verification on Front side
@@ -88,6 +99,6 @@ Feature: Our Team module scenario
     And Verify Pagination count in "Our Team"
 
   @ourteamsorting
-  Scenario:  Our team Sorting record verification
+  Scenario: Our team Sorting record verification
     Given Login as Admin and Go to "Our Team" Module
     And Verify Sorting record in "Our Team"
