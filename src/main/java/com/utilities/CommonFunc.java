@@ -1,12 +1,21 @@
 package com.utilities;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -18,6 +27,8 @@ import com.pages.adminpages.Blogs;
 import com.pages.adminpages.Categories;
 import com.pages.adminpages.Events;
 import com.pages.adminpages.FAQ;
+import com.pages.adminpages.Galleries;
+import com.pages.adminpages.Homesliders;
 import com.pages.adminpages.Ourteam;
 import com.pages.adminpages.Pages;
 import com.pages.adminpages.Settings;
@@ -38,6 +49,8 @@ public class CommonFunc {
 	FAQ faq;
 	Events events;
 	Pages pages;
+	Galleries galleries;
+	Homesliders homepagesliders;
 
 	Settings settings;
 	private Logger log = LogHelper.getLogger(CommonFunc.class);
@@ -74,6 +87,9 @@ public class CommonFunc {
 
 	@FindBy(xpath = "//*[@id='main']/div[1]/span")
 	WebElement successmsg;
+
+	@FindBy(xpath = "/html/body/main/div/div/div[1]/div[1]/div/div/div[2]/h3/a")
+	WebElement Bloglist_record;
 
 	public CommonFunc(WebDriver driver) {
 		this.driver = driver;
@@ -152,6 +168,8 @@ public class CommonFunc {
 	}
 
 	public void verifythesheetname(String moduleName) throws InterruptedException {
+		System.out.println("Module name =" + moduleName);
+		System.out.println("Commvariable =" + CommonVariables.galleries);
 
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
@@ -173,6 +191,12 @@ public class CommonFunc {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.iptracker);
 		} else if (moduleName.equals(CommonVariables.settings)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.settings);
+		} else if (moduleName.equals(CommonVariables.contactus)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.contactus);
+		} else if (moduleName.equals(CommonVariables.Homeslider)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.Homeslider);
+		} else if (moduleName.equals(CommonVariables.galleries)) {
+			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.galleries);
 		} else if (moduleName.toLowerCase().equals("change password")) {
 
 		} else if (moduleName.toLowerCase().equals("my profile")) {
@@ -195,7 +219,13 @@ public class CommonFunc {
 
 		checkElementAvailableWithAttributeCompare(CommonVariables.elementList, CommonVariables.element, "style",
 				"display: none;");
+		if (moduleName.equals("Galleries")) {
+			List<WebElement> IMage = driver.findElements(By.xpath("//*[@id='main']/div[3]/form/div/div[2]/div"));
+			int imgcount = IMage.size();
+			System.out.println("Image =" + imgcount);
+			xpath = "//*[@id='main']/div[3]/form/div/div[2]/div[" + imgcount + "]/div/div/div[2]/ul/li[2]/p";
 
+		}
 		System.out.println("XPATH VALUE =" + driver.findElement(By.xpath(xpath)).getText());
 		System.out.println("verify table text=" + verifyTableText);
 
@@ -221,7 +251,9 @@ public class CommonFunc {
 				assert false;
 			}
 		}
-		if (driver.findElement(By.xpath(xpath)).getText().trim().equalsIgnoreCase(verifyTableText.trim())) {
+		System.out.println("xpath =" + driver.findElement(By.xpath(xpath)).getText());
+		System.out.println("tabletext = " + verifyTableText);
+		if (driver.findElement(By.xpath(xpath)).getText().trim().contains(verifyTableText.trim())) {
 			System.out.println(moduleName + " data match " + driver.findElement(By.xpath(xpath)).getText());
 
 			if (moduleName.equals(CommonVariables.blogs) && CommonVariables.deleteRecord == false) {
@@ -271,9 +303,15 @@ public class CommonFunc {
 		}
 	}
 
-	public void clickOnAddNewButton() throws InterruptedException {
+	public void clickOnAddNewButton(String modulename) throws InterruptedException {
 		log.info("********************Click on add new user button********************");
-		addNewButton.click();
+		if (modulename.equals("Home Page Sliders")) {
+			System.out.println("Home page sliders module is open");
+			commonXpath.HomesliderAddbutton.click();
+		} else {
+			System.out.println("Else condition");
+			addNewButton.click();
+		}
 	}
 
 	public void clickOnEditButton(String moduleName) throws InterruptedException {
@@ -311,6 +349,21 @@ public class CommonFunc {
 			System.out.println("edit if Pages");
 			pages = new Pages(driver);
 			pages.ClickonEditbutton();
+		} else if (moduleName.equals("Home Page Sliders")) {
+			System.out.println("edit if Home Page Sliders");
+			homepagesliders = new Homesliders(driver);
+			Actions actions = new Actions(driver);
+			WebElement menuOption = driver.findElement(By.xpath("//*[@id='display_order_62']/div/div/div[1]"));
+			actions.moveToElement(menuOption).perform();
+			homepagesliders.ClickonEditbutton();
+		} else if (moduleName.equals("Galleries")) {
+			System.out.println("edit if Galleries");
+			galleries = new Galleries(driver);
+			Actions actions = new Actions(driver);
+			WebElement menuOption = driver
+					.findElement(By.xpath("//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[1]/div/a[2]"));
+			actions.moveToElement(menuOption).perform();
+			galleries.ClickonEditbutton();
 		} else {
 			System.out.println("edit else - module is not defined");
 			assert false;
@@ -346,6 +399,7 @@ public class CommonFunc {
 	public void clickOnSave(String moduleName) throws InterruptedException {
 		log.info("********************Click on submit button********************");
 		saveButton.click();
+		Thread.sleep(1000);
 		System.out.println("email vlaue=" + CommonVariables.email);
 		if (moduleName.equals(CommonVariables.users)) {
 			ExcelHelper.readDataFromXLS(FilesPaths.excel_data_file_name, CommonVariables.users);
@@ -463,21 +517,26 @@ public class CommonFunc {
 		}
 	}
 
-	public void verifytablegridData(String Excelvalue) {
+	public void verifytablegridData(String Excelvalue, String moduleName) {
 
 		List<WebElement> ele = driver.findElements(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th"));
 		int count = ele.size();
 		int j = 0;
 
 		String[] values = Excelvalue.split(",");
+		System.out.println("values = " + values);
 		int i = 4;
-		if (ExcelHelper.getData(0, 8).equals("IP Tracker")) {
+		if (moduleName.equals("IP Tracker")) {
 			i = 2;
 		} else {
 			i = 4;
 		}
 
 		for (; i <= count; i++) {
+			System.out.println("iiiiiiii = " + i);
+			System.out.println("th row = " + driver
+					.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim());
+			System.out.println(values[j]);
 			if (driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/thead/tr/th[" + i + "]")).getText().trim()
 					.equals(values[j].trim())) {
 			} else {
@@ -506,6 +565,85 @@ public class CommonFunc {
 		} else {
 			assert false;
 
+		}
+	}
+
+	public void URLget() {
+		String credentials[] = null;
+		JSONParser jsonParser = new JSONParser();
+		System.out.println("file=" + FilesPaths.json_data_laravel_file);
+
+		try (FileReader reader = new FileReader(FilesPaths.json_data_laravel_file)) {
+			// Read JSON file
+			Object obj = jsonParser.parse(reader);
+
+			JSONObject jobj = new JSONObject(obj.toString());
+			int numOfTestCase = jobj.getJSONArray("cases").length();
+			System.out.println("numOfTestCase = " + numOfTestCase);
+			credentials = new String[numOfTestCase];
+			JSONObject jb;
+			for (int i = 0; i < jobj.getJSONArray("cases").length(); i++) {
+				jb = (JSONObject) jobj.getJSONArray("cases").get(i);
+				if (jb.has("testcase") == true) {
+					credentials[i] = jb.getString("testcase");
+				}
+			}
+			List<String> list = Arrays.asList(credentials);
+			jb = (JSONObject) jobj.getJSONArray("cases").get(list.indexOf("stageURL"));
+
+			CommonVariables.frontURL = jb.has("frontURL") ? jb.getString("frontURL") : "nofrontURL";
+			CommonVariables.adminURL = jb.has("adminURL") ? jb.getString("adminURL") : "noadminURL";
+
+			System.out.println(CommonVariables.frontURL);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void Credentialget() {
+		String credentials[] = null;
+		JSONParser jsonParser = new JSONParser();
+		System.out.println("file=" + FilesPaths.json_data_credentials_file);
+
+		try (FileReader reader = new FileReader(FilesPaths.json_data_credentials_file)) {
+			// Read JSON file
+			Object obj = jsonParser.parse(reader);
+
+			JSONObject jobj = new JSONObject(obj.toString());
+			int numOfTestCase = jobj.getJSONArray("credentials").length();
+			System.out.println("numOfTestCase = " + numOfTestCase);
+			credentials = new String[numOfTestCase];
+			JSONObject jb;
+			for (int i = 0; i < jobj.getJSONArray("credentials").length(); i++) {
+				jb = (JSONObject) jobj.getJSONArray("credentials").get(i);
+				if (jb.has("testcase") == true) {
+					credentials[i] = jb.getString("testcase");
+				}
+			}
+			List<String> list = Arrays.asList(credentials);
+			jb = (JSONObject) jobj.getJSONArray("credentials").get(list.indexOf("stageURL"));
+
+			CommonVariables.loginEmail = jb.has("loginEmail") ? jb.getString("loginEmail") : "loginEmail";
+			CommonVariables.loginPwd = jb.has("loginPwd") ? jb.getString("loginPwd") : "loginPwd";
+
+			System.out.println(CommonVariables.loginEmail);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 	}
 }

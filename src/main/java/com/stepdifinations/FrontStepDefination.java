@@ -1,10 +1,16 @@
 package com.stepdifinations;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import com.base.TestBase;
+import com.basicactions.ExcelHelper;
 import com.basicactions.LogHelper;
 import com.basicactions.WaitHelper;
 import com.pages.frontpages.Frontblog;
@@ -71,4 +77,34 @@ public class FrontStepDefination {
 		frontpages.verifypagestitle();
 	}
 
+	@Then("Verify Our team in front side home page")
+	public void Verify_Our_team_in_front_side_home_page() throws Throwable {
+		Thread.sleep(2000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		WebElement Element = driver.findElement(By.xpath("//*[@id='carouselCaptions']/div[1]/div[4]/div/picture/img"));
+		String OurteamTitle = ExcelHelper.getData(1, 11);
+		String ourteamTITLE = driver.findElement(By.xpath("//*[@id='team']/div/div[1]/div/div/h2")).getText();
+		// This will scroll the page till the element is found
+		js.executeScript("arguments[0].scrollIntoView();", Element);
+		Thread.sleep(2000);
+		if (OurteamTitle.equalsIgnoreCase(ourteamTITLE)) {
+			System.out.println("Text is match in ourTeam section ="
+					+ driver.findElement(By.xpath("//*[@id='team']/div/div[1]/div/div/h2")).getText());
+		} else {
+			System.out.println("Text is not match in ourteam section");
+		}
+	}
+
+	@Then("Verify Testimonial image in front side")
+	public void Verify_Testimonial_image_in_front_side() throws Throwable {
+		driver.findElement(By.xpath("//*[@id='navbarNavAltMarkup']/ul/li[7]/a")).click();
+		Thread.sleep(2000);
+		List<WebElement> Img = driver.findElements(By.xpath("//*[@id='testimonial']/div/div[2]/div/div/div[1]/img"));
+		if (Img.size() > 0) {
+			System.out.println("Image is displayed on Front");
+		} else {
+			System.out.println("Image is not displayed on Front");
+		}
+	}
 }

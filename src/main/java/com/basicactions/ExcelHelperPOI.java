@@ -15,8 +15,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelHelperPOI {
-	FileInputStream fsIP;
-	HSSFWorkbook wb;
+	public static FileInputStream fsIP;
+	public static HSSFWorkbook wb;
+	public static HSSFSheet worksheet;
+	public static XSSFSheet sheet;
 
 	public void addDataInExistingExcel(String fileName, String sheetName, String dataVal[]) throws IOException {
 		fsIP = new FileInputStream(new File(fileName + ".xls"));
@@ -43,8 +45,30 @@ public class ExcelHelperPOI {
 		outputStream.close();
 	}
 
+	public static void readExcel(String fileName, String sheetName) throws IOException {
+		FileInputStream file = new FileInputStream(new File(fileName));
+		// Create Workbook instance
+
+		XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+		// Get sheet Name from Workbook
+		sheet = workbook.getSheet(sheetName);
+	}
+
+	public static void readExcelData(int col, int row) {
+//		String data = sheet.get
+		int totalRow = sheet.getLastRowNum() + 1;
+		System.out.println("totalRow = " + totalRow);
+		for (int i = 1; i < 5; i++) {
+			XSSFRow r = sheet.getRow(i);
+			String ce = r.getCell(1).getStringCellValue();
+			System.out.println(ce);
+		}
+//		return data;
+	}
+
 	@SuppressWarnings("resource")
-	public Object[][] getExcelData(String excelLocation, String sheetName) {
+	public static Object[][] getExcelData(String excelLocation, String sheetName) {
 
 		try {
 			Object dataSets[][] = null;
@@ -138,4 +162,5 @@ public class ExcelHelperPOI {
 		}
 
 	}
+
 }

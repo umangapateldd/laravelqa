@@ -38,7 +38,7 @@ public class Blogs {
 
 	public void selectBlogCategory(String blogCategory) throws InterruptedException {
 		log.info("********************Select the Blog Categories********************");
-		dropDownHelper.selectByVaule(commonXpath.BlogCategory, "1");
+		commonXpath.BlogCategory.sendKeys(blogCategory);
 	}
 
 	public void enterAuthorFirstName(String AuthorfirstName) {
@@ -58,7 +58,11 @@ public class Blogs {
 		commonXpath.Fieldblog.clear();
 		commonXpath.Fieldblog.sendKeys(fieldblog);
 	}
-
+	
+	public void selectCommentmoderation(String commentmoderation) {
+		log.info("********************Enter the Author LastName********************");
+		dropDownHelper.selectByVaule(commonXpath.Commentmoderation, "1");
+	}
 	public void selectStatus(String status) {
 		log.info("********************Enter the Status********************");
 		dropDownHelper.selectByVaule(commonXpath.Status, "1");
@@ -116,7 +120,7 @@ public class Blogs {
 	public void enterMetaTitle(String metaTitle) {
 		log.info("********************Enter the Meta Title********************");
 
-		commonXpath.Metatitle.sendKeys(metaTitle);
+		commonXpath.MetaTitle.sendKeys(metaTitle);
 
 	}
 

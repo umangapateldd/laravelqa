@@ -169,11 +169,11 @@
 			<version>2.6.12</version>
 		</dependency>
 
-		<dependency>
+		<!--dependency>
 			<groupId>chilkatsoft</groupId>
 			<artifactId>chilkat</artifactId>
 			<version>9.5.0</version>
-		</dependency>
+		</dependency-->
 
 
 		<!-- Log4j Dependencies -->

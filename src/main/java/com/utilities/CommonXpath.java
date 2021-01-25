@@ -24,7 +24,34 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//div[@aria-labelledby='dropdownMenu2']/a[1]")
 	public static WebElement myProfileMenu;
-
+	
+	@FindBy(xpath = "//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[1]/div/a[3]")
+	public static WebElement Slider_DELETE;
+	
+	@FindBy(xpath = "//*[@id='confirm-slider-delete']")
+	public static WebElement Slider_submit;
+	
+	@FindBy(xpath = "//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[1]/div/a[3]")
+	public static WebElement Gallery_DELETE;
+	
+	@FindBy(xpath = "//*[@id='main']/div[1]/span")
+	public static WebElement Inactive_msg_gallery;
+	
+	@FindBy(xpath = "//*[@id='action_btns']/div/a[1]")
+	public static WebElement Active_button;
+	
+	@FindBy(xpath = "//*[@id='confirm-gallery-delete']")
+	public static WebElement Gallery_Submit;
+	
+	@FindBy(xpath = "//*[@for='selectAll']")
+	public static WebElement Selectcheckbox;
+	
+	@FindBy(xpath = "//*[@id='action_btns']/div/a[2]")
+	public static WebElement Inactive_button;
+	
+	@FindBy(xpath = "//*[@id='confirm-action-submit']")
+	public static WebElement Submit_button;
+	
 	@FindBy(xpath = "//div[@aria-labelledby='dropdownMenu2']/a[2]")
 	public static WebElement changePasswordMenu;
 
@@ -33,7 +60,10 @@ public class CommonXpath {
 	
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/thead/tr/th[2]/div")
 	public static WebElement selectallcheckbox;
-
+	
+	@FindBy(xpath = "//*[@id='main']/div[3]/form/div/div[2]/div[1]/div/div/div[1]/div/a[2]")
+	public static WebElement Gallery_Edit;
+	
 	@FindBy(id = "first_name")
 	public WebElement FirstName;
 
@@ -53,7 +83,7 @@ public class CommonXpath {
 	public WebElement Status;
 
 	@FindBy(id = "meta_title")
-	public WebElement Metatitle;
+	public WebElement MetaTitle;
 
 	@FindBy(id = "meta_desc")
 	public WebElement MetaDescription;
@@ -63,6 +93,9 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//body[@id='tinymce']")
 	public WebElement Description;
+	
+	@FindBy(xpath = "//*[@id='meta_description']")
+	public WebElement Meta_Description;
 
 	@FindBy(xpath = "//body[@id='tinymce']")
 	public WebElement AdditionalBio;
@@ -75,6 +108,9 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='image_alt']")
 	public WebElement ImageAlt;
+	
+	@FindBy(xpath = "//*[@id='alt_image_text']")
+	public WebElement Slider_ImageAlt;
 
 	@FindBy(id = "title")
 	public WebElement Title;
@@ -160,6 +196,12 @@ public class CommonXpath {
 	@FindBy(id = "app_name")
 	public WebElement AppName;
 
+	@FindBy(xpath = "//*[@id='contact_title']")
+	public WebElement Contact_Title;
+	
+	@FindBy(xpath = "//*[@id='carouselCaptions']/div[1]/div[1]/div/div/p")
+	public WebElement Overlay_Text;
+
 	@FindBy(id = "footer_title_for_admin")
 	public WebElement FooterTitleforAdmin;
 
@@ -180,12 +222,27 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='records_per_page']")
 	public WebElement NoofRecordsperPage;
-
+	
+	@FindBy(xpath = "//*[@id='contact_title']")
+	public WebElement Contact_settingTitle;
+	
+	@FindBy(xpath = "//*[@id='btnsave']")
+	public WebElement Contact_Save;
+	
+	@FindBy(xpath = "//*[@id='contact_thank_you_message']")
+	public WebElement Contact_Message;
+	
+	@FindBy(xpath = "//*[@id='contact_email']")
+	public WebElement Contact_email;
+	
 	@FindBy(xpath = "//*[@id='DataTables_Table_0']/tbody/tr[1]/td[7]/a")
 	public WebElement Settingeditbutton;
 
 	@FindBy(xpath = "//*[@id='site-config-heading-1']/h5/a")
 	public WebElement frontEndAccordion;
+	
+	@FindBy(xpath = "/html/body/nav/ul/li[11]/div/a[2]")
+	public WebElement Contactsettingmenu;
 
 	@FindBy(xpath = "//*[@id='site-config-heading-2']/h5/a")
 	public WebElement companyAccordion;
@@ -198,12 +255,21 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='site-config-heading-5']/h5/a")
 	public WebElement sociallinkAccordion;
+	
+	@FindBy(xpath = "//*[@id='normal_btns']/div")
+	public WebElement slider_Message;
 
 	@FindBy(xpath = "//*[@id='site-config-heading-6']/h5/a")
 	public WebElement googleCaptchaAccordion;
 
 	@FindBy(xpath = "//*[@id='site-config-heading-7']/h5/a")
 	public WebElement SEOAccordion;
+	
+	@FindBy(xpath = "/html/body/main/div[2]/div/div/div/form/h2")
+	public WebElement ContactTitle_Home;
+	
+	@FindBy(xpath = "//*[@id='basic-uploader']/div[3]/table/tbody/tr/td[4]/button[1]")
+	public WebElement uploadButton;
 
 	@FindBy(xpath = "//*[@id='company_name']")
 	public WebElement CompanyName;
@@ -306,10 +372,37 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[2]/div/div[7]/div[2]/div[2]/table/tbody/tr/td/fieldset[2]/span[5]")
 	public WebElement selecttime;
-
+	
+	@FindBy(xpath = "//*[@id='display_order_62']/div/div/div[1]/div/a[2]")
+	public WebElement slider_hover;
+	
+	@FindBy(xpath = "//*[@id='overlay_text']")
+	public WebElement slider_overlay_Text;
+	
+	@FindBy(xpath = "//*[@id='alt_image_text']")
+	public WebElement slider_image_alt;
+	
 	@FindBy(xpath = "/html/body/nav/ul/li[7]/div/a[2]")
 	public WebElement BlogSettingmenu;
-
+	
+	@FindBy(xpath = "//*[@id='carouselCaptions']/div[1]/div[1]/div/div/h3")
+	public WebElement Slider_Front_Text;
+	
+	@FindBy(xpath = "/html/body/nav/ul/li[9]/div/a[2]")
+	public WebElement HomeSettingmenu;
+	
+	@FindBy(xpath = "//*[@id='field_slider_title_display']")
+	public WebElement DisplaySlider;
+	
+	@FindBy(xpath = "//*[@id='btnsave']")
+	public WebElement DisplaySlider_save;
+	
+	@FindBy(xpath = "//*[@id='addimagebtn']")
+	public WebElement HomesliderAddbutton;
+	
+	@FindBy(xpath = "//*[@id='addfiles']/input")
+	public WebElement AddFileButton;
+	
 	@FindBy(xpath = "//*[@id='field_blog_per_page_display']")
 	public WebElement Fieldblog;
 
@@ -339,10 +432,22 @@ public class CommonXpath {
 
 	@FindBy(xpath = "//*[@id='main']/div[1]/span")
 	public WebElement successmsg;
+	
+	@FindBy(xpath = "//*[@id='search']")
+	public WebElement Slider_searchtextbox;
+	
+	@FindBy(xpath = "//*[@id='search-btn']")
+	public WebElement Search_Button;
+	
+	@FindBy(xpath = "//*[@id='btnsearch']")
+	public WebElement Slider_search_button;
 
 	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/div[1]/h1")
 	public WebElement addtitle;
 
+	@FindBy(xpath = "//*[@id='search-btn']")
+	public WebElement Homeslider_search;
+	
 	@FindBy(xpath = "//*[@id='site-config-heading-12']/h5/a")
 	public WebElement blogsettingtitle;
 
@@ -370,8 +475,31 @@ public class CommonXpath {
 	@FindBy(xpath = "/html/body/header/div/div/div[2]/div/div/a[4]")
 	public WebElement logoutprofile;
 	
+	@FindBy(xpath = "/html/body/nav/ul/li[11]/div/a[2]")
+	public WebElement contactSetting;
 	
-
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/h1")
+	public WebElement contactSettingTitle;
+	
+	@FindBy(xpath = "//*[@id='frmaddedit']/div[1]/h1")
+	public WebElement OurteamSettingTitle;
+	
+	@FindBy(xpath = "//*[@id='comment_moderation']/option[1]")
+	public WebElement Commentmoderation;
+	
+	@FindBy(xpath = "//*[@id='our_team_title']")
+	public WebElement OurteamTitle;
+	
+	@FindBy(xpath = "//*[@id='our_team_sub_title']")
+	public WebElement OurteamsubTitle;
+	
+	@FindBy(xpath = "//*[@id='btnsave']")
+	public WebElement OurteamSAVE;
+	
+	@FindBy(xpath = "/html/body/nav/ul/li[4]/div/a[2]")
+	public WebElement OurteamSetting;
+	
+	
 	WebDriver driver;
 
 	public CommonXpath(WebDriver driver) {

@@ -9,7 +9,7 @@ Feature: Blog module scenario
     #And Verify test data with proper validation message for "Blogs"
     When I enter all mandatory fields for "add" Blogs
     And Click on "Save" button in "Blogs"
-    Then I should get "blog added successfully" message on "Blogs"
+    Then I should get "blog added successfully." message on "Blogs"
     Then Verify details in "Blogs"
 
   @blogEdit
@@ -21,7 +21,7 @@ Feature: Blog module scenario
     And Verify test data with proper validation message for "Blogs"
     When I enter all mandatory fields for "edit" Blogs
     And Click on "Save" button in "Blogs"
-    Then I should get "blog updated successfully" message on "Blogs"
+    Then I should get "blog updated successfully." message on "Blogs"
     Then Verify details in "Blogs"
 
   @blogStatus
@@ -63,6 +63,9 @@ Feature: Blog module scenario
     When I enter all mandatory fields for "Blogs" Settings
     And Click on "Save" button in "Blogs" Settings
     Then I should get "Settings have been saved successfully." message on "Blogs" Settings
+    When Go to "Blogs" Module
+    And Verify record per page on blog listing page
+    
 
   @blogDelete
   Scenario: Delete blog and verify details

@@ -6,10 +6,10 @@ Feature: FAQ module scenario
     When Verify table column in each grid "FAQs" page
     When Click on "Add" button in "FAQs"
     Then "FAQ" "Add" page gets open
-    And Verify test data with proper validation message for "FAQs"
+    #And Verify test data with proper validation message for "FAQs"
     When I enter all mandatory fields for "add" FAQ
     And Click on "Save" button in "FAQ"
-    Then I should get "added successfully." message on "FAQ"
+    #Then I should get "added successfully." message on "FAQ"
     Then Verify details in "FAQs"
 
   @FAQEdit
@@ -18,10 +18,10 @@ Feature: FAQ module scenario
     When Verify details in "FAQs"
     And Click on "Edit" button in "FAQs"
     Then "FAQ" "Edit" page gets open
-    And Verify test data with proper validation message for "FAQs"
+    #And Verify test data with proper validation message for "FAQs"
     When I enter all mandatory fields for "edit" FAQ
     And Click on "Save" button in "FAQ"
-    Then I should get "updated successfully." message on "FAQ"
+    #Then I should get "updated successfully." message on "FAQ"
     Then Verify details in "FAQs"
 
   @FAQActiveInactive
