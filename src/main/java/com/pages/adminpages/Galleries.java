@@ -98,7 +98,7 @@ public class Galleries {
 	public void enterMetaTitle(String metaTitle) {
 		log.info("********************Enter the Meta Title********************");
 
-		commonXpath.Metatitle.sendKeys(metaTitle);
+		commonXpath.MetaTitle.sendKeys(metaTitle);
 
 	}
 
